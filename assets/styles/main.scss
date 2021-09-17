@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import 'variables.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+
+
+html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;font-family: 'Montserrat', sans-serif;}
+.navbar {margin: 0; padding: 0;}
+.bg-dark {
+    & h1,h2,h3,h4,strong {
+        color:white;
+    }
+}
+.Cookie--et {
+    background: #1a2740;
+    color: #fff;
+    padding: 1rem 2rem;
+}
+.Cookie--et .Cookie__button {
+    background: #ec970f;
+    padding: 0.425em 2.125em;
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+    margin:0;
+    font-size: 1em;
+}
+.Cookie--et .Cookie__button:hover {
+    background: #f8da19;
+}
+.container {border-top:4px solid #ec970f;}
+.gm-ui-hover-effect {background: transparent!important;border: 0!important;}
+button {outline: none;box-shadow:none !important;}
+button:focus {border: 0!important;outline: none;box-shadow:none !important;}
+.table > tbody > tr > td {
+    vertical-align: middle;
+    & h5, p, h4, h3 {
+        margin:0;
+    }
+    & h4 {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+}
+.table-icon {
+    max-width: 64px;
+    max-height: 64px;
+}
+
+
+.rank-sub {font-size: 14px; padding-left:0.5rem; border-left:4px solid #ec970f;}
+
+#badge {
+    position: fixed; top: 10px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f;
+    & a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
+}
+#badgePos {
+    position: fixed; bottom: 48px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f;
+    & a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
+}
+
+#bg-image {
+    background-position: 640px 366px;
+    width: 100%;height: 100%;
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.list-group-item-info {
+    color: $secondary;
+    background-color: white;
+}
+
+b-card-text p {
+    font-size: 18px;
+}
+
+hr {
+    height: 2rem;
+    border: 0;
+    position: relative;
+    display: block;
+  }
+  hr:after {
+      content:'';
+      position: absolute;
+      left:0; top: 0.8rem;
+      width:80px;
+      height:3px;
+      background-color: #ec970f;
+  }
+.telegram-login-box > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+// Google map elements
+.infocontent {
+    text-align: center;
+
+    & img {
+        max-height: 600px;
+        max-width: 600px;
+        margin: 0 auto;
+        width:100%;
+    }
+    & button.close {
+        background: transparent;
+        border: 0;
+    }
+    & p {
+        font-size: 14px;
+        margin: 0;
+        padding-bottom:0.2rem;
+    }
+    & h4 {
+        font-size:16px;
+        margin: 0;
+        padding-top:0.3rem;
+    }
+    & small {
+        font-size: 10px;
+        float: left;
+    }
+    & .report {
+        float: right;
+        font-weight: bold;
+    }
+    & p {
+        margin:0;
+    }
+}
+.locations div[role=dialog] {
+    max-width: 90vw!important;
+}
+
+.mobile {
+
+    & .container {
+        padding-left: 1rem!important;
+        padding-right: 1rem!important;
+    }
+
+    & .table th, .table td {
+        padding: 0.5rem!important;
+    }
+
+    #banner {
+        height:200px;
+    }
+
+}
