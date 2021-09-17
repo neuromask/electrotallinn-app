@@ -1,4 +1,4 @@
-# et-nuxt-app
+# ElectroTallinn App
 
 ## Build Setup
 
