@@ -97,126 +97,126 @@ export default {
   props: {},
   data: () => ({
 
-      bgImages: [
-        require('@/assets/img/pattern-icons.png'),
-        require('@/assets/img/top.jpg'),
-        require('@/assets/img/tallinn.svg')
-      ],
-      locationIcons: {
-        CHARGE: require('@/assets/img/icon/icon-charge.svg'),
-        REPAIR: require('@/assets/img/icon/icon-repair.svg'),
-        AIR: require('@/assets/img/icon/icon-air.svg'),
-        WATER: require('@/assets/img/icon/icon-water.svg')
+    bgImages: [
+      require('@/assets/img/pattern-icons.png'),
+      require('@/assets/img/top.jpg'),
+      require('@/assets/img/tallinn.svg')
+    ],
+    locationIcons: {
+      CHARGE: require('@/assets/img/icon/icon-charge.svg'),
+      REPAIR: require('@/assets/img/icon/icon-repair.svg'),
+      AIR: require('@/assets/img/icon/icon-air.svg'),
+      WATER: require('@/assets/img/icon/icon-water.svg')
+    },
+    ranks: [
+      {
+        num: 0,
+        icon: require('@/assets/img/ranks/rank-1.png'),
+        name: 'ElectroIron',
+        minCount: 1
       },
-      ranks: [
-        {
-          num: 0,
-          icon: require('@/assets/img/ranks/rank-1.png'),
-          name: 'ElectroIron',
-          minCount: 1
-        },
-        {
-          num: 1,
-          icon: require('@/assets/img/ranks/rank-2.png'),
-          name: 'ElectroBronze',
-          minCount: 3
-        },
-        {
-          num: 2,
-          icon: require('@/assets/img/ranks/rank-3.png'),
-          name: 'ElectroSilver',
-          minCount: 5
-        },
-        {
-          num: 3,
-          icon: require('@/assets/img/ranks/rank-4.png'),
-          name: 'ElectroGoldie',
-          minCount: 10
-        },
-        {
-          num: 4,
-          icon: require('@/assets/img/ranks/rank-5.png'),
-          name: 'ElectroDmnd',
-          minCount: 20
-        },
-        {
-          num: 5,
-          icon: require('@/assets/img/ranks/rank-6.png'),
-          name: 'ElectroMeteor',
-          minCount: 35
-        },
-        {
-          num: 6,
-          icon: require('@/assets/img/ranks/rank-7.png'),
-          name: 'ElectroSpace',
-          minCount: 50
-        },
-        {
-          num: 7,
-          icon: require('@/assets/img/ranks/rank-8.png'),
-          name: 'ElectroGodness',
-          minCount: 75
-        },
-        {
-          num: 8,
-          icon: require('@/assets/img/ranks/rank-9.png'),
-          name: 'ElectroZeus',
-          minCount: 100
-        }
-      ],
-      listFull: [],
-      listTop: [],
-      fieldsLoc: [
-        {
-          key: 'type',
-          sortable: true,
-          label: 'Type'
-        },
-        {
-          key: 'title',
-          sortable: true,
-          label: 'Name'
-        },
-        {
-          key: 'imageName',
-          sortable: false,
-          label: 'Info'
-        }
-      ],
-      fieldsTop: [
-        {
-          key: 'indx',
-          sortable: false,
-          label: 'Rank'
-        },
+      {
+        num: 1,
+        icon: require('@/assets/img/ranks/rank-2.png'),
+        name: 'ElectroBronze',
+        minCount: 3
+      },
+      {
+        num: 2,
+        icon: require('@/assets/img/ranks/rank-3.png'),
+        name: 'ElectroSilver',
+        minCount: 5
+      },
+      {
+        num: 3,
+        icon: require('@/assets/img/ranks/rank-4.png'),
+        name: 'ElectroGoldie',
+        minCount: 10
+      },
+      {
+        num: 4,
+        icon: require('@/assets/img/ranks/rank-5.png'),
+        name: 'ElectroDmnd',
+        minCount: 20
+      },
+      {
+        num: 5,
+        icon: require('@/assets/img/ranks/rank-6.png'),
+        name: 'ElectroMeteor',
+        minCount: 35
+      },
+      {
+        num: 6,
+        icon: require('@/assets/img/ranks/rank-7.png'),
+        name: 'ElectroSpace',
+        minCount: 50
+      },
+      {
+        num: 7,
+        icon: require('@/assets/img/ranks/rank-8.png'),
+        name: 'ElectroGodness',
+        minCount: 75
+      },
+      {
+        num: 8,
+        icon: require('@/assets/img/ranks/rank-9.png'),
+        name: 'ElectroZeus',
+        minCount: 100
+      }
+    ],
+    listFull: [],
+    listTop: [],
+    fieldsLoc: [
+      {
+        key: 'type',
+        sortable: true,
+        label: 'Type'
+      },
+      {
+        key: 'title',
+        sortable: true,
+        label: 'Name'
+      },
+      {
+        key: 'imageName',
+        sortable: false,
+        label: 'Info'
+      }
+    ],
+    fieldsTop: [
+      {
+        key: 'indx',
+        sortable: false,
+        label: 'Rank'
+      },
 
-        {
-          key: 'userFirstName',
-          sortable: false,
-          label: 'Name'
-        },
-        {
-          key: 'count',
-          sortable: false,
-          label: 'Pts'
-        }
-      ],
-      sortBy: 'count',
-      sortDesc: true,
-      fieldsRank: [
-        {
-          key: 'icon',
-          label: 'Medal'
-        },
-        {
-          key: 'name',
-          label: 'Rank'
-        },
-        {
-          key: 'minCount',
-          label: 'Pts'
-        }
-      ]
+      {
+        key: 'userFirstName',
+        sortable: false,
+        label: 'Name'
+      },
+      {
+        key: 'count',
+        sortable: false,
+        label: 'Pts'
+      }
+    ],
+    sortBy: 'count',
+    sortDesc: true,
+    fieldsRank: [
+      {
+        key: 'icon',
+        label: 'Medal'
+      },
+      {
+        key: 'name',
+        label: 'Rank'
+      },
+      {
+        key: 'minCount',
+        label: 'Pts'
+      }
+    ]
 
   }),
   computed: {

@@ -18,7 +18,8 @@
     "bootstrap-icons-vue": "^0.7.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "scriptjs": "^2.5.9"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

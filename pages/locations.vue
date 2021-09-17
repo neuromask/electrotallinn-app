@@ -16,6 +16,7 @@
 
 <script>
 
+import $Scriptjs from 'scriptjs'
 import mapStyle from '@/assets/json/mapStyle.json'
 
 export default {
@@ -40,20 +41,10 @@ export default {
       }
     }
   },
-  head () {
-    return {
-      script: [
-        {
-          hid: 'maps-googleapis',
-          src: `https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.apiKey}`,
-          defer: true,
-          callback: this.initMap
-        }
-      ]
-    }
-  },
   mounted () {
-
+    $Scriptjs('https://maps.googleapis.com/maps/api/js?key=' + this.apiKey, () => {
+      this.initMap()
+    })
   },
   methods: {
 
@@ -72,7 +63,7 @@ export default {
         infowindow.close()
       })
 
-      $axios
+      this.$axios
         .get(baseUrl + '/locations')
         .then((response) => {
           for (const location of response.data) {
