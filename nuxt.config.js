@@ -2,6 +2,14 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://api.electrotallinn.ee'
+  },
+
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL || 'https://api.electrotallinn.ee'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'ElectroTallinn',
@@ -12,7 +20,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
 
@@ -41,6 +49,7 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa'
   ],
@@ -49,6 +58,25 @@ export default {
     icons: true,
     bootstrapCSS: false,
     bootstrapVueCSS: false
+  },
+
+  i18n: {
+    locales: ['en', 'ru', 'ee'],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: {
+          welcome: 'Welcome'
+        },
+        fr: {
+          welcome: 'Bienvenue'
+        },
+        es: {
+          welcome: 'Bienvenido'
+        }
+      }
+    }
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
