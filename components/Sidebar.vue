@@ -47,5 +47,4 @@
             <a v-b-toggle.sidebar-variant><b-icon-list></b-icon-list></a>
         </div>
     </div>
-
 </template>
