@@ -1,5 +1,7 @@
 # ElectroTallinn App
+### Website with Map and Market apps.
 
+![logo](https://electrotallinn.ee/wp-content/uploads/2020/08/et-logo-invert.svg)
 ## Build Setup
 
 ```bash
