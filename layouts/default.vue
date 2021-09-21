@@ -3,9 +3,9 @@
     <Sidebar />
     <main>
       <Banner />
-      <div class="container">
+      <b-container class="bg-light mt-4 p-5">
         <Nuxt />
-      </div>
+      </b-container>
     </main>
   </div>
 </template>

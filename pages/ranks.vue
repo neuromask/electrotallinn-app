@@ -1,92 +1,89 @@
 
 <template>
   <section>
-    <b-container class="bg-light mt-4 p-5">
-      <h2 class="m-0"><strong>ElectroPeople ranking</strong> - top activity</h2>
-      <h5>Be the first!</h5>
-      <hr>
-      <b-row>
-        <b-col cols="12" lg="4">
-          <h3><b-badge variant="warning" class="text-white font-weight-bold">Top</b-badge> ElectroPeople</h3>
-          <b-table
-            class="bg-info"
-            borderless
-            outlined
-            striped
-            hover
-            :items="listTop"
-            :fields="fieldsTop"
-            :sort-by.sync="sortBy"
-            :sort-desc.sync="sortDesc"
-          >
-            <template #cell(indx)="data">
-              <div class="d-flex justify-content-center align-items-center">
-                <b-badge variant="light"><h3 class="text-right font-weight-bold">{{ data.index + 1 }}</h3></b-badge>
-                <b-img :src="ranks[getRank(data.item.count)].icon" center left fluid class="ml-3 table-icon" />
-              </div>
-            </template>
-            <template #cell(userFirstName)="data">
-              <h4>{{ data.item.userFirstName }}</h4><i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
-            </template>
-            <template #cell(count)="data">
-              <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
-            </template>
-          </b-table>
-          <h3 class="mt-5"><b-badge variant="warning" class="text-white font-weight-bold">Legend</b-badge> Ranks</h3>
-          <b-table
-            class="bg-info mb-5"
-            borderless
-            outlined
-            striped
-            hover
-            :items="ranks"
-            :fields="fieldsRank"
-          >
-            <template #cell(icon)="data">
-              <b-img :src="data.item.icon" center fluid class="table-icon" />
-            </template>
-            <template #cell(name)="data">
-              <h4>{{ data.item.name }}</h4>
-            </template>
-            <template #cell(minCount)="data">
-              <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.minCount }}+</h4></b-badge>
-            </template>
-          </b-table>
-        </b-col>
-        <b-col cols="12" lg="8">
-          <h3><b-badge variant="warning" class="text-white font-weight-bold">List</b-badge> Locations</h3>
-          <b-table
-            class="bg-info"
-            borderless
-            striped
-            hover
-            :items="listFull"
-            :fields="fieldsLoc"
-          >
-            <template #cell(title)="data">
-              <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>Added by: {{ data.item.userFirstName }}</small>
-            </template>
-            <template #cell(type)="data">
-              <b-img :src="locationIcons[data.item.type]" center fluid-grow class="table-icon" />
-            </template>
-            <template #cell(imageName)="data">
-              <b-button-group size="sm" vertical>
-                <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
-                <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
-              </b-button-group>
-              <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-                <b-img :src="$config.baseUrl + '/images/' + data.item.imageName" center fluid />
-              </b-modal>
-              <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
-                <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
-              </b-modal>
-            </template>
-          </b-table>
-        </b-col>
+    <h2 class="m-0"><strong>ElectroPeople ranking</strong> - top activity</h2>
+    <h5>Be the first!</h5>
+    <hr>
+    <b-row>
+      <b-col cols="12" lg="4">
+        <h3><b-badge variant="warning" class="text-white font-weight-bold">Top</b-badge> ElectroPeople</h3>
+        <b-table
+          class="bg-info"
+          borderless
+          outlined
+          striped
+          hover
+          :items="listTop"
+          :fields="fieldsTop"
+          :sort-by.sync="sortBy"
+          :sort-desc.sync="sortDesc"
+        >
+          <template #cell(indx)="data">
+            <div class="d-flex justify-content-center align-items-center">
+              <b-badge variant="light"><h3 class="text-right font-weight-bold">{{ data.index + 1 }}</h3></b-badge>
+              <b-img :src="ranks[getRank(data.item.count)].icon" center left fluid class="ml-3 table-icon" />
+            </div>
+          </template>
+          <template #cell(userFirstName)="data">
+            <h4>{{ data.item.userFirstName }}</h4><i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
+          </template>
+          <template #cell(count)="data">
+            <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
+          </template>
+        </b-table>
+        <h3 class="mt-5"><b-badge variant="warning" class="text-white font-weight-bold">Legend</b-badge> Ranks</h3>
+        <b-table
+          class="bg-info mb-5"
+          borderless
+          outlined
+          striped
+          hover
+          :items="ranks"
+          :fields="fieldsRank"
+        >
+          <template #cell(icon)="data">
+            <b-img :src="data.item.icon" center fluid class="table-icon" />
+          </template>
+          <template #cell(name)="data">
+            <h4>{{ data.item.name }}</h4>
+          </template>
+          <template #cell(minCount)="data">
+            <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.minCount }}+</h4></b-badge>
+          </template>
+        </b-table>
+      </b-col>
+      <b-col cols="12" lg="8">
+        <h3><b-badge variant="warning" class="text-white font-weight-bold">List</b-badge> Locations</h3>
+        <b-table
+          class="bg-info"
+          borderless
+          striped
+          hover
+          :items="listFull"
+          :fields="fieldsLoc"
+        >
+          <template #cell(title)="data">
+            <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>Added by: {{ data.item.userFirstName }}</small>
+          </template>
+          <template #cell(type)="data">
+            <b-img :src="locationIcons[data.item.type]" center fluid-grow class="table-icon" />
+          </template>
+          <template #cell(imageName)="data">
+            <b-button-group size="sm" vertical>
+              <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
+              <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
+            </b-button-group>
+            <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
+              <b-img :src="$config.baseUrl + '/images/' + data.item.imageName" center fluid />
+            </b-modal>
+            <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
+              <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
+            </b-modal>
+          </template>
+        </b-table>
+      </b-col>
 
-      </b-row>
-
-    </b-container>
+    </b-row>
 
   </section>
 </template>

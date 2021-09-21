@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   env: {
     baseUrl: process.env.BASE_URL || 'https://api.electrotallinn.ee'
@@ -79,6 +79,11 @@ export default {
     }
   },
 
+  loading: {
+    color: '#ec970f',
+    height: '5px'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
@@ -91,5 +96,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    publicPath: 'https://electrotallinn.ee/test/'
   }
 }
