@@ -3,7 +3,7 @@
   <div class="navbar">
     <b-sidebar
       id="sidebar-variant"
-      title="ET⚡ Map"
+      title="ET⚡ App"
       bg-variant="dark"
       text-variant="light"
       shadow

@@ -21,7 +21,7 @@
           <template #cell(indx)="data">
             <div class="d-flex justify-content-center align-items-center">
               <b-badge variant="light"><h3 class="text-right font-weight-bold">{{ data.index + 1 }}</h3></b-badge>
-              <b-img :src="ranks[getRank(data.item.count)].icon" center left fluid class="ml-3 table-icon" />
+              <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center left fluid class="ml-3 table-icon" />
             </div>
           </template>
           <template #cell(userFirstName)="data">
@@ -42,7 +42,8 @@
           :fields="fieldsRank"
         >
           <template #cell(icon)="data">
-            <b-img :src="data.item.icon" center fluid class="table-icon" />
+
+            <b-img :src="require(`~/assets/img/ranks/${data.item.icon}.png`)" center fluid class="table-icon" />
           </template>
           <template #cell(name)="data">
             <h4>{{ data.item.name }}</h4>
@@ -66,7 +67,7 @@
             <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>Added by: {{ data.item.userFirstName }}</small>
           </template>
           <template #cell(type)="data">
-            <b-img :src="locationIcons[data.item.type]" center fluid-grow class="table-icon" />
+            <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
           </template>
           <template #cell(imageName)="data">
             <b-button-group size="sm" vertical>
@@ -94,69 +95,64 @@ export default {
   props: {},
   data: () => ({
 
-    bgImages: [
-      require('@/assets/img/pattern-icons.png'),
-      require('@/assets/img/top.jpg'),
-      require('@/assets/img/tallinn.svg')
-    ],
     locationIcons: {
-      CHARGE: require('@/assets/img/icon/icon-charge.svg'),
-      REPAIR: require('@/assets/img/icon/icon-repair.svg'),
-      AIR: require('@/assets/img/icon/icon-air.svg'),
-      WATER: require('@/assets/img/icon/icon-water.svg')
+      CHARGE: 'icon-charge',
+      REPAIR: 'icon-repair',
+      AIR: 'icon-air',
+      WATER: 'icon-water'
     },
     ranks: [
       {
         num: 0,
-        icon: require('@/assets/img/ranks/rank-1.png'),
+        icon: 'rank-1',
         name: 'ElectroIron',
         minCount: 1
       },
       {
         num: 1,
-        icon: require('@/assets/img/ranks/rank-2.png'),
+        icon: 'rank-2',
         name: 'ElectroBronze',
         minCount: 3
       },
       {
         num: 2,
-        icon: require('@/assets/img/ranks/rank-3.png'),
+        icon: 'rank-3',
         name: 'ElectroSilver',
         minCount: 5
       },
       {
         num: 3,
-        icon: require('@/assets/img/ranks/rank-4.png'),
+        icon: 'rank-4',
         name: 'ElectroGoldie',
         minCount: 10
       },
       {
         num: 4,
-        icon: require('@/assets/img/ranks/rank-5.png'),
+        icon: 'rank-5',
         name: 'ElectroDmnd',
         minCount: 20
       },
       {
         num: 5,
-        icon: require('@/assets/img/ranks/rank-6.png'),
+        icon: 'rank-6',
         name: 'ElectroMeteor',
         minCount: 35
       },
       {
         num: 6,
-        icon: require('@/assets/img/ranks/rank-7.png'),
+        icon: 'rank-7',
         name: 'ElectroSpace',
         minCount: 50
       },
       {
         num: 7,
-        icon: require('@/assets/img/ranks/rank-8.png'),
+        icon: 'rank-8',
         name: 'ElectroGodness',
         minCount: 75
       },
       {
         num: 8,
-        icon: require('@/assets/img/ranks/rank-9.png'),
+        icon: 'rank-9',
         name: 'ElectroZeus',
         minCount: 100
       }
@@ -221,8 +217,8 @@ export default {
   getters: {
   },
   async mounted () {
-    this.listFull = await this.$axios.$get(process.env.baseUrl + '/locations')
-    this.listTop = await this.$axios.$get(process.env.baseUrl + '/locations/top')
+    this.listFull = await this.$axios.$get(this.$config.baseUrl + '/locations')
+    this.listTop = await this.$axios.$get(this.$config.baseUrl + '/locations/top')
   },
   methods: {
     getRank (points) {

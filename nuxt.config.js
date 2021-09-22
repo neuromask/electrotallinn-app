@@ -1,14 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'server',
-
-  env: {
-    baseUrl: process.env.BASE_URL || 'https://api.electrotallinn.ee'
-  },
-
-  publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL || 'https://api.electrotallinn.ee'
-  },
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -32,6 +24,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~plugins/vue-cookie-law.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,6 +34,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
+    '@nuxtjs/device'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -84,6 +78,14 @@ export default {
     height: '5px'
   },
 
+  publicRuntimeConfig: {
+    baseUrl: 'https://api.electrotallinn.ee',
+    googleKey: process.env.GOOGLE_KEY
+  },
+  privateRuntimeConfig: {
+
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
@@ -96,6 +98,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    publicPath: 'https://electrotallinn.ee/test/'
+    publicPath: 'https://electrotallinn.ee/test/',
+    transpile: ['vue-cookie-law']
   }
 }

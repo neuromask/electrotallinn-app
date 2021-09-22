@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'mobile' : $device.isMobile}">
     <Sidebar />
     <main>
       <Banner />
@@ -7,6 +7,9 @@
         <Nuxt />
       </b-container>
     </main>
+    <footer>
+      <client-only><cookie-law theme="et"></cookie-law></client-only>
+    </footer>
   </div>
 </template>
 

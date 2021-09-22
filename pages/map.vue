@@ -16,7 +16,6 @@
 
 <script>
 
-import $Scriptjs from 'scriptjs'
 import mapStyle from '@/assets/json/mapStyle.json'
 
 export default {
@@ -32,34 +31,45 @@ export default {
         center: { lat: 59.434685, lng: 24.80748 },
         styles: mapStyle
       },
-      apiKey: 'AIzaSyClDGFnyszA_dpXvvYW63HqTSOvz04JJps',
       locationIcons: {
-        CHARGE: require('@/assets/img/icon/icon-charge.svg'),
-        REPAIR: require('@/assets/img/icon/icon-repair.svg'),
-        AIR: require('@/assets/img/icon/icon-air.svg'),
-        WATER: require('@/assets/img/icon/icon-water.svg')
+        CHARGE: 'icon-charge',
+        REPAIR: 'icon-repair',
+        AIR: 'icon-air',
+        WATER: 'icon-water'
       }
     }
   },
+  head () {
+    return {
+      script: [
+        {
+          hid: 'maps-googleapis',
+          body: true,
+          once: true,
+          src: `https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.$config.googleKey}`,
+          defer: true,
+          callback: this.initMap
+        }
+      ]
+    }
+  },
   mounted () {
-    $Scriptjs('https://maps.googleapis.com/maps/api/js?key=' + this.apiKey, () => {
-      this.initMap()
-    })
+
   },
   methods: {
 
     initMap () {
       this.mapConfig.mapTypeControlOptions = {
-        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: google.maps.ControlPosition.TOP_CENTER
+        style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: window.google.maps.ControlPosition.TOP_CENTER
       }
 
       const mapContainer = this.$refs.googleMap
       this.map = new window.google.maps.Map(mapContainer, this.mapConfig)
-      const infowindow = new google.maps.InfoWindow({})
-      const baseUrl = process.env.baseUrl
+      const infowindow = new window.google.maps.InfoWindow({})
+      const baseUrl = this.$config.baseUrl
 
-      google.maps.event.addListener(this.map, 'click', function (event) {
+      window.google.maps.event.addListener(this.map, 'click', function (event) {
         infowindow.close()
       })
 
@@ -67,16 +77,16 @@ export default {
         .get(baseUrl + '/locations')
         .then((response) => {
           for (const location of response.data) {
-          // console.log(location);
-            const marker = new google.maps.Marker({
-              position: new google.maps.LatLng(location.lat, location.lng),
+            const markerIcon = require(`~/assets/img/icon/${this.locationIcons[location.type]}.svg`)
+            const marker = new window.google.maps.Marker({
+              position: new window.google.maps.LatLng(location.lat, location.lng),
               map: this.map,
-              icon: { url: this.locationIcons[location.type], scaledSize: new google.maps.Size(32, 32) },
+              icon: { url: markerIcon, scaledSize: new window.google.maps.Size(32, 32) },
               title: location.title,
               id: location.id
             })
 
-            google.maps.event.addListener(marker, 'click', (function (marker) {
+            window.google.maps.event.addListener(marker, 'click', (function (marker) {
               return function () {
                 infowindow.setContent("<div class='infocontent'>" + (location.imageName ? "<img src='" + baseUrl + '/images/' + location.imageName + "'>" : '') + '<h4>' + location.title + '</h4><p>' + (location.description || '') + "</p><div><span class='report' v-b-modal.modal-report>Report</span><small>Added by: " + (location.userFirstName || '') + '</small></div></div>')
                 infowindow.open(this.map, marker)
@@ -96,11 +106,12 @@ export default {
           // set current locations
           map.setCenter(pos)
           map.setZoom(15)
-          new google.maps.Marker({
+          const marker = new window.google.maps.Marker({
             position: pos,
             map,
             title: 'Your location!'
           })
+          marker.setMap(map)
         })
       }
     }
@@ -110,6 +121,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #map, section {height: 100vh; width: 100%;}
-  #content {position: relative; width: 100%; height: 100%;}
+  #map {height: 100vh; width: 100%;}
 </style>
