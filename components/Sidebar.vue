@@ -14,8 +14,8 @@
         <b-list-group class="my-4">
           <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link exact active-class="active" to="/">Home</nuxt-link></b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/map">Map</nuxt-link></b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/ranks">Ranks</nuxt-link></b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/help">Help</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/locations/ranks">Ranks</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/locations/help">Help</nuxt-link></b-list-group-item>
           <b-list-group-item variant="primary" class="font-weight-bold" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Site</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>

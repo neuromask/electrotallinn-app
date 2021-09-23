@@ -12,7 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
 
@@ -34,7 +34,10 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    ['@nuxtjs/google-analytics', {
+      id: 'G-H7BDVQX6FQ'
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -98,7 +101,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    publicPath: 'https://electrotallinn.ee/test/',
-    transpile: ['vue-cookie-law']
+    publicPath: 'https://electrotallinn.ee/test/'
   }
 }

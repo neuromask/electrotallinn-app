@@ -46,7 +46,12 @@ button:focus {border: 0!important;outline: none;box-shadow:none !important;}
     max-width: 64px;
     max-height: 64px;
 }
-
+nav a {
+  text-decoration: none!important;
+}
+.nuxt-link-active {
+  border-bottom: #ec970f 3px solid;
+}
 
 .rank-sub {font-size: 14px; padding-left:0.5rem; border-left:4px solid #ec970f;}
 
@@ -132,6 +137,64 @@ hr {
 }
 .locations div[role=dialog] {
     max-width: 90vw!important;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+.layout-enter,
+.layout-leave-to {
+  opacity: 0;
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.slide-bottom-enter,
+.slide-bottom-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+}
+.bounce-enter-active {
+  transform-origin: top;
+  animation: bounce-in 0.8s;
+}
+.bounce-leave-active {
+  transform-origin: top;
+  animation: bounce-out 0.5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 
 .mobile {
