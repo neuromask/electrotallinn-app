@@ -1,5 +1,5 @@
 <template>
-  <div id="banner" class="g-light" />
+  <NuxtLink to="/"><div id="banner" class="g-light" /></NuxtLink>
 </template>
 <style>
 #banner {

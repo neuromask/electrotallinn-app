@@ -1,12 +1,9 @@
 
 <template>
   <section>
-    <h2 class="m-0"><strong>ElectroPeople ranking</strong> - top activity</h2>
-    <h5>Be the first!</h5>
-    <hr>
     <b-row>
       <b-col cols="12" lg="4">
-        <h3><b-badge variant="warning" class="text-white font-weight-bold">Top</b-badge> ElectroPeople</h3>
+        <h3><b-badge variant="warning" class="text-white font-weight-bold mb-3">Top</b-badge> ElectroPeople</h3>
         <b-table
           class="bg-info"
           borderless
@@ -31,7 +28,7 @@
             <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
           </template>
         </b-table>
-        <h3 class="mt-5"><b-badge variant="warning" class="text-white font-weight-bold">Legend</b-badge> Ranks</h3>
+        <h3 class="mt-5"><b-badge variant="warning" class="text-white font-weight-bold mb-3">Legend</b-badge> Ranks</h3>
         <b-table
           class="bg-info mb-5"
           borderless
@@ -54,7 +51,7 @@
         </b-table>
       </b-col>
       <b-col cols="12" lg="8">
-        <h3><b-badge variant="warning" class="text-white font-weight-bold">List</b-badge> Locations</h3>
+        <h3><b-badge variant="warning" class="text-white font-weight-bold mb-3">List</b-badge> Locations</h3>
         <b-table
           class="bg-info"
           borderless
