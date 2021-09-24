@@ -56,7 +56,7 @@
 </template>
 
 <style scoped>
-#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
+#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1210; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
 #badge:hover {border-color: #f8da19;}
 #badge a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
 .side-menu .nuxt-link-active {

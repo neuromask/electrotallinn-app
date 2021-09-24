@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ mobile: $device.isMobile }">
+  <div id="app">
     <Sidebar />
     <main>
       <Banner />

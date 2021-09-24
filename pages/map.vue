@@ -125,4 +125,39 @@ export default {
   #badgePos {position: fixed; bottom: 48px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
   #badgePos:hover {border-color: #f8da19;}
   #badgePos a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
+
+.infocontent {
+    text-align: center;
+}
+.infocontent img {
+    max-height: 600px;
+    max-width: 600px;
+    margin: 0 auto;
+    width:100%;
+}
+.infocontent button.close {
+    background: transparent;
+    border: 0;
+}
+.infocontent p {
+    font-size: 14px;
+    margin: 0;
+    padding-bottom:0.2rem;
+}
+.infocontent h4 {
+    font-size:16px;
+    margin: 0;
+    padding-top:0.3rem;
+}
+.infocontent small {
+    font-size: 10px;
+    float: left;
+}
+.infocontent .report {
+    float: right;
+    font-weight: bold;
+}
+.infocontent p {
+    margin:0;
+}
 </style>
