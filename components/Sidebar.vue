@@ -10,7 +10,7 @@
       backdrop
     >
       <div class="px-3 py-0">
-        <nuxt-link to="/"><b-img class="my-4" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
+        <nuxt-link to="/"><b-img class="mb-4 px-5" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
         <b-list-group class="my-4 side-menu">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/" exact><b-icon icon="house-door-fill"></b-icon>Home</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/map"><b-icon icon="geo-alt-fill"></b-icon>Map</b-list-group-item>
@@ -19,7 +19,6 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>
-
         <div v-if="$root.isLogged">
           <b-alert show variant="primary">
             <div class="d-flex justify-content-left align-items-center">
@@ -42,6 +41,9 @@
         <b-modal id="modal-login" title="Access Admin area" ok-only ok-variant="secondary" ok-title="Cancel">
           <app-login />
         </b-modal>
+        <div class="my-3">
+          <SocialLinks />
+        </div>
         <a class="text-center d-block" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Website</a>
         <p class="text-center small">Copyright © 2021 – ElectroTallinn<br>Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a><br>v 0.1 (Beta) ElectroTallinn App</p>
       </div>
