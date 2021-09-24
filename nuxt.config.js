@@ -83,7 +83,7 @@ export default {
 
   publicRuntimeConfig: {
     baseUrl: 'https://api.electrotallinn.ee',
-    googleKey: process.env.GOOGLE_KEY
+    googleKey: 'AIzaSyClDGFnyszA_dpXvvYW63HqTSOvz04JJps'
   },
   privateRuntimeConfig: {
 
