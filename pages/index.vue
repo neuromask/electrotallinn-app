@@ -29,7 +29,7 @@
 
     <b-card img-alt="Image" img-top class="p-3">
         <h3 class="font-weight-bold mb-4">
-            <b-badge variant="warning" class="text-white">ElectroPeople</b-badge> Team
+            <b-badge variant="warning" class="text-white">User</b-badge> Profiles
             <b-icon class="info-icon-tip" id="usersInfo" variant="primary" icon="info-circle-fill"></b-icon>
         </h3>
         <b-popover ref="popover" target="usersInfo" triggers="hover" title="User list of ElectroTallinn">
@@ -40,13 +40,13 @@
 
     <b-card img-alt="Image" img-top class="p-3">
         <h3 class="font-weight-bold mb-4">
-            <b-badge variant="warning" class="text-white">Location</b-badge> Ranks
+            <b-badge variant="warning" class="text-white">Info</b-badge> Help
             <b-icon class="info-icon-tip" id="ranksInfo" variant="primary" icon="info-circle-fill"></b-icon>
         </h3>
-        <b-popover ref="popover" target="ranksInfo" triggers="hover" title="Ranks and Achievements">
-            Add points to the socket map vie Telegram ElectroBot and earn points to compete with other users.
+        <b-popover ref="popover" target="ranksInfo" triggers="hover" title="Help guides">
+            Help about how to use app. Add points to map, add and edit market items.
         </b-popover>
-        <NuxtLink to="/locations/ranks"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-rank.svg')"></b-card-img></NuxtLink>
+        <NuxtLink to="/help"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-info.svg')"></b-card-img></NuxtLink>
     </b-card>
 
     </b-card-group>
