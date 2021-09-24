@@ -3,6 +3,8 @@ export default function (req, res, next) {
     console.log(req.url)
   
     // res is the Node.js http response object
+    res.end(JSON.stringify({date: new Date()}))
+    return
   
     // next is a function to call to invoke the next middleware
     // Don't forget to call next at the end if your middleware is not an endpoint!

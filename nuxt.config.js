@@ -40,6 +40,12 @@ export default {
     }]
   ],
 
+  serverMiddleware: [
+    // Will register file from project server-middleware directory to handle /server-middleware/* requires
+    //{ path: '/api', handler: '~/api/index.js' },
+    { path: "/api", handler: "~/api/rest.js" }
+  ],
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -82,8 +88,8 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'https://api.electrotallinn.ee',
-    googleKey: 'AIzaSyClDGFnyszA_dpXvvYW63HqTSOvz04JJps'
+    baseUrl: '/api',
+    googleKey: process.env.GOOGLE_KEY
   },
   privateRuntimeConfig: {
 
