@@ -46,24 +46,16 @@ button:focus {border: 0!important;outline: none;box-shadow:none !important;}
     max-width: 64px;
     max-height: 64px;
 }
-nav a {
+
+a {
   text-decoration: none!important;
 }
-.nuxt-link-active {
+nav .nuxt-link-active {
   border-bottom: #ec970f 3px solid;
 }
 
 
 .rank-sub {font-size: 14px; padding-left:0.5rem; border-left:4px solid #ec970f;}
-
-#badge {
-    position: fixed; top: 10px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f;
-    & a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
-}
-#badgePos {
-    position: fixed; bottom: 48px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f;
-    & a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
-}
 
 #bg-image {
     background-position: 640px 366px;

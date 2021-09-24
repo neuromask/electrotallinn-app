@@ -12,10 +12,11 @@
       <div class="px-3 py-0">
         <nuxt-link to="/"><b-img class="my-4" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
         <b-list-group class="my-4">
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link exact active-class="active" to="/">Home</nuxt-link></b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/map">Map</nuxt-link></b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/locations/ranks">Ranks</nuxt-link></b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link active-class="active" to="/locations/help">Help</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link exact to="/">Home</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link to="/map">Map</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link to="/market">Market</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link to="/users">Users</nuxt-link></b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold"><nuxt-link to="/locations/ranks">Ranks</nuxt-link></b-list-group-item>
           <b-list-group-item variant="primary" class="font-weight-bold" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Site</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>
@@ -39,15 +40,10 @@
             <!--<telegram-login mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="$root.loginTelegram" />-->
           </b-alert>
         </div>
-        <hr>
-        <p>🇷🇺 - Карта с обозначением мест расположения розеток для зарядки, ремонта в доступных местах.</p>
-        <p>🇬🇧 - Map showing the locations of outlets for charging, repair in accessible places.</p>
-        <p>🇪🇪 - Kaart, mis näitab laadimis- ja paranduskohtade asukohti juurdepääsetavates kohtades.</p>
         <b-modal id="modal-login" title="Access Admin area" ok-only ok-variant="secondary" ok-title="Cancel">
           <app-login />
         </b-modal>
-        <hr>
-        <p class="text-center small">Copyright © 2021 – ElectroTallinn<br>Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a><br>v 0.1 (Beta) ElectroMap</p>
+        <p class="text-center small">Copyright © 2021 – ElectroTallinn<br>Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a><br>v 0.1 (Beta) ElectroTallinn App</p>
       </div>
     </b-sidebar>
 
@@ -56,3 +52,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
+#badge:hover {border-color: #f8da19;}
+#badge a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
+.nuxt-link-active {
+  border-bottom: #ec970f 3px solid;
+}
+</style>
