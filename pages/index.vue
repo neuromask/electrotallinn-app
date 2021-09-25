@@ -69,6 +69,7 @@ export default {}
 .card-img:hover {
   border-radius: 20%;
   border: 1rem solid #4482a9;
+  transition: border-color 0.4s ease-out;
 }
 .info-icon-tip {
     float:right;

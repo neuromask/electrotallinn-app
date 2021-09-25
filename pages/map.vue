@@ -123,7 +123,7 @@ export default {
 <style scoped>
   #map {height: 100vh; width: 100%;}
   #badgePos {position: fixed; bottom: 48px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
-  #badgePos:hover {border-color: #f8da19;}
+  #badgePos:hover {border-color: #f8da19;transition: border-color 0.4s ease-out;}
   #badgePos a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
 
 .infocontent {

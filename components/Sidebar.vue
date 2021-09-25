@@ -19,7 +19,7 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>
-        <div v-if="$root.isLogged">
+        <!--<div v-if="$root.isLogged">
           <b-alert show variant="primary">
             <div class="d-flex justify-content-left align-items-center">
               <b-img class="float-left" rounded="circle" width="80" height="80" :src="$root.user.photoUrl" />
@@ -33,14 +33,11 @@
         </div>
         <div v-if="!$root.isLogged">
           <b-alert show variant="primary" class="d-flex justify-content-center align-items-center telegram-login-box">
-            <!--<vue-telegram-login mode="redirect" telegram-login="ElectroTallinnBot" size="large" radius="4" :redirect-url="$root.BACKEND_BASE+'/login'" />-->
-            <!--<vue-telegram-login mode="callback" telegram-login="ElectroTallinnBot" size="large" radius="4" @callback="$root.loginTelegram" />-->
-            <!--<telegram-login mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="$root.loginTelegram" />-->
+            <vue-telegram-login mode="redirect" telegram-login="ElectroTallinnBot" size="large" radius="4" :redirect-url="$root.BACKEND_BASE+'/login'" />
+            <vue-telegram-login mode="callback" telegram-login="ElectroTallinnBot" size="large" radius="4" @callback="$root.loginTelegram" />
+            <telegram-login mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="$root.loginTelegram" />
           </b-alert>
-        </div>
-        <b-modal id="modal-login" title="Access Admin area" ok-only ok-variant="secondary" ok-title="Cancel">
-          <app-login />
-        </b-modal>
+        </div>-->
         <div class="my-3">
           <SocialLinks />
         </div>
@@ -56,13 +53,10 @@
 </template>
 
 <style scoped>
-#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1210; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
-#badge:hover {border-color: #f8da19;}
+#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1030; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
+#badge:hover {border-color: #f8da19;transition: border-color 0.4s ease-out;}
 #badge a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
-.side-menu .nuxt-link-active {
-  border-left: #ec970f 3px solid;
-  background-color: #c0d1e6;
-}
+
 .side-menu img,
 .side-menu svg {
   width: 1.6em;
@@ -72,11 +66,42 @@
 .side-menu .list-group-item {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .side-menu .list-group-item-info.list-group-item-action:hover, 
 .side-menu .list-group-item-info.list-group-item-action:focus {
     color: #1a2740;
     background-color: #c0d1e6;
-    border-left: #ec970f 3px solid;
+    transition: background-color 0.4s ease-out;
+}
+
+.side-menu .list-group-item:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  transform: scaleY(0);
+  bottom: 0;
+  left: 0;
+  background-color: #ec970f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.side-menu .list-group-item:hover:after {
+  transform: scaleY(1);
+  transform-origin: top left;
+}
+.side-menu .nuxt-link-active {
+  background-color: #c0d1e6;
+}
+.list-group-item.nuxt-link-active:after  {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(1);
+  background-color: #ec970f;
 }
 </style>

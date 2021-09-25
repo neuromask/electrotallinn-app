@@ -34,8 +34,37 @@ button:focus {border: 0!important;outline: none;box-shadow:none !important;}
 a {
   text-decoration: none!important;
 }
-nav .nuxt-link-active {
-  border-bottom: #ec970f 3px solid;
+
+nav .nuxt-link-active,
+nav .nav-link {
+  display: inline-block;
+  position: relative;
+}
+nav .nav-link:after {
+  content: ' ';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #ec970f;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+nav .nav-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+nav .nuxt-link-active:after  {
+  content: ' ';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(1);
+  background-color: #ec970f;
 }
 
 .rank-sub {font-size: 14px; padding-left:0.5rem; border-left:4px solid #ec970f;}
@@ -50,7 +79,7 @@ b-card-text p {
 }
 
 hr {
-    height: 2rem;
+    height: 1.6rem;
     border: 0;
     position: relative;
     display: block;
@@ -58,7 +87,7 @@ hr {
 hr:after {
     content:'';
     position: absolute;
-    left:0; top: 0.8rem;
+    left:0; top: 0.7rem;
     width:80px;
     height:3px;
     background-color: #ec970f;
