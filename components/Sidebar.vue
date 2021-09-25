@@ -54,7 +54,7 @@
 
 <style scoped>
 #badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1030; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
-#badge:hover {border-color: #f8da19;}
+#badge:hover {border-color: #f8da19;transition: border-color 0.4s ease-out;}
 #badge a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
 
 .side-menu img,

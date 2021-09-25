@@ -21,7 +21,8 @@
   margin: 0 0.4rem;
 }
 .social-links a:hover {
-  background: rgba(255,255,255,0.6);
+  background-color: rgba(255,255,255,0.6);
+  transition: background-color 0.4s ease-out;
 }
 .social-links a svg {
     width: 100%;
