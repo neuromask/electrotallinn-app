@@ -64,7 +64,7 @@ export default {
   },
 
   i18n: {
-    locales: ['en', 'ru', 'ee'],
+    locales: ['en'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -106,7 +106,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    publicPath: 'https://electrotallinn.ee/test/'
-  }
+  build: {}
 }
