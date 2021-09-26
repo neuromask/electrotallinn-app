@@ -41,6 +41,11 @@ export default {
   },
   head () {
     return {
+      title: 'Charging Map - ElectroTallinn',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Map showing the locations of outlets for charging, repair in accessible places.' },
+        { name: 'format-detection', content: 'telephone=no' }
+      ],
       script: [
         {
           hid: 'maps-googleapis',
