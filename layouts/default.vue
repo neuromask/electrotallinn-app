@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <Sidebar />
+    
     <main>
       <Banner />
-      <b-container class="bg-light mt-4 p-5">
+      <b-container class="bg-light mt-4 p-5 main-container">
+        <Breadcrumbs />
         <Nuxt />
       </b-container>
     </main>
@@ -17,3 +19,11 @@
 <script>
 export default {};
 </script>
+
+<style scoped>
+.main-container {
+  background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
+  padding-bottom: 10rem!important;
+}
+
+</style>

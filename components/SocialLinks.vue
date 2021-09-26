@@ -16,13 +16,16 @@
   height: 32px;
   display: inline-block;
   border-radius: 20%;
-  background: white;
+  background: #ffffff;
+  color:#4482a9;
   padding: 4px;
   margin: 0 0.4rem;
 }
 .social-links a:hover {
-  background-color: rgba(255,255,255,0.6);
+  background-color: #c0d1e6;
   transition: background-color 0.4s ease-out;
+  transition: color 0.4s ease-out;
+  color:rgba(26, 39, 64,1);
 }
 .social-links a svg {
     width: 100%;
