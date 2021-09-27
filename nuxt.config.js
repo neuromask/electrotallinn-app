@@ -25,7 +25,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~plugins/vue-cookie-law.js', ssr: false },
-    { src: '~/plugins/axios', ssr: false }
+    { src: '~/plugins/axios', ssr: false },
+    '~/plugins/globals.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -90,11 +91,10 @@ export default {
 
   server: {
     //port: 3000, host: 'localhost', timing: false
-    port: 80, host: 'map.electrotallinn.ee', timing: false
+    port: 80, host: 'localhost', timing: false
   },
 
   publicRuntimeConfig: {
-    isLogged: false,
     //baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
     baseUrl: process.env.BASE_URL || 'http://map.electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY

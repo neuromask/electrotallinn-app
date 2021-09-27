@@ -167,6 +167,28 @@ app.put('/images/rotate/:imageName', authenticateJWT, checkRole('ADMIN'), functi
 	});
 });
 
+// users
+app.get('/users', function(request, response) {
+	connection.getConnection(function(cError, c) {
+		if (cError) {
+			c.release();
+			return response.status(500).send(cError);
+		}
+		
+		var sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
+		
+		c.query(sql, (error, result, fields) => {
+			if (error) {
+				c.release();
+				return response.status(500).send(error);
+			}
+			
+			c.release();
+			response.send(result);
+		});
+	});
+});
+
 
 // locations
 app.get('/locations', function(request, response) {

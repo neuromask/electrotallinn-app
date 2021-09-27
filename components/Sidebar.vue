@@ -19,19 +19,19 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>
-        <!--<div v-if="$root.isLogged">
+        <div v-if="$user.isLogged">
           <b-alert show variant="primary">
             <div class="d-flex justify-content-left align-items-center">
-              <b-img class="float-left" rounded="circle" width="80" height="80" :src="$root.user.photoUrl" />
+              <b-img class="float-left" rounded="circle" width="80" height="80" :src="$user.photoUrl" />
               <div class="ml-3">
-                <h5 class="m-0">{{ $root.user.firstName }}</h5>
-                <p class="m-0"><a :href='"https://t.me/"+$root.user.username' target="_blank">@{{$root.user.username}}</a></p>
+                <h5 class="m-0">{{ $user.firstName }}</h5>
+                <p class="m-0"><a :href='"https://t.me/"+$user.username' target="_blank">@{{$user.username}}</a></p>
                 <nuxt-link to="profile"><b-icon icon="person-bounding-box" /> Profile</nuxt-link>
               </div>
             </div>
           </b-alert>
-        </div>-->
-        <div v-if="!$config.isLogged">
+        </div>
+        <div v-if="!$user.isLogged">
           <div class="mb-4 d-flex justify-content-center align-items-center telegram-login-box">
             <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
           </div>
@@ -52,32 +52,22 @@
 
 <script>
 export default {
-    data() {
-    return {
-      user: {
-        first_name: null,
-        uin: null,
-        photo_url: null,
-        username: null,
-      }
-    }
-  },
   methods: {
     loginTelegram(data) {
-      this.user = {
-        firstName: data.first_name,
-        uin: data.id,
-        photoUrl: data.photo_url,
-        username: data.username
-      };
       this.$axios
         .$post(this.$config.baseUrl + '/login', data)
         .then(response => {
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('jwt', response.token);
 
-          // TODO maybe not need this?
-          this.$config.isLogged = true;
+          Object.assign(this.$user, {
+            isLogged: true,
+            firstName: data.first_name,
+            uin: data.id,
+            photoUrl: data.photo_url,
+            username: data.username
+          });
+          console.log(this.$user.isLogged);
 
           this.$axios
             .$get(this.$config.baseUrl + '/user')
