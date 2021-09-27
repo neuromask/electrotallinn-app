@@ -1,4 +1,3 @@
-
 <template>
   <div id="user-profile">
     <h2 class="m-0"><strong>Your profile</strong> to customize</h2>
@@ -103,7 +102,7 @@ export default {
   props: {},
   data() {
     return {
-      BACKEND_BASE: 'https://etmap.nuforms.com',
+      profile: {},
       bgImages: [
         require("@/assets/img/pattern-icons.png"),
         require("@/assets/img/top.jpg"),
@@ -129,8 +128,11 @@ export default {
     }
   },
   mounted () {
-      axios
-        .get(this.$root.BACKEND_BASE + '/user')
+    this.$axios
+        .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+        this.profile = response;
+        console.log(this.profile);
+    });
   },
   methods: {
 
@@ -156,9 +158,3 @@ export default {
 }
 // d-flex justify-content-center align-items-center
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
-
