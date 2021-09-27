@@ -51,8 +51,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     data() {
     return {
@@ -72,17 +70,17 @@ export default {
         photoUrl: data.photo_url,
         username: data.username
       };
-      axios
-        .post(this.$config.baseUrl + '/login', data)
+      this.$axios
+        .$post(this.$config.baseUrl + '/login', data)
         .then(response => {
-          localStorage.setItem('user', JSON.stringify(response.data.user));
-          localStorage.setItem('jwt', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('jwt', response.token);
 
           // TODO maybe not need this?
           this.$config.isLogged = true;
 
-          axios
-            .get(this.$config.baseUrl + '/user')
+          this.$axios
+            .$get(this.$config.baseUrl + '/user')
             .then(r => {
               console.log(r);
             });
