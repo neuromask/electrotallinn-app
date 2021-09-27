@@ -1,15 +1,22 @@
 <template>
-  <div class="Breadcrumbs">
-    <nuxt-link
-      v-for="link, i in breadcrumbsLinks"
-      :key="i"
-      :to="link"
-    >
-    {{link.meta.title}}</nuxt-link>
-  </div>
+    <b-breadcrumb>
+      <b-breadcrumb-item :to="'/'" class="title">
+        Home
+      </b-breadcrumb-item>
+      <b-breadcrumb-item 
+        nuxt
+        v-for="link, i in breadcrumbsLinks"
+        :key="i"
+        :to="link"
+        >
+        {{ link.title }}
+      </b-breadcrumb-item>
+    </b-breadcrumb>
 </template>
 
 <script>
+import startCase from 'lodash.startcase'
+
   export default {
     name: 'breadcrumbs',
     computed: {
@@ -17,11 +24,8 @@
         let tmp = []
         if (this.$route.matched) {
           this.$route.matched.forEach(link => {
-            tmp.push(Object.assign({meta: {title: 'Title not found in meta'}}, link))
+            tmp.push(Object.assign({title: startCase(link.path)}, link))
           })
-        }
-        if (tmp.length === 0) {
-          tmp.push({path: '/', meta: {title: 'Home'}})
         }
         return tmp
       }

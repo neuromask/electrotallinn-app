@@ -25,19 +25,17 @@
               <b-img class="float-left" rounded="circle" width="80" height="80" :src="$root.user.photoUrl" />
               <div class="ml-3">
                 <h5 class="m-0">{{ $root.user.firstName }}</h5>
-                <p class="m-0"><a :href="&quot;https://t.me/&quot;+$root.user.username" target="_blank">@{{ $root.user.username }}</a></p>
+                <p class="m-0"><a :href='"https://t.me/"+$root.user.username' target="_blank">@{{$root.user.username}}</a></p>
                 <nuxt-link to="profile"><b-icon icon="person-bounding-box" /> Profile</nuxt-link>
               </div>
             </div>
           </b-alert>
-        </div>
-        <div v-if="!$root.isLogged">
-          <b-alert show variant="primary" class="d-flex justify-content-center align-items-center telegram-login-box">
-            <vue-telegram-login mode="redirect" telegram-login="ElectroTallinnBot" size="large" radius="4" :redirect-url="$root.BACKEND_BASE+'/login'" />
-            <vue-telegram-login mode="callback" telegram-login="ElectroTallinnBot" size="large" radius="4" @callback="$root.loginTelegram" />
-            <telegram-login mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="$root.loginTelegram" />
-          </b-alert>
         </div>-->
+        <div v-if="!$config.isLogged">
+          <div class="mb-4 d-flex justify-content-center align-items-center telegram-login-box">
+            <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
+          </div>
+        </div>
         <div class="my-3">
           <SocialLinks />
         </div>
@@ -51,6 +49,48 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+    return {
+      user: {
+        first_name: null,
+        uin: null,
+        photo_url: null,
+        username: null,
+      }
+    }
+  },
+  methods: {
+    loginTelegram(data) {
+      this.user = {
+        firstName: data.first_name,
+        uin: data.id,
+        photoUrl: data.photo_url,
+        username: data.username
+      };
+      axios
+        .post(this.$config.baseUrl + '/login', data)
+        .then(response => {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          localStorage.setItem('jwt', response.data.token);
+
+          // TODO maybe not need this?
+          this.$config.isLogged = true;
+
+          axios
+            .get(this.$config.baseUrl + '/user')
+            .then(r => {
+              console.log(r);
+            });
+        });
+    }
+  }
+};
+</script>
 
 <style scoped>
 #badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1030; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}

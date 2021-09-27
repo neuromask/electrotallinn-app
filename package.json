@@ -23,6 +23,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash.startcase": "^4.4.0",
     "mysql": "^2.18.1",
     "nuxt": "^2.15.7",
     "sharp": "^0.29.1",

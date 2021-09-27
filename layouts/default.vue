@@ -5,7 +5,6 @@
     <main>
       <Banner />
       <b-container class="bg-light mt-4 p-5 main-container">
-        <Breadcrumbs />
         <Nuxt />
       </b-container>
     </main>
@@ -25,5 +24,4 @@ export default {};
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
   padding-bottom: 10rem!important;
 }
-
 </style>

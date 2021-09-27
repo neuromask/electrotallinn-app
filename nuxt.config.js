@@ -2,12 +2,6 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
 
-  server: {
-    port: 3000, // default: 3000
-    host: 'localhost', // default: localhost,
-    timing: false
-  },
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'ElectroTallinn',
@@ -93,8 +87,15 @@ export default {
     height: '5px'
   },
 
+  server: {
+    //port: 3000, host: 'localhost', timing: false
+    port: 80, host: 'map.electrotallinn.ee', timing: false
+  },
+
   publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
+    isLogged: false,
+    //baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
+    baseUrl: process.env.BASE_URL || 'http://map.electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY
   },
   privateRuntimeConfig: {

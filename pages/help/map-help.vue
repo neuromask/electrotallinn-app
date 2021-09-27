@@ -43,9 +43,12 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
+  head() {
+    return {
+      title: "Map Help"
+    };
+  },
   name: 'Map',
   props: {},
   data() {
