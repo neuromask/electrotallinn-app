@@ -167,28 +167,6 @@ app.put('/images/rotate/:imageName', authenticateJWT, checkRole('ADMIN'), functi
 	});
 });
 
-// users
-app.get('/users', function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
-		
-		c.query(sql, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
-});
-
 
 // locations
 app.get('/locations', function(request, response) {
@@ -395,6 +373,27 @@ app.get('/locations/top', function(request, response) {
 		});
 	});
 });
+
+
+// profiles
+app.get('/profiles', async function(request, response) {
+  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
+
+  let profiles = await query(sql);
+  response.send(profiles);
+});
+
+app.get('/profiles/:id(\\d+)', async function(request, response) {
+  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE id = ?';
+
+  let profile = await query(sql, [request.params.id]);
+  if(!!profile[0]) {
+    response.send(profile[0]);
+  } else {
+    response.status(404).send('Profile not found');
+  }
+});
+
 
 
 // user
