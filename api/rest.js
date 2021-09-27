@@ -375,22 +375,22 @@ app.get('/locations/top', function(request, response) {
 });
 
 
-// profiles
-app.get('/profiles', async function(request, response) {
+// users
+app.get('/users', async function(request, response) {
   let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
 
-  let profiles = await query(sql);
-  response.send(profiles);
+  let users = await query(sql);
+  response.send(users);
 });
 
-app.get('/profiles/:id(\\d+)', async function(request, response) {
+app.get('/users/:id(\\d+)', async function(request, response) {
   let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE id = ?';
 
-  let profile = await query(sql, [request.params.id]);
-  if(!!profile[0]) {
-    response.send(profile[0]);
+  let user = await query(sql, [request.params.id]);
+  if(!!user[0]) {
+    response.send(user[0]);
   } else {
-    response.status(404).send('Profile not found');
+    response.status(404).send('User not found');
   }
 });
 
