@@ -10,7 +10,7 @@
       >
         <b-img thumbnail fluid :src="user.photo_url" :alt="user.first_name" />
         <b-card-text class="text-left ml-2 mt-3 mr-2">{{ user.username }}</b-card-text>
-        <b-button @click="$router.push(`${user.id}`)">View profile</b-button>
+        <b-button @click="$router.push(`profiles/${user.id}`)">View profile</b-button>
       </b-card>
     </b-card-group>
   </div>
