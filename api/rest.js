@@ -383,10 +383,10 @@ app.get('/users', async function(request, response) {
   response.send(users);
 });
 
-app.get('/users/:id(\\d+)', async function(request, response) {
-  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE id = ?';
+app.get('/users/:uin(\\d+)', async function(request, response) {
+  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE uin = ?';
 
-  let user = await query(sql, [request.params.id]);
+  let user = await query(sql, [request.params.uin]);
   if(!!user[0]) {
     response.send(user[0]);
   } else {

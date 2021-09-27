@@ -79,13 +79,13 @@
               </div>
             </div>
               <b-list-group class="mt-4">
-                <b-list-group-item>Name: </b-list-group-item>
-                <b-list-group-item>Age: </b-list-group-item>
-                <b-list-group-item>Lang: </b-list-group-item>
-                <b-list-group-item>Location:</b-list-group-item>
-                <b-list-group-item>Model:</b-list-group-item>
+                <b-list-group-item>Name: {{ user.first_name }}</b-list-group-item>
+                <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
+                <b-list-group-item v-if="user.languages">Lang: {{ user.languages }}</b-list-group-item>
+                <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
+                <b-list-group-item v-if="user.transport_model">Model:</b-list-group-item>
               </b-list-group>
-              <b-img fluid :src="require('@/assets/img/step-1.jpg')"></b-img>
+              <b-img v-if="user.transport_photo" fluid :src="require('@/assets/img/step-1.jpg')"></b-img>
           </b-alert>
         </div>
 
@@ -95,14 +95,13 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'UserProfile',
   props: {},
   data() {
     return {
       profile: {},
+      user: {},
       bgImages: [
         require("@/assets/img/pattern-icons.png"),
         require("@/assets/img/top.jpg"),
@@ -127,14 +126,17 @@ export default {
       show: true
     }
   },
-  mounted () {
-    this.$axios
-        .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
-        this.profile = response;
-        console.log(this.profile);
-    });
+  created () {
+    this.getUser();
   },
   methods: {
+    async getUser () {
+      this.$axios
+        .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+        this.user = response;
+        console.log("asdasd --- "+this.user)
+      });
+    },
 
     onSubmit(event) {
       event.preventDefault()

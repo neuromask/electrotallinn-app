@@ -11,6 +11,9 @@
     >
       <div class="px-3 py-0">
         <nuxt-link to="/"><b-img class="mb-4 px-5" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
+        <div class="mb-4">
+          <UserLoginBox />
+        </div>
         <b-list-group class="my-4 side-menu">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/" exact><b-icon icon="house-door-fill"></b-icon>Home</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/map"><b-icon icon="geo-alt-fill"></b-icon>Map</b-list-group-item>
@@ -19,24 +22,8 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
         </b-list-group>
-        <div v-if="$user.isLogged">
-          <b-alert show variant="primary">
-            <div class="d-flex justify-content-left align-items-center">
-              <b-img class="float-left" rounded="circle" width="80" height="80" :src="$user.photoUrl" />
-              <div class="ml-3">
-                <h5 class="m-0">{{ $user.firstName }}</h5>
-                <p class="m-0"><a :href='"https://t.me/"+$user.username' target="_blank">@{{$user.username}}</a></p>
-                <nuxt-link to="profile"><b-icon icon="person-bounding-box" /> Profile</nuxt-link>
-              </div>
-            </div>
-          </b-alert>
-        </div>
-        <div v-if="!$user.isLogged">
-          <div class="mb-4 d-flex justify-content-center align-items-center telegram-login-box">
-            <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
-          </div>
-        </div>
-        <div class="my-3">
+
+        <div class="mb-3">
           <SocialLinks />
         </div>
         <a class="text-center d-block" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Website</a>

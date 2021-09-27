@@ -7,5 +7,6 @@ export default ({ app }, inject) => {
         uin: null,
         photo_url: null,
         username: null,
+        id: null,
    }))
 }
