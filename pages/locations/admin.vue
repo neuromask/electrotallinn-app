@@ -21,7 +21,7 @@
                 </b-button-group>
             </div>
             <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-                <b-img :src="$root.BACKEND_BASE + '/images/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
+                <b-img :src="$config.baseUrl + '/images/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
                 
                 <template #modal-footer="{ ok }">
                 <b-button variant="secondary" @click="rotateImage(data.item.image, data.item.imageName)">Rotate</b-button>
@@ -138,15 +138,15 @@ export default {
   },
   methods: {
     requests() {
-      axios
-        .get(this.$config.baseUrl + '/locations')
+      this.$axios
+        .$get(this.$config.baseUrl + '/locations')
         .then(response => {
-          this.listFull = response.data.slice().reverse();
+          this.listFull = response.slice().reverse();
         });
     },
     deleteLoc(locId) {
-        axios
-        .delete(this.$config.baseUrl + '/locations/' + locId)
+      this.$axios
+        .$delete(this.$config.baseUrl + '/locations/' + locId)
         .then((response) => {
           if (response.status == '200') {
             this.requests();
@@ -155,8 +155,8 @@ export default {
         })
     },
     statusLoc(locId) {
-        axios
-        .put(this.$config.baseUrl + '/locations/' + locId + '/confirmed/toggle')
+      this.$axios
+        .$put(this.$config.baseUrl + '/locations/' + locId + '/confirmed/toggle')
         .then((response) => {
           if (response.status == '200') {
             this.requests();
@@ -165,8 +165,8 @@ export default {
         })
     },
     updateLoc(locId, location) {
-        axios
-        .put(this.$config.baseUrl + '/locations/' + locId, location)
+      this.$axios
+        .$put(this.$config.baseUrl + '/locations/' + locId, location)
         .then((response) => {
           if (response.status == '200') {
             this.requests();
@@ -175,8 +175,8 @@ export default {
         })
     },
     rotateImage(image, imageName) {
-        axios
-        .put(this.$config.baseUrl + '/images/rotate/' + imageName)
+      this.$axios
+        .$put(this.$config.baseUrl + '/images/rotate/' + imageName)
         .then((response) => {
           if (response.status == '200') {
             this.requests();
