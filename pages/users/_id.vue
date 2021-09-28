@@ -1,7 +1,7 @@
 <template>
   <div id="user-profile">
-    <h2 class="m-0"><strong>Your profile</strong> to customize</h2>
-    <h5>Add more info about yourself here</h5>
+    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.first_name }}'s profile</strong> page</h2>
+    <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong> page</h2>
     <hr/>
 
     <b-card
@@ -11,8 +11,8 @@
     >
       <b-row>
         <b-col cols="12" lg="4">
-          
           <b-img :src="user.photo_url" :alt="user.first_name" thumbnail left fluid rounded="circle"></b-img>
+          <b-img v-if="user.transport_photo" fluid center :src="require('@/assets/img/step-1.jpg')"></b-img>
         </b-col>
         <b-col cols="12" lg="8">
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
@@ -24,8 +24,9 @@
             <b-list-group-item v-if="user.languages">Lang: {{ user.languages }}</b-list-group-item>
             <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
             <b-list-group-item v-if="user.transport_model">Model: {{ user.transport_model }}</b-list-group-item>
-            <b-list-group-item v-if="user.transport_photo"><b-img v-if="user.transport_photo" fluid center :src="require('@/assets/img/step-1.jpg')"></b-img></b-list-group-item>
           </b-list-group>
+          <h3 class="font-weight-bold mt-4"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
+
         </b-col>
       </b-row>
     </b-card>
