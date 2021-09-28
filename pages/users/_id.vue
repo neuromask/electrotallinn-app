@@ -11,8 +11,8 @@
     >
       <b-row>
         <b-col cols="12" lg="4">
-          <b-img :src="user.photo_url" :alt="user.first_name" thumbnail left fluid rounded="circle"></b-img>
-          <b-img v-if="user.transport_photo" fluid center :src="require('@/assets/img/step-1.jpg')"></b-img>
+          <b-img class="mb-3" :src="user.photo_url" :alt="user.first_name" center thumbnail fluid rounded="circle"></b-img>
+          <b-img class="mb-3" v-if="user.transport_photo" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
         </b-col>
         <b-col cols="12" lg="8">
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
@@ -119,7 +119,7 @@ export default {
       this.$axios
         .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
-        console.log("asdasd --- "+this.user)
+        console.log(this.user)
       });
     },
 
