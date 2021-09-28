@@ -101,217 +101,93 @@ const checkRole = (role) => {
 // Backend
 
 // images
-app.get('/images/:imageName', function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(JSON.stringify(cError));
-		}
-		
-		var sql = 'SELECT image FROM locations WHERE image_name = ?';
-		var data = [request.params.imageName];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(JSON.stringify(error));
-			}
-			
-			c.release();
-			response.end(result[0].image, 'binary');
-		});
-	});
+app.get('/images/:imageName', async function(request, response) {
+  let sql = 'SELECT image FROM locations WHERE image_name = ?';
+  let params = [request.params.imageName];
+
+  let result = await query(sql, params);
+  response.end(result[0].image, 'binary');
 });
 
-app.put('/images/rotate/:imageName', authenticateJWT, checkRole('ADMIN'), function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(JSON.stringify(cError));
-		}
-		
-		var sqlSelect = 'SELECT image FROM locations WHERE image_name = ?';
-		var dataSelect = [request.params.imageName];
-		
-		c.query(sqlSelect, dataSelect, (errorSelect, resultSelect, fieldsSelect) => {
-			if (errorSelect) {
-				c.release();
-				return response.status(500).send(JSON.stringify(errorSelect));
-			}
-			
-			// c.release();
-			
-			sharp(resultSelect[0].image)
-				.rotate(request.query.rotation ? parseInt(request.query.rotation) : 90)
-				.toBuffer()
-				.then(function(outputBuffer) {
-					var sqlUpdate = "UPDATE locations SET image = ? WHERE image_name = ?";
-					var dataUpdate = [outputBuffer, request.params.imageName];
-					
-					c.query(sqlUpdate, dataUpdate, (errorUpdate, resultUpdate, fieldsUpdate) => {
-						if (errorUpdate) {
-							c.release();
-							return response.status(500).send(errorUpdate);
-						}
-						
-						c.release();
-						response.send(resultUpdate);
-					});
-					
-					
-					
-					
-					// response.end(outputBuffer);
-				});
-		});
-	});
+app.put('/images/rotate/:imageName', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  let sqlSelect = 'SELECT image FROM locations WHERE image_name = ?';
+  let paramsSelect = [request.params.imageName];
+
+  let resultSelect = await query(sqlSelect, paramsSelect);
+
+  let outputBuffer = await sharp(resultSelect[0].image)
+    .rotate(request.query.rotation ? parseInt(request.query.rotation) : 90)
+    .toBuffer();
+
+  let sqlUpdate = "UPDATE locations SET image = ? WHERE image_name = ?";
+  let dataUpdate = [outputBuffer, request.params.imageName];
+
+  let resultUpdate = await query(sqlUpdate, dataUpdate);
+  response.send(resultUpdate);
 });
 
 
 // locations
-app.get('/locations', function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations';
-		
-		c.query(sql, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+app.get('/locations', async function(request, response) {
+  let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations';
+
+  let result = await query(sql);
+  response.send(result);
 });
 
-app.get('/locations/:id(\\d+)', function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations WHERE id = ?';
-		var data = [request.params.id];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			if(!!result[0]) {
-				response.send(result[0]);
-			} else {
-				response.status(401).send('Image not found');
-			}
-		});
-	});
-	
+app.get('/locations/:id(\\d+)', async function(request, response) {
+  let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations WHERE id = ?';
+  let params = [request.params.id];
+
+  let result = await query(sql, params);
+  if(!!result[0]) {
+    response.send(result[0]);
+  } else {
+    response.status(404).send('Location not found');
+  }
 });
 
 // CREATE
-app.post('/locations', authenticateJWT, checkRole('ADMIN'), function(request, response) {
-	// TODO validation
-	
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = "INSERT INTO locations (title, description, lat, lng, image, image_name, type, user_first_name, user_uin, confirmed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		var data = [request.body.title, request.body.description, request.body.lat, request.body.lng, request.body.image, request.body.image_name, request.body.type, request.body.userFirstName, request.body.userUin, 0];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+app.post('/locations', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  // TODO validation
+
+  let sql = 'INSERT INTO locations (title, description, lat, lng, image, image_name, type, user_first_name, user_uin, confirmed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  let params = [request.body.title, request.body.description, request.body.lat, request.body.lng, request.body.image, request.body.image_name, request.body.type, request.body.userFirstName, request.body.userUin, 0];
+
+  let result = await query(sql, params);
+  response.send(result);
 });
 
 
 // UPDATE
-app.put('/locations/:id(\\d+)', authenticateJWT, checkRole('ADMIN'), function(request, response) {
-	// TODO validation
-	
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = "UPDATE locations SET title = ?, description = ?, type = ? WHERE id = ?";
-		var data = [request.body.title, request.body.description, request.body.type, request.params.id];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+app.put('/locations/:id(\\d+)', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  // TODO validation
+
+  let sql = 'UPDATE locations SET title = ?, description = ?, type = ? WHERE id = ?';
+  let params = [request.body.title, request.body.description, request.body.type, request.params.id];
+
+  let result = await query(sql, params);
+  response.send(result);
 });
 
-app.put('/locations/:id(\\d+)/image', authenticateJWT, checkRole('ADMIN'), function(request, response) {
-	// TODO validation
-	
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = "UPDATE locations SET image = ? WHERE id = ?";
-		var data = [request.body.image, request.params.id];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+// UPDATE image
+app.put('/locations/:id(\\d+)/image', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  // TODO validation
+
+  let sql = 'UPDATE locations SET image = ? WHERE id = ?';
+  let params = [request.body.image, request.params.id];
+
+  let result = await query(sql, params);
+  response.send(result);
 });
 
-app.delete('/locations/:id(\\d+)', authenticateJWT, checkRole('ADMIN'), function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = "DELETE FROM locations WHERE id = ?";
-		var data = [request.params.id];
-		
-		c.query(sql, data, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+// DELETE
+app.delete('/locations/:id(\\d+)', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  let sql = 'DELETE FROM locations WHERE id = ?';
+  let params = [request.params.id];
+
+  let result = await query(sql, params);
+  response.send(result);
 });
 
 app.put('/locations/:id(\\d+)/confirmed/toggle', authenticateJWT, checkRole('ADMIN'), function(request, response) {
@@ -353,25 +229,11 @@ app.put('/locations/:id(\\d+)/confirmed/toggle', authenticateJWT, checkRole('ADM
 	});
 });
 
-app.get('/locations/top', function(request, response) {
-	connection.getConnection(function(cError, c) {
-		if (cError) {
-			c.release();
-			return response.status(500).send(cError);
-		}
-		
-		var sql = 'SELECT (SELECT l2.user_first_name FROM locations l2 WHERE l2.user_uin = l.user_uin ORDER BY l2.id DESC limit 1) AS userFirstName, count(l.id) as count FROM locations l WHERE l.user_uin <> 0 GROUP BY l.user_uin';
-		
-		c.query(sql, (error, result, fields) => {
-			if (error) {
-				c.release();
-				return response.status(500).send(error);
-			}
-			
-			c.release();
-			response.send(result);
-		});
-	});
+app.get('/locations/top', async function(request, response) {
+  let sql = 'SELECT (SELECT l2.user_first_name FROM locations l2 WHERE l2.user_uin = l.user_uin ORDER BY l2.id DESC limit 1) AS userFirstName, count(l.id) as count FROM locations l WHERE l.user_uin <> 0 GROUP BY l.user_uin';
+
+  let result = await query(sql);
+  response.send(result);
 });
 
 
@@ -379,21 +241,56 @@ app.get('/locations/top', function(request, response) {
 app.get('/users', async function(request, response) {
   let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
 
-  let users = await query(sql);
-  response.send(users);
+  let result = await query(sql);
+  response.send(result);
 });
 
 app.get('/users/:uin(\\d+)', async function(request, response) {
   let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE uin = ?';
+  let params = [request.params.uin];
 
-  let user = await query(sql, [request.params.uin]);
-  if(!!user[0]) {
-    response.send(user[0]);
+  let result = await query(sql, params);
+  if(!!result[0]) {
+    response.send(result[0]);
   } else {
     response.status(404).send('User not found');
   }
 });
 
+// CREATE
+app.post('/users', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  // TODO validation
+
+  let sql = 'INSERT INTO users (first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  let params = [request.body.firstName, request.body.uin, request.body.photoUrl, request.body.username, request.body.role, request.body.birthyear, request.body.languages, request.body.location, request.body.transportModel];
+
+  let result = await query(sql, params);
+  response.send(result);
+});
+
+// UPDATE
+app.put('/users/:uin(\\d+)', authenticateJWT, async function(request, response) {
+  // TODO validation
+
+  if (request.params.uin !== request.user.uin || request.user.role === 'ADMIN') {
+    response.status(403).send("Not allowed");
+  }
+
+  let sql = 'UPDATE users SET first_name = ?, photo_url = ?, username = ?, role = ?, birthyear = ?, languages = ?, location = ?, transport_model = ? WHERE uin = ?';
+  let params = [request.body.firstName, request.body.photoUrl, request.body.username, request.body.role, request.body.birthyear, request.body.languages, request.body.location, request.body.transportModel, request.params.uin];
+
+  let result = await query(sql, params);
+  response.send(result);
+});
+
+// DELETE
+app.delete('/users/:uin(\\d+)', authenticateJWT, checkRole('ADMIN'), async function(request, response) {
+  let sql = 'DELETE FROM users WHERE uin = ?';
+  let params = [request.params.uin];
+
+  let result = await query(sql, params);
+  response.send(result);
+});
 
 
 // user
@@ -617,10 +514,10 @@ app.get('/login_redirect', function(request, response) {
 
 app.get('/locations/test', async (request, response) => {
 	try {
-		var sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations where id = ?';
+    let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations where id = ?';
 	
-		let locations = await query(sql, [16]);
-		response.send(locations);
+		let result = await query(sql, [16]);
+		response.send(result);
 	} catch (e) {
 		return response.status(500).send(e);
 	}
@@ -638,4 +535,4 @@ const query = (sql, params) =>{
 };
 
 
-module.exports = app
+module.exports = app;
