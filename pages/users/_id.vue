@@ -3,32 +3,51 @@
     <h2 class="m-0"><strong>Your profile</strong> to customize</h2>
     <h5>Add more info about yourself here</h5>
     <hr/>
-    <b-row>
-      <b-col cols="12" lg="8">
 
-        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-          <b-card img-alt="Image" img-top>
-            <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Info</b-badge> About you</h3>
-            <b-card-text class="mt-4">
-              <h5>Fill info about yourself to see it on <strong>Profiles</strong> page.</h5> 
-            </b-card-text>
+    <b-card
+      bg-variant="light"
+      no-body
+      class="border-0"
+    >
+      <b-row>
+        <b-col cols="12" lg="4">
+          
+          <b-img :src="user.photo_url" :alt="user.first_name" thumbnail left fluid rounded="circle"></b-img>
+        </b-col>
+        <b-col cols="12" lg="8">
+          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
+          <b-list-group class="text-left">
+            <b-list-group-item>Name: {{ user.first_name }}</b-list-group-item>
+            <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
+            <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
+            <b-list-group-item v-if="user.languages">Lang: {{ user.languages }}</b-list-group-item>
+            <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
+            <b-list-group-item v-if="user.transport_model">Model: {{ user.transport_model }}</b-list-group-item>
+            <b-list-group-item v-if="user.transport_photo"><b-img v-if="user.transport_photo" fluid center :src="require('@/assets/img/step-1.jpg')"></b-img></b-list-group-item>
+          </b-list-group>
+        </b-col>
+      </b-row>
+    </b-card>
 
+  <b-modal id="profile-modal" title="Edit your profile">
+            <b-form @submit="onSubmit" @reset="onReset" v-if="show">
             <b-form-group>
               <b-input-group append="Name">
-                <b-form-input id="input-1" v-model="form.name" placeholder="Your name" required></b-form-input>
+                <b-form-input id="input-1" v-model="user.first_name" placeholder="Your name" required></b-form-input>
               </b-input-group>
             </b-form-group>
 
             <b-form-group>
-              <b-input-group append="Age">
-                <b-form-input id="input-1-1" v-model="form.age" placeholder="Your age" required></b-form-input>
+              <b-input-group append="Birth Year">
+                <b-form-input id="input-1-1" v-model="user.birthyear" placeholder="Your birth year" required></b-form-input>
               </b-input-group>
             </b-form-group>
             
             <b-form-group>
               <b-input-group append="Lang">
               <b-form-checkbox-group
-                :options="languages"
+                :options="user.languages"
                 button-variant="light"
                 name="buttons-1"
                 buttons
@@ -38,19 +57,19 @@
 
             <b-form-group>
               <b-input-group append="🏠">
-                <b-form-input id="input-2" v-model="form.location" placeholder="Your location: City, Area" required></b-form-input>
+                <b-form-input id="input-2" v-model="user.location" placeholder="Your location: City, Area" required></b-form-input>
               </b-input-group>
             </b-form-group>
 
             <b-form-group>
               <b-input-group append="🛴">
-                <b-form-input id="input-3" v-model="form.transport" placeholder="Your transport model" required></b-form-input>
+                <b-form-input id="input-3" v-model="user.transport_model" placeholder="Your transport model" required></b-form-input>
               </b-input-group>
             </b-form-group>
             <b-form-group>
               <b-form-file
-                v-model="form.transportPhoto"
-                :state="Boolean(form.transportPhoto)"
+                v-model="user.transport_photo"
+                :state="Boolean(user.transport_photo)"
                 placeholder="Upload transport photo"
                 drop-placeholder="Drop file here..."
               ></b-form-file>
@@ -58,39 +77,12 @@
             <template #footer>
               <b-button class="mr-1" type="submit" variant="primary">Update</b-button>
             </template>
-          </b-card>
         </b-form>
+  </b-modal>
 
-      </b-col>
-      <b-col cols="12" lg="4">
-        
-        <div v-if="!$user.isLogged">
-          <b-alert show variant="primary" class="d-flex justify-content-center align-items-center">
-            <b-button v-b-toggle.sidebar-variant class="mr-3"><b-icon-list></b-icon-list></b-button> Please login with telegram from menu
-          </b-alert>
-        </div>
-        <div v-if="$user.isLogged">
-          <b-alert show variant="primary" class="py-4">
-            <div class="d-flex justify-content-left align-items-center">
-              <b-img  class="float-left" rounded="circle" width="80" height="80" :src="$user.photoUrl"></b-img>
-              <div class="ml-4">
-                  <h5 class="m-0">{{$user.firstName}}</h5>
-                  <a :href='"https://t.me/"+$user.username' target="_blank">@{{$user.username}}</a>
-              </div>
-            </div>
-              <b-list-group class="mt-4">
-                <b-list-group-item>Name: {{ user.first_name }}</b-list-group-item>
-                <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
-                <b-list-group-item v-if="user.languages">Lang: {{ user.languages }}</b-list-group-item>
-                <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-                <b-list-group-item v-if="user.transport_model">Model:</b-list-group-item>
-              </b-list-group>
-              <b-img v-if="user.transport_photo" fluid :src="require('@/assets/img/step-1.jpg')"></b-img>
-          </b-alert>
-        </div>
 
-      </b-col>
-    </b-row>
+
+
   </div>
 </template>
 
@@ -108,14 +100,6 @@ export default {
         require("@/assets/img/tallinn.svg"),
         require("@/assets/img/mol.svg")
       ],
-      form: {
-        name: '',
-        age: '',
-        location: '',
-        transport: '',
-        transportPhoto: null,
-        checked: []
-      },
       languages: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
