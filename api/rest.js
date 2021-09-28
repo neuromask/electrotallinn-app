@@ -239,14 +239,14 @@ app.get('/locations/top', async function(request, response) {
 
 // users
 app.get('/users', async function(request, response) {
-  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users';
+  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model, transport_photo FROM users';
 
   let result = await query(sql);
   response.send(result);
 });
 
 app.get('/users/:uin(\\d+)', async function(request, response) {
-  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, transport_model, transport_photo FROM users WHERE uin = ?';
+  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model, transport_photo FROM users WHERE uin = ?';
   let params = [request.params.uin];
 
   let result = await query(sql, params);
