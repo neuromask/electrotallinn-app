@@ -9,6 +9,7 @@
                     
             </b-navbar-nav>
             <!--<b-navbar-nav class="ml-auto">
+                <UserLoginBox />
                 <b-button v-b-toggle.sidebar-variant><b-icon-list></b-icon-list></b-button>
             </b-navbar-nav>-->
         </b-navbar>
