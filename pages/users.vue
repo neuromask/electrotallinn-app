@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar type="secondary" variant="info" class="mb-5 p-3" sticky>
+        <b-navbar type="secondary" variant="info" class="mb-4 p-3" sticky>
             <b-navbar-nav>
                 <b-nav-item to="/" nuxt exact><b-icon icon="house-door-fill"></b-icon></b-nav-item>
                 <b-nav-item to="/users" nuxt exact>Users</b-nav-item>
