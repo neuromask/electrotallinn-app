@@ -23,16 +23,12 @@
                 </div>
             </b-alert>
         </div>
-        <div v-if="!$user.isLogged">
-          <div class="d-flex justify-content-center align-items-center telegram-login-box">
-            <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
-          </div>
-        </div>
+        <UserLoginBox />
         </div>
         <b-list-group class="my-4 side-menu">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/" exact><b-icon icon="house-door-fill"></b-icon>Home</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/map"><b-icon icon="geo-alt-fill"></b-icon>Map</b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/market"><b-icon icon="basket2-fill"></b-icon>Market</b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold" disabled nuxt to="/market"><b-icon icon="basket2-fill"></b-icon>Market</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/users"><b-icon icon="person-fill"></b-icon>Users</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->
@@ -51,36 +47,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  methods: {
-    loginTelegram(data) {
-      this.$axios
-        .$post(this.$config.baseUrl + '/login', data)
-        .then(response => {
-          localStorage.setItem('user', JSON.stringify(response.user));
-          localStorage.setItem('jwt', response.token);
-
-          Object.assign(this.$user, {
-            isLogged: true,
-            firstName: data.first_name,
-            uin: data.id,
-            photoUrl: data.photo_url,
-            username: data.username
-          });
-          console.log(this.$user.isLogged);
-
-          this.$axios
-            .$get(this.$config.baseUrl + '/user')
-            .then(r => {
-              console.log(r);
-            });
-        });
-    }
-  }
-};
-</script>
 
 <style scoped>
 #badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1030; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}

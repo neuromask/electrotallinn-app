@@ -1,16 +1,5 @@
 <template>
     <div>
-        <div v-if="$user.isLogged">
-            <b-alert show variant="primary">
-                <div class="d-flex justify-content-left align-items-center">
-                    <b-img class="float-left" rounded="circle" width="80" height="80" :src="$user.photoUrl" />
-                    <div class="ml-3">
-                    <h5 class="m-0">{{ $user.firstName }}</h5>
-                    <nuxt-link :to="`/users/${$user.uin}`"><b-icon icon="person-bounding-box" /> Profile</nuxt-link>
-                    </div>
-                </div>
-            </b-alert>
-        </div>
         <div v-if="!$user.isLogged">
           <div class="d-flex justify-content-center align-items-center telegram-login-box">
             <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
@@ -18,3 +7,33 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    loginTelegram(data) {
+      this.$axios
+        .$post(this.$config.baseUrl + '/login', data)
+        .then(response => {
+          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('jwt', response.token);
+
+          Object.assign(this.$user, {
+            isLogged: true,
+            firstName: data.first_name,
+            uin: data.id,
+            photoUrl: data.photo_url,
+            username: data.username
+          });
+          console.log(this.$user.isLogged);
+
+          this.$axios
+            .$get(this.$config.baseUrl + '/user')
+            .then(r => {
+              console.log(r);
+            });
+        });
+    }
+  }
+};
+</script>

@@ -114,12 +114,16 @@ export default {
   created () {
     this.getUser();
   },
+  watch: {
+    $route () {
+     this.getUser();
+    },
+  },
   methods: {
-    async getUser () {
+    getUser () {
       this.$axios
         .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
-        console.log(this.user)
       });
     },
 
