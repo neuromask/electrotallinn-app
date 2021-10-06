@@ -276,8 +276,8 @@ app.put('/users/:uin(\\d+)', authenticateJWT, async function(request, response) 
     response.status(403).send("Not allowed");
   }
 
-  let sql = 'UPDATE users SET first_name = ?, photo_url = ?, username = ?, role = ?, birthyear = ?, languages = ?, location = ?, transport_model = ? WHERE uin = ?';
-  let params = [request.body.firstName, request.body.photoUrl, request.body.username, request.body.role, request.body.birthyear, request.body.languages, request.body.location, request.body.transportModel, request.params.uin];
+  let sql = 'UPDATE users SET first_name = ?, birthyear = ?, languages = ?, location = ?, transport_model = ? WHERE uin = ?';
+  let params = [request.body.firstName, request.body.birthyear, request.body.languages, request.body.location, request.body.transportModel, request.params.uin];
 
   let result = await query(sql, params);
   response.send(result);
