@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group deck>
+    <b-card-group columns>
       <b-card
         v-for="(user, idx) in userTable" :key="idx"
         bg-variant="info"
@@ -8,11 +8,11 @@
         style="font-size:0.9rem; line-height:1rem;"
       >
       <div class="upper p-2 mb-5 position-relative d-flex justify-content-center align-items-end">
-        <div class="overflow-hidden w-100" :style="[user.transport_photo2 ? {'background-image': 'url(' + user.transport_photo + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-        <b-img class="profile position-absolute" :src="user.photo_url" rounded="circle" thumbnail></b-img>
+        <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+        <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
       </div>
         <div class="mt-5 text-center">
-            <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.first_name }}</h4> 
+            <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
             <p class="text-muted d-block mb-2" v-if="user.location">{{ user.location }}</p>
             <b-button size="sm" variant="warning" class="text-info" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
         </div>
@@ -28,7 +28,7 @@
                 <p class="m-0" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
                 <p class="m-0" v-if="user.languages">Lang: {{ getFlags(user.languages) }}</p>
                 
-                <p class="m-0" v-if="user.transport_model">Model: <strong>{{ user.transport_model }}</strong></p>
+                <p class="m-0" v-if="user.transport_model">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
             <b-list-group-item variant="light" class="flex-column align-items-start">

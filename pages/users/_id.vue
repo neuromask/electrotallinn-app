@@ -10,20 +10,20 @@
       class="border-0"
     >
     <div class="upper mb-5 position-relative d-flex justify-content-center">
-      <div class="overflow-hidden w-100" :style="[user.transport_photo2 ? {'background-image': 'url(' + user.transport_photo + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-      <b-img class="profile position-absolute" :src="user.photo_url" rounded="circle" thumbnail></b-img>
+      <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+      <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
     </div>
       <b-row class="mt-4">
         <b-col cols="12" lg="6">
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
-          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
+          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
           <b-list-group class="text-left">
-            <b-list-group-item>Name: {{ user.first_name }}</b-list-group-item>
+            <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
             <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
             <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
-            <b-list-group-item v-if="user.languages">Lang: {{ user.languages }}</b-list-group-item>
+            <b-list-group-item v-if="user.languages">Lang: {{ getFlags() }}</b-list-group-item>
             <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-            <b-list-group-item v-if="user.transport_model">Model: {{ user.transport_model }}</b-list-group-item>
+            <b-list-group-item v-if="user.transport_model">Model: {{ user.transportModel }}</b-list-group-item>
           </b-list-group>
           <b-img class="mb-3" v-if="user.transport_photo" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
         </b-col>
@@ -33,58 +33,53 @@
       </b-row>
     </b-card>
 
-  <b-modal id="profile-modal" title="Edit your profile">
-            <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-            <b-form-group>
-              <b-input-group append="Name">
-                <b-form-input id="input-1" v-model="user.first_name" placeholder="Your name" required></b-form-input>
-              </b-input-group>
-            </b-form-group>
+  <b-modal id="profile-modal" title="Edit your profile" @ok="handleOk">
+      <b-form  @submit.stop.prevent="handleSubmit">
+        <b-form-group>
+          <b-input-group append="Name">
+            <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required></b-form-input>
+          </b-input-group>
+        </b-form-group>
 
-            <b-form-group>
-              <b-input-group append="Birth Year">
-                <b-form-input id="input-1-1" v-model="user.birthyear" placeholder="Your birth year" required></b-form-input>
-              </b-input-group>
-            </b-form-group>
-            
-            <b-form-group>
-              <b-input-group append="Lang">
-              <b-form-checkbox-group
-                :options="user.languages"
-                button-variant="light"
-                name="buttons-1"
-                buttons
-              ></b-form-checkbox-group>
-              </b-input-group>
-            </b-form-group>
+        <b-form-group>
+          <b-input-group append="Birth Year">
+            <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required></b-form-input>
+          </b-input-group>
+        </b-form-group>
+        
+        <b-form-group>
+          <b-input-group append="Lang">
+          <b-form-checkbox-group
+            v-model="userEdit.languages"
+            :options="languages"
+            button-variant="light"
+            name="buttons-1"
+            buttons
+          ></b-form-checkbox-group>
+          </b-input-group>
+        </b-form-group>
 
-            <b-form-group>
-              <b-input-group append="🏠">
-                <b-form-input id="input-2" v-model="user.location" placeholder="Your location: City, Area" required></b-form-input>
-              </b-input-group>
-            </b-form-group>
+        <b-form-group>
+          <b-input-group append="🏠">
+            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required></b-form-input>
+          </b-input-group>
+        </b-form-group>
 
-            <b-form-group>
-              <b-input-group append="🛴">
-                <b-form-input id="input-3" v-model="user.transport_model" placeholder="Your transport model" required></b-form-input>
-              </b-input-group>
-            </b-form-group>
-            <b-form-group>
-              <b-form-file
-                v-model="user.transport_photo"
-                :state="Boolean(user.transport_photo)"
-                placeholder="Upload transport photo"
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
-            </b-form-group>
-            <template #footer>
-              <b-button class="mr-1" type="submit" variant="primary">Update</b-button>
-            </template>
-        </b-form>
+        <b-form-group>
+          <b-input-group append="🛴">
+            <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required></b-form-input>
+          </b-input-group>
+        </b-form-group>
+        <b-form-group>
+          <b-form-file
+            v-model="userEdit.transportPhoto"
+            :state="Boolean(userEdit.transportPhoto)"
+            placeholder="Upload transport photo"
+            drop-placeholder="Drop file here..."
+          ></b-form-file>
+        </b-form-group>
+    </b-form>
   </b-modal>
-
-
-
 
   </div>
 </template>
@@ -97,6 +92,7 @@ export default {
     return {
       profile: {},
       user: {},
+      userEdit: {},
       bgImages: [
         require("@/assets/img/pattern-icons.png"),
         require("@/assets/img/top.jpg"),
@@ -126,26 +122,31 @@ export default {
       this.$axios
         .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
+        this.user.languages = (this.user.languages || "").split(",");
       });
     },
-
-    onSubmit(event) {
-      event.preventDefault()
-      alert(JSON.stringify(this.form))
+    getFlags () {
+      return this.languages.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
     },
-    onReset(event) {
-      event.preventDefault()
-      // Reset our form values
-      this.form.email = ''
-      this.form.name = ''
-      this.form.food = null
-      this.form.checked = []
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
-    }
+    onUserEdit () {
+      this.userEdit = Object.assign({}, this.user)
+    },
+    handleOk(bvModalEvt) {
+        // Prevent modal from closing
+        bvModalEvt.preventDefault()
+        // Trigger submit handler
+        this.handleSubmit()
+      },
+    handleSubmit() {
+      const data = Object.assign({}, this.userEdit)
+      data.languages = data.languages.join()
+      this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then((response) => {
+        this.getUser()
+        this.$nextTick(() => {
+          this.$bvModal.hide('profile-modal')
+        })
+      });
+    },
 
   }
 }
