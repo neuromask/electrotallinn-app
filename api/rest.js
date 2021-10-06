@@ -246,7 +246,7 @@ app.get('/users', async function(request, response) {
 });
 
 app.get('/users/:uin(\\d+)', async function(request, response) {
-  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model, transport_photo FROM users WHERE uin = ?';
+  let sql = 'SELECT id, first_name AS firstName, uin, photo_url AS photoUrl, username, role, birthyear, languages, location, transport_model AS transportModel, transport_photo AS transportPhoto FROM users WHERE uin = ?';
   let params = [request.params.uin];
 
   let result = await query(sql, params);
