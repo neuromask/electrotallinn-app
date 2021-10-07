@@ -23,9 +23,9 @@
             <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
             <b-list-group-item v-if="user.languages">Lang: {{ getFlags() }}</b-list-group-item>
             <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-            <b-list-group-item v-if="user.transport_model">Model: {{ user.transportModel }}</b-list-group-item>
+            <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
           </b-list-group>
-          <b-img class="mb-3" v-if="user.transport_photo" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
+          <b-img class="mb-3" v-if="user.transportPhoto" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
         </b-col>
         <b-col cols="12" lg="6">
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
@@ -71,12 +71,11 @@
           </b-input-group>
         </b-form-group>
         <b-form-group>
-          <b-form-file
-            v-model="userEdit.transportPhoto"
-            :state="Boolean(userEdit.transportPhoto)"
-            placeholder="Upload transport photo"
-            drop-placeholder="Drop file here..."
-          ></b-form-file>
+                <div class="d-flex mb-3">
+        <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"></b-form-file>
+        <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
+      </div>
+      <b-img v-if="hasImage" :src="imageSrc" class="my-1 pt-3 px-5" fluid block rounded></b-img>
         </b-form-group>
     </b-form>
   </b-modal>
@@ -85,6 +84,14 @@
 </template>
 
 <script>
+const base64Encode = data =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(data);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+
 export default {
   name: 'UserProfile',
   props: {},
@@ -93,6 +100,8 @@ export default {
       profile: {},
       user: {},
       userEdit: {},
+      image: null,
+      imageSrc: null,
       bgImages: [
         require("@/assets/img/pattern-icons.png"),
         require("@/assets/img/top.jpg"),
@@ -109,6 +118,11 @@ export default {
       show: true
     }
   },
+  computed: {
+    hasImage() {
+      return !!this.image;
+    }
+  },
   created () {
     this.getUser();
   },
@@ -116,6 +130,21 @@ export default {
     $route () {
      this.getUser();
     },
+    image(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (newValue) {
+          base64Encode(newValue)
+            .then(value => {
+              this.imageSrc = value;
+            })
+            .catch(() => {
+              this.imageSrc = null;
+            });
+        } else {
+          this.imageSrc = null;
+        }
+      }
+    }
   },
   methods: {
     getUser () {
@@ -124,6 +153,9 @@ export default {
         this.user = response;
         this.user.languages = (this.user.languages || "").split(",");
       });
+    },
+    clearImage() {
+      this.image = null;
     },
     getFlags () {
       return this.languages.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
