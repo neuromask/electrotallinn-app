@@ -25,7 +25,7 @@ export default {
             photoUrl: data.photo_url,
             username: data.username
           });
-          console.log(this.$user.isLogged);
+          console.log(this.$user);
 
           this.$axios
             .$get(this.$config.baseUrl + '/user')

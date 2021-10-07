@@ -239,7 +239,7 @@ app.get('/locations/top', async function(request, response) {
 
 // users
 app.get('/users', async function(request, response) {
-  let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model, transport_photo FROM users';
+  let sql = 'SELECT id, first_name AS firstName, uin, photo_url AS photoUrl, username, role, birthyear, languages, location, transport_model AS transportModel, transport_photo AS transportPhoto FROM users';
 
   let result = await query(sql);
   response.send(result);

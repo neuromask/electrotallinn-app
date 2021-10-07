@@ -8,7 +8,7 @@
         style="font-size:0.9rem; line-height:1rem;"
       >
       <div class="upper p-2 mb-5 position-relative d-flex justify-content-center align-items-end">
-        <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+        <div class="overflow-hidden w-100" :style="[user.transportPhoto2 ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
         <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
       </div>
         <div class="mt-5 text-center">
@@ -28,7 +28,7 @@
                 <p class="m-0" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
                 <p class="m-0" v-if="user.languages">Lang: {{ getFlags(user.languages) }}</p>
                 
-                <p class="m-0" v-if="user.transport_model">Model: <strong>{{ user.transportModel }}</strong></p>
+                <p class="m-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
             <b-list-group-item variant="light" class="flex-column align-items-start">
@@ -79,6 +79,7 @@ export default {
       this.$axios
         .$get(this.$config.baseUrl + "/users").then((response) => {
           this.userTable = response;
+          console.log(this.userTable)
         });
     },
     getFlags(userLangs) {
