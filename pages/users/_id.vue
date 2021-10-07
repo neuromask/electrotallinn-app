@@ -35,6 +35,7 @@
 
   <b-modal id="profile-modal" title="Edit your profile" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
+        <h5>Personal info</h5>
         <b-form-group>
           <b-input-group append="Name">
             <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required></b-form-input>
@@ -44,6 +45,12 @@
         <b-form-group>
           <b-input-group append="Birth Year">
             <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required></b-form-input>
+          </b-input-group>
+        </b-form-group>
+
+        <b-form-group>
+          <b-input-group append="🏠">
+            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required></b-form-input>
           </b-input-group>
         </b-form-group>
         
@@ -58,24 +65,19 @@
           ></b-form-checkbox-group>
           </b-input-group>
         </b-form-group>
-
-        <b-form-group>
-          <b-input-group append="🏠">
-            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required></b-form-input>
-          </b-input-group>
-        </b-form-group>
-
+        <hr />
+        <h5>Your main electric transport</h5>
         <b-form-group>
           <b-input-group append="🛴">
             <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required></b-form-input>
           </b-input-group>
         </b-form-group>
-        <b-form-group>
-                <div class="d-flex mb-3">
-        <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"></b-form-file>
-        <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
-      </div>
-      <b-img v-if="hasImage" :src="imageSrc" class="my-1 pt-3 px-5" fluid block rounded></b-img>
+        <b-form-group class="m-0">
+          <div class="d-flex mb-3">
+            <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"></b-form-file>
+            <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
+          </div>
+          <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded></b-img>
         </b-form-group>
     </b-form>
   </b-modal>
