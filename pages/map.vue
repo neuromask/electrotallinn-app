@@ -93,7 +93,7 @@ export default {
 
             window.google.maps.event.addListener(marker, 'click', (function (marker) {
               return function () {
-                infowindow.setContent("<div class='infocontent'>" + (location.imageName ? "<img src='" + baseUrl + '/images/' + location.imageName + "'>" : '') + '<h4>' + location.title + '</h4><p>' + (location.description || '') + "</p><div><span class='report' v-b-modal.modal-report>Report</span><small>Added by: " + (location.userFirstName || '') + '</small></div></div>')
+                infowindow.setContent("<div class='infocontent'>" + (location.imageName ? "<img src='" + baseUrl + '/locations/image/' + location.imageName + "'>" : '') + '<h4>' + location.title + '</h4><p>' + (location.description || '') + "</p><div><span class='report' v-b-modal.modal-report>Report</span><small>Added by: " + (location.userFirstName || '') + '</small></div></div>')
                 infowindow.open(this.map, marker)
               }
             })(marker))

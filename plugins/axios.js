@@ -1,16 +1,13 @@
-export default function ({ $axios, redirect }) {
-  $axios.onRequest(config => {
-    let jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      config.headers["Authorization"] = `Bearer ${jwt}`;
-    }
-    return config;
-  });
+export default function ({$axios, redirect, app}) {
+    $axios.onRequest(config => {
+        let jwt = localStorage.getItem('jwt');
+        if (jwt) {
+            config.headers["Authorization"] = `Bearer ${jwt}`;
+        }
+        return config;
+    });
 
-  // $axios.onError(error => {
-  //   const code = parseInt(error.response && error.response.status);
-  //   if (code === 400) {
-  //     redirect('/400')
-  //   }
-  // })
+    $axios.onError(error => {
+        app.$toast.error(`Error: ${error.response.data.error ? error.response.data.error.message : error.response.data}`);
+    })
 }

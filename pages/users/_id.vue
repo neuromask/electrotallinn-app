@@ -9,28 +9,28 @@
       no-body
       class="border-0"
     >
-    <div class="upper mb-5 position-relative d-flex justify-content-center">
-      <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-      <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
-    </div>
-      <b-row class="mt-4">
-        <b-col cols="12" lg="6">
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
-          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
-          <b-list-group class="text-left">
-            <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
-            <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
-            <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
-            <b-list-group-item v-if="user.languages">Lang: {{ getFlags() }}</b-list-group-item>
-            <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-            <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
-          </b-list-group>
-          <b-img class="mb-3" v-if="user.transportPhoto" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
-        </b-col>
-        <b-col cols="12" lg="6">
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
-        </b-col>
-      </b-row>
+        <div class="upper mb-5 position-relative d-flex justify-content-center">
+            <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+            <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
+        </div>
+        <b-row class="mt-4">
+            <b-col cols="12" lg="6">
+              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+              <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
+              <b-list-group class="text-left">
+                <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
+                <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
+                <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
+                <b-list-group-item v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
+                <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
+                <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
+              </b-list-group>
+              <b-img class="mb-3" v-if="user.transportPhoto" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
+            </b-col>
+            <b-col cols="12" lg="6">
+              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
+            </b-col>
+        </b-row>
     </b-card>
 
   <b-modal id="profile-modal" title="Edit your profile" @ok="handleOk">
@@ -38,46 +38,46 @@
         <h5>Personal info</h5>
         <b-form-group>
           <b-input-group append="Name">
-            <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required></b-form-input>
+            <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
           </b-input-group>
         </b-form-group>
 
         <b-form-group>
           <b-input-group append="Birth Year">
-            <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required></b-form-input>
+            <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required/>
           </b-input-group>
         </b-form-group>
 
         <b-form-group>
           <b-input-group append="🏠">
-            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required></b-form-input>
+            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
           </b-input-group>
         </b-form-group>
         
         <b-form-group>
           <b-input-group append="Lang">
-          <b-form-checkbox-group
-            v-model="userEdit.languages"
-            :options="languages"
-            button-variant="light"
-            name="buttons-1"
-            buttons
-          ></b-form-checkbox-group>
+              <b-form-checkbox-group
+                v-model="userEdit.languages"
+                :options="languageOptions"
+                button-variant="light"
+                name="buttons-1"
+                buttons
+              />
           </b-input-group>
         </b-form-group>
         <hr />
         <h5>Your main electric transport</h5>
         <b-form-group>
           <b-input-group append="🛴">
-            <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required></b-form-input>
+            <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
           </b-input-group>
         </b-form-group>
         <b-form-group class="m-0">
           <div class="d-flex mb-3">
-            <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"></b-form-file>
+            <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
             <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
           </div>
-          <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded></b-img>
+          <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>
         </b-form-group>
     </b-form>
   </b-modal>
@@ -110,13 +110,13 @@ export default {
         require("@/assets/img/tallinn.svg"),
         require("@/assets/img/mol.svg")
       ],
-      languages: [
+      languageOptions: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
           { text: '🇷🇺', value: 'russian' },
           { text: '🇸🇪', value: 'swedish' },
           { text: '🇪🇸', value: 'spanish' }
-        ],
+      ],
       show: true
     }
   },
@@ -150,17 +150,16 @@ export default {
   },
   methods: {
     getUser () {
-      this.$axios
-        .$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
-        this.user.languages = (this.user.languages || "").split(",");
+        this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
       });
     },
     clearImage() {
       this.image = null;
     },
     getFlags () {
-      return this.languages.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
+      return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
     },
     onUserEdit () {
       this.userEdit = Object.assign({}, this.user)
@@ -174,7 +173,7 @@ export default {
     handleSubmit() {
       const data = Object.assign({}, this.userEdit)
       data.languages = data.languages.join()
-      this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then((response) => {
+      this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
         this.$nextTick(() => {
           this.$bvModal.hide('profile-modal')

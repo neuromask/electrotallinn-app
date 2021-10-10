@@ -72,7 +72,7 @@
               <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
             </b-button-group>
             <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-              <b-img :src="$config.baseUrl + '/images/' + data.item.imageName" center fluid />
+              <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
             </b-modal>
             <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
               <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />

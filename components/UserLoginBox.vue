@@ -13,7 +13,7 @@ export default {
   methods: {
     loginTelegram(data) {
       this.$axios
-        .$post(this.$config.baseUrl + '/login', data)
+        .$post(this.$config.baseUrl + '/authentication/login', data)
         .then(response => {
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('jwt', response.token);
@@ -25,13 +25,6 @@ export default {
             photoUrl: data.photo_url,
             username: data.username
           });
-          console.log(this.$user);
-
-          this.$axios
-            .$get(this.$config.baseUrl + '/user')
-            .then(r => {
-              console.log(r);
-            });
         });
     }
   }

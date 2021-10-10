@@ -44,8 +44,8 @@ export default {
 
   serverMiddleware: [
     // Will register file from project server-middleware directory to handle /server-middleware/* requires
-    //{ path: '/api', handler: '~/api/index.js' },
     { path: "/api", handler: "~/api/rest.js" }
+      // { path: "/api", handler: "~/api/rest_old.js" }
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -56,7 +56,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/toast',
   ],
 
   bootstrapVue: {
@@ -82,6 +83,11 @@ export default {
         }
       }
     }
+  },
+
+  toast: {
+    position: 'top-right',
+    duration: 3000
   },
 
   loading: {
