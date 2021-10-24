@@ -35,10 +35,17 @@ module.exports = {
     },
 
     update: async (uin, user) => {
-        //update transport photo
+        // update transport photo
         if (user.transportPhoto != null) {
             let sql = 'UPDATE users SET transport_photo = ? WHERE uin = ?';
             let params = [user.transportPhoto, uin];
+            await db.query(sql, params);
+        }
+
+        // delete transport photo
+        if (user.transportPhotoName == null) {
+            let sql = 'UPDATE users SET transport_photo = ? WHERE uin = ?';
+            let params = [null, uin];
             await db.query(sql, params);
         }
 
