@@ -1,4 +1,5 @@
 const usersRepository = require("../repository/UsersRepository.js");
+const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async () => {
@@ -9,6 +10,10 @@ module.exports = {
         return await usersRepository.findByUin(uin)
     },
 
+    findTransportPhotoByName: async (name) => {
+        return await usersRepository.findTransportPhotoByName(name)
+    },
+
     create: async (user) => {
         // TODO validation
 
@@ -17,6 +22,10 @@ module.exports = {
 
     update: async (uin, user) => {
         // TODO validation
+
+        if (user.transportPhoto != null) {
+            user.transportPhotoName = utils.uuid() + '.jpg'
+        }
 
         return await usersRepository.update(uin, user)
     },

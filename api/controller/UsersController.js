@@ -19,9 +19,14 @@ router.get('/:uin(\\d+)', async function(request, response) {
     response.send(user);
 });
 
+router.get('/image/:transportPhotoName', async function(request, response) {
+    let image = await usersService.findTransportPhotoByName(request.params.transportPhotoName);
+    response.end(image, 'binary');
+});
+
 // CREATE
 router.post('/', utils.authenticateJWT, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = usersService.create(request.body)
+    let result = usersService.create(request.body);
     response.send(result);
 });
 

@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const crypto = require("crypto");
 const sharp = require('sharp');
+const { v4: uuidv4 } = require('uuid');
 
 const JWT_SECRET = "supersecretjwtada8sd8a7d9ad79a";
 
@@ -94,5 +95,7 @@ module.exports = {
         return await sharp(image)
             .rotate(degree)
             .toBuffer();
-    }
+    },
+
+    uuid: async () => uuidv4()
 };

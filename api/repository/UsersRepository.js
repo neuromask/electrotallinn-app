@@ -12,11 +12,19 @@ module.exports = {
     },
 
     findByUin: async (uin) => {
-        let sql = 'SELECT first_name, username, uin, photo_url, role, birthyear, languages, location, transport_model FROM users WHERE uin = ?';
+        let sql = 'SELECT first_name, username, uin, photo_url, role, birthyear, languages, location, transport_model, transport_photo_name FROM users WHERE uin = ?';
         let params = [uin];
 
-        let users = await db.query(sql, params);
-        return users[0] ? utils.convertPropsToCamelcase(users[0]) : null;
+        let result = await db.query(sql, params);
+        return result[0] ? utils.convertPropsToCamelcase(result[0]) : null;
+    },
+
+    findTransportPhotoByName: async (name) => {
+        let sql = 'SELECT transport_photo FROM users WHERE transport_photo_name = ?';
+        let params = [name];
+
+        let result = await db.query(sql, params);
+        return result[0] ? utils.convertPropsToCamelcase(result[0]).transportPhoto : null;
     },
 
     create: async (user) => {
@@ -27,10 +35,19 @@ module.exports = {
     },
 
     update: async (uin, user) => {
-        let sql = 'UPDATE users SET first_name = ?, birthyear = ?, languages = ?, location = ?, transport_model = ? WHERE uin = ?';
-        let params = [user.firstName, user.birthyear, user.languages, user.location, user.transportModel, uin];
+        //update transport photo
+        if (user.transportPhoto != null) {
+            let sql = 'UPDATE users SET transport_photo = ? WHERE uin = ?';
+            let params = [user.transportPhoto, uin];
+            await db.query(sql, params);
+        }
 
-        return await db.query(sql, params);
+        // update rest data
+        {
+            let sql = 'UPDATE users SET first_name = ?, birthyear = ?, languages = ?, location = ?, transport_model = ?, transport_photo_name = ? WHERE uin = ?';
+            let params = [user.firstName, user.birthyear, user.languages, user.location, user.transportModel, user.transportPhotoName, uin];
+            return await db.query(sql, params);
+        }
     },
 
     delete: async (uin) => {
