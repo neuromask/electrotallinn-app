@@ -24,6 +24,8 @@ module.exports = {
         // TODO validation
 
         if (user.transportPhoto != null) {
+            user.transportPhoto = utils.b64ToBuffer(user.transportPhoto);
+
             user.transportPhotoName = utils.uuid() + '.jpg'
         }
 
