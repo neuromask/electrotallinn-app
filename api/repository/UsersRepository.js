@@ -12,7 +12,7 @@ module.exports = {
     },
 
     findByUin: async (uin) => {
-        let sql = 'SELECT first_name, username, uin, photo_url, role FROM users WHERE uin = ?';
+        let sql = 'SELECT first_name, username, uin, photo_url, role, birthyear, languages, location, transport_model FROM users WHERE uin = ?';
         let params = [uin];
 
         let users = await db.query(sql, params);
