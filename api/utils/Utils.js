@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 const jwt = require('jsonwebtoken');
 const crypto = require("crypto");
 const sharp = require('sharp');
@@ -85,7 +87,6 @@ module.exports = {
         return Object.assign({}, ...Object.keys(obj).map(key => ({[convertSnakeCamelcase(key)]: obj[key]})))
     },
 
-    // rotate image
     /**
      * rotate image
      * @param image
@@ -98,9 +99,22 @@ module.exports = {
             .toBuffer();
     },
 
+    /**
+     * resize image
+     * @param image
+     * @param options
+     * @returns {Promise<Buffer>}
+     */
+    resizeImage: async (image, options) => {
+        const {width = 300, height = 300} = options || {};
+        return await sharp(image)
+            .resize({ width: width, height: height, fit: 'inside' })
+            .toBuffer();
+    },
+
     uuid: () => uuidv4(),
 
     b64ToBuffer: (b64String) => {
-        return new Buffer(b64String, 'base64');
+        return Buffer.from(b64String, 'base64');
     }
 };

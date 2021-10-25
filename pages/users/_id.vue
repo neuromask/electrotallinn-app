@@ -74,7 +74,7 @@
         </b-form-group>
         <b-form-group class="m-0">
           <div class="d-flex mb-3">
-            <b-form-file v-model="userEdit.transportPhoto" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
+            <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
             <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
           </div>
           <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>

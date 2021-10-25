@@ -24,7 +24,7 @@ module.exports = {
         // TODO validation
 
         if (user.transportPhoto != null) {
-            user.transportPhoto = utils.b64ToBuffer(user.transportPhoto);
+            user.transportPhoto = await utils.resizeImage(utils.b64ToBuffer(user.transportPhoto), {width: 1024, height: 1024});
 
             user.transportPhotoName = utils.uuid() + '.jpg'
         }
