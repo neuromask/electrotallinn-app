@@ -1,6 +1,6 @@
 <template>
   <div id="user-profile">
-    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.first_name }}'s profile</strong> page</h2>
+    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.firstName }}'s profile</strong> page</h2>
     <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong> page</h2>
     <hr/>
 
@@ -74,10 +74,14 @@
         </b-form-group>
         <b-form-group class="m-0">
           <div class="d-flex mb-3">
-            <b-form-file v-model="image" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
+            <b-form-file v-model="userEdit.transportPhoto" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
             <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
           </div>
           <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>
+          <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
+            <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" class="p-3 bg-light" fluid block rounded/>
+            <b-button variant="danger" class="m-3 position-absolute" @click="clearImage"><b-icon icon="x" /></b-button>
+          </div>
         </b-form-group>
     </b-form>
   </b-modal>
@@ -122,7 +126,7 @@ export default {
   },
   computed: {
     hasImage() {
-      return !!this.image;
+      return !!this.userEdit.transportPhoto;
     }
   },
   created () {
@@ -132,7 +136,7 @@ export default {
     $route () {
      this.getUser();
     },
-    image(newValue, oldValue) {
+    'userEdit.transportPhoto'(newValue, oldValue) {
       if (newValue !== oldValue) {
         if (newValue) {
           base64Encode(newValue)
@@ -152,11 +156,16 @@ export default {
     getUser () {
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
+        console.log(response);
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
       });
     },
     clearImage() {
-      this.image = null;
+      if (this.hasImage) {
+        this.userEdit.transportPhoto = null;
+      } else {
+        this.userEdit.transportPhotoName = null;
+      }
     },
     getFlags () {
       return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
@@ -165,13 +174,15 @@ export default {
       this.userEdit = Object.assign({}, this.user)
     },
     handleOk(bvModalEvt) {
-        // Prevent modal from closing
-        bvModalEvt.preventDefault()
-        // Trigger submit handler
-        this.handleSubmit()
-      },
+      // Prevent modal from closing
+      bvModalEvt.preventDefault()
+      // Trigger submit handler
+      this.handleSubmit()
+    },
     handleSubmit() {
       const data = Object.assign({}, this.userEdit)
+      if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
+      console.log(this.imageSrc)
       data.languages = data.languages.join()
       this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
@@ -179,8 +190,7 @@ export default {
           this.$bvModal.hide('profile-modal')
         })
       });
-    },
-
+    }
   }
 }
 // d-flex justify-content-center align-items-center

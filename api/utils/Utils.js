@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require("crypto");
 const sharp = require('sharp');
 const { v4: uuidv4 } = require('uuid');
-const Buffer = require('buffer');
+//const Buffer = require('buffer');
 
 const JWT_SECRET = "supersecretjwtada8sd8a7d9ad79a";
 
@@ -98,9 +98,9 @@ module.exports = {
             .toBuffer();
     },
 
-    uuid: async () => uuidv4(),
+    uuid: () => uuidv4(),
 
     b64ToBuffer: (b64String) => {
-        return Buffer.from(b64String, 'base64');
+        return new Buffer(b64String, 'base64');
     }
 };
