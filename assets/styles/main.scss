@@ -15,7 +15,6 @@ html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helve
 .container {border-top:4px solid #ec970f;}
 .gm-ui-hover-effect {background: transparent!important;border: 0!important;}
 button {outline: none;box-shadow:none !important;}
-button:focus {border: 0!important;outline: none;box-shadow:none !important;}
 .table > tbody > tr > td {
     vertical-align: middle;
     & h5, p, h4, h3 {

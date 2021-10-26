@@ -1,36 +1,68 @@
 <template>
-  <div id="user-profile">
-    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.firstName }}'s profile</strong> page</h2>
-    <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong> page</h2>
+  <div id="user-profile" class="position-relative">
+    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.firstName }}'s profile</strong></h2>
+    <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong></h2>
+    <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
     <hr/>
 
-    <b-card
-      bg-variant="light"
-      no-body
-      class="border-0"
-    >
-        <div class="upper mb-5 position-relative d-flex justify-content-center">
-            <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-            <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
-        </div>
-        <b-row class="mt-4">
-            <b-col cols="12" lg="6">
-              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
-              <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
-              <b-list-group class="text-left">
-                <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
-                <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
-                <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
-                <b-list-group-item v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
-                <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-                <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
-              </b-list-group>
-              <b-img class="mb-3" v-if="user.transportPhoto" center thumbnail fluid rounded="circle" :src="require('@/assets/img/step-1.jpg')"></b-img>
-            </b-col>
-            <b-col cols="12" lg="6">
-              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
-            </b-col>
-        </b-row>
+    <b-card bg-variant="light" no-body class="border-0">
+      <div class="upper mb-5 position-relative d-flex justify-content-center">
+          <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+          <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
+      </div>
+      <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+      <b-row>
+        <b-col cols="12" lg="6">
+          <b-list-group class="text-left">
+            <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
+            <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
+            <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
+            <b-list-group-item v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
+            <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
+            <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
+          </b-list-group>
+        </b-col>
+        <b-col cols="12" lg="6">
+          <b-img v-if="user.transportPhotoName" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+        </b-col>
+      </b-row>
+      <b-row class="mt-4">
+        <b-col cols="12" lg="6">
+          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Locations</b-badge> Added</h3>
+          <b-table
+            class="bg-info rounded"
+            borderless
+            striped
+            hover
+            sticky-header
+            :items="listFull"
+            :fields="fieldsLoc"
+          >
+            <template #cell(title)="data">
+              <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p>
+            </template>
+            <template #cell(type)="data">
+              <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
+            </template>
+            <template #cell(imageName)="data">
+              <b-button-group size="sm" vertical>
+                <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
+                <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
+              </b-button-group>
+              <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
+                <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
+              </b-modal>
+              <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
+                <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
+              </b-modal>
+            </template>
+          </b-table>
+        </b-col>
+        <b-col cols="12" lg="6">
+          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
+        </b-col>
+      </b-row>
     </b-card>
 
   <b-modal id="profile-modal" title="Edit your profile" @ok="handleOk">
@@ -114,6 +146,30 @@ export default {
         require("@/assets/img/tallinn.svg"),
         require("@/assets/img/mol.svg")
       ],
+      locationIcons: {
+        CHARGE: 'icon-charge',
+        REPAIR: 'icon-repair',
+        AIR: 'icon-air',
+        WATER: 'icon-water'
+      },
+      listFull: [],
+      fieldsLoc: [
+        {
+          key: 'type',
+          sortable: true,
+          label: 'Type'
+        },
+        {
+          key: 'title',
+          sortable: true,
+          label: 'Name'
+        },
+        {
+          key: 'imageName',
+          sortable: false,
+          label: 'Info'
+        }
+      ],
       languageOptions: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
@@ -151,6 +207,9 @@ export default {
         }
       }
     }
+  },
+  async mounted () {
+    this.listFull = await this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`)
   },
   methods: {
     getUser () {

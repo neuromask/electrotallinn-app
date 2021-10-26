@@ -40,30 +40,30 @@ export default {
     }
   },
   head () {
-    return {
-      title: 'Charging Map - ElectroTallinn',
-      meta: [
-        { hid: 'description', name: 'description', content: 'Map showing the locations of outlets for charging, repair in accessible places.' },
-        { name: 'format-detection', content: 'telephone=no' }
-      ],
-      script: [
-        {
-          hid: 'maps-googleapis',
-          body: true,
-          once: true,
-          src: `https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.$config.googleKey}`,
-          defer: true,
-          callback: this.initMap
-        }
-      ]
-    }
+      return {
+        title: 'Charging Map - ElectroTallinn',
+        meta: [
+          { hid: 'description', name: 'description', content: 'Map showing the locations of outlets for charging, repair in accessible places.' },
+          { name: 'format-detection', content: 'telephone=no' }
+        ]
+      }
   },
   mounted () {
 
   },
+  created() {
+    this.$loadScript(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.$config.googleKey}`)
+      .then(() => {
+        this.initMap()
+      })
+      .catch(() => {
+        // Failed to fetch script
+      })
+  },
   methods: {
 
     initMap () {
+      
       this.mapConfig.mapTypeControlOptions = {
         style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
         position: window.google.maps.ControlPosition.TOP_CENTER

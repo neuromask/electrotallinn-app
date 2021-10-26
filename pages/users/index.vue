@@ -7,11 +7,11 @@
         no-body
         style="font-size:0.9rem; line-height:1rem;"
       >
-      <div class="upper p-2 mb-5 position-relative d-flex justify-content-center align-items-end">
+      <div class="upper p-2 position-relative d-flex justify-content-center align-items-end">
         <div class="overflow-hidden w-100" :style="[user.transportPhoto2 ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
         <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
       </div>
-        <div class="mt-5 text-center">
+        <div class="text-center mt-5">
             <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
             <p class="text-muted d-block mb-2" v-if="user.location">{{ user.location }}</p>
             <b-button size="sm" variant="warning" class="text-info" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
@@ -113,6 +113,6 @@ export default {
 
 .profile {
     width: 10rem;
-    bottom:-3rem;
+    bottom:-2.5rem;
 }
 </style>

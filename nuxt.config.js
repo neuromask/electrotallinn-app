@@ -26,6 +26,7 @@ export default {
   plugins: [
     { src: '~plugins/vue-cookie-law.js', ssr: false },
     { src: '~/plugins/axios', ssr: false },
+    { src: '@/plugins/load-script.js' },
     '~/plugins/globals.js'
   ],
 
@@ -119,5 +120,7 @@ export default {
     }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+    transpile: ['vue-plugin-load-script'],
+  }
 }
