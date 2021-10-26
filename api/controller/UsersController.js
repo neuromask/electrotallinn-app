@@ -1,6 +1,7 @@
 const express = require('express');
 const utils = require("../utils/Utils.js");
 const usersService = require("../service/UsersService.js");
+const locationsService = require("../service/LocationsService.js");
 
 const router = express.Router();
 
@@ -10,13 +11,18 @@ router.get('/', async function(request, response) {
 });
 
 router.get('/:uin(\\d+)', async function(request, response) {
-    let user = await usersService.findByUin(request.params.uin);
+    let result = await usersService.findByUin(request.params.uin);
 
-    if (!user) {
+    if (!result) {
         return response.status(404).send('User not found');
     }
 
-    response.send(user);
+    response.send(result);
+});
+
+router.get('/:uin(\\d+)/locations', async function(request, response) {
+    let result = await locationsService.findByUserUin(request.params.uin);
+    response.send(result);
 });
 
 router.get('/image/:transportPhotoName', async function(request, response) {

@@ -10,6 +10,10 @@ module.exports = {
         return await locationsRepository.findOne(id)
     },
 
+    findByUserUin: async (userUin) => {
+        return await locationsRepository.findByUserUin(userUin)
+    },
+
     save: async (location) => {
         // TODO validation
 

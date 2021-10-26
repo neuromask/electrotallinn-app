@@ -61,5 +61,12 @@ module.exports = {
         let params = [image, name];
 
         return await db.query(sql, params);
+    },
+
+    findByUserUin: async (userUin) => {
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations WHERE user_uin = ?';
+        let params = [userUin];
+
+        return await db.query(sql, params);
     }
 };
