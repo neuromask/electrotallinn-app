@@ -10,7 +10,7 @@
           <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
           <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
       </div>
-      <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+      <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
       <b-row>
         <b-col cols="12" lg="6">
           <b-list-group class="text-left">
@@ -28,7 +28,7 @@
       </b-row>
       <b-row class="mt-4">
         <b-col cols="12" lg="6">
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Locations</b-badge> Added</h3>
+          <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Locations</b-badge> Added</h3>
           <b-table
             class="bg-info rounded"
             borderless
@@ -59,8 +59,8 @@
           </b-table>
         </b-col>
         <b-col cols="12" lg="6">
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
+          <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+          <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
         </b-col>
       </b-row>
     </b-card>
