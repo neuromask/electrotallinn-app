@@ -15,7 +15,7 @@
           <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
           <b-list-group class="text-left">
             <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
-            <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
+            <b-list-group-item v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
             <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
             <b-list-group-item v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
             <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>

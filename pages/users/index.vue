@@ -7,7 +7,7 @@
         no-body
         style="font-size:0.9rem; line-height:1rem;"
       >
-      <div class="upper p-2 position-relative d-flex justify-content-center align-items-end">
+      <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
         <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
         <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
       </div>
@@ -21,16 +21,17 @@
           <b-list-group class="text-left">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>Info</strong></h5>
                 <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
               </div>
               <div class="mb-1">
                 <p class="m-0" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
                 <p class="m-0" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
-                <p class="m-0" v-if="user.languages">Lang: {{ getFlags(user.languages) }}</p>
+                <p class="m-0" v-if="user.languages && user.languages.length">Lang: {{ getFlags(user.languages) }}</p>
                 <p class="m-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
-            <b-list-group-item variant="light" class="flex-column align-items-start">
+            <!--<b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>Achievements</strong></h5>
                 <h5><b-icon variant="warning" icon="trophy-fill" /></h5>
@@ -47,7 +48,7 @@
                 <p class="m-0">Locations</p>
                 <b-badge>3</b-badge>
               </div>
-            </b-list-group-item>
+            </b-list-group-item>-->
           </b-list-group>
         </b-card-body>
       </b-card>
@@ -61,12 +62,12 @@ export default {
   data() {
     return {
       userTable: [],
-      languages: [
-        { text: '🇬🇧', value: 'english' },
-        { text: '🇪🇪', value: 'estonian' },
-        { text: '🇷🇺', value: 'russian' },
-        { text: '🇸🇪', value: 'swedish' },
-        { text: '🇪🇸', value: 'spanish' }
+      languageOptions: [
+          { text: '🇬🇧', value: 'english' },
+          { text: '🇪🇪', value: 'estonian' },
+          { text: '🇷🇺', value: 'russian' },
+          { text: '🇸🇪', value: 'swedish' },
+          { text: '🇪🇸', value: 'spanish' }
       ],
     };
   },
@@ -81,14 +82,8 @@ export default {
           console.log(this.userTable)
         });
     },
-    getFlags(userLangs) {
-      function getByValue(arr, value) {
-        var result  = arr.filter(function(o){return o.b == value;} );
-        return result? result[0] : null; // or undefined
-      }
-
-      const userLangsArr = userLangs.split(',');
-      const intersection = this.languages.filter(element => userLangsArr.includes(element));
+    getFlags (userLang) {
+      return this.languageOptions.filter(language => userLang.includes(language.value)).map(language => language.text).join(" ")
     }
   },
 };
