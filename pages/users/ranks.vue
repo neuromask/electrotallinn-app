@@ -12,8 +12,8 @@
           hover
           :items="listTop"
           :fields="fieldsTop"
-          :sort-by.sync="sortBy"
-          :sort-desc.sync="sortDesc"
+          :sort-by.sync="sortRankBy"
+          :sort-desc.sync="sortRankDesc"
         >
           <template #cell(indx)="data">
             <div class="d-flex justify-content-center align-items-center">
@@ -59,6 +59,8 @@
           hover
           :items="listFull"
           :fields="fieldsLoc"
+          :sort-by.sync="sortLocBy"
+          :sort-desc.sync="sortLocDesc"
         >
           <template #cell(title)="data">
             <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>Added by: {{ data.item.userFirstName }}</small>
@@ -156,6 +158,8 @@ export default {
     ],
     listFull: [],
     listTop: [],
+    sortLocBy: 'id',
+    sortLocDesc: true,
     fieldsLoc: [
       {
         key: 'type',
@@ -191,8 +195,8 @@ export default {
         label: 'Pts'
       }
     ],
-    sortBy: 'count',
-    sortDesc: true,
+    sortRankBy: 'count',
+    sortRankDesc: true,
     fieldsRank: [
       {
         key: 'icon',

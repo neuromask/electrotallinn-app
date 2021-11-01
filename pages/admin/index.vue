@@ -8,7 +8,16 @@
                     <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
                     Locations
                 </h3>
-                <b-table class="bg-info" borderless striped hover :items="listFull" :fields="fieldsLoc">
+                <b-table 
+                class="bg-info" 
+                borderless 
+                striped 
+                hover 
+                :items="listFull" 
+                :fields="fieldsLoc"
+                :sort-by="sortBy"
+                :sort-desc="sortDesc"
+                >
                     <template #cell(title)="data">
                         <h4>{{ data.item.title }}</h4>
                         <p>{{ data.item.description }}</p>
@@ -106,6 +115,8 @@
                     {value: 'WATER', text: 'Water'}
                 ],
                 listFull: [],
+                sortBy: 'id',
+                sortDesc: true,
                 fieldsLoc: [
                     {
                         key: 'id',
@@ -132,9 +143,7 @@
                         sortable: false,
                         label: ''
                     }
-                ],
-                sortBy: 'count',
-                sortDesc: true
+                ]
             }
         },
         mounted() {
@@ -145,7 +154,7 @@
                 this.$axios
                     .$get(this.$config.baseUrl + '/locations')
                     .then(response => {
-                        this.listFull = response.slice().reverse();
+                        this.listFull = response;
                     });
             },
             deleteLoc(locId) {

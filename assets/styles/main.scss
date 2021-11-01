@@ -96,45 +96,6 @@ hr:after {
     align-items: center;
     justify-content: center;
 }
-// Google map elements
-.infocontent {
-    text-align: center;
-
-    & img {
-        max-height: 600px;
-        max-width: 600px;
-        margin: 0 auto;
-        width:100%;
-    }
-    & button.close {
-        background: transparent;
-        border: 0;
-    }
-    & p {
-        font-size: 14px;
-        margin: 0;
-        padding-bottom:0.2rem;
-    }
-    & h4 {
-        font-size:16px;
-        margin: 0;
-        padding-top:0.3rem;
-    }
-    & small {
-        font-size: 10px;
-        float: left;
-    }
-    & .report {
-        float: right;
-        font-weight: bold;
-    }
-    & p {
-        margin:0;
-    }
-}
-.locations div[role=dialog] {
-    max-width: 90vw!important;
-}
 
 .page-enter-active,
 .page-leave-active {

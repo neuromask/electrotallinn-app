@@ -3,9 +3,8 @@
     <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.firstName }}'s profile</strong></h2>
     <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong></h2>
     <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
-    <hr/>
 
-    <b-card bg-variant="light" no-body class="border-0">
+    <b-card bg-variant="light" no-body class="border-0 mt-3">
       <div class="upper mb-5 position-relative d-flex justify-content-center">
           <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
           <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
