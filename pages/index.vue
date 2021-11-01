@@ -1,5 +1,14 @@
 <template>
   <section>
+    <b-navbar type="secondary" variant="info" class="mb-4 p-3" sticky>
+        <b-navbar-nav>
+            <b-nav-item to="/" nuxt exact><b-icon icon="house-door-fill"></b-icon></b-nav-item>
+            <b-nav-item to="/map" nuxt>Map</b-nav-item>
+            <b-nav-item to="/market" disabled nuxt>Market</b-nav-item>
+            <b-nav-item to="/users" nuxt>Profiles</b-nav-item>
+            <b-nav-item to="/help" nuxt>Help</b-nav-item>
+        </b-navbar-nav>
+    </b-navbar>
     <b-card-group deck>
     <b-card img-alt="Image" img-top class="p-3">
         <h3 class="font-weight-bold mb-4">

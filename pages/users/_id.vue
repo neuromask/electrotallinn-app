@@ -6,12 +6,13 @@
 
     <b-card bg-variant="light" no-body class="border-0 mt-3">
       <div class="upper mb-5 position-relative d-flex justify-content-center">
-          <div class="overflow-hidden w-100" :style="[user.transportPhoto ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+          <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
           <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
       </div>
-      <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+      
       <b-row>
         <b-col cols="12" lg="6">
+          <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
           <b-list-group class="text-left">
             <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
             <b-list-group-item v-if="user.username">Telegram: {{ user.username }}</b-list-group-item>
@@ -20,12 +21,8 @@
             <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
             <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
           </b-list-group>
+          <b-img class="my-3" v-if="user.transportPhotoName" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
         </b-col>
-        <b-col cols="12" lg="6">
-          <b-img v-if="user.transportPhotoName" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
-        </b-col>
-      </b-row>
-      <b-row class="mt-4">
         <b-col cols="12" lg="6">
           <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Locations</b-badge> Added</h3>
           <b-table
@@ -56,8 +53,6 @@
               </b-modal>
             </template>
           </b-table>
-        </b-col>
-        <b-col cols="12" lg="6">
           <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
           <h3 class="my-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
         </b-col>
@@ -111,7 +106,7 @@
           <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>
           <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
             <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" class="p-3 bg-light" fluid block rounded/>
-            <b-button variant="danger" class="m-3 position-absolute" @click="clearImage"><b-icon icon="x" /></b-button>
+            <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
           </div>
         </b-form-group>
     </b-form>
@@ -256,7 +251,7 @@ export default {
 
 <style scoped>
 .upper>div {
-    height: 250px;
+    height: 320px;
     background-color: #1a2740;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -264,6 +259,8 @@ export default {
 .profile {
     width: 15rem;
     bottom:-3rem;
-
+}
+.btn-close {
+  top:12px; right:12px;
 }
 </style>

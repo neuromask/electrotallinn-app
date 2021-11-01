@@ -8,13 +8,13 @@
         style="font-size:0.9rem; line-height:1rem;"
       >
       <div class="upper p-2 position-relative d-flex justify-content-center align-items-end">
-        <div class="overflow-hidden w-100" :style="[user.transportPhoto2 ? {'background-image': 'url(' + user.transportPhoto + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+        <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
         <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
       </div>
         <div class="text-center mt-5">
             <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
-            <p class="text-muted d-block mb-2" v-if="user.location">{{ user.location }}</p>
-            <b-button size="sm" variant="warning" class="text-info" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
+            <p class="text-muted d-block m-0" v-if="user.location">{{ user.location }}</p>
+            <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
         </div>
         <b-card-body>
           
@@ -24,10 +24,9 @@
                 <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
               </div>
               <div class="mb-1">
-                <p class="m-0" v-if="user.username">Telegram: <strong>{{ user.username }}</strong></p>
+                <p class="m-0" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
                 <p class="m-0" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
                 <p class="m-0" v-if="user.languages">Lang: {{ getFlags(user.languages) }}</p>
-                
                 <p class="m-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
@@ -90,7 +89,6 @@ export default {
 
       const userLangsArr = userLangs.split(',');
       const intersection = this.languages.filter(element => userLangsArr.includes(element));
-      console.log(intersection)
     }
   },
 };
