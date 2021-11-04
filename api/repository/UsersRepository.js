@@ -3,7 +3,7 @@ const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async () => {
-        let sql = 'SELECT id, first_name AS firstName, uin, photo_url AS photoUrl, username, role, birthyear, languages, location, transport_model AS transportModel FROM users';
+        let sql = 'SELECT id, first_name AS firstName, uin, photo_url AS photoUrl, username, role, birthyear, languages, location, transport_model AS transportModel, (SELECT count(l.id) FROM locations  l WHERE l.user_uin = uin) AS locationsCount FROM users';
         return await db.query(sql);
     },
 
@@ -12,7 +12,7 @@ module.exports = {
     },
 
     findByUin: async (uin) => {
-        let sql = 'SELECT first_name, username, uin, photo_url, role, birthyear, languages, location, transport_model, transport_photo_name FROM users WHERE uin = ?';
+        let sql = 'SELECT first_name, username, uin, photo_url, role, birthyear, languages, location, transport_model, transport_photo_name, (SELECT count(l.id) FROM locations  l WHERE l.user_uin = uin) AS locations_count FROM users WHERE uin = ?';
         let params = [uin];
 
         let result = await db.query(sql, params);
