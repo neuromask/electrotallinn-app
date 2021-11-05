@@ -63,6 +63,11 @@ router.post('/report', utils.verifyJWT, async function(request, response) {
     response.send(result);
 });
 
+router.get('/:id(\\d+)/reports', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let reports = await reportsService.findByLocationId(request.params.id);
+    response.send(reports);
+});
+
 router.get('/image/:imageName', async function(request, response) {
     let image = await locationsService.findLocationImageByName(request.params.imageName);
     response.end(image, 'binary');
