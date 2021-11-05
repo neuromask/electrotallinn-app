@@ -6,18 +6,17 @@
         bg-variant="info"
         no-body
         style="font-size:0.9rem; line-height:1rem;"
-      >
-      <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
-        <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-        <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
-      </div>
+        >
+        <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
+          <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+          <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
+        </div>
         <div class="text-center mt-5">
             <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
             <p class="text-muted d-block m-0" v-if="user.location">{{ user.location }}</p>
             <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
         </div>
-        <b-card-body>
-          
+        <b-card-body>        
           <b-list-group class="text-left">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
@@ -31,7 +30,7 @@
                 <p class="m-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
-            <!--<b-list-group-item variant="light" class="flex-column align-items-start">
+            <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>Achievements</strong></h5>
                 <h5><b-icon variant="warning" icon="trophy-fill" /></h5>
@@ -42,13 +41,13 @@
               </div>
               <div class="mb-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Market</p>
-                <b-badge>14</b-badge>
+                <b-badge>0</b-badge>
               </div>
               <div class="mb-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Locations</p>
-                <b-badge>3</b-badge>
+                <b-badge>{{ user.locationsCount }}</b-badge>
               </div>
-            </b-list-group-item>-->
+            </b-list-group-item>
           </b-list-group>
         </b-card-body>
       </b-card>
@@ -69,6 +68,7 @@ export default {
           { text: '🇸🇪', value: 'swedish' },
           { text: '🇪🇸', value: 'spanish' }
       ],
+      listUserLocs: [],
     };
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="locations">
     <div id="map" ref="googleMap" />
     <div id="badgePos">
       <a @click="getUserPos"><b-icon-record-circle /></a>
@@ -16,9 +16,9 @@
         <b-form-textarea
           id="textarea"
           v-model="report.message"
-          placeholder="Enter something..."
+          placeholder="Please write what is wrong..."
           rows="3"
-          max-rows="6"
+          max-rows="9"
         ></b-form-textarea>
       </b-form>
     </b-modal>
@@ -82,7 +82,7 @@ export default {
       this.$refs['modal-report'].show()
     },
     async handleReportSubmit() {
-      console.log(JSON.stringify(this.report))
+    //console.log(JSON.stringify(this.report))
 
         await this.$axios.post(this.$config.baseUrl + '/locations/report', this.report)
         this.$refs['modal-report'].hide()
@@ -120,13 +120,14 @@ export default {
               return function () {
                 infowindow.setContent(
                   "<div class='infocontent'>"
-                  + (location.imageName ? "<img src='" + baseUrl + '/locations/image/' + location.imageName + "'>" : '')
+                  + (location.imageName ? "<div class='locImageBlur' style='background-image: url(" + baseUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
+                  + (location.imageName ? "<div class='locImage' style='background-image: url(" + baseUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
                     + "<div class='footer'>"
                       +"<h4>" + location.title + "</h4>"
                       +"<p>" + (location.description || '') + "</p>"
                       +"<div class='socket'>"
-                        +"<button class='report' onclick='handleReport("+location.id+")'>Report</button>"
                         +"<small>Added by: " + (location.userFirstName || '') + "</small>"
+                        +"<button class='report' onclick='handleReport("+location.id+")'>Report</button>"
                       +"</div>"
                     +"</div>"
                   +"</div>")
@@ -171,12 +172,35 @@ export default {
 .infocontent {
     text-align: center;
     position: relative;
+    width: 480px;
+    height: 480px;
 }
-.infocontent img {
-    max-height: 600px;
-    max-width: 600px;
-    margin: 0 auto;
+@media (max-width: 768px) {
+  .infocontent {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+.infocontent .locImage {
+    position: absolute;
+    top:0; left:0;
     width:100%;
+    height:100%;
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+.infocontent .locImageBlur {
+    position: absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: -1;
 }
 .infocontent .footer {
     position: fixed;
@@ -188,6 +212,9 @@ export default {
 .infocontent .socket {
     overflow: hidden;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .infocontent button.close {
     background: transparent;
@@ -196,22 +223,26 @@ export default {
 .infocontent p {
     font-size: 14px;
     margin: 0;
-    padding-bottom:0.2rem;
+    padding-bottom:0;
 }
 .infocontent h4 {
     font-size:16px;
     margin: 0;
-    padding-top:0.3rem;
+    padding-top:0;
 }
 .infocontent small {
     font-size: 10px;
     float: left;
 }
 .infocontent .report {
-    float: right;
-    font-weight: bold;
+    border:1px solid #1a2740;
+    background: white;
+    border-radius: 4px;
 }
 .infocontent p {
     margin:0;
+}
+.locations div[role=dialog] {
+    max-width: 90vw!important;
 }
 </style>
