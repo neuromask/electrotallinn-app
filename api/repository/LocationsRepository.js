@@ -2,7 +2,7 @@ const db = require("../db.js");
 
 module.exports = {
     findAll: async () => {
-        let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin FROM locations';
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name AS imageName, confirmed, user_first_name AS userFirstName, user_uin AS userUin, ((SELECT count(1) FROM reports WHERE location_id = l.id) > 0) AS hasReports FROM locations l';
         return await db.query(sql);
     },
 

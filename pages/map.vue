@@ -81,8 +81,11 @@ export default {
       }
       this.$refs['modal-report'].show()
     },
-    handleReportSubmit() {
+    async handleReportSubmit() {
       console.log(JSON.stringify(this.report))
+
+        await this.$axios.post(this.$config.baseUrl + '/locations/report', this.report)
+        this.$refs['modal-report'].hide()
     },
     initMap () {
       

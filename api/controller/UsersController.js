@@ -31,13 +31,13 @@ router.get('/image/:transportPhotoName', async function(request, response) {
 });
 
 // CREATE
-router.post('/', utils.authenticateJWT, utils.checkRole('ADMIN'), async function(request, response) {
+router.post('/', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
     let result = usersService.create(request.body);
     response.send(result);
 });
 
 // UPDATE
-router.put('/:uin(\\d+)', utils.authenticateJWT, async function(request, response) {
+router.put('/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
     if (+request.params.uin !== request.user.uin && request.user.role !== 'ADMIN') {
         console.warn('Saving %s not allowed for user with uin %s', JSON.stringify(request.body), request.user.uin);
         return response.status(403).send("Not allowed");
@@ -48,7 +48,7 @@ router.put('/:uin(\\d+)', utils.authenticateJWT, async function(request, respons
 });
 
 // DELETE
-router.delete('/:uin(\\d+)', utils.authenticateJWT, utils.checkRole('ADMIN'), async function(request, response) {
+router.delete('/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
     let result = await usersService.update(request.params.uin, request.body);
     response.send(result);
 });

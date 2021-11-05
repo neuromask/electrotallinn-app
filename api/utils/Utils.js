@@ -44,8 +44,8 @@ module.exports = {
         }
     },
 
-    // validates JWT
-    authenticateJWT: (request, response, next) => {
+    // read JWT
+    verifyJWT: (request, response, next) => {
         const authHeader = request.headers.authorization;
 
         if (authHeader) {
@@ -61,8 +61,7 @@ module.exports = {
                 next();
             });
         } else {
-            console.error('Auth header missing');
-            response.sendStatus(401);
+            next();
         }
     },
 
@@ -79,6 +78,15 @@ module.exports = {
                 response.status(403).send('Restricted');
             }
         };
+    },
+
+    checkAuthentication: (request, response, next) => {
+        if (request.user) {
+            next();
+        } else {
+            console.error('Auth header missing');
+            response.sendStatus(401);
+        }
     },
 
     convertPropsToCamelcase: (obj) => {
