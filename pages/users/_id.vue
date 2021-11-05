@@ -1,13 +1,16 @@
 <template>
   <div id="user-profile" class="position-relative">
-    <h2 v-if="$user.uin != user.uin" class="m-0"><strong>{{ user.firstName }}'s profile</strong></h2>
-    <h2 v-if="$user.uin === user.uin" class="m-0"><strong>Your profile</strong></h2>
-    <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem"><b-icon icon="pencil-square" /></a>
-
     <div class="upper my-3 position-relative d-flex justify-content-center" style="z-index:10">
-      <div v-if="user.transportPhotoName " class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.5)"></div>
+      <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
       <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
+      <div class="position-absolute mt-5 bg-transparent">
+        <h2 v-if="$user.uin != user.uin" class="m-0 text-info"><strong>{{ user.firstName }}'s profile</strong></h2>
+        <h2 v-if="$user.uin === user.uin" class="m-0 text-info"><strong>Your profile</strong></h2>
+      </div>
+      <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem">
+        <b-icon variant="info" icon="pencil-square" />
+      </a>
     </div>
     <CoolLightBox 
       :items="items" 
@@ -28,8 +31,8 @@
           <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
         </b-list-group>
       </b-card>
-      <b-card>
-        <b-img v-if="user.transportPhotoName" class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+      <b-card v-if="user.transportPhotoName">
+        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
       </b-card>
       <b-card>
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
@@ -211,6 +214,7 @@ export default {
   watch: {
     $route () {
      this.getUser();
+     this.getLocList();
     },
     'userEdit.transportPhoto'(newValue, oldValue) {
       if (newValue !== oldValue) {
@@ -229,7 +233,7 @@ export default {
     }
   },
   async mounted () {
-    this.listFull = await this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`)
+    this.getLocList()
   },
   methods: {
     getUser () {
@@ -241,6 +245,11 @@ export default {
           title: this.user.transportModel,
           src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
         }]
+      });
+    },
+    getLocList () {
+      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
+        this.listFull = response;
       });
     },
     clearImage() {
@@ -276,7 +285,6 @@ export default {
     }
   }
 }
-// d-flex justify-content-center align-items-center
 </script>
 
 <style scoped>
@@ -288,7 +296,7 @@ export default {
 }
 .profile {
     width: 15rem;
-    bottom:-3rem;
+    bottom:-2rem;
 }
 .btn-close {
   top:12px; right:12px;

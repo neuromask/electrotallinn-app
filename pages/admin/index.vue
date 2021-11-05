@@ -60,6 +60,9 @@
                                 <b-button variant="danger" v-b-modal="'delete-modal-'+data.item.id">
                                     <b-icon icon="trash-fill" variant="white"/>
                                 </b-button>
+                                <b-button v-if="data.item.hasReports" variant="warning">
+                                    <b-icon icon="exclamation-triangle" @click="data.toggleDetails(); getReports(data.item.id)" variant="white"/>
+                                </b-button>
                             </b-button-group>
                             <b-modal :id="'delete-modal-'+data.item.id" title="Confirm delete">
                                 Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
@@ -79,6 +82,16 @@
                                 <b-button variant="primary" @click="updateLoc(data.item.id, data.item)">Update </b-button>
                             </b-form>
                         </b-card>
+                        <b-card class="mt-3" v-if="data.item.hasReports">
+                            <b-table 
+                                borderless 
+                                striped 
+                                :items="locationReports" 
+                                :sort-by="sortBy"
+                                :sort-desc="sortDesc"
+                                >
+                            </b-table>
+                        </b-card>
                     </template>
                 </b-table>
             </b-col>
@@ -94,6 +107,7 @@
         props: {},
         data() {
             return {
+                locationReports: {},
                 componentKey: 0,
                 cacheKey: +new Date(),
                 bgImages: [
@@ -193,8 +207,15 @@
                         this.cacheKey = +new Date();
                         console.log(imageName + " rotated");
                     })
+            },
+            getReports(locId) {
+                this.$axios
+                .$get(this.$config.baseUrl + '/locations/' + locId + '/reports')
+                .then(response => {
+                    this.locationReports = response;
+                    console.log(this.locationReports)
+                });
             }
-
         }
     }
     // d-flex justify-content-center align-items-center
