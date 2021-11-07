@@ -53,11 +53,10 @@ router.get('/top', async function(request, response) {
     response.send(result);
 });
 
-// TODO retrive user login if present
 router.post('/report', utils.verifyJWT, async function(request, response) {
     if (request.user) {
-        request.body.userUin = request.user.uin
-        request.body.userFirstName = request.user.firstName
+        request.body.userUin = request.user.uin;
+        request.body.userFirstName = request.user.firstName;
     }
     let result = await reportsService.create(request.body);
     response.send(result);
@@ -66,6 +65,12 @@ router.post('/report', utils.verifyJWT, async function(request, response) {
 router.get('/:id(\\d+)/reports', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
     let reports = await reportsService.findByLocationId(request.params.id);
     response.send(reports);
+});
+
+// DELETE report
+router.delete('/:id(\\d+)/reports/:reportId(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let result = await reportsService.delete(request.params.reportId);
+    response.send(result);
 });
 
 router.get('/image/:imageName', async function(request, response) {

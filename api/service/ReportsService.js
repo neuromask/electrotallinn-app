@@ -12,4 +12,8 @@ module.exports = {
     findByUserUin: async (userUin) => {
         return await reportsRepository.findByUserUin(userUin)
     },
+
+    delete: async (id) => {
+        return await reportsRepository.delete(id)
+    },
 };
