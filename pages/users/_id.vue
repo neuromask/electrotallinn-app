@@ -79,7 +79,7 @@
       </b-card>
     </b-card-group>
 
-  <b-modal id="profile-modal" title="Edit your profile" @ok="handleOk">
+  <b-modal scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
         <h5>Personal info</h5>
         <b-form-group>
@@ -209,7 +209,8 @@ export default {
     }
   },
   created () {
-    this.getUser();
+    this.getUser()
+    this.getLocList()
   },
   watch: {
     $route () {
@@ -231,9 +232,6 @@ export default {
         }
       }
     }
-  },
-  async mounted () {
-    this.getLocList()
   },
   methods: {
     getUser () {

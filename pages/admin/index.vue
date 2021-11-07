@@ -60,16 +60,32 @@
                                 <b-button variant="danger" v-b-modal="'delete-modal-'+data.item.id">
                                     <b-icon icon="trash-fill" variant="white"/>
                                 </b-button>
-                                <b-button v-if="data.item.hasReports" variant="warning">
-                                    <b-icon icon="exclamation-triangle" @click="data.toggleDetails(); getReports(data.item.id)" variant="white"/>
+                                <b-button v-if="data.item.hasReports" variant="warning" v-b-modal="'report-modal-'+data.item.id" @click="getReports(data.item.id)">
+                                    <b-icon icon="exclamation-triangle" variant="white"/>
                                 </b-button>
                             </b-button-group>
-                            <b-modal :id="'delete-modal-'+data.item.id" title="Confirm delete">
+                            <b-modal centered :id="'delete-modal-'+data.item.id" title="Confirm delete">
                                 Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
                                 <template #modal-footer="{ cancel, hide }">
                                     <b-button variant="primary" size="sm" @click="deleteLoc(data.item.id), hide()">OK</b-button>
                                     <b-button size="sm" @click="cancel()">Cancel</b-button>
                                 </template>
+                            </b-modal>
+                            <b-modal size="xl" centered :id="'report-modal-'+data.item.id" title="Reports" ok-only>
+                                <b-table
+                                    borderless
+                                    striped
+                                    :fields="fieldsReport"
+                                    :items="locationReports" 
+                                    :sort-by="sortBy"
+                                    :sort-desc="sortDesc"
+                                    >
+                                    <template #cell(delete)="data">
+                                        <b-button variant="danger" @click="deleteReport(data.item.locationId, data.item.id)">
+                                            <b-icon icon="trash-fill" variant="white"/>
+                                        </b-button>
+                                    </template>
+                                </b-table>
                             </b-modal>
                         </div>
                     </template>
@@ -81,16 +97,6 @@
                                 <b-form-select v-model="data.item.type" class="mb-2 mr-sm-2 mb-sm-0" :options="locationTypes"/>
                                 <b-button variant="primary" @click="updateLoc(data.item.id, data.item)">Update </b-button>
                             </b-form>
-                        </b-card>
-                        <b-card class="mt-3" v-if="data.item.hasReports">
-                            <b-table 
-                                borderless 
-                                striped 
-                                :items="locationReports" 
-                                :sort-by="sortBy"
-                                :sort-desc="sortDesc"
-                                >
-                            </b-table>
                         </b-card>
                     </template>
                 </b-table>
@@ -107,7 +113,7 @@
         props: {},
         data() {
             return {
-                locationReports: {},
+                locationReports: [],
                 componentKey: 0,
                 cacheKey: +new Date(),
                 bgImages: [
@@ -156,6 +162,35 @@
                         key: 'show_details',
                         sortable: false,
                         label: ''
+                    }
+                ],
+                fieldsReport: [
+                    {
+                        key: 'dateCreated',
+                        sortable: true,
+                        label: 'Date'
+                    },
+                    {
+                        key: 'userFirstName',
+                        sortable: false,
+                        label: 'Who Reported'
+                    },
+                    {
+                        key: 'message',
+                        label: 'Message'
+                    },
+                    {
+                        key: 'userUin',
+                        sortable: false,
+                        label: 'Reporter UIN'
+                    },
+                    {
+                        key: 'id',
+                        label: 'ID'
+                    },
+                    {
+                        key: 'delete',
+                        label: 'Delete'
                     }
                 ]
             }
@@ -215,7 +250,17 @@
                     this.locationReports = response;
                     console.log(this.locationReports)
                 });
-            }
+            },
+            deleteReport(locId, repId) {
+                this.$axios
+                    .$delete(this.$config.baseUrl + '/locations/' + locId + '/reports/' + repId)
+                    .then(() => {
+                        this.$toast.success('Success');
+                        this.getReports(locId);
+                        this.requests();
+                        console.log(repId + " deleted");
+                    })
+            },
         }
     }
     // d-flex justify-content-center align-items-center
