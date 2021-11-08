@@ -6,7 +6,7 @@ const reportsService = require("../service/ReportsService.js");
 const router = express.Router();
 
 router.get('/', async function(request, response) {
-    let locations = await locationsService.findAll();
+    let locations = await locationsService.findAll({ confirmed: 1 });
     response.send(locations);
 });
 
@@ -17,35 +17,6 @@ router.get('/:id(\\d+)', async function(request, response) {
     } else {
         response.status(404).send('Location not found');
     }
-});
-
-// CREATE
-router.post('/', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await locationsService.save(request.body);
-    response.send(result);
-});
-
-// UPDATE
-router.put('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await locationsService.update(request.params.id, request.body);
-    response.send(result);
-});
-
-// UPDATE image
-router.put('/:id(\\d+)/image', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await locationsService.updateImage(request.params.id, request.body.image)
-    response.send(result);
-});
-
-// DELETE
-router.delete('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await locationsService.delete(request.params.id)
-    response.send(result);
-});
-
-router.put('/:id(\\d+)/confirmed/toggle', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await locationsService.toggleConfirmed(request.params.id)
-    response.send(result);
 });
 
 router.get('/top', async function(request, response) {
@@ -62,26 +33,9 @@ router.post('/report', utils.verifyJWT, async function(request, response) {
     response.send(result);
 });
 
-router.get('/:id(\\d+)/reports', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let reports = await reportsService.findByLocationId(request.params.id);
-    response.send(reports);
-});
-
-// DELETE report
-router.delete('/:id(\\d+)/reports/:reportId(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await reportsService.delete(request.params.reportId);
-    response.send(result);
-});
-
 router.get('/image/:imageName', async function(request, response) {
     let image = await locationsService.findLocationImageByName(request.params.imageName);
     response.end(image, 'binary');
 });
-
-router.put('/image/rotate/:imageName', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let image = await locationsService.rotateLocationImage(request.params.imageName, request.query.rotation ? parseInt(request.query.rotation) : 90);
-    response.end(image, 'binary');
-});
-
 
 module.exports = router;

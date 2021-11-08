@@ -2,11 +2,12 @@ const express = require('express');
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
 
-const authenticationController = require('./controller/authenticationController');
-const usersController = require('./controller/usersController');
-const locationsController = require('./controller/locationsController');
-const imagesController = require('./controller/imagesController');
-const marketController = require('./controller/marketController');
+const authenticationController = require('./controller/AuthenticationController');
+const usersController = require('./controller/UsersController');
+const locationsController = require('./controller/LocationsController');
+const imagesController = require('./controller/ImagesController');
+const marketController = require('./controller/MarketController');
+const adminController = require('./controller/AdminController');
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use('/users', usersController);
 app.use('/locations', locationsController);
 app.use('/market', marketController);
 app.use('/images', imagesController);
+app.use('/admin', adminController);
 
 module.exports = app;

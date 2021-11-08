@@ -201,14 +201,14 @@
         methods: {
             requests() {
                 this.$axios
-                    .$get(this.$config.baseUrl + '/locations')
+                    .$get(this.$config.baseUrl + '/admin/locations')
                     .then(response => {
                         this.listFull = response;
                     });
             },
             deleteLoc(locId) {
                 this.$axios
-                    .$delete(this.$config.baseUrl + '/locations/' + locId)
+                    .$delete(this.$config.baseUrl + '/admin/locations/' + locId)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -217,7 +217,7 @@
             },
             statusLoc(locId) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/locations/' + locId + '/confirmed/toggle')
+                    .$put(this.$config.baseUrl + '/admin/locations/' + locId + '/confirmed/toggle')
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -226,7 +226,7 @@
             },
             updateLoc(locId, location) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/locations/' + locId, location)
+                    .$put(this.$config.baseUrl + '/admin/locations/' + locId, location)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -235,7 +235,7 @@
             },
             rotateImage(image, imageName) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/locations/image/rotate/' + imageName)
+                    .$put(this.$config.baseUrl + '/admin/locations/image/rotate/' + imageName)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -245,7 +245,7 @@
             },
             getReports(locId) {
                 this.$axios
-                .$get(this.$config.baseUrl + '/locations/' + locId + '/reports')
+                .$get(this.$config.baseUrl + '/admin/locations/' + locId + '/reports')
                 .then(response => {
                     this.locationReports = response;
                     console.log(this.locationReports)
@@ -253,7 +253,7 @@
             },
             deleteReport(locId, repId) {
                 this.$axios
-                    .$delete(this.$config.baseUrl + '/locations/' + locId + '/reports/' + repId)
+                    .$delete(this.$config.baseUrl + '/admin/locations/' + locId + '/reports/' + repId)
                     .then(() => {
                         this.$toast.success('Success');
                         this.getReports(locId);
