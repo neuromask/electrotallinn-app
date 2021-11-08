@@ -38,6 +38,7 @@ nav .nuxt-link-active,
 nav .nav-link {
   display: inline-block;
   position: relative;
+  padding-bottom: 0.5rem;
 }
 nav .nav-link:after {
   content: ' ';

@@ -3,13 +3,14 @@
     <div class="upper my-3 position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-      <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail/>
-      <div class="position-absolute mt-5 bg-transparent">
-        <h2 v-if="$user.uin != user.uin" class="m-0 text-info"><strong>{{ user.firstName }}'s profile</strong></h2>
-        <h2 v-if="$user.uin === user.uin" class="m-0 text-info"><strong>Your profile</strong></h2>
+      <b-img class="profile position-absolute shadow" :src="user.photoUrl" rounded="circle" thumbnail/>
+      <div class="position-absolute mt-4 bg-transparent text-center">
+        <h2 v-if="$user.uin != user.uin" class="m-0 text-info shadow-sm"><strong>{{ user.firstName }}'s profile</strong></h2>
+        <h2 v-if="$user.uin === user.uin" class="m-0 text-info shadow-sm"><strong>Your profile</strong></h2>
+        <i v-if="user.location" class="text-light shadow-sm">{{ user.location }}</i>
       </div>
-      <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:0; right:15px;font-size:2rem">
-        <b-icon variant="info" icon="pencil-square" />
+      <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:1rem; right:1.5rem;font-size:2rem">
+        <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
       </a>
     </div>
     <CoolLightBox 
@@ -235,6 +236,7 @@ export default {
   },
   methods: {
     getUser () {
+      console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         console.log(response);
