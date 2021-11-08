@@ -2,8 +2,12 @@ const locationsRepository = require("../repository/LocationsRepository.js");
 const utils = require("../utils/Utils.js");
 
 module.exports = {
-    findAll: async () => {
-        return await locationsRepository.findAll()
+    findAll: async (filter) => {
+        return await locationsRepository.findAll(filter)
+    },
+
+    findAllAdmin: async () => {
+        return await locationsRepository.findAllAdmin()
     },
 
     findOne: async (id) => {
