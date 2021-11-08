@@ -5,6 +5,7 @@
     <main>
       <Banner />
       <b-container class="bg-light mt-4 p-5 main-container">
+        <NavBar />
         <Nuxt />
       </b-container>
     </main>

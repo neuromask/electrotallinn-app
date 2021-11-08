@@ -1,5 +1,5 @@
 <template>
-  <div id="user-profile" class="position-relative">
+  <section id="user-profile" class="position-relative">
     <div class="upper my-3 position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
@@ -80,60 +80,60 @@
       </b-card>
     </b-card-group>
 
-  <b-modal scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
-      <b-form  @submit.stop.prevent="handleSubmit">
-        <h5>Personal info</h5>
-        <b-form-group>
-          <b-input-group append="Name">
-            <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
-          </b-input-group>
-        </b-form-group>
+    <b-modal scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
+        <b-form  @submit.stop.prevent="handleSubmit">
+          <h5>Personal info</h5>
+          <b-form-group>
+            <b-input-group append="Name">
+              <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
+            </b-input-group>
+          </b-form-group>
 
-        <b-form-group>
-          <b-input-group append="Birth Year">
-            <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required/>
-          </b-input-group>
-        </b-form-group>
+          <b-form-group>
+            <b-input-group append="Birth Year">
+              <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required/>
+            </b-input-group>
+          </b-form-group>
 
-        <b-form-group>
-          <b-input-group append="🏠">
-            <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
-          </b-input-group>
-        </b-form-group>
-        
-        <b-form-group>
-          <b-input-group append="Lang">
-              <b-form-checkbox-group
-                v-model="userEdit.languages"
-                :options="languageOptions"
-                button-variant="light"
-                name="buttons-1"
-                buttons
-              />
-          </b-input-group>
-        </b-form-group>
-        <hr />
-        <h5>Your main electric transport</h5>
-        <b-form-group>
-          <b-input-group append="🛴">
-            <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
-          </b-input-group>
-        </b-form-group>
-        <b-form-group class="m-0">
-          <div class="d-flex mb-3">
-            <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
-            <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
-          </div>
-          <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>
-          <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
-            <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" class="p-3 bg-light" fluid block rounded/>
-            <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
-          </div>
-        </b-form-group>
-    </b-form>
-  </b-modal>
+          <b-form-group>
+            <b-input-group append="🏠">
+              <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
+            </b-input-group>
+          </b-form-group>
+          
+          <b-form-group>
+            <b-input-group append="Lang">
+                <b-form-checkbox-group
+                  v-model="userEdit.languages"
+                  :options="languageOptions"
+                  button-variant="light"
+                  name="buttons-1"
+                  buttons
+                />
+            </b-input-group>
+          </b-form-group>
+          <hr />
+          <h5>Your main electric transport</h5>
+          <b-form-group>
+            <b-input-group append="🛴">
+              <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
+            </b-input-group>
+          </b-form-group>
+          <b-form-group class="m-0">
+            <div class="d-flex mb-3">
+              <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" placeholder="Choose transport photo" class="w-auto flex-grow-1"/>
+              <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
+            </div>
+            <b-img v-if="hasImage" :src="imageSrc" class="p-3 bg-light" fluid block rounded/>
+            <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
+              <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" class="p-3 bg-light" fluid block rounded/>
+              <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
+            </div>
+          </b-form-group>
+      </b-form>
+    </b-modal>
 
-  </div>
+  </section>
 </template>
 
 <script>

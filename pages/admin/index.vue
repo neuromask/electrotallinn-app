@@ -1,6 +1,6 @@
 <template>
-    <div id="admin">
-        <h2 class="m-0">Admin area</h2>
+    <section id="admin">
+        <h2 class="mt-4">Admin area</h2>
         <hr/>
         <b-row>
             <b-col cols="12">
@@ -19,37 +19,33 @@
                 :sort-desc="sortDesc"
                 >
                     <template #cell(title)="data">
-                        <h4>{{ data.item.title }}</h4>
+                        <p><strong>{{ data.item.title }}</strong></p>
                         <p>{{ data.item.description }}</p>
                         <small>Added by: {{ data.item.userFirstName }}</small>
                     </template>
-                    <template #cell(type)="data">
+                    <template #cell(id)="data">
+                        <h5 class="text-center">{{data.item.id}}</h5>
                         <b-img :src="locationIcons[data.item.type]" center fluid class="table-icon"/>
                     </template>
                     <template #cell(imageName)="data">
-                        <div>
+                        <div class="d-inline-block my-1">
                             <b-button-group size="sm">
                                 <b-button size="sm" v-b-modal="'image-modal-'+data.item.id">Image</b-button>
                                 <b-button variant="primary" size="sm" v-b-modal="'map-modal-'+data.item.id">Map</b-button>
                             </b-button-group>
+                            <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
+                                <b-img style="max-height: 500px;" :src="$config.baseUrl + '/locations/image/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
+                                <template #modal-footer="{ ok }">
+                                    <b-button variant="secondary" @click="rotateImage(data.item.image, data.item.imageName)">Rotate </b-button>
+                                    <b-button variant="primary" @click="ok()">Ok</b-button>
+                                </template>
+                            </b-modal>
+                            <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
+                                <iframe width="100%" height="460px" frameBorder="0"
+                                        :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'"></iframe>
+                            </b-modal>
                         </div>
-                        <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-                            <b-img style="max-height: 500px;" :src="$config.baseUrl + '/locations/image/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
-                            <template #modal-footer="{ ok }">
-                                <b-button variant="secondary" @click="rotateImage(data.item.image, data.item.imageName)">Rotate </b-button>
-                                <b-button variant="primary" @click="ok()">Ok</b-button>
-                            </template>
-                        </b-modal>
-                        <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
-                            <iframe width="100%" height="460px" frameBorder="0"
-                                    :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'"></iframe>
-                        </b-modal>
-                    </template>
-                    <template #cell(id)="data">
-                        {{data.item.id}}
-                    </template>
-                    <template #cell(show_details)="data">
-                        <div>
+                        <div class="d-inline-block my-1">
                             <b-button-group size="sm">
                                 <b-button variant="primary">
                                     <b-icon icon="pencil-fill" @click="data.toggleDetails" variant="white"/>
@@ -102,7 +98,7 @@
                 </b-table>
             </b-col>
         </b-row>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -140,13 +136,8 @@
                 fieldsLoc: [
                     {
                         key: 'id',
-                        sortable: false,
-                        label: 'ID'
-                    },
-                    {
-                        key: 'type',
                         sortable: true,
-                        label: 'Type'
+                        label: 'ID'
                     },
                     {
                         key: 'title',
@@ -157,11 +148,6 @@
                         key: 'imageName',
                         sortable: false,
                         label: 'Info'
-                    },
-                    {
-                        key: 'show_details',
-                        sortable: false,
-                        label: ''
                     }
                 ],
                 fieldsReport: [
