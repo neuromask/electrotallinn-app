@@ -24,12 +24,12 @@
       <b-card>
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
         <b-list-group class="text-left">
-          <b-list-group-item>Name: {{ user.firstName }}</b-list-group-item>
-          <b-list-group-item v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
-          <b-list-group-item v-if="user.birthyear">Age: {{ new Date().getFullYear() - user.birthyear }}</b-list-group-item>
-          <b-list-group-item v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
-          <b-list-group-item v-if="user.location">Location: {{ user.location }}</b-list-group-item>
-          <b-list-group-item v-if="user.transportModel">Model: {{ user.transportModel }}</b-list-group-item>
+          <b-list-group-item variant="light">Name: <strong>{{ user.firstName }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
+          <b-list-group-item variant="light" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
+          <b-list-group-item variant="light" v-if="user.location">Location: <strong>{{ user.location }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card v-if="user.transportPhotoName">
@@ -101,7 +101,7 @@
             </b-form-group>
 
             <b-form-group>
-              <b-input-group append="🏠">
+              <b-input-group append="Home">
                 <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
               </b-input-group>
             </b-form-group>
@@ -121,7 +121,7 @@
           <b-card>
             <h5 class="mb-3">Your main electric transport</h5>
             <b-form-group>
-              <b-input-group append="🛴">
+              <b-input-group append="Model">
                 <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
               </b-input-group>
             </b-form-group>
