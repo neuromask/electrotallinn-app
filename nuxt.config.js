@@ -97,13 +97,13 @@ export default {
   },
 
   server: {
-    //port: 3000, host: 'localhost', timing: false
-    port: 80, host: 'localhost', timing: false
+    port: process.env.SERVER_PORT || 3000, host: 'localhost', timing: false
+    //port: 80, host: 'localhost', timing: false
   },
 
   publicRuntimeConfig: {
     //baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
-    baseUrl: process.env.BASE_URL || 'http://map.electrotallinn.ee/api',
+    baseUrl: process.env.BASE_URL || 'https://app.electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY
   },
   privateRuntimeConfig: {
