@@ -8,6 +8,7 @@
       ref="modal-report"
       title="Report point"
       ok-only
+      centered
       ok-variant="secondary"
       ok-title="Send"
       @ok="handleReportSubmit"

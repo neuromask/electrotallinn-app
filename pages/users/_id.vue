@@ -1,5 +1,5 @@
 <template>
-  <section id="user-profile" class="position-relative">
+  <section id="user-profile">
     <div class="upper my-3 position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
@@ -299,8 +299,7 @@ export default {
 .upper>div {
     height: 320px;
     background-color: #1a2740;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 6px;
 }
 .profile {
     width: 15rem;
