@@ -8,12 +8,12 @@ module.exports = {
             where = where + (where ? ' AND ' : ' WHERE ') + `${key} = ${value}`;
         }
 
-        let sql = 'SELECT p.id, p.user_uin AS userUin, p.name, p.description, u.first_name AS userFirstName, u.photo_url AS userPhotoUrl FROM market_products p JOIN users u ON u.uin = p.user_uin' + where;
+        let sql = 'SELECT p.id, p.user_uin AS userUin, p.name, p.description, u.first_name AS userFirstName, u.username, u.photo_url AS userPhotoUrl FROM market_products p JOIN users u ON u.uin = p.user_uin' + where;
         return await db.query(sql);
     },
 
     findOne: async (id) => {
-        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, u.first_name AS user_first_name, u.photo_url AS user_photo_url FROM market_products p JOIN users u ON u.uin = p.user_uin WHERE p.id = ?';
+        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, u.first_name AS user_first_name, u.username, u.photo_url AS user_photo_url FROM market_products p JOIN users u ON u.uin = p.user_uin WHERE p.id = ?';
         let params = [id];
 
         let result = await db.query(sql, params);
