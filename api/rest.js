@@ -6,7 +6,7 @@ const authenticationController = require('./controller/AuthenticationController'
 const usersController = require('./controller/UsersController');
 const locationsController = require('./controller/LocationsController');
 const imagesController = require('./controller/ImagesController');
-const marketController = require('./controller/MarketController');
+const marketProductsController = require('./controller/MarketProductsController');
 const adminController = require('./controller/AdminController');
 
 const app = express();
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use('/authentication', authenticationController);
 app.use('/users', usersController);
 app.use('/locations', locationsController);
-app.use('/market', marketController);
+app.use('/marketProducts', marketProductsController);
 app.use('/images', imagesController);
 app.use('/admin', adminController);
 
