@@ -1,4 +1,5 @@
 const db = require("../db.js");
+const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async (filter) => {
@@ -7,7 +8,7 @@ module.exports = {
             where = where + (where ? ' AND ' : ' WHERE ') + `${key} = ${value}`;
         }
 
-        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, u.first_name AS user_first_name, u.photo_url AS user_photo_url FROM market_products p JOIN users u ON u.uin = p.user_uin' + where;
+        let sql = 'SELECT p.id, p.user_uin AS userUin, p.name, p.description, u.first_name AS userFirstName, u.photo_url AS userPhotoUrl FROM market_products p JOIN users u ON u.uin = p.user_uin' + where;
         return await db.query(sql);
     },
 
@@ -16,6 +17,6 @@ module.exports = {
         let params = [id];
 
         let result = await db.query(sql, params);
-        return result[0];
+        return result[0] ? utils.convertPropsToCamelcase(result[0]) : null;
     },
 };
