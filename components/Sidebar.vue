@@ -28,7 +28,7 @@
         <b-list-group class="my-4 side-menu">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/" exact><b-icon icon="house-door-fill"></b-icon>Home</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/map"><b-icon icon="geo-alt-fill"></b-icon>Map</b-list-group-item>
-          <b-list-group-item variant="info" class="font-weight-bold" disabled nuxt to="/market"><b-icon icon="basket2-fill"></b-icon>Market</b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/market"><b-icon icon="basket2-fill"></b-icon>Market</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/users"><b-icon icon="person-fill"></b-icon>Users</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <!--<b-list-group-item variant="primary" class="font-weight-bold" href="#" v-b-modal.modal-login>Admin Access</b-list-group-item>-->

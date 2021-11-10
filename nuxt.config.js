@@ -96,7 +96,7 @@ export default {
     height: '5px'
   },
 
-  server: {
+ server: {
     port: process.env.SERVER_PORT || 3000, host: 'localhost', timing: false
     //port: 80, host: 'localhost', timing: false
   },

@@ -20,15 +20,7 @@
             <b-popover ref="popover" target="marketInfo" triggers="hover" title="Buy & Sell">
                 Sell and buy stuff related to electric transport area.
             </b-popover>
-            <b-overlay show spinner-variant="primary" spinner-type="grow" spinner-small rounded="sm">
-                <NuxtLink to="#"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-market.svg')"></b-card-img></NuxtLink>
-                <template #overlay>
-                    <div class="text-center">
-                    <b-icon icon="gear-wide-connected" font-scale="3" animation="spin"></b-icon>
-                    <p id="cancel-label">Coming soon...</p>
-                    </div>
-                </template>
-            </b-overlay>
+            <NuxtLink to="/market"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-market.svg')"></b-card-img></NuxtLink>
         </b-card>
     </b-card-group>
 
