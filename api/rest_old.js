@@ -11,7 +11,7 @@ const authenticationController = require('./controller/authenticationController'
 const usersController = require('./controller/usersController');
 const locationsController = require('./controller/locationsController');
 const imagesController = require('./controller/imagesController');
-const marketController = require('./controller/marketController');
+const marketController = require('./controller/MarketProductsController');
 
 // const localStorage = new LocalStorage('./scratch');
 
