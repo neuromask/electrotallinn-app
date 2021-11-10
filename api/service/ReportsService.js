@@ -15,5 +15,5 @@ module.exports = {
 
     delete: async (id) => {
         return await reportsRepository.delete(id)
-    },
+    }
 };
