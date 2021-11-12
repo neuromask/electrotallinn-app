@@ -22,7 +22,7 @@ module.exports = {
 
     create: async (marketProduct) => {
         let sql = "INSERT INTO market_products (user_uin, name, description, price, status, date_created, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        let params = [marketProduct.userUin, marketProduct.message, marketProduct.userUin, marketProduct.userFirstName, new Date()];
+        let params = [marketProduct.userUin, marketProduct.name, marketProduct.description, marketProduct.price, 'NEW', new Date(), marketProduct.category];
 
         return await db.query(sql, params);
     },

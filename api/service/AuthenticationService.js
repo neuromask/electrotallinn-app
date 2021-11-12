@@ -5,8 +5,6 @@ module.exports = {
         try {
             let existingUser = await usersRepository.findByUin(uin);
 
-            console.info('existingUser %s', existingUser);
-
             if (!!existingUser) {
                 return { ...tgUser, role: existingUser.role };
             } else {

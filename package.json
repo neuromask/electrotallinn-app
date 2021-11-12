@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon --watch api --exec \"nuxt\"",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -26,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash.startcase": "^4.4.0",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
     "nuxt": "^2.15.7",
     "sharp": "^0.29.1",
     "vue-cookie-law": "^1.13.3",

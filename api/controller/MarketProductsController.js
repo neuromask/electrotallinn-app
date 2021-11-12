@@ -28,7 +28,7 @@ router.post('/', utils.verifyJWT, utils.checkAuthentication, async function(requ
     request.body.userUin = request.user.uin;
     request.body.userFirstName = request.user.firstName;
 
-    let result = await marketProductsService.create(request.body);
+    let result = await marketProductsService.create(request.body, request.headers.authorization);
     response.send(result);
 });
 
