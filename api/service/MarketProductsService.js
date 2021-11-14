@@ -5,11 +5,19 @@ const fileManagerHelper = require("../utils/FileManagerHelper.js");
 
 module.exports = {
     findAll: async (filter) => {
-        return await marketProductsRepository.findAll(filter)
+        let products = await marketProductsRepository.findAll(filter);
+        for (let product of products) {
+            product.images = await marketProductImagesRepository.findByMarketProductId(product.id)
+        }
+
+        return products
     },
 
     findOne: async (id) => {
-        return await marketProductsRepository.findOne(id)
+        let product = await marketProductsRepository.findOne(id);
+        product.images = await marketProductImagesRepository.findByMarketProductId(id);
+
+        return product;
     },
 
     create: async (marketProduct, authHeader) => {
