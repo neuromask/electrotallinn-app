@@ -51,8 +51,8 @@ module.exports = {
 
         // update rest data
         {
-            let sql = 'UPDATE users SET first_name = ?, birthyear = ?, languages = ?, location = ?, transport_model = ?, transport_photo_name = ? WHERE uin = ?';
-            let params = [user.firstName, user.birthyear, user.languages, user.location, user.transportModel, user.transportPhotoName, uin];
+            let sql = 'UPDATE users SET first_name = ?, photo_url = ?, username = ?, birthyear = ?, languages = ?, location = ?, transport_model = ?, transport_photo_name = ? WHERE uin = ?';
+            let params = [user.firstName, user.photoUrl, user.username, user.birthyear, user.languages, user.location, user.transportModel, user.transportPhotoName, uin];
             return await db.query(sql, params);
         }
     },

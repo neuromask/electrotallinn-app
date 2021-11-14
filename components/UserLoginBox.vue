@@ -23,7 +23,8 @@ export default {
             firstName: data.first_name,
             uin: data.id,
             photoUrl: data.photo_url,
-            username: data.username
+            username: data.username,
+            role: response.user.role
           });
         });
     }

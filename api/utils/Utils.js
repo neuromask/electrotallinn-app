@@ -36,7 +36,8 @@ module.exports = {
             request.tgUser = {
                 firstName: tgUserData.first_name,
                 uin: tgUserData.id,
-                photoUrl: tgUserData.photo_url
+                photoUrl: tgUserData.photo_url,
+                username: tgUserData.username
             };
 
             next();
