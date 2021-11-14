@@ -11,7 +11,7 @@
           <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
           <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
         </div>
-        <div class="text-center mt-5">
+        <div class="text-center mt-4">
             <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
             <p class="text-muted d-block m-0" v-if="user.location">{{ user.location }}</p>
             <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
@@ -24,20 +24,16 @@
                 <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
               </div>
               <div class="mb-1">
-                <p class="m-0" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
-                <p class="m-0" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
-                <p class="m-0" v-if="user.languages && user.languages.length">Lang: {{ getFlags(user.languages) }}</p>
-                <p class="m-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
+                <p class="mb-1" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
+                <p class="mb-1" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
+                <p class="mb-1" v-if="user.languages && user.languages.length">Lang: {{ getFlags(user.languages) }}</p>
+                <p class="mb-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
               </div>
             </b-list-group-item>
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>Achievements</strong></h5>
                 <h5><b-icon variant="warning" icon="trophy-fill" /></h5>
-              </div>
-              <div class="mb-1 d-flex justify-content-between align-items-center">
-                <p class="m-0">Rank</p>
-                <b-badge>Captain</b-badge>
               </div>
               <div class="mb-1 d-flex justify-content-between align-items-center">
                 <p class="m-0">Market</p>
@@ -95,10 +91,10 @@ export default {
   display: none;
 }
 .upper>div {
-    height: 150px;
+    height: 12rem;
     background-color: #1a2740;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
 }
 .card {
   border-radius: 10px;
@@ -106,6 +102,6 @@ export default {
 
 .profile {
     width: 10rem;
-    bottom:-2.5rem;
+    bottom:-1rem;
 }
 </style>
