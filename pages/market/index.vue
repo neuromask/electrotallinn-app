@@ -1,45 +1,47 @@
 <template>
   <div>
-    <b-card-group columns>
-      <b-card
-        v-for="(product, idx) in productsFull" :key="idx"
-        bg-variant="info"
-        no-body
-        style="font-size:0.9rem; line-height:1rem;"
-        >
-        <div class="px-3 pt-3 pb-0">
-            <div class="p-container d-flex justify-content-center align-items-center overflow-hidden">
-                <nuxt-link :to="`market/${product.id}`"><b-img class="p-image" src="~/assets/img/step-1.jpg"></b-img></nuxt-link>
+    <div class="row">
+        <div class="col-sm-4 mb-4" v-for="(product, idx) in productsFull" :key="idx">
+        <b-card
+            bg-variant="info"
+            no-body
+            style="font-size:0.9rem; line-height:1rem;"
+            >
+            <div class="px-3 pt-3 pb-0">
+                <div class="p-container d-flex justify-content-center align-items-center overflow-hidden position-relative">
+                    <nuxt-link :to="`market/${product.id}`"><b-img class="p-image" src="~/assets/img/step-1.jpg"></b-img></nuxt-link>
+                    <h2 style="top:0.7rem;right:1rem" class="mb-1 text-nowrap text-warning position-absolute" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
+                </div>
             </div>
+            <b-card-body>
+                <div class="mb-3">
+                    <nuxt-link v-if="product.name" :to="`market/${product.id}`"><h5 class="title mb-1 text-secondary font-weight-bold">{{ cutText(product.name, 25) }}</h5></nuxt-link>
+                    <p class="text-muted d-block mb-0" v-if="product.description">{{ cutText(product.description, 35) }}</p>
+                </div>
+
+                <b-list-group class="text-left">
+                    <b-list-group-item variant="light" class="flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <p class="mb-1" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
+                                <p class="mb-1" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
+                            </div>
+                            <div>
+                                <b-button size="sm" variant="warning" class="text-info" nuxt :to="`market/${product.id}`"><b-icon icon="search" /> Info</b-button>
+                            </div>
+                        </div>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-card-body>
+            <template #footer>
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <p class="mb-1" v-if="product.category">Category: <strong>{{ product.category }}</strong></p>
+                    <p class="mb-0 small" v-if="product.date_created">{{ new Date(product.date_created).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' }) }}</p>
+                </div>
+            </template>
+        </b-card>
         </div>
-        <b-card-body class="text-center">
-            <div class="d-flex w-100 justify-content-between mb-2">
-                <div class="mr-2">
-                    <nuxt-link v-if="product.name" :to="`market/${product.id}`"><h5 class="mb-0 text-secondary font-weight-bold">{{ product.name }}</h5></nuxt-link>
-                    <p class="text-muted d-block m-0" v-if="product.description">{{ product.description }}</p>
-                </div>
-                <div>
-                    <h4 class="mb-0 text-nowrap text-warning" v-if="product.description"><strong>133{{ product.price }}€</strong></h4> 
-                </div>
-            </div>
-            <b-button size="sm" variant="warning" class="text-info mb-3" nuxt :to="`market/${product.id}`"><b-icon icon="search" /> More info</b-button>
-            <b-list-group class="text-left">
-                <b-list-group-item variant="light" class="flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 text-dark"><strong>Info</strong></h5>
-                    <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
-                </div>
-                <div class="mb-1">
-                    <p class="m-0" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
-                    <p class="m-0" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
-                    <p class="m-0" v-if="product.category">Category: {{ product.category }}</p>
-                    <p class="m-0" v-if="product.date">Date: {{ product.date }}</p>
-                </div>
-                </b-list-group-item>
-            </b-list-group>
-        </b-card-body>
-      </b-card>
-    </b-card-group>
+    </div>
   </div>
 </template>
 
@@ -49,6 +51,8 @@ export default {
   data() {
     return {
       productsFull: [],
+      filter: {},
+      sort: {}
     };
   },
   created() {
@@ -61,6 +65,17 @@ export default {
           this.productsFull = response;
           console.log(this.productsFull)
         });
+    },
+    cutText(text, limit){
+        if (text.length > limit){
+            for (let i = limit; i > 0; i--){
+                if(text.charAt(i) === ' ' && (text.charAt(i-1) != ','||text.charAt(i-1) != '.'||text.charAt(i-1) != ';')) {
+                    return text.substring(0, i) + '...';
+                }
+            }
+            return text.substring(0, limit) + '...';
+        }
+        else return text;
     }
   },
 };
@@ -81,8 +96,8 @@ export default {
     background-repeat: no-repeat;
 }
 .p-container {
-        border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
     width:100%;
     height: 12rem;
 }
@@ -90,18 +105,20 @@ export default {
     flex-shrink: 0;
     width: 100%;
 }
+.title {
+    line-height: 1.1;
+}
 .description {
    overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
    line-height: 16px;     /* fallback */
-   max-height: 32px;      /* fallback */
-   -webkit-line-clamp: 2; /* number of lines to show */
+   max-height: 16px;      /* fallback */
+   -webkit-line-clamp: 1; /* number of lines to show */
    -webkit-box-orient: vertical;
 }
 
-.profile {
-    width: 10rem;
-    bottom:-2.5rem;
+.profile-img {
+    width:4rem;
 }
 </style>
