@@ -5,7 +5,7 @@ const marketProductsService = require("../service/MarketProductsService.js");
 const router = express.Router();
 
 router.get('/', async function(request, response) {
-    let products = await marketProductsService.findAll();
+    let products = await marketProductsService.findAll(request.query);
     response.send(products);
 });
 

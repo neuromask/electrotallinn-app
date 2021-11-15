@@ -22,7 +22,6 @@ module.exports = {
 
     create: async (marketProduct, authHeader) => {
         let result = await marketProductsRepository.create(marketProduct)
-        console.log("id " + result.insertId);
 
         // todo save images
         marketProduct.images = marketProduct.images || [];

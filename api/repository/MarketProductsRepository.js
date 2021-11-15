@@ -3,12 +3,27 @@ const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async (filter) => {
-        let where = '';
-        for (const [key, value] of Object.entries(filter || {})) {
-            where = where + (where ? ' AND ' : ' WHERE ') + `${key} = ${value}`;
-        }
+        filter = filter || {};
 
-        let sql = 'SELECT p.id, p.user_uin AS userUin, p.name, p.description, p.price, p.status, p.date_created, p.category, u.first_name AS userFirstName, u.username, u.photo_url AS userPhotoUrl FROM market_products p JOIN users u ON u.uin = p.user_uin' + where;
+        let andList = [];
+        for (const [key, value] of Object.entries(filter)) {
+            if (Array.isArray(value)) {
+                let orList = [];
+                for (const v of value) {
+                    orList.push(`p.${key} = '${v}'`);
+                }
+                andList.push('(' + orList.join(' OR ') + ')');
+            } else {
+                andList.push(`LOWER(p.${key}) LIKE LOWER('%${value}%')`);
+            }
+        }
+        let where = (andList.length > 0 ? ' WHERE ' : '') + andList.join(' AND ') + ' ';
+
+        let sql = 'SELECT p.id, p.user_uin AS userUin, p.name, p.description, p.price, p.status, p.date_created, p.category, u.first_name AS userFirstName, u.username, u.photo_url AS userPhotoUrl ' +
+            'FROM market_products p ' +
+            'JOIN users u ON u.uin = p.user_uin ' +
+            where +
+            'ORDER BY id ASC';
         return await db.query(sql);
     },
 
