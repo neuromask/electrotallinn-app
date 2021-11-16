@@ -93,8 +93,13 @@ module.exports = {
 
     convertPropsToCamelcase: (obj) => {
         let convertSnakeCamelcase = (string) => string.split('_').map((element, i) => i === 0 ? element : `${element[0].toUpperCase()}${element.slice(1)}`).join('');
+        let processObject = (o) => Object.assign({}, ...Object.keys(o).map(key => ({[convertSnakeCamelcase(key)]: o[key]})))
 
-        return Object.assign({}, ...Object.keys(obj).map(key => ({[convertSnakeCamelcase(key)]: obj[key]})))
+        if (Array.isArray(obj)) {
+            return obj.map(item => processObject(item))
+        } else {
+            return processObject(obj)
+        }
     },
 
     /**

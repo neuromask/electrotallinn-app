@@ -4,10 +4,12 @@ const utils = require("../utils/Utils.js");
 module.exports = {
 
     findByMarketProductId: async (marketProductId) => {
-        let sql = 'SELECT market_product_id AS marketProductId, file_name AS fileName FROM market_product_images WHERE market_product_id = ?';
+        let sql = 'SELECT market_product_id, file_name FROM market_product_images WHERE market_product_id = ?';
         let params = [marketProductId];
 
-        return await db.query(sql, params);
+
+        let result = await db.query(sql, params);
+        return utils.convertPropsToCamelcase(result);
     },
 
     create: async (marketProductImage) => {
