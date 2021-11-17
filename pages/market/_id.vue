@@ -16,11 +16,11 @@
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Information</h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.name">Name: <strong>{{ product.name }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.description">Decription<br />{{ product.description }}</b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.description">Decription: <strong>{{ product.description }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Information</h3>
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Seller</b-badge> Information</h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.userUin">User UIN: <strong>{{ product.userUin }}</strong></b-list-group-item>
@@ -32,8 +32,9 @@
       </b-card>
       <b-card class="images">
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Image</h3>
+        <b-img v-if="items.length" class="image mb-3" thumbnail @click="index = 0" :src="items[0].src"></b-img>
         <div class="row">
-          <div class="col-sm-6 mb-0" v-for="(image, imageIndex) in items" :key="imageIndex">
+          <div class="col-sm-4 mb-0" v-for="(image, imageIndex) in items" :key="imageIndex">
             <b-img
               class="image"
               thumbnail

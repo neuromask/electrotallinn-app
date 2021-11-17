@@ -6,7 +6,7 @@
             <b-nav-item to="/market" nuxt>Market</b-nav-item>
             <b-nav-item to="/users" nuxt>Users</b-nav-item>
             <b-nav-item to="/help" nuxt>Help</b-nav-item>
-            <b-nav-item v-if="$user.role === 'ADMIN'" to="/admin" nuxt>Admin</b-nav-item>
+            <b-nav-item v-if="$user.role === 'ADMIN'" to="/admin" nuxt><b-icon icon="shield-lock-fill" /></b-nav-item>
         </b-navbar-nav>
     </b-navbar>
 </template>

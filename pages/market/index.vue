@@ -2,7 +2,7 @@
   <section>
     <b-sidebar id="sidebar-right" backdrop title="Market Menu" right shadow>
       <div class="px-3 py-2">
-        <b-form-input class="mb-3" v-model="searchText" placeholder="Search"></b-form-input>
+        <b-form-input class="mb-3" v-model="filter.searchText" @keyup="getProducts" placeholder="Search"></b-form-input>
         <b-form-group class="mb-3" label="Category">
           <b-alert class="m-0" show variant="light">
             <b-form-checkbox-group
@@ -21,8 +21,10 @@
          <b-button variant="outline-secondary" @click="resetFilters()">Reset</b-button>
       </div>
     </b-sidebar>
-    <b-alert v-if="!reset" show variant="light">
+    <b-alert v-if="resetShow" show variant="light">
+      <p class="mb-1"><strong>Search:</strong> {{ filter.searchText }}</p>
       <p class="mb-1"><strong>Category:</strong> {{ filteredCats() }}</p>
+      <p class="mb-1"><strong>Sort:</strong> {{ filteredCats() }}</p>
       <b-button size="sm" variant="outline-secondary" @click="resetFilters()">Reset</b-button>
     </b-alert>
     <div class="row">
@@ -34,7 +36,7 @@
             >
             <div class="px-3 pt-3 pb-0">
                 <div class="p-container d-flex justify-content-center align-items-center overflow-hidden position-relative">
-                    <nuxt-link :to="`market/${product.id}`"><b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName"></b-img></nuxt-link>
+                    <nuxt-link v-if="product.images.length" :to="`market/${product.id}`"><b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName"></b-img></nuxt-link>
                     <h2 style="top:0.7rem;right:1rem" class="mb-1 text-nowrap text-warning position-absolute" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
                 </div>
             </div>
@@ -76,11 +78,12 @@ export default {
   data() {
     return {
         productsFull: [],
-        filter: {},
+        filter: {
+          searchText: null,
+          category: []
+        },
         sort: [],
-        reset: true,
         selectedCats: [], // Must be an array reference!
-        searchText: '',
         catOptions: [
             { text: 'Equipment', value: 'EQUIPMENT' },
             { text: 'Transport', value: 'TRANSPORT' },
@@ -92,6 +95,12 @@ export default {
   },
   created() {
     this.getProducts();
+  },
+  computed: {
+    resetShow: function () {
+      console.log(!!this.filter.category && !!this.filter.category.length)
+      return !!this.filter.category.length || !!this.sort.length || !!this.filter.searchText
+    }
   },
   methods: {
     getProducts() {
@@ -113,7 +122,6 @@ export default {
         else return text;
     },
     handleCatFilter(cat) {
-      this.reset = false
       this.filter.category = cat
       this.getProducts()
     },
@@ -131,9 +139,9 @@ export default {
       if (this.filter.category) return this.getCat(this.filter.category)
     },
     resetFilters() {
-      this.reset = true
       this.selectedCats = []
-      this.filter.category = ''
+      this.filter.category = []
+      this.filter.searchText = ''
       this.getProducts()
     },
     searchProducts() {

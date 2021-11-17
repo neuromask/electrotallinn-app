@@ -255,7 +255,7 @@ export default {
         }]
       });
     },
-    getLocList () {
+    getLocList() {
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
         this.listFull = response;
       });
@@ -267,7 +267,7 @@ export default {
         this.userEdit.transportPhotoName = null;
       }
     },
-    getFlags () {
+    getFlags() {
       return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
     },
     onUserEdit () {
