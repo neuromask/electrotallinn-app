@@ -6,29 +6,42 @@
       :effect="'fade'"
       @close="index = null">
     </CoolLightBox>
-
+    <h2 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h2>
     <b-card-group columns>
       <b-card v-if="product.transportPhotoName">
         <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + product.transportPhotoName"></b-img>
       </b-card>
+
       <b-card>
-        <h2 variant="light" v-if="product.name">{{ product.name }}</h2>
-        <a v-if="$user.uin === product.userUin" v-b-modal.profile-modal @click="onUserEdit" class="position-absolute" style="top:1rem; right:1.5rem;font-size:2rem">
-          <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
-        </a>
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Information</h3>
         <b-list-group class="text-left">
-          <b-list-group-item variant="light">Added by: <strong>{{ product.userFirstName }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.userUin">User UIN: <strong>{{ product.userUin }}</strong></b-list-group-item>
-          <p class="m-0" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
-          <b-list-group-item variant="light" v-if="product.name">Product: <strong>{{ product.name }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.name">Name: <strong>{{ product.name }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.description">Decription<br />{{ product.description }}</b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Information</h3>
+        <b-list-group class="text-left">
+          <b-list-group-item variant="light" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.userUin">User UIN: <strong>{{ product.userUin }}</strong></b-list-group-item>
+          <p class="m-0" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
+        </b-list-group>
+        <b-alert class="mt-3 mb-0" show variant="warning">
+          <p class="mb-0">Join <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a> Telegram channel and find user by name: <strong>{{ product.userFirstName }}</strong></p>
+        </b-alert>
       </b-card>
-      <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
+      <b-card class="images">
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Image</h3>
+        <div class="row">
+          <div class="col-sm-6 mb-0" v-for="(image, imageIndex) in items" :key="imageIndex">
+            <b-img
+              class="image"
+              thumbnail
+              @click="index = imageIndex"
+              :src="image.src"
+            ></b-img>
+          </div>
+        </div>
       </b-card>
     </b-card-group>
 
@@ -158,6 +171,11 @@ export default {
       this.$axios.$get(`${this.$config.baseUrl}/marketProducts/${this.$route.params.id}`).then((response) => {
         this.product = response;
         console.log(response);
+        this.items = this.product.images.map(img => ({
+          title: this.product.name,
+          src: this.$config.baseFileUrl + '/market/' + img.fileName
+        }))
+        console.log(this.items)
       });
     },
     getUserProducts () {
@@ -217,5 +235,8 @@ export default {
 }
 .transportImage {
     cursor: pointer;
+}
+.images > img:last-child {
+  margin-bottom: 0!important;
 }
 </style>

@@ -103,6 +103,7 @@ export default {
 
   publicRuntimeConfig: {
     //baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
+    baseFileUrl: process.env.BASE_FILE_URL || 'https://files.electrotallinn.ee',
     baseUrl: process.env.BASE_URL || 'https://app.electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY
   },

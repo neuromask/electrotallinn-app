@@ -1,5 +1,30 @@
 <template>
-  <div>
+  <section>
+    <b-sidebar id="sidebar-right" backdrop title="Market Menu" right shadow>
+      <div class="px-3 py-2">
+        <b-form-input class="mb-3" v-model="searchText" placeholder="Search"></b-form-input>
+        <b-form-group class="mb-3" label="Category">
+          <b-alert class="m-0" show variant="light">
+            <b-form-checkbox-group
+              v-model="selectedCats"
+              :options="catOptions"
+              name="buttons-1"
+              switches
+              stacked
+              size="sm"
+              button-variant="primary"
+              @change="handleCatFilter"
+            ></b-form-checkbox-group>
+          </b-alert>
+        </b-form-group>
+        <hr />
+         <b-button variant="outline-secondary" @click="resetFilters()">Reset</b-button>
+      </div>
+    </b-sidebar>
+    <b-alert v-if="!reset" show variant="light">
+      <p class="mb-1"><strong>Category:</strong> {{ filteredCats() }}</p>
+      <b-button size="sm" variant="outline-secondary" @click="resetFilters()">Reset</b-button>
+    </b-alert>
     <div class="row">
         <div class="col-sm-4 mb-4" v-for="(product, idx) in productsFull" :key="idx">
         <b-card
@@ -9,7 +34,7 @@
             >
             <div class="px-3 pt-3 pb-0">
                 <div class="p-container d-flex justify-content-center align-items-center overflow-hidden position-relative">
-                    <nuxt-link :to="`market/${product.id}`"><b-img class="p-image" src="~/assets/img/step-1.jpg"></b-img></nuxt-link>
+                    <nuxt-link :to="`market/${product.id}`"><b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName"></b-img></nuxt-link>
                     <h2 style="top:0.7rem;right:1rem" class="mb-1 text-nowrap text-warning position-absolute" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
                 </div>
             </div>
@@ -35,14 +60,14 @@
             </b-card-body>
             <template #footer>
                 <div class="d-flex w-100 justify-content-between align-items-center">
-                    <p class="mb-1" v-if="product.category">Category: <strong>{{ product.category }}</strong></p>
+                    <p class="mb-1" v-if="product.category">Category: <strong role="button" @click="selectCat(product.category)">{{ getCat(product.category) }}</strong></p>
                     <p class="mb-0 small" v-if="product.date_created">{{ new Date(product.date_created).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' }) }}</p>
                 </div>
             </template>
         </b-card>
         </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -50,9 +75,19 @@
 export default {
   data() {
     return {
-      productsFull: [],
-      filter: {},
-      sort: {}
+        productsFull: [],
+        filter: {},
+        sort: [],
+        reset: true,
+        selectedCats: [], // Must be an array reference!
+        searchText: '',
+        catOptions: [
+            { text: 'Equipment', value: 'EQUIPMENT' },
+            { text: 'Transport', value: 'TRANSPORT' },
+            { text: 'Spare parts', value: 'SPARE_PARTS' },
+            { text: 'Accessories', value: 'ACCESSORIES' },
+            { text: 'Other', value: 'OTHER' }
+        ]
     };
   },
   created() {
@@ -61,7 +96,7 @@ export default {
   methods: {
     getProducts() {
       this.$axios
-        .$get(this.$config.baseUrl + "/marketProducts").then((response) => {
+        .$get(this.$config.baseUrl + "/marketProducts", {params: this.filter}).then((response) => {
           this.productsFull = response;
           console.log(this.productsFull)
         });
@@ -76,6 +111,33 @@ export default {
             return text.substring(0, limit) + '...';
         }
         else return text;
+    },
+    handleCatFilter(cat) {
+      this.reset = false
+      this.filter.category = cat
+      this.getProducts()
+    },
+    getCat2(productCat) {
+      return this.catOptions.find(catOption => catOption.value == productCat).text
+    },
+    getCat(productCat) {
+      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
+    },
+    selectCat(productCat) {
+      this.selectedCats = [productCat]
+      this.handleCatFilter(productCat)
+    },
+    filteredCats() {
+      if (this.filter.category) return this.getCat(this.filter.category)
+    },
+    resetFilters() {
+      this.reset = true
+      this.selectedCats = []
+      this.filter.category = ''
+      this.getProducts()
+    },
+    searchProducts() {
+
     }
   },
 };
@@ -121,4 +183,5 @@ export default {
 .profile-img {
     width:4rem;
 }
+
 </style>
