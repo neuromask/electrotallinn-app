@@ -28,14 +28,6 @@ module.exports = {
                     return resolve(result);
                 });
             });
-
-            // connection.query(sql, params || [], (error, result) => {
-            //     if (error) {
-            //         console.error("%s ", JSON.stringify(error));
-            //         return reject(error);
-            //     }
-            //     return resolve(result);
-            // });
         });
     }
 };

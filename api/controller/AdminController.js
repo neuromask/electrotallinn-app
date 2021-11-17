@@ -1,6 +1,8 @@
 const express = require('express');
 const utils = require("../utils/Utils.js");
 const locationsService = require("../service/LocationsService.js");
+const usersService = require("../service/UsersService.js");
+const marketProductsService = require("../service/MarketProductsService.js");
 
 const router = express.Router();
 
@@ -56,6 +58,11 @@ router.put('/locations/image/rotate/:imageName', utils.verifyJWT, utils.checkAut
     response.end(image, 'binary');
 });
 
+router.get('/locations/unconfirmed', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let locations = await locationsService.findAll({ confirmed: 0 });
+    response.send(locations);
+});
+
 
 // ### USERS ###
 
@@ -70,5 +77,14 @@ router.delete('/users/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, u
     let result = await usersService.update(request.params.uin, request.body);
     response.send(result);
 });
+
+
+// ### MARKET PRODUCTS ###
+
+router.get('/marketProducts/unconfirmed', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let locations = await marketProductsService.findAll({ status: 'NEW' });
+    response.send(locations);
+});
+
 
 module.exports = router;

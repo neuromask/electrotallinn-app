@@ -3,17 +3,19 @@ const utils = require("../utils/Utils.js");
 
 module.exports = {
     findByLocationId: async (locationId) => {
-        let sql = 'SELECT id, location_id AS locationId, message, user_uin AS userUin, user_first_name AS userFirstName, date_created AS dateCreated FROM reports WHERE location_id = ?';
+        let sql = 'SELECT id, location_id, message, user_uin, user_first_name, date_created FROM reports WHERE location_id = ?';
         let params = [locationId];
 
-        return await db.query(sql, params);
+        let result = await db.query(sql, params);
+        return utils.convertPropsToCamelcase(result);
     },
 
     findByUserUin: async (userUin) => {
-        let sql = 'SELECT id, location_id AS locationId, message, user_uin AS userUin, user_first_name AS userFirstName, date_created AS dateCreated FROM reports WHERE user_uin = ?';
+        let sql = 'SELECT id, location_id, message, user_uin, user_first_name, date_created FROM reports WHERE user_uin = ?';
         let params = [userUin];
 
-        return await db.query(sql, params);
+        let result = await db.query(sql, params);
+        return utils.convertPropsToCamelcase(result);
     },
 
     create: async (report) => {

@@ -3,8 +3,10 @@ const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async () => {
-        let sql = 'SELECT id, first_name AS firstName, uin, photo_url AS photoUrl, username, role, birthyear, languages, location, transport_model AS transportModel, transport_photo_name AS transportPhotoName, (SELECT count(l.id) FROM locations  l WHERE l.user_uin = uin) AS locationsCount FROM users';
-        return await db.query(sql);
+        let sql = 'SELECT id, first_name, uin, photo_url, username, role, birthyear, languages, location, transport_model, transport_photo_name AS transport_photo_name_a, (SELECT count(l.id) FROM locations  l WHERE l.user_uin = uin) AS locationsCount FROM users';
+
+        let result = await db.query(sql);
+        return utils.convertPropsToCamelcase(result);
     },
 
     findOne: (id) => {
