@@ -6,15 +6,24 @@ module.exports = {
         filter = filter || {};
 
         let andList = [];
+        let filterParams = [];
         for (const [key, value] of Object.entries(filter)) {
-            if (Array.isArray(value)) {
+            if (key === 'category') {
                 let orList = [];
                 for (const v of value) {
-                    orList.push(`p.${key} = '${v}'`);
+                    orList.push(`p.category = ?`);
+                    filterParams.push(v);
                 }
                 andList.push('(' + orList.join(' OR ') + ')');
-            } else {
-                andList.push(`LOWER(p.${key}) LIKE LOWER('%${value}%')`);
+            } else if (key === 'searchText') {
+                let orList = [];
+                orList.push(`LOWER(p.name) LIKE LOWER(?)`);
+                orList.push(`LOWER(p.description) LIKE LOWER(?)`);
+
+                filterParams.push(`%${value}%`);
+                filterParams.push(`%${value}%`);
+
+                andList.push('(' + orList.join(' OR ') + ')');
             }
         }
         let where = (andList.length > 0 ? ' WHERE ' : '') + andList.join(' AND ') + ' ';
@@ -24,7 +33,9 @@ module.exports = {
             'JOIN users u ON u.uin = p.user_uin ' +
             where +
             'ORDER BY id ASC';
-        return await db.query(sql);
+        let params = filterParams;
+
+        return await db.query(sql, params);
     },
 
     findOne: async (id) => {
