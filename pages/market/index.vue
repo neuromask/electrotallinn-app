@@ -125,15 +125,12 @@ export default {
       this.filter.category = cat
       this.getProducts()
     },
-    getCat2(productCat) {
-      return this.catOptions.find(catOption => catOption.value == productCat).text
-    },
     getCat(productCat) {
       return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     },
     selectCat(productCat) {
       this.selectedCats = [productCat]
-      this.handleCatFilter(productCat)
+      this.handleCatFilter([productCat])
     },
     filteredCats() {
       if (this.filter.category) return this.getCat(this.filter.category)
