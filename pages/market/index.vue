@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section ref="top">
     <b-sidebar id="sidebar-right" backdrop title="Market Menu" right shadow>
       <div class="px-3 py-2">
         <b-form-input class="mb-3" v-model="filter.searchText" @keyup="getProducts" placeholder="Search"></b-form-input>
@@ -27,8 +27,8 @@
       <p class="mb-1"><strong>Sort:</strong> {{ filteredCats() }}</p>
       <b-button size="sm" variant="outline-secondary" @click="resetFilters()">Reset</b-button>
     </b-alert>
-    <div class="row">
-        <div class="col-sm-4 mb-4" v-for="(product, idx) in productsFull" :key="idx">
+    <transition-group name="card-list" mode="out-in" class="row">
+      <b-col col sm="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
         <b-card
             bg-variant="info"
             no-body
@@ -67,8 +67,8 @@
                 </div>
             </template>
         </b-card>
-        </div>
-    </div>
+      </b-col>
+    </transition-group>
   </section>
 </template>
 
@@ -129,6 +129,7 @@ export default {
       return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     },
     selectCat(productCat) {
+      window.scrollTo(0, this.$refs.top.offsetTop);
       this.selectedCats = [productCat]
       this.handleCatFilter([productCat])
     },
@@ -155,6 +156,9 @@ export default {
 }
 .card {
   border-radius: 10px;
+}
+.row-wrap {
+  transition: all 1s ease;
 }
 
 .product-image {
@@ -189,4 +193,19 @@ export default {
     width:4rem;
 }
 
+
+.card-list-item {
+  transition: all 0.6s ease;
+}
+.card-list-enter {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.card-list-leave-to {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.card-list-leave-active {
+  position: absolute;
+}
 </style>
