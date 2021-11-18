@@ -33,15 +33,11 @@
             <h5 class="mb-3">Product photos</h5>
             <b-form-group class="m-0">
               <div class="d-flex mb-3">
-                <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Product photo" class="w-auto flex-grow-1"/>
+                <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Select or drag photo" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
               </div>
                 <div class="col-sm-4 mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
                     <b-button size="sm" v-if="hasImage" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
-                    <b-img
-                    class="image"
-                    thumbnail
-                    :src="image.fileB64"
-                    ></b-img>
+                    <b-img class="image" thumbnail :src="image.fileB64"></b-img>
                 </div>
 
                 <!--<div v-if="!hasImage && productEdit.transportPhotoName" class="position-relative">

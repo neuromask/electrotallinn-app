@@ -117,14 +117,31 @@ hr:after {
   background: #f8da19;
 }
 
+.modal-style {
+  background-image: url('~assets/img/mol.svg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navText {
+  display: block;
+}
+
 @media (min-width: 576px) {
   .modal-style {
     padding: 2rem;
   }
+  .navbar-expand .main-nav.navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }
 
 @include media-breakpoint-down(md) {
-  
+  .navText {
+    display: none;
+  }
   .container {
     padding-left: 1rem!important;
     padding-right: 1rem!important;
