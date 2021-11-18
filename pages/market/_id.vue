@@ -6,21 +6,22 @@
       :effect="'fade'"
       @close="index = null">
     </CoolLightBox>
-    <h2 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h2>
     <b-card-group columns>
-      <b-card v-if="product.transportPhotoName">
-        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + product.transportPhotoName"></b-img>
-      </b-card>
 
       <b-card>
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Information</h3>
+        <div class="mb-1 d-flex justify-content-between align-items-start">
+          <h2 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h2>
+          <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
+        </div>
         <b-list-group class="text-left">
-          <b-list-group-item variant="light" v-if="product.name">Name: <strong>{{ product.name }}</strong></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.description">Decription: <strong>{{ product.description }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.category">Category: <strong>{{ getCat(product.category) }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.dateCreated">Date added: <strong>{{ new Date(product.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Seller</b-badge> Information</h3>
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Contact</b-badge> Seller</h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.userUin">User UIN: <strong>{{ product.userUin }}</strong></b-list-group-item>
@@ -31,82 +32,20 @@
         </b-alert>
       </b-card>
       <b-card class="images">
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Image</h3>
-        <b-img v-if="items.length" class="image mb-3" thumbnail @click="index = 0" :src="items[0].src"></b-img>
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Photos</h3>
+        <div v-if="items.length" role="button" class="imageBig" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
         <div class="row">
-          <div class="col-sm-4 mb-0" v-for="(image, imageIndex) in items" :key="imageIndex">
-            <b-img
-              class="image"
-              thumbnail
-              @click="index = imageIndex"
-              :src="image.src"
-            ></b-img>
+          <div class="col-sm-4 mt-3" v-for="(image, imageIndex) in items" :key="imageIndex">
+            <div role="button" class="image" @click="index = imageIndex" :style="{ backgroundImage: 'url(' + image.src + ')' }"></div>
           </div>
         </div>
       </b-card>
     </b-card-group>
 
-    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
-      <b-form  @submit.stop.prevent="handleSubmit">
-        <b-card-group columns>
-          <b-card>
-            <div class="text-center mb-3">
-              <b-img class="profile shadow" :src="product.photoUrl" rounded="circle" thumbnail />
-            </div>
-            <h5 class="mb-3">Personal info</h5>
-            <b-form-group>
-              <b-input-group append="Name">
-                <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
-              </b-input-group>
-            </b-form-group>
-
-            <b-form-group>
-              <b-input-group append="Birth Year">
-                <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required/>
-              </b-input-group>
-            </b-form-group>
-
-            <b-form-group>
-              <b-input-group append="Home">
-                <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
-              </b-input-group>
-            </b-form-group>
-            
-          </b-card>
-          <b-card>
-            <h5 class="mb-3">Your main electric transport</h5>
-            <b-form-group>
-              <b-input-group append="Model">
-                <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
-              </b-input-group>
-            </b-form-group>
-            <b-form-group class="m-0">
-              <div class="d-flex mb-3">
-                <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" placeholder="Transport photo" class="w-auto flex-grow-1"/>
-                <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
-              </div>
-              <b-img v-if="hasImage" :src="imageSrc" fluid block rounded/>
-              <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
-                <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" fluid block rounded/>
-                <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
-              </div>
-            </b-form-group>
-          </b-card>
-        </b-card-group>
-      </b-form>
-    </b-modal>
-
   </section>
 </template>
 
 <script>
-const base64Encode = data =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(data);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
 
   // use the component
   import CoolLightBox from 'vue-cool-lightbox'
@@ -122,48 +61,24 @@ export default {
     return {
       items: [],
       index: null,
-      profile: {},
       product: {},
-      userEdit: {},
       image: null,
       imageSrc: null,
-      bgImages: [
-        require("@/assets/img/pattern-icons.png"),
-        require("@/assets/img/top.jpg"),
-        require("@/assets/img/tallinn.svg"),
-        require("@/assets/img/mol.svg")
-      ],
-      show: true
-    }
-  },
-  computed: {
-    hasImage() {
-      return !!this.userEdit.transportPhoto;
+      catOptions: [
+        { text: 'Equipment', value: 'EQUIPMENT' },
+        { text: 'Transport', value: 'TRANSPORT' },
+        { text: 'Spare parts', value: 'SPARE_PARTS' },
+        { text: 'Accessories', value: 'ACCESSORIES' },
+        { text: 'Other', value: 'OTHER' }
+      ]
     }
   },
   created () {
     this.getProduct()
-    //this.getUserProducts()
   },
   watch: {
     $route () {
      this.getProduct();
-     //this.getUserProducts();
-    },
-    'userEdit.transportPhoto'(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        if (newValue) {
-          base64Encode(newValue)
-            .then(value => {
-              this.imageSrc = value;
-            })
-            .catch(() => {
-              this.imageSrc = null;
-            });
-        } else {
-          this.imageSrc = null;
-        }
-      }
     }
   },
   methods: {
@@ -179,65 +94,33 @@ export default {
         console.log(this.items)
       });
     },
-    getUserProducts () {
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
-        this.listFull = response;
-      });
-    },
-    clearImage() {
-      if (this.hasImage) {
-        this.userEdit.transportPhoto = null;
-      } else {
-        this.userEdit.transportPhotoName = null;
-      }
-    },
-    onUserEdit () {
-      this.userEdit = Object.assign({}, this.user)
-    },
-    handleOk(bvModalEvt) {
-      // Prevent modal from closing
-      bvModalEvt.preventDefault()
-      // Trigger submit handler
-      this.handleSubmit()
-    },
-    handleSubmit() {
-      const data = Object.assign({}, this.userEdit)
-      if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
-      console.log(this.imageSrc)
-      data.languages = data.languages.join()
-      this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
-        this.getProduct()
-        this.$nextTick(() => {
-          this.$bvModal.hide('profile-modal')
-        })
-      });
+    getCat(productCat) {
+      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     }
   }
 }
 </script>
 
 <style scoped>
-.upper>div {
-    height: 320px;
-    background-color: #1a2740;
-    border-radius: 6px;
+.imageBig {
+  height:256px;
+  background-size: cover;
+  background-position: center;
 }
-.profile {
-    width: 15rem;
-    bottom:-2rem;
-}
-.btn-close {
-  top:0; right:0;
+.image {
+  height:256px;
+  background-size: cover;
+  background-position: center;
 }
 @media (min-width: 576px) {
   .card-columns {
     column-count: 2;
   }
-}
-.transportImage {
-    cursor: pointer;
-}
-.images > img:last-child {
-  margin-bottom: 0!important;
+  .imageBig {
+    height:400px;
+  }
+  .image {
+    height:128px;
+  }
 }
 </style>
