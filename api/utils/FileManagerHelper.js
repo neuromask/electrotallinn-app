@@ -31,5 +31,24 @@ module.exports = {
             console.error(e);
             throw new Error("Failed to send file " + fileName);
         }
+    },
+
+    delete: async (fileDir, fileName, authHeader) => {
+        const options = {
+            hostname: FILE_MANAGER_HOST,
+            port: FILE_MANAGER_PORT,
+            path: '/' + fileDir + '/' + fileName,
+            method: 'DELETE',
+            headers: {
+                'Authorization': authHeader
+            }
+        };
+
+        try {
+            return await utils.requestPromise(options);
+        } catch (e) {
+            console.error(e);
+            throw new Error("Failed to delete file " + fileName);
+        }
     }
 };

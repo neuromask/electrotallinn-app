@@ -2,6 +2,7 @@ const express = require('express');
 const utils = require("../utils/Utils.js");
 const usersService = require("../service/UsersService.js");
 const locationsService = require("../service/LocationsService.js");
+const marketProductsService = require("../service/MarketProductsService.js");
 
 const router = express.Router();
 
@@ -22,6 +23,11 @@ router.get('/:uin(\\d+)', async function(request, response) {
 
 router.get('/:uin(\\d+)/locations', async function(request, response) {
     let result = await locationsService.findByUserUin(request.params.uin);
+    response.send(result);
+});
+
+router.get('/:uin(\\d+)/marketProducts', async function(request, response) {
+    let result = await marketProductsService.findByUserUin(request.params.uin);
     response.send(result);
 });
 

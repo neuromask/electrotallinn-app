@@ -141,6 +141,7 @@ module.exports = {
                 res.on('error', reject);
                 res.on('end', () => {
                     if (res.statusCode >= 200 && res.statusCode <= 299) {
+                        console.log('requestPromise res: ' + body)
                         resolve({statusCode: res.statusCode, headers: res.headers, body: body});
                     } else {
                         reject('Request failed. status: ' + res.statusCode + ', body: ' + body);
@@ -148,7 +149,9 @@ module.exports = {
                 });
             });
             req.on('error', reject);
-            req.write(data, 'binary');
+            if (data) {
+                req.write(data, 'binary');
+            }
             req.end();
         });
     }

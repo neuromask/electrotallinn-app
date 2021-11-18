@@ -4,7 +4,7 @@ const utils = require("../utils/Utils.js");
 module.exports = {
 
     findByMarketProductId: async (marketProductId) => {
-        let sql = 'SELECT market_product_id, file_name FROM market_product_images WHERE market_product_id = ?';
+        let sql = 'SELECT id, market_product_id, file_name FROM market_product_images WHERE market_product_id = ?';
         let params = [marketProductId];
 
 
@@ -17,5 +17,12 @@ module.exports = {
         let params = [marketProductImage.marketProductId, marketProductImage.fileName];
 
         return await db.query(sql, params);
-    }
+    },
+
+    delete: async (id) => {
+        let sql = 'DELETE FROM market_product_images WHERE id = ?';
+        let params = [id];
+
+        return await db.query(sql, params);
+    },
 };

@@ -39,7 +39,7 @@ router.put('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, async funct
         return response.status(403).send("Not allowed");
     }
 
-    let result = await marketProductsService.update(request.params.id, request.body);
+    let result = await marketProductsService.update(request.params.id, request.body, request.headers.authorization);
     response.send(result);
 });
 

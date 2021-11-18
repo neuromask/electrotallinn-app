@@ -73,7 +73,40 @@
         </b-table>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+            <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+            <b-table
+                class="bg-info"
+                borderless
+                striped
+                hover
+                :items="marketProducts"
+                :fields="marketProductFields"
+                :sort-by.sync="marketProductsSortBy"
+                :sort-desc.sync="marketProductsSortDesc"
+            >
+                <template #cell(actions)="data">
+                    <div class="d-inline-block my-1">
+                        <b-button-group size="sm">
+                            <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                                <b-icon icon="pencil-fill" variant="white"/>
+                            </b-button>
+                            <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
+                                <b-icon icon="trash-fill" variant="white"/>
+                            </b-button>
+                        </b-button-group>
+                    </div>
+
+                    <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+
+                    <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                        Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
+                        <template #modal-footer="{ cancel, hide }">
+                            <b-button variant="primary" size="sm" @click="deleteLoc(data.item.id), hide()">OK</b-button>
+                            <b-button size="sm" @click="cancel()">Cancel</b-button>
+                        </template>
+                    </b-modal>
+                </template>
+            </b-table>
       </b-card>
       <b-card>
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
@@ -202,6 +235,17 @@ export default {
           label: 'Info'
         }
       ],
+
+      marketProducts: [],
+      marketProductFields: [
+          { key: 'id', sortable: true, label: 'Type' },
+          { key: 'name', sortable: true, label: 'Name' },
+          { key: 'price', sortable: true, label: 'Price' },
+          { key: 'actions', sortable: false, label: '' }
+      ],
+      marketProductsSortBy: 'id',
+      marketProductsSortDesc: true,
+
       languageOptions: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
@@ -220,11 +264,13 @@ export default {
   created () {
     this.getUser()
     this.getLocList()
+    this.findMarketProducts();
   },
   watch: {
     $route () {
      this.getUser();
      this.getLocList();
+     this.findMarketProducts();
     },
     'userEdit.transportPhoto'(newValue, oldValue) {
       if (newValue !== oldValue) {
@@ -247,7 +293,6 @@ export default {
       console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
-        console.log(response);
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
         this.items = [{
           title: this.user.transportModel,
@@ -259,6 +304,11 @@ export default {
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
         this.listFull = response;
       });
+    },
+    findMarketProducts() {
+        this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
+            this.marketProducts = response;
+        });
     },
     clearImage() {
       if (this.hasImage) {

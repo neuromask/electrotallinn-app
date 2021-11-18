@@ -20,10 +20,13 @@ module.exports = {
         return product;
     },
 
+    findByUserUin: async (userUin) => {
+        return await marketProductsRepository.findByUserUin(userUin)
+    },
+
     create: async (marketProduct, authHeader) => {
         let result = await marketProductsRepository.create(marketProduct)
 
-        // todo save images
         marketProduct.images = marketProduct.images || [];
         marketProduct.images.forEach(async item => {
             try {
@@ -42,10 +45,43 @@ module.exports = {
         return result
     },
 
-    update: async (id, marketProduct) => {
-        //todo update images
+    update: async (id, marketProduct, authHeader) => {
+        let result = await marketProductsRepository.update(id, marketProduct);
 
-        return await marketProductsRepository.update(id, marketProduct)
+        marketProduct.images = marketProduct.images || [];
+
+        // delete missing files
+        let existingImages = await marketProductImagesRepository.findByMarketProductId(id);
+        existingImages.forEach(existingImage => {
+            if (!marketProduct.images.find(image => image.fileName === existingImage.fileName)) {
+                // delete file from file server
+                fileManagerHelper.delete('market', existingImage.fileName, authHeader);
+
+                // delete file record
+                marketProductImagesRepository.delete(existingImage.id);
+            }
+        });
+
+        // process new files
+        marketProduct.images.forEach(async item => {
+            try {
+                if (item.id) {
+                    return
+                }
+
+                let fileName = utils.uuid() + '.jpg';
+
+                // create file on file server
+                await fileManagerHelper.create('market', item.fileB64, fileName, authHeader);
+
+                // create file record
+                marketProductImagesRepository.create({marketProductId: id, fileName: fileName});
+            } catch (e) {
+                console.error(e);
+            }
+        });
+
+        return result
     },
 
     delete: async (id) => {
