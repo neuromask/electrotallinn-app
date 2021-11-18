@@ -127,14 +127,14 @@ hr:after {
 .navText {
   display: block;
 }
+.navbar-expand .main-nav.navbar-nav .nav-link {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
 
 @media (min-width: 576px) {
   .modal-style {
     padding: 2rem;
-  }
-  .navbar-expand .main-nav.navbar-nav .nav-link {
-    padding-right: 1rem;
-    padding-left: 1rem;
   }
 }
 
