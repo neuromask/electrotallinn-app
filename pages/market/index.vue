@@ -21,12 +21,14 @@
          <b-button variant="outline-secondary" @click="resetFilters()">Reset</b-button>
       </div>
     </b-sidebar>
-    <b-alert v-if="resetShow" show variant="light">
-      <p class="mb-1"><strong>Search:</strong> {{ filter.searchText }}</p>
-      <p class="mb-1"><strong>Category:</strong> {{ filteredCats() }}</p>
-      <p class="mb-1"><strong>Sort:</strong> {{ filteredCats() }}</p>
-      <b-button size="sm" variant="outline-secondary" @click="resetFilters()">Reset</b-button>
-    </b-alert>
+    <transition name="animation" tag="div" class="px-3 py-2">
+      <b-alert v-if="resetShow" show variant="light">
+        <p class="mb-1"><strong>Search:</strong> {{ filter.searchText }}</p>
+        <p class="mb-1"><strong>Category:</strong> {{ filteredCats() }}</p>
+        <p class="mb-1"><strong>Sort:</strong> {{ filteredCats() }}</p>
+        <b-button size="sm" variant="outline-secondary" @click="resetFilters()">Reset</b-button>
+      </b-alert>
+    </transition>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col col sm="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
         <b-card
@@ -129,7 +131,7 @@ export default {
       return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     },
     selectCat(productCat) {
-      window.scrollTo(0, this.$refs.top.offsetTop);
+      //window.scrollTo(0, this.$refs.top.offsetTop);
       this.selectedCats = [productCat]
       this.handleCatFilter([productCat])
     },
@@ -197,6 +199,9 @@ export default {
 .card-list-item {
   transition: all 0.6s ease;
 }
+.card-list-leave-active {
+  position: absolute;
+}
 .card-list-enter {
   opacity: 0;
   transform: translateY(40px);
@@ -205,7 +210,18 @@ export default {
   opacity: 0;
   transform: translateY(40px);
 }
-.card-list-leave-active {
+
+.animation-enter-active, 
+.animation-leave-active {
+    transition: all .6s ease;
+}
+.animation-enter, 
+.animation-leave-to {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-148px);
+}
+.animation-leave-active {
   position: absolute;
 }
 </style>
