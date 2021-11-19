@@ -52,8 +52,9 @@
                     <b-list-group-item variant="light" class="flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between align-items-center">
                             <div>
-                                <p class="mb-1" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
-                                <p class="mb-1" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
+                                <p class="mb-0 small" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
+                                <p class="mb-0 small" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
+                                <p class="mb-0 small" v-if="!product.username">Telegram: <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a></p>
                             </div>
                             <div>
                                 <b-button size="sm" variant="warning" class="text-info" nuxt :to="`market/${product.id}`"><b-icon icon="search" /> Info</b-button>
