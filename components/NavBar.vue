@@ -1,5 +1,5 @@
 <template>
-    <b-navbar justified type="primary" variant="info" class="px-3 pt-2 rounded shadow-sm" sticky>
+    <b-navbar type="secondary" variant="info" class="px-3 pt-2 rounded shadow-sm" sticky>
         <b-navbar-nav justified class="mx-auto text-center main-nav">
             <b-nav-item to="/" nuxt exact><b-icon icon="house-door-fill" /><span class="navText">Home</span></b-nav-item>
             <b-nav-item to="/map" nuxt><b-icon icon="geo-alt-fill" /><span class="navText">Map</span></b-nav-item>

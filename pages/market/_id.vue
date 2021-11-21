@@ -55,7 +55,19 @@ export default {
   components: {
     CoolLightBox,
   },
-  name: 'UserProfile',
+  head() {
+    return {
+      title: this.product.name + ' - ElectroTallinn Market',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description'
+        }
+      ]
+    }
+  },
+  name: 'ProductPage',
   props: {},
   data() {
     return {
