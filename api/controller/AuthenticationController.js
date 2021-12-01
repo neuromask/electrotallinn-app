@@ -22,7 +22,7 @@ router.post('/login', utils.validateTgHash, async function(request, response) {
 
 router.post('/login/bot', async function(request, response) {
     try {
-        const tgUser = await authenticationService.handleLogin(request.body.id, request.tgUser);
+        const tgUser = await authenticationService.handleLogin(request.body.uin, request.body);
 
         let token = utils.signJWT(tgUser);
 
