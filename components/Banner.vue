@@ -3,10 +3,13 @@
 </template>
 <style>
 #banner {
-    width: 100%;
-    height:342px;
-    background-position: center center;
-    background-size: cover;
-    background-image: url('~assets/img/top.jpg');
+  border: 0;
+  margin: 0 auto;
+  width: 100%;
+  height:342px;
+  max-width: 2048px;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('~assets/img/top.jpg');
 }
 </style>

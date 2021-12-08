@@ -30,7 +30,7 @@
       </b-alert>
     </transition>
     <transition-group name="card-list" mode="out-in" class="row">
-      <b-col col sm="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
+      <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
         <b-card
             bg-variant="info"
             no-body
