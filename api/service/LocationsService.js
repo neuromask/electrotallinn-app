@@ -53,7 +53,7 @@ module.exports = {
             throw new Error('Not found')
         }
 
-        return await locationsRepository.setConfirmed(id, Math.abs(location.confirmed - 1))
+        return await locationsRepository.updateConfirmed(id, Math.abs(location.confirmed - 1))
     },
 
     getTopLocationSubmitters: async () => {

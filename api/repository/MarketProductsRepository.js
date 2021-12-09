@@ -24,6 +24,9 @@ module.exports = {
                 filterParams.push(`%${value}%`);
 
                 andList.push('(' + orList.join(' OR ') + ')');
+            } else if (key === 'status') {
+                andList.push('p.status = ?');
+                filterParams.push(value);
             }
         }
         let where = (andList.length > 0 ? ' WHERE ' : '') + andList.join(' AND ') + ' ';
@@ -48,7 +51,7 @@ module.exports = {
 
     create: async (marketProduct) => {
         let sql = "INSERT INTO market_products (user_uin, name, description, price, status, date_created, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        let params = [marketProduct.userUin, marketProduct.name, marketProduct.description, marketProduct.price, 'NEW', new Date(), marketProduct.category];
+        let params = [marketProduct.userUin, marketProduct.name, marketProduct.description, marketProduct.price, 'ACTIVE', new Date(), marketProduct.category];
 
         return await db.query(sql, params);
     },
@@ -56,6 +59,13 @@ module.exports = {
     update: async (id, marketProduct) => {
         let sql = "UPDATE market_products SET user_uin = ?, name = ?, description = ?, price = ?, category = ? WHERE id = ?";
         let params = [marketProduct.userUin, marketProduct.name, marketProduct.description, marketProduct.price, marketProduct.category, id];
+
+        return await db.query(sql, params);
+    },
+
+    updateStatus: async (id, status) => {
+        let sql = "UPDATE market_products SET status = ? WHERE id = ?";
+        let params = [status, id];
 
         return await db.query(sql, params);
     },
@@ -68,7 +78,7 @@ module.exports = {
     },
 
     findByUserUin: async (userUin) => {
-        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price FROM market_products p WHERE user_uin = ?';
+        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price, p.category FROM market_products p WHERE user_uin = ?';
         let params = [userUin];
 
         let result = await db.query(sql, params);

@@ -10,7 +10,7 @@ module.exports = {
             product.images = await marketProductImagesRepository.findByMarketProductId(product.id)
         }
 
-        return products
+        return products;
     },
 
     findOne: async (id) => {
@@ -21,11 +21,16 @@ module.exports = {
     },
 
     findByUserUin: async (userUin) => {
-        return await marketProductsRepository.findByUserUin(userUin)
+        let products = await marketProductsRepository.findByUserUin(userUin);
+        for (let product of products) {
+            product.images = await marketProductImagesRepository.findByMarketProductId(product.id)
+        }
+
+        return products;
     },
 
     create: async (marketProduct, authHeader) => {
-        let result = await marketProductsRepository.create(marketProduct)
+        let result = await marketProductsRepository.create(marketProduct);
 
         marketProduct.images = marketProduct.images || [];
         marketProduct.images.forEach(async item => {
@@ -84,7 +89,21 @@ module.exports = {
         return result
     },
 
-    delete: async (id) => {
+    delete: async (id, authHeader) => {
+        let images = await marketProductImagesRepository.findByMarketProductId(id);
+        for (let image of images) {
+            // delete files on file server
+            let imageFileDeleteResult = await fileManagerHelper.delete('market', image.fileName, authHeader);
+            console.log(imageFileDeleteResult)
+        }
+
         return await marketProductsRepository.delete(id)
+    },
+
+    toggleStatus: async (id) => {
+        let statuses = ['ACTIVE', 'INACTIVE'];
+        let product = await marketProductsRepository.findOne(id);
+
+        return await marketProductsRepository.updateStatus(id, statuses[Math.abs(statuses.indexOf(product.status) - 1)]);
     }
 };

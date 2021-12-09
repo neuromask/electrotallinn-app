@@ -31,6 +31,38 @@ router.get('/:uin(\\d+)/marketProducts', async function(request, response) {
     response.send(result);
 });
 
+router.delete('/:uin(\\d+)/marketProducts/:marketProductId(\\d+)', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
+    if (+request.params.uin !== request.user.uin && request.user.role !== 'ADMIN') {
+        console.warn('Delete product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
+        return response.status(403).send("Not allowed");
+    }
+
+    let marketProduct = await marketProductsService.findOne(request.params.marketProductId);
+    if (marketProduct.userUin !== request.user.uin) {
+        console.warn('Delete product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
+        return response.status(403).send("Not allowed");
+    }
+
+    let result = await marketProductsService.delete(request.params.marketProductId, request.headers.authorization);
+    response.send(result);
+});
+
+router.put('/:uin(\\d+)/marketProducts/:marketProductId(\\d+)/status/toggle', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
+    if (+request.params.uin !== request.user.uin && request.user.role !== 'ADMIN') {
+        console.warn('Status toggle for product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
+        return response.status(403).send("Not allowed");
+    }
+
+    let marketProduct = await marketProductsService.findOne(request.params.marketProductId);
+    if (marketProduct.userUin !== request.user.uin) {
+        console.warn('Status toggle for product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
+        return response.status(403).send("Not allowed");
+    }
+
+    let result = await marketProductsService.toggleStatus(request.params.marketProductId)
+    response.send(result);
+});
+
 router.get('/image/:transportPhotoName', async function(request, response) {
     let image = await usersService.findTransportPhotoByName(request.params.transportPhotoName);
     response.end(image, 'binary');

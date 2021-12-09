@@ -36,16 +36,16 @@ module.exports = {
         return await db.query(sql, params);
     },
 
-    delete: async (id) => {
-        let sql = 'DELETE FROM locations WHERE id = ?';
-        let params = [id];
+    updateConfirmed: async (id, confirmed) => {
+        let sql = 'UPDATE locations SET confirmed = ? WHERE id = ?';
+        let params = [confirmed, id];
 
         return await db.query(sql, params);
     },
 
-    setConfirmed: async (id, confirmed) => {
-        let sql = 'UPDATE locations SET confirmed = ? WHERE id = ?';
-        let params = [confirmed, id];
+    delete: async (id) => {
+        let sql = 'DELETE FROM locations WHERE id = ?';
+        let params = [id];
 
         return await db.query(sql, params);
     },
