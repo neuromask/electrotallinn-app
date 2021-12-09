@@ -319,7 +319,7 @@ export default {
     },
     deleteProduct(productId) {
       this.$axios
-        .$delete(`this.$config.baseUrl + '/users/${this.$route.params.id}/marketProducts${productId}`)
+        .$delete(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts/${productId}`)
         .then(() => {
             this.$toast.success('Success');
             this.requests();
