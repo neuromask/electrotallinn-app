@@ -36,6 +36,51 @@
         <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
       </b-card>
       <b-card>
+        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
+            <b-table
+                class="rounded m-0"
+                borderless
+                striped
+                table-variant="light"
+                sticky-header
+                :items="marketProducts"
+                :fields="marketProductFields"
+                :sort-by.sync="marketProductsSortBy"
+                :sort-desc.sync="marketProductsSortDesc"
+            >
+                <template #cell(name)="data">
+                  <nuxt-link :to="`/market/${data.item.id}`">
+                    <h4>{{ data.item.name }}</h4></nuxt-link>
+                    <p class="small">{{ data.item.description }}</p>
+                    <p class="small">Category: <strong>{{ data.item.category }}</strong></p>
+                    <p class="small">Price: <strong>{{ data.item.price }}€</strong></p>
+                  
+                </template>
+                <template #cell(actions)="data" v-if="$user.uin === user.uin">
+                    <div class="d-inline-block my-1">
+                        <b-button-group size="sm">
+                            <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                                <b-icon icon="pencil-fill" variant="white"/>
+                            </b-button>
+                            <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
+                                <b-icon icon="trash-fill" variant="white"/>
+                            </b-button>
+                        </b-button-group>
+                    </div>
+
+                    <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+
+                    <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                        Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
+                        <template #modal-footer="{ cancel, hide }">
+                            <b-button variant="primary" size="sm" @click="deleteProduct(data.item.id), hide()">OK</b-button>
+                            <b-button size="sm" @click="cancel()">Cancel</b-button>
+                        </template>
+                    </b-modal>
+                </template>
+            </b-table>
+      </b-card>
+      <b-card>
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
             <b-badge variant="warning" class="text-white">Map</b-badge> 
@@ -53,7 +98,7 @@
           :fields="fieldsLoc"
         >
           <template #cell(title)="data">
-            <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p>
+            <h4>{{ data.item.title }}</h4><p class="small">{{ data.item.description }}</p>
           </template>
           <template #cell(type)="data">
             <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
@@ -72,45 +117,9 @@
           </template>
         </b-table>
       </b-card>
-      <b-card>
-            <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
-            <b-table
-                class="bg-info"
-                borderless
-                striped
-                hover
-                :items="marketProducts"
-                :fields="marketProductFields"
-                :sort-by.sync="marketProductsSortBy"
-                :sort-desc.sync="marketProductsSortDesc"
-            >
-                <template #cell(actions)="data">
-                    <div class="d-inline-block my-1">
-                        <b-button-group size="sm">
-                            <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
-                                <b-icon icon="pencil-fill" variant="white"/>
-                            </b-button>
-                            <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
-                                <b-icon icon="trash-fill" variant="white"/>
-                            </b-button>
-                        </b-button-group>
-                    </div>
-
-                    <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
-
-                    <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
-                        Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
-                        <template #modal-footer="{ cancel, hide }">
-                            <b-button variant="primary" size="sm" @click="deleteLoc(data.item.id), hide()">OK</b-button>
-                            <b-button size="sm" @click="cancel()">Cancel</b-button>
-                        </template>
-                    </b-modal>
-                </template>
-            </b-table>
-      </b-card>
-      <b-card>
+      <!--<b-card>
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
-      </b-card>
+      </b-card>-->
     </b-card-group>
 
     <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
@@ -238,9 +247,7 @@ export default {
 
       marketProducts: [],
       marketProductFields: [
-          { key: 'id', sortable: true, label: 'Type' },
-          { key: 'name', sortable: true, label: 'Name' },
-          { key: 'price', sortable: true, label: 'Price' },
+          { key: 'name', sortable: true, label: 'Product' },
           { key: 'actions', sortable: false, label: '' }
       ],
       marketProductsSortBy: 'id',
@@ -309,6 +316,15 @@ export default {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
         });
+    },
+    deleteProduct(productId) {
+      this.$axios
+        .$delete(`this.$config.baseUrl + '/users/${this.$route.params.id}/marketProducts${productId}`)
+        .then(() => {
+            this.$toast.success('Success');
+            this.requests();
+            console.log(productId + " deleted");
+        })
     },
     clearImage() {
       if (this.hasImage) {

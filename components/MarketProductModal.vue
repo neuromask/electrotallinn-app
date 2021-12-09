@@ -34,11 +34,13 @@
                         <div class="d-flex mb-3">
                             <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Select or drag photo" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
                         </div>
-                        <div class="col-sm-4 mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
-                            <b-button size="sm" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
-                            <b-img v-if="image.fileB64" class="image" thumbnail :src="image.fileB64"/>
-                            <b-img v-if="image.fileName" class="image" thumbnail :src="`${$config.baseFileUrl}/market/${image.fileName}`"/>
-                        </div>
+                        <b-row>
+                            <b-col cols="4" class="mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
+                                <b-button size="sm" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
+                                <b-img v-if="image.fileB64" class="image" thumbnail :src="image.fileB64"/>
+                                <b-img v-if="image.fileName" class="image" thumbnail :src="`${$config.baseFileUrl}/market/${image.fileName}`"/>
+                            </b-col>
+                        </b-row>
                     </b-form-group>
                 </b-card>
             </b-card-group>
@@ -158,7 +160,7 @@
     }
     .image-delete,
     .btn-close {
-        top:0; right:0;
+        top:0; right:15px;
     }
     @media (min-width: 576px) {
         .card-columns {
