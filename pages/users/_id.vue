@@ -322,7 +322,7 @@ export default {
         .$delete(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts/${productId}`)
         .then(() => {
             this.$toast.success('Success');
-            this.requests();
+            this.findMarketProducts();
             console.log(productId + " deleted");
         })
     },
