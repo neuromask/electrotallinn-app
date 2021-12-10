@@ -129,7 +129,7 @@ export default {
                       +"<h4>" + location.title + "</h4>"
                       +"<p>" + (location.description || '') + "</p>"
                       +"<div class='socket'>"
-                        +"<small>Added by: " + (location.userFirstName || '') +" "+ (dateCreated || '') + "</small>"
+                        +"<small>Added by: " + (location.userFirstName || '') +" | Date: "+ (dateCreated || '') + "</small>"
                         +"<button class='report' onclick='handleReport("+location.id+")'>Report</button>"
                       +"</div>"
                     +"</div>"

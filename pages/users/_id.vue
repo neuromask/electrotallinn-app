@@ -27,7 +27,7 @@
             <b-badge variant="warning" class="text-white">Profile</b-badge> 
             <span>Information</span>
           </span>
-          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon variant="primary" icon="pencil-square" /></a>
+          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
         </h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light">Name: <strong>{{ user.firstName }}</strong></b-list-group-item>
@@ -45,11 +45,11 @@
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
             <b-badge variant="warning" class="text-white">Market</b-badge> 
-            <span>Items</span>
+            <span>Items<sup><b-badge class="text-white ml-2">{{ user.marketProductsCount }}</b-badge></sup></span>
           </span>
           <span>
-            <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon variant="primary" icon="plus-square" /></a>
-            <b-badge class="text-white ml-1">{{ user.marketProductsCount }}</b-badge>
+            <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
+            
           </span>
         </h3>
           <b-table
@@ -65,13 +65,17 @@
               :sort-desc.sync="marketProductsSortDesc"
           >
               <template #cell(imageName)="data">
-                <b-img class="productImage" center rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0]}`"></b-img>
+                <nuxt-link :to="`/market/${data.item.id}`">
+                  <b-img v-if="data.item.images[0]" class="productImage" center rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`"></b-img>
+                  <b-img v-else :src="require('@/assets/img/no-image.png')" class="productImage" center rounded></b-img>
+                </nuxt-link>
               </template>
               <template #cell(name)="data">
                 <nuxt-link :to="`/market/${data.item.id}`">
-                  <h4>{{ data.item.name }}</h4></nuxt-link>
+                  <h4>{{ data.item.name }}</h4>
+                </nuxt-link>
                   <p class="small">{{ data.item.description }}</p>
-                  <p class="small">Category: <strong>{{ data.item.category }}</strong> | <strong>{{ data.item.price }}€</strong></p>
+                  <p class="small">Category: <strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
               </template>
               <template #cell(actions)="data" v-if="$user.uin === user.uin">
                   <div class="d-inline-block my-1">
@@ -104,9 +108,8 @@
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
             <b-badge variant="warning" class="text-white">Map</b-badge> 
-            <span>Locations</span>
+            <span>Locations<sup><b-badge class="text-white ml-2">{{ user.locationsCount }}</b-badge></sup></span>
           </span>
-          <b-badge class="text-white">{{ user.locationsCount }}</b-badge>
         </h3>
         <b-table
           class="rounded m-0"
@@ -273,7 +276,13 @@ export default {
       ],
       marketProductsSortBy: 'id',
       marketProductsSortDesc: true,
-
+      catOptions: [
+          { text: 'Equipment', value: 'EQUIPMENT' },
+          { text: 'Transport', value: 'TRANSPORT' },
+          { text: 'Spare parts', value: 'SPARE_PARTS' },
+          { text: 'Accessories', value: 'ACCESSORIES' },
+          { text: 'Other', value: 'OTHER' }
+      ],
       languageOptions: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
@@ -332,6 +341,9 @@ export default {
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
         this.listFull = response;
       });
+    },
+    getCat(productCat) {
+      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     },
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
@@ -421,7 +433,7 @@ export default {
     width: 60px;
 }
 .productList {
-    max-height: 600px;
+    max-height: 512px;
 }
 .notOwner {
 
