@@ -37,7 +37,7 @@
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
                   <p class="m-0">Market</p>
-                  <b-badge>0</b-badge>
+                  <b-badge>{{ user.marketProductsCount }}</b-badge>
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
                   <p class="m-0">Locations</p>

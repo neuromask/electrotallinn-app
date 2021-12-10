@@ -1,44 +1,29 @@
 <template>
   <section>
-    <h2 class="m-0">How to <strong>add locations</strong> to the map.</h2>
-    <h5 class="mb-5">Follow easy three steps to start</h5>
-    <b-card-group deck>
-      <b-card>
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">1</b-badge> Telegram App</h3>
-          <hr/>
-          <h5 class="mb-4">Install <strong>Telegram</strong> app on your phone.</h5> 
-          <b-card-img :src="require('@/assets/img/step-1.jpg')"></b-card-img>
-          <template #footer>
-            <div class="text-center">
-              <b-button href="https://telegram.org/" variant="primary">Get Telegram</b-button>
-            </div>
-          </template>
-      </b-card>
-
-      <b-card>
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">2</b-badge> Chat with Bot</h3>
-          <hr/>
-          <h5 class="mb-4">Start <strong>private chat</strong> with ElectroBot in Telegram.</h5>
-          <b-card-img :src="require('@/assets/img/step-2.jpg')"></b-card-img>
-          <template #footer>
-            <div class="text-center">
-              <b-button href="https://t.me/electrotallinnbot" variant="primary">Start chat</b-button>
-            </div>
-          </template>
-      </b-card>
-
-      <b-card>
-          <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">3</b-badge> Type command</h3>
-          <hr/>
-          <h5 class="mb-4">Type <strong>/add</strong> command to bot and follow instructions.</h5>
-          <b-card-img :src="require('@/assets/img/step-3.jpg')" bottom></b-card-img>
-          <template #footer>
-            <div class="text-center">
-              <b-button href="https://t.me/electrotallinnbot" right variant="primary">Start chat</b-button>
-            </div>
-          </template>
-      </b-card>
-    </b-card-group>
+    <h2 class="m-0">Bot <strong>help</strong></h2>
+    <h5 class="mb-4">Find out how to use bot, add points to map and products to market.</h5>
+    <b-row>
+      <b-col cols="12" lg="4" class="p-3 mb-3">
+        <b-card>
+          <h3 class="font-weight-bold">
+            <b-badge variant="warning" class="text-white">Bot</b-badge> Chat
+          </h3>
+          <hr />
+          <BotButton />
+          <h5 class="my-3">Start chat with bot using <strong>Telegram</strong> app on your phone.</h5>
+          <b-img rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
+        </b-card>
+      </b-col>
+      <b-col cols="12" lg="8" class="p-3 mb-3">
+        <b-card>
+          <h3 class="font-weight-bold">
+            <b-badge variant="warning" class="text-white">Bot</b-badge> Commands
+          </h3>
+          <hr />
+          <h5 class="my-3">Start chat with bot using <strong>Telegram</strong> app on your phone.</h5>
+        </b-card>
+      </b-col>
+    </b-row>
   </section>
 </template>
 
@@ -46,32 +31,20 @@
 export default {
   head() {
     return {
-      title: "Map Help"
+      title: "Map Help",
     };
   },
-  name: 'Map',
+  name: "Map",
   props: {},
   data() {
-    return {
-      BACKEND_BASE: 'https://etmap.nuforms.com',
-      bgImages: [
-        require("@/assets/img/pattern-icons.png"),
-        require("@/assets/img/top.jpg"),
-        require("@/assets/img/tallinn.svg"),
-        require("@/assets/img/mol.svg")
-      ],
-    }
+    return {};
   },
-  mounted () {
-  },
-  methods: {
-
-  }
-}
+  mounted() {},
+  methods: {},
+};
 // d-flex justify-content-center align-items-center
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

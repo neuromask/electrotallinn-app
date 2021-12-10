@@ -23,6 +23,6 @@ export default {};
 <style scoped>
 .main-container {
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
-  padding-bottom: 10rem!important;
+  padding-bottom: 5rem!important;
 }
 </style>

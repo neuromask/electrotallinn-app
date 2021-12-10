@@ -25,10 +25,9 @@
         <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Contact</b-badge> Seller</h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.userUin">User UIN: <strong>{{ product.userUin }}</strong></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
         </b-list-group>
-        <b-alert class="mt-3 mb-0" show variant="warning">
+        <b-alert v-if="!product.username" class="mt-3 mb-0" show variant="warning">
           <p class="mb-0">Join <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a> Telegram channel and find user by name: <strong>{{ product.userFirstName }}</strong></p>
         </b-alert>
       </b-card>

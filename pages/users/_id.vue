@@ -25,7 +25,7 @@
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
             <b-badge variant="warning" class="text-white">Profile</b-badge> 
-            <span>Information</span>
+            <span>Info</span>
           </span>
           <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
         </h3>
@@ -49,7 +49,6 @@
           </span>
           <span>
             <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
-            
           </span>
         </h3>
           <b-table
@@ -58,7 +57,6 @@
               striped
               table-variant="light"
               sticky-header
-              :class="$user.uin === user.uin ? 'notOwner' : 'owner'"
               :items="marketProducts"
               :fields="marketProductFields"
               :sort-by.sync="marketProductsSortBy"
@@ -75,7 +73,7 @@
                   <h4>{{ data.item.name }}</h4>
                 </nuxt-link>
                   <p class="small">{{ data.item.description }}</p>
-                  <p class="small">Category: <strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
+                  <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
               </template>
               <template #cell(actions)="data" v-if="$user.uin === user.uin">
                   <div class="d-inline-block my-1">
@@ -83,23 +81,21 @@
                           <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
                               <b-icon icon="pencil-fill" variant="white"/>
                           </b-button>
-                          <b-button :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
-                              <b-icon icon="check-circle-fill" variant="white"/>
-                          </b-button>
+
                           <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
                               <b-icon icon="trash-fill" variant="white"/>
                           </b-button>
                       </b-button-group>
                   </div>
-
                   <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
-
                   <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
-                      Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
-                      <template #modal-footer="{ cancel, hide }">
-                          <b-button variant="primary" size="sm" @click="deleteProduct(data.item.id), hide()">OK</b-button>
-                          <b-button size="sm" @click="cancel()">Cancel</b-button>
-                      </template>
+                    <b-alert class="mb-0" show variant="danger">
+                      <h5>Are you sure you want to delete?</h5><strong>Product:</strong> {{data.item.name}}
+                    </b-alert>
+                    <template #modal-footer="{ cancel, hide }">
+                        <b-button variant="danger" size="sm" @click="deleteProduct(data.item.id), hide()">Delete</b-button>
+                        <b-button size="sm" @click="cancel()">Cancel</b-button>
+                    </template>
                   </b-modal>
               </template>
           </b-table>
@@ -272,7 +268,7 @@ export default {
       marketProductFields: [
           { key: 'imageName', sortable: false, label: 'Image' },
           { key: 'name', sortable: true, label: 'Product' },
-          { key: 'actions', sortable: false, label: '', thClass: 'notOwner', tdClass: 'notOwner' }
+          { key: 'actions', sortable: false, label: '' }
       ],
       marketProductsSortBy: 'id',
       marketProductsSortDesc: true,
@@ -335,6 +331,13 @@ export default {
           title: this.user.transportModel,
           src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
         }]
+        // clear products action column
+        console.log(this.$user.uin, this.user.uin)
+        if (this.$user.uin != this.user.uin) {
+          this.marketProductFields[2] = {}
+          } else {
+            this.marketProductFields[2] = { key: 'actions', sortable: false, label: '' }
+          }
       });
     },
     getLocList() {
@@ -434,8 +437,5 @@ export default {
 }
 .productList {
     max-height: 512px;
-}
-.notOwner {
-
 }
 </style>

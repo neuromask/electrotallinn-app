@@ -43,6 +43,13 @@
                         </b-row>
                     </b-form-group>
                 </b-card>
+
+                <b-card v-if="!$user.uin">
+                    <h5 class="mb-3">Warning!</h5>
+                    <b-alert class="mt-3 mb-0" show variant="warning">
+                        <p class="mb-0">Please add <strong>username</strong> in your Telegram settings, so buyer can directly contact you.</p>
+                    </b-alert>
+                </b-card>
             </b-card-group>
         </b-form>
     </b-modal>
@@ -98,6 +105,7 @@
             getProduct () {
                 this.$axios.$get(`${this.$config.baseUrl}/marketProducts/${this.id}`).then((response) => {
                     this.productEdit = response;
+                    console.log(response)
                 });
             },
             handleImageDelete(idx) {
