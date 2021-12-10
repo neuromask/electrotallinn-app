@@ -1,0 +1,100 @@
+<template>
+    <section id="admin">
+        <h2 class="mt-4">Admin area</h2>
+        <hr/>
+        <b-row>
+            <b-col cols="12">
+                <h3>
+                    <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
+                    Market products
+                </h3>
+                <b-table
+                    class="bg-info"
+                    borderless
+                    striped
+                    hover
+                    :items="marketProducts"
+                    :fields="marketProductsFields"
+                    :sort-by="marketProductsSortBy"
+                    :sort-desc="marketProductsSortDesc"
+                >
+                    <template #cell(id)="data">
+                        <h5 class="text-center">{{data.item.id}}</h5>
+                        <b-img :src="$locationIcons[data.item.type]" center fluid class="table-icon"/>
+                    </template>
+                    <template #cell(name)="data">
+                        <p><strong>{{ data.item.name }}</strong></p>
+                        <p>{{ data.item.description }}</p>
+                        <small>Added by: {{ data.item.userFirstName }}</small>
+                    </template>
+                    <template #cell(controls)="data">
+                        <b-button-group size="sm">
+                            <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                                <b-icon icon="pencil-fill" variant="white"/>
+                            </b-button>
+                            <b-button :class="data.item.status == 'INACTIVE' ? 'btn-warning' : 'btn-success'" @click="statusLoc(data.item.id)">
+                                <b-icon icon="check-circle-fill" variant="white"/>
+                            </b-button>
+                            <b-button variant="danger" v-b-modal="'delete-modal-'+data.item.id">
+                                <b-icon icon="trash-fill" variant="white"/>
+                            </b-button>
+                        </b-button-group>
+
+                        <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+
+                        <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                            Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
+                            <template #modal-footer="{ cancel, hide }">
+                                <b-button variant="primary" size="sm" @click="deleteProduct(data.item.id), hide()">OK</b-button>
+                                <b-button size="sm" @click="cancel()">Cancel</b-button>
+                            </template>
+                        </b-modal>
+                    </template>
+                </b-table>
+            </b-col>
+        </b-row>
+    </section>
+</template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        props: {},
+        data() {
+            return {
+                marketProducts: [],
+                marketProductsFields: [
+                    { key: 'id', sortable: true, label: 'ID' },
+                    { key: 'name', sortable: true, label: 'Name' },
+                    { key: 'category', sortable: true, label: 'Category' },
+                    { key: 'controls', sortable: false, label: '' }
+                ],
+
+                marketProductsSortBy: 'id',
+                marketProductsSortDesc: true
+            }
+        },
+        mounted() {
+            this.findMarketProducts();
+        },
+        methods: {
+            findMarketProducts() {
+                this.$axios
+                    .$get(`${this.$config.baseUrl}/admin/marketProducts`)
+                    .then(response => {
+                        this.marketProducts = response;
+                    });
+            },
+            deleteProduct(productId) {
+                this.$axios
+                    .$delete(`${this.$config.baseUrl}/admin/marketProducts/${productId}`)
+                    .then(() => {
+                        this.$toast.success('Success');
+                        this.findMarketProducts();
+                        console.log(productId + " deleted");
+                    })
+            }
+        }
+    }
+</script>

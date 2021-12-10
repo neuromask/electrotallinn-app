@@ -81,9 +81,19 @@ router.delete('/users/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, u
 
 // ### MARKET PRODUCTS ###
 
-router.get('/marketProducts/unconfirmed', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let locations = await marketProductsService.findAll({ status: 'NEW' });
-    response.send(locations);
+router.get('/marketProducts', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let marketProducts = await marketProductsService.findAll();
+    response.send(marketProducts);
+});
+
+router.delete('/marketProducts/:marketProductId(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
+    let result = await marketProductsService.delete(request.params.marketProductId, request.headers.authorization);
+    response.send(result);
+});
+
+router.put('/marketProducts/:marketProductId(\\d+)/status/toggle', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
+    let result = await marketProductsService.toggleStatus(request.params.marketProductId)
+    response.send(result);
 });
 
 
