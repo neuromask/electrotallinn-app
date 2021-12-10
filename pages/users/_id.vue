@@ -49,7 +49,7 @@
           </span>
           <span>
             <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon variant="primary" icon="plus-square" /></a>
-            <b-badge class="text-white ml-1">{{ user.productsCount }}</b-badge>
+            <b-badge class="text-white ml-1">{{ user.marketProductsCount }}</b-badge>
           </span>
         </h3>
           <b-table
@@ -65,7 +65,7 @@
               :sort-desc.sync="marketProductsSortDesc"
           >
               <template #cell(imageName)="data">
-                <b-img class="productImage" @click="index = 0" center rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+                <b-img class="productImage" center rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0]}`"></b-img>
               </template>
               <template #cell(name)="data">
                 <nuxt-link :to="`/market/${data.item.id}`">
@@ -336,6 +336,7 @@ export default {
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
+            console.log(response)
         });
     },
     deleteProduct(productId) {
@@ -423,6 +424,6 @@ export default {
     max-height: 600px;
 }
 .notOwner {
-  display: none !important;
+
 }
 </style>
