@@ -107,6 +107,7 @@ export default {
       this.$axios
         .get(baseUrl + '/locations')
         .then((response) => {
+          console.log(response);
           for (const location of response.data) {
             const markerIcon = require(`~/assets/img/icon/${this.locationIcons[location.type]}.svg`)
             const marker = new window.google.maps.Marker({
@@ -119,6 +120,7 @@ export default {
 
             window.google.maps.event.addListener(marker, 'click', (function (marker) {
               return function () {
+                let dateCreated = new Date(location.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' });
                 infowindow.setContent(
                   "<div class='infocontent'>"
                   + (location.imageName ? "<div class='locImageBlur' style='background-image: url(" + baseUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
@@ -127,7 +129,7 @@ export default {
                       +"<h4>" + location.title + "</h4>"
                       +"<p>" + (location.description || '') + "</p>"
                       +"<div class='socket'>"
-                        +"<small>Added by: " + (location.userFirstName || '') + "</small>"
+                        +"<small>Added by: " + (location.userFirstName || '') +" "+ (dateCreated || '') + "</small>"
                         +"<button class='report' onclick='handleReport("+location.id+")'>Report</button>"
                       +"</div>"
                     +"</div>"

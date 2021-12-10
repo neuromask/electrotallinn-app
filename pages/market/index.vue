@@ -1,5 +1,6 @@
 <template>
   <section ref="top">
+    <MarketProductModal @save="getProducts" />
     <b-sidebar id="sidebar-right" backdrop title="Market Menu" right shadow>
       <div class="px-3 py-2">
         <b-form-input class="mb-3" v-model="filter.searchText" @keyup="getProducts" placeholder="Search"></b-form-input>

@@ -9,7 +9,7 @@
           >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
             <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-            <b-img class="profile position-absolute" :src="user.photoUrl" rounded="circle" thumbnail></b-img>
+            <nuxt-link class="profile position-absolute" :to="`users/${user.uin}`"><b-img :src="user.photoUrl" rounded="circle" thumbnail></b-img></nuxt-link>
           </div>
           <div class="text-center mt-4">
               <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
