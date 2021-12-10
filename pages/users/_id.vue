@@ -39,7 +39,10 @@
         </b-list-group>
       </b-card>
       <b-card v-if="user.transportPhotoName">
+        <figure class="figure mb-0">
         <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+        <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
+        </figure>
       </b-card>
       <b-card>
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">

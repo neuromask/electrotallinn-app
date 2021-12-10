@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h2 class="m-0">How to <strong>add locations</strong> to the map.</h2>
-    <h5 class="mb-5">Follow easy three steps to start</h5>
+    <h2 class="m-0">Market<strong> help</strong></h2>
+    <h5 class="mb-5">Follow easy three steps to add product to the market</h5>
     <b-card-group deck>
       <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">1</b-badge> Telegram App</h3>
@@ -30,7 +30,7 @@
       <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">3</b-badge> Type command</h3>
           <hr/>
-          <h5 class="mb-4">Type <strong>/add</strong> command to bot and follow instructions.</h5>
+          <h5 class="mb-4">Type <strong>/sell</strong> command to bot and follow instructions.</h5>
           <b-card-img :src="require('@/assets/img/step-3.jpg')" bottom></b-card-img>
           <template #footer>
             <div class="text-center">

@@ -33,7 +33,9 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>
           <b-list-group-item variant="primary" class="font-weight-bold" href="/admin" v-if="$user.role === 'ADMIN'"><b-icon icon="shield-lock-fill" />Admin</b-list-group-item>
         </b-list-group>
-
+        <div class="mb-3">
+          <BotButton />
+        </div>
         <div class="mb-3">
           <SocialLinks />
         </div>

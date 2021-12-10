@@ -45,7 +45,7 @@
             </div>
             <b-card-body>
                 <div class="mb-3">
-                    <nuxt-link v-if="product.name" :to="`market/${product.id}`"><h5 class="title mb-1 text-secondary font-weight-bold">{{ cutText(product.name, 25) }}</h5></nuxt-link>
+                    <nuxt-link v-if="product.name" :to="`market/${product.id}`"><h5 class="title mb-1 text-secondary font-weight-bold">{{ cutText(product.name, 22) }}</h5></nuxt-link>
                     <p class="text-muted d-block mb-0" v-if="product.description">{{ cutText(product.description, 35) }}</p>
                 </div>
 
