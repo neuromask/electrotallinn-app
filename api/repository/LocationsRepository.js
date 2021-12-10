@@ -8,14 +8,14 @@ module.exports = {
             where = where + (where ? ' AND ' : ' WHERE ') + `${key} = ${value}`;
         }
 
-        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, ((SELECT count(1) FROM reports WHERE location_id = l.id) > 0) AS hasReports FROM locations l' + where;
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created, ((SELECT count(1) FROM reports WHERE location_id = l.id) > 0) AS hasReports FROM locations l' + where;
 
         let result = await db.query(sql);
         return utils.convertPropsToCamelcase(result);
     },
 
     findOne: async (id) => {
-        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin FROM locations WHERE id = ?';
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created FROM locations WHERE id = ?';
         let params = [id];
 
         let result = await db.query(sql, params);
@@ -72,7 +72,7 @@ module.exports = {
     },
 
     findByUserUin: async (userUin) => {
-        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin FROM locations WHERE user_uin = ?';
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created FROM locations WHERE user_uin = ?';
         let params = [userUin];
 
         let result = await db.query(sql, params);
