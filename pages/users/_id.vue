@@ -1,5 +1,12 @@
 <template>
   <section id="user-profile">
+    <MarketProductModal @save="findMarketProducts" />
+    <CoolLightBox 
+      :items="items" 
+      :index="index"
+      :effect="'fade'"
+      @close="index = null">
+    </CoolLightBox>
     <div class="upper my-3 position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
@@ -13,16 +20,15 @@
         <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
       </a>
     </div>
-    <CoolLightBox 
-      :items="items" 
-      :index="index"
-      :effect="'fade'"
-      @close="index = null">
-    </CoolLightBox>
-
     <b-card-group columns>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Profile</b-badge> Information</h3>
+        <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
+          <span>
+            <b-badge variant="warning" class="text-white">Profile</b-badge> 
+            <span>Information</span>
+          </span>
+          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon variant="primary" icon="pencil-square" /></a>
+        </h3>
         <b-list-group class="text-left">
           <b-list-group-item variant="light">Name: <strong>{{ user.firstName }}</strong></b-list-group-item>
           <b-list-group-item variant="light" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
@@ -36,49 +42,63 @@
         <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Market</b-badge> Items</h3>
-            <b-table
-                class="rounded m-0"
-                borderless
-                striped
-                table-variant="light"
-                sticky-header
-                :items="marketProducts"
-                :fields="marketProductFields"
-                :sort-by.sync="marketProductsSortBy"
-                :sort-desc.sync="marketProductsSortDesc"
-            >
-                <template #cell(name)="data">
-                  <nuxt-link :to="`/market/${data.item.id}`">
-                    <h4>{{ data.item.name }}</h4></nuxt-link>
-                    <p class="small">{{ data.item.description }}</p>
-                    <p class="small">Category: <strong>{{ data.item.category }}</strong></p>
-                    <p class="small">Price: <strong>{{ data.item.price }}€</strong></p>
-                  
-                </template>
-                <template #cell(actions)="data" v-if="$user.uin === user.uin">
-                    <div class="d-inline-block my-1">
-                        <b-button-group size="sm">
-                            <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
-                                <b-icon icon="pencil-fill" variant="white"/>
-                            </b-button>
-                            <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
-                                <b-icon icon="trash-fill" variant="white"/>
-                            </b-button>
-                        </b-button-group>
-                    </div>
+        <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
+          <span>
+            <b-badge variant="warning" class="text-white">Market</b-badge> 
+            <span>Items</span>
+          </span>
+          <span>
+            <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon variant="primary" icon="plus-square" /></a>
+            <b-badge class="text-white ml-1">{{ user.marketProductsCount }}</b-badge>
+          </span>
+        </h3>
+          <b-table
+              class="rounded m-0 productList"
+              borderless
+              striped
+              table-variant="light"
+              sticky-header
+              :class="$user.uin === user.uin ? 'notOwner' : 'owner'"
+              :items="marketProducts"
+              :fields="marketProductFields"
+              :sort-by.sync="marketProductsSortBy"
+              :sort-desc.sync="marketProductsSortDesc"
+          >
+              <template #cell(imageName)="data">
+                <b-img class="productImage" center rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0]}`"></b-img>
+              </template>
+              <template #cell(name)="data">
+                <nuxt-link :to="`/market/${data.item.id}`">
+                  <h4>{{ data.item.name }}</h4></nuxt-link>
+                  <p class="small">{{ data.item.description }}</p>
+                  <p class="small">Category: <strong>{{ data.item.category }}</strong> | <strong>{{ data.item.price }}€</strong></p>
+              </template>
+              <template #cell(actions)="data" v-if="$user.uin === user.uin">
+                  <div class="d-inline-block my-1">
+                      <b-button-group size="sm" vertical>
+                          <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                              <b-icon icon="pencil-fill" variant="white"/>
+                          </b-button>
+                          <b-button :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
+                              <b-icon icon="check-circle-fill" variant="white"/>
+                          </b-button>
+                          <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
+                              <b-icon icon="trash-fill" variant="white"/>
+                          </b-button>
+                      </b-button-group>
+                  </div>
 
-                    <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+                  <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
 
-                    <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
-                        Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
-                        <template #modal-footer="{ cancel, hide }">
-                            <b-button variant="primary" size="sm" @click="deleteProduct(data.item.id), hide()">OK</b-button>
-                            <b-button size="sm" @click="cancel()">Cancel</b-button>
-                        </template>
-                    </b-modal>
-                </template>
-            </b-table>
+                  <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                      Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
+                      <template #modal-footer="{ cancel, hide }">
+                          <b-button variant="primary" size="sm" @click="deleteProduct(data.item.id), hide()">OK</b-button>
+                          <b-button size="sm" @click="cancel()">Cancel</b-button>
+                      </template>
+                  </b-modal>
+              </template>
+          </b-table>
       </b-card>
       <b-card>
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
@@ -247,8 +267,9 @@ export default {
 
       marketProducts: [],
       marketProductFields: [
+          { key: 'imageName', sortable: false, label: 'Image' },
           { key: 'name', sortable: true, label: 'Product' },
-          { key: 'actions', sortable: false, label: '' }
+          { key: 'actions', sortable: false, label: '', thClass: 'notOwner', tdClass: 'notOwner' }
       ],
       marketProductsSortBy: 'id',
       marketProductsSortDesc: true,
@@ -297,7 +318,7 @@ export default {
   },
   methods: {
     getUser () {
-      console.log(this.$nuxt.$route.path)
+      //console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
@@ -315,6 +336,7 @@ export default {
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
+            console.log(response)
         });
     },
     deleteProduct(productId) {
@@ -324,6 +346,15 @@ export default {
             this.$toast.success('Success');
             this.findMarketProducts();
             console.log(productId + " deleted");
+        })
+    },
+    statusProduct(productId) {
+      this.$axios
+        .$put(`${this.$config.baseUrl}/users/${this.user.uin}/marketProducts/${productId}/satus/toggle`)
+        .then(() => {
+            this.$toast.success('Success');
+            this.requests();
+            console.log(locId + " approved");
         })
     },
     clearImage() {
@@ -381,5 +412,18 @@ export default {
 }
 .transportImage {
     cursor: pointer;
+    object-fit: cover;
+}
+.productImage {
+    cursor: pointer;
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+}
+.productList {
+    max-height: 600px;
+}
+.notOwner {
+
 }
 </style>

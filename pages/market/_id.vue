@@ -1,5 +1,6 @@
 <template>
   <section id="product-page">
+    <MarketProductModal />
     <CoolLightBox 
       :items="items" 
       :index="index"
