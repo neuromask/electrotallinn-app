@@ -11,7 +11,7 @@
             Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a>
           </p>
         </b-col>
-        <b-col cols="12" lg="4" class="my-1 d-flex justify-content-center align-items-center">
+        <b-col cols="12" lg="4" class="my-1">
           <BotButton />
         </b-col>
       </b-row>

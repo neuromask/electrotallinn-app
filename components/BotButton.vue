@@ -2,7 +2,7 @@
     <a href="https://t.me/electrotallinnbot" target="_blank">
       <div class="botAvatarCont mb-0 w-100 d-flex justify-content-center align-items-center bg-light p-2 text-dark rounded">
         <b-avatar variant="info" :src="require('@/assets/img/bot-avatar.svg')"></b-avatar>
-        <p class="mb-0 ml-2"><strong class="text-dark">ElectroTallinn Bot</strong> Chat</p>
+        <p class="mb-0 ml-2"><strong class="text-dark">ElectroBot</strong> Chat</p>
         </div>
     </a>
 </template>

@@ -9,7 +9,9 @@
           <hr />
           <BotButton />
           <h5 class="my-3">Start chat with bot using <strong>Telegram</strong> app on your phone.</h5>
-          <b-img rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
+          <a href="https://t.me/electrotallinnbot" target="_blank">
+            <b-img rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
+          </a>
         </b-card>
       </b-col>
       <b-col cols="12" lg="8" class="p-3">
@@ -19,7 +21,7 @@
           </h3>
           <hr />
           <BotButton />
-          <h5 class="my-3">Use <strong>ElectroBot</strong> to add points to the map and product to the market.</h5>
+          <h5 class="my-3">Send commands to <strong>ElectroBot</strong> and add points to the map and product to the market.</h5>
           <b-list-group>
             <b-list-group-item class="text-dark" variant="light"><kbd><strong>/sell</strong></kbd> - Sell product on market</b-list-group-item>
             <b-list-group-item class="text-dark" variant="light"><kbd><strong>/add</strong></kbd> - Add point to map</b-list-group-item>
