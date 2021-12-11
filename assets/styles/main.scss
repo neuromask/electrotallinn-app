@@ -127,6 +127,9 @@ hr:after {
 .navText {
   display: block;
 }
+.navWrap .navText {
+  display: none;
+}
 .navbar-expand .main-nav.navbar-nav .nav-link {
   padding-right: 1rem;
   padding-left: 1rem;

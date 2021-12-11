@@ -30,7 +30,7 @@
       <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">3</b-badge> Type command</h3>
           <hr/>
-          <h5 class="mb-4">Type <strong>/add</strong> command to bot and follow instructions.</h5>
+          <h5 class="mb-4">Type <kbd><strong>/add</strong></kbd> command to bot and follow instructions.</h5>
           <b-card-img :src="require('@/assets/img/step-3.jpg')" bottom></b-card-img>
           <template #footer>
             <div class="text-center">

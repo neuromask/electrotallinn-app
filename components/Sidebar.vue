@@ -44,9 +44,9 @@
       </div>
     </b-sidebar>
 
-    <div id="badge">
+    <!--<div id="badge">
       <a v-b-toggle.sidebar-variant><b-icon-list /></a>
-    </div>
+    </div>-->
   </div>
 </template>
 
