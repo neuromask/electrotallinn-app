@@ -6,7 +6,7 @@
             <b-nav-item to="/market" nuxt><b-icon icon="basket2-fill" /><span class="navText">Market</span></b-nav-item>
             <b-nav-item to="/map" nuxt><b-icon icon="geo-alt-fill" /><span class="navText">Map</span></b-nav-item>
             <b-nav-item to="/users" nuxt><b-icon icon="person-fill" /><span class="navText">Users</span></b-nav-item>
-            <b-nav-item to="/help" nuxt><b-icon icon="info-circle-fill" /><span class="navText">Help</span></b-nav-item>
+            <!--<b-nav-item to="/help" nuxt><b-icon icon="info-circle-fill" /><span class="navText">Help</span></b-nav-item>-->
             <!--<b-nav-item v-if="$user.role === 'ADMIN'" to="/admin" nuxt><b-icon icon="shield-lock-fill" /><span class="navText">Admin</span></b-nav-item>-->
         </b-navbar-nav>
     </b-navbar>
