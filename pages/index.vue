@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-row>
+    <b-row class="mt-3">
       <b-col cols="12" lg="4" class="p-3">
         <b-card>
           <h3 class="font-weight-bold">

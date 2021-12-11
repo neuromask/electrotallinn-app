@@ -127,9 +127,18 @@ hr:after {
 .navText {
   display: block;
 }
+.sideMenu {
+  left: .5rem;
+  top: .1rem;
+  font-size: 3rem;
+}
 .navWrap .navText {
   display: none;
 }
+.navWrap .sideMenu {
+  font-size: 2rem;
+}
+
 .navbar-expand .main-nav.navbar-nav .nav-link {
   padding-right: 1rem;
   padding-left: 1rem;
@@ -144,6 +153,9 @@ hr:after {
 @include media-breakpoint-down(md) {
   .navText {
     display: none;
+  }
+  .sideMenu {
+    font-size: 2rem;
   }
   .container {
     padding-left: 1rem!important;

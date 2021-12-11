@@ -36,8 +36,12 @@ $navbar-dark-color: rgba($secondary, .7);
 $navbar-dark-hover-color: rgba($secondary, 1);
 $navbar-dark-active-color: rgba($secondary, 1);
 
-
+/*
 .btn-primary:not(:active).focus {
     background-color: $primary;
     border-color: $primary;
+}
+*/
+.nuxt-link-active {
+    color: $secondary!important;
 }

@@ -84,7 +84,9 @@
                           <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
                               <b-icon icon="pencil-fill" variant="white"/>
                           </b-button>
-
+                          <b-button :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
+                              <b-icon icon="check-circle-fill" variant="white"/>
+                          </b-button>
                           <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
                               <b-icon icon="trash-fill" variant="white"/>
                           </b-button>
