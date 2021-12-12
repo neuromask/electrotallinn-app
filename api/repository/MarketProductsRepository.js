@@ -35,7 +35,7 @@ module.exports = {
             'FROM market_products p ' +
             'JOIN users u ON u.uin = p.user_uin ' +
             where +
-            'ORDER BY id ASC';
+            'ORDER BY id DESC';
         let params = filterParams;
 
         return await db.query(sql, params);
@@ -78,7 +78,7 @@ module.exports = {
     },
 
     findByUserUin: async (userUin) => {
-        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price, p.status, p.category FROM market_products p WHERE user_uin = ?';
+        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price, p.status, p.category FROM market_products p WHERE user_uin = ? ORDER BY id DESC';
         let params = [userUin];
 
         let result = await db.query(sql, params);

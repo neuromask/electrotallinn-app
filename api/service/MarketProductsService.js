@@ -1,6 +1,7 @@
 const marketProductsRepository = require("../repository/MarketProductsRepository.js");
 const marketProductImagesRepository = require("../repository/MarketProductImagesRepository.js");
 const utils = require("../utils/Utils.js");
+const validationUtils = require("../utils/ValidationUtils.js");
 const fileManagerHelper = require("../utils/FileManagerHelper.js");
 
 module.exports = {
@@ -30,6 +31,8 @@ module.exports = {
     },
 
     create: async (marketProduct, authHeader) => {
+        validationUtils.validateMarketProduct(marketProduct);
+
         let result = await marketProductsRepository.create(marketProduct);
 
         marketProduct.images = marketProduct.images || [];
@@ -51,6 +54,8 @@ module.exports = {
     },
 
     update: async (id, marketProduct, authHeader) => {
+        validationUtils.validateMarketProduct(marketProduct);
+
         let result = await marketProductsRepository.update(id, marketProduct);
 
         marketProduct.images = marketProduct.images || [];

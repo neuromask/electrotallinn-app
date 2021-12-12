@@ -8,8 +8,6 @@ export default function ({$axios, redirect, app}) {
     });
 
     $axios.onError(error => {
-        if (error.response.data.error && error.response.data.error.message) {
-            app.$toast.error(`Error: ${error.response.data.error ? error.response.data.error.message : error.response.data}`);
-        }
+        app.$toast.error(`Error: ${error.response.data.error ? error.response.data.error : error.response.data}`);
     })
 }
