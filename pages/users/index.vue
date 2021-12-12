@@ -9,7 +9,7 @@
           >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
             <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-            <nuxt-link class="profile position-absolute" :to="`users/${user.uin}`"><b-img :src="user.photoUrl" rounded="circle" thumbnail></b-img></nuxt-link>
+            <b-avatar :to="`users/${user.uin}`" class="profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>
           </div>
           <div class="text-center mt-4">
               <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
@@ -102,7 +102,15 @@ export default {
 }
 
 .profile {
-    width: 10rem;
     bottom:-1rem;
+    padding: 0.25rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+.profile:hover {
+    bottom:-1rem;
+    padding: 0.25rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
 }
 </style>

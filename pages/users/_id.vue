@@ -69,8 +69,8 @@
               <template #cell(name)="data">
                 <div class="w-100 d-flex justify-content-between align-items-center">
                   <div>
-                    <b-avatar v-if="data.item.images[0]" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
-                    <b-avatar v-else rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
+                    <b-avatar v-if="data.item.images[0]" :to="`/market/${data.item.id}`" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
+                    <b-avatar v-else :to="`/market/${data.item.id}`" rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
                   </div>
                   <div class="ml-3 w-100">
                     <nuxt-link :to="`/market/${data.item.id}`">
