@@ -1,18 +1,29 @@
+import getSiteMeta from "./utils/getSiteMeta";
+const meta = getSiteMeta();
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ElectroTallinn',
+    htmlAttrs: {
+      lang: "en-GB",
+    },
+    title: 'ElectroTallinn App',
     meta: [
+      ...meta,
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' },
+      { hid: "og:image", property: "og:image", content: "/et-app.jpg" },
+      { property: "og:image:width", content: "1080" },
+      { property: "og:image:height", content: "1080" },
+      { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      { hid: "canonical", rel: "canonical", href: "https://app.electrotallinn.ee", },
     ]
   },
 
