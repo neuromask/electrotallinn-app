@@ -1,16 +1,7 @@
 <template>
   <section ref="top">
     <MarketProductModal @save="getProducts" />
-    <b-sidebar id="sidebar-right" backdrop title="Market Menu" right shadow>
-      <div class="px-3 py-2">
-        <b-form-group class="mb-3" label="Category">
-        </b-form-group>
-        <hr />
-         <b-button variant="outline-secondary" @click="resetFilters()">Reset</b-button>
-      </div>
-    </b-sidebar>
-
-    <b-collapse class="mb-3" id="menuOptions">
+    <div class="mb-3" id="menuOptions">
       <!--<div>
         <input type="text" v-model="filterText" placeholder="no filter">
         <button :class="[filterOption==='filterByText' ? 'is-checked' : '']" @click="filter('filterByText')">Filter</button>
@@ -21,12 +12,13 @@
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isSpare' ? 'is-checked' : '']" @click="filter('isSpare')">Spare Parts</b-button>
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isAcc' ? 'is-checked' : '']" @click="filter('isAcc')">Accessories</b-button>
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isOther' ? 'is-checked' : '']" @click="filter('isOther')">Other</b-button>
-    </b-collapse>
+    </div>
     <!--<div id="sort">
       <button :class="[sortOption==='name' ? 'is-checked' : '']" @click="sort('name')">Sort by name</button>
       <button :class="[sortOption==='category' ? 'is-checked' : '']" @click="sort('category')">Sort by cat</button>
     </div>-->
     <b-row>
+      <no-ssr>
       <isotope ref="isotope" id="root_isotope" class="w-100" :list="productsFull" :options="option" @filter="filterOption=arguments[0]" @sort="sortOption=arguments[0]">
         <b-col cols="12" md="6" lg="4" class="list-item mb-4 w-100" v-for="product in productsFull" :key="product.id">
           <b-card
@@ -70,6 +62,7 @@
           </b-card>
         </b-col>
       </isotope>
+      </no-ssr>
     </b-row>
   </section>
 </template>
@@ -104,24 +97,20 @@ export default {
         },
         sortBy: "original-order",
         getFilterData: {
-          isTransport: function(itemElem) {
-            console.log(itemElem.category);
-            return itemElem.category == 'TRANSPORT';
+          isTransport: function(item) {
+            return item.category == 'TRANSPORT';
           },
-          isSpare: function(itemElem) {
-            console.log(itemElem.category);
-            return itemElem.category == 'SPARE_PARTS';
+          isSpare: function(item) {
+            return item.category == 'SPARE_PARTS';
           },
-          isEquipment: function(itemElem) {
-            console.log(itemElem.category);
-            return itemElem.category == 'EQUIPMENT';
+          isEquipment: function(item) {
+            return item.category == 'EQUIPMENT';
           },
-          isAcc: function(itemElem) {
-            console.log(itemElem.category);
-            return itemElem.category == 'ACCESSORIES';
+          isAcc: function(item) {
+            return item.category == 'ACCESSORIES';
           },
-          isOther: function(itemElem) {
-            return itemElem.category == 'OTHER';
+          isOther: function(item) {
+            return item.category == 'OTHER';
           },
           showAll: () => {
             return true
