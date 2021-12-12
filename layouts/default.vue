@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Sidebar />
-    
+    <ToastLogin />
     <main>
       <Banner />
       <b-container class="bg-light mt-4 p-5 main-container">
@@ -15,10 +15,6 @@
     </footer>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
 
 <style scoped>
 .main-container {

@@ -12,18 +12,8 @@
       <div class="px-3 py-0">
         <nuxt-link to="/"><b-img class="mb-4 px-5" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
         <div class="mb-4">
-          <div v-if="$user.isLogged">
-            <b-alert show variant="primary">
-                <div class="d-flex justify-content-left align-items-center">
-                    <b-img class="float-left" rounded="circle" width="80" height="80" :src="$user.photoUrl" />
-                    <div class="ml-3">
-                    <h5 class="m-0">{{ $user.firstName }}</h5>
-                    <nuxt-link :to="`/users/${$user.uin}`"><b-icon icon="person-bounding-box" /> Profile</nuxt-link>
-                    </div>
-                </div>
-            </b-alert>
-        </div>
-        <UserLoginBox />
+          <UserProfileBox />
+          <UserLoginBox />
         </div>
         <b-list-group class="my-4 side-menu">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt to="/" exact><b-icon icon="house-door-fill"></b-icon>Home</b-list-group-item>
@@ -44,16 +34,10 @@
       </div>
     </b-sidebar>
 
-    <!--<div id="badge">
-      <a v-b-toggle.sidebar-variant><b-icon-list /></a>
-    </div>-->
   </div>
 </template>
 
 <style scoped>
-#badge {position: fixed; top: 10px; left: 0;height: 48px; z-index: 1030; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
-#badge:hover {border-color: #f8da19;transition: border-color 0.4s ease-out;}
-#badge a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
 
 .side-menu img,
 .side-menu svg {

@@ -1,6 +1,6 @@
 <template>
   <section id="user-profile">
-    <MarketProductModal @save="findMarketProducts" />
+    <MarketProductModal @save="findMarketProducts; getUser" />
     <CoolLightBox 
       :items="items" 
       :index="index"
@@ -65,44 +65,50 @@
               :sort-by.sync="marketProductsSortBy"
               :sort-desc.sync="marketProductsSortDesc"
           >
-              <template #cell(imageName)="data">
-                <nuxt-link :to="`/market/${data.item.id}`">
-                  <b-img v-if="data.item.images[0]" class="productImage" center rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`"></b-img>
-                  <b-img v-else :src="require('@/assets/img/no-image.png')" class="productImage" center rounded></b-img>
-                </nuxt-link>
-              </template>
+
               <template #cell(name)="data">
-                <nuxt-link :to="`/market/${data.item.id}`">
-                  <h4>{{ data.item.name }}</h4>
-                </nuxt-link>
-                  <p class="small">{{ data.item.description }}</p>
-                  <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
-              </template>
-              <template #cell(actions)="data" v-if="$user.uin === user.uin">
-                  <div class="d-inline-block my-1">
-                      <b-button-group size="sm" vertical>
-                          <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
-                              <b-icon icon="pencil-fill" variant="white"/>
-                          </b-button>
-                          <b-button :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
-                              <b-icon icon="check-circle-fill" variant="white"/>
-                          </b-button>
-                          <b-button variant="danger" v-b-modal="'delete-modal-' + data.item.id">
-                              <b-icon icon="trash-fill" variant="white"/>
-                          </b-button>
-                      </b-button-group>
+                <div class="w-100 d-flex justify-content-between align-items-center">
+                  <div>
+                    <b-avatar v-if="data.item.images[0]" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
+                    <b-avatar v-else rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
                   </div>
-                  <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
-                  <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
-                    <b-alert class="mb-0" show variant="danger">
-                      <h5>Are you sure you want to delete?</h5><strong>Product:</strong> {{data.item.name}}
-                    </b-alert>
-                    <template #modal-footer="{ cancel, hide }">
-                        <b-button variant="danger" size="sm" @click="deleteProduct(data.item.id), hide()">Delete</b-button>
-                        <b-button size="sm" @click="cancel()">Cancel</b-button>
-                    </template>
-                  </b-modal>
+                  <div class="ml-3 w-100">
+                    <nuxt-link :to="`/market/${data.item.id}`">
+                      <h4>{{ cutText(data.item.name, 20) }}</h4>
+                    </nuxt-link>
+                    <p class="small">{{ cutText(data.item.description, 15) }}</p>
+                    <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
+                  </div>
+                  <b-button variant="primary" v-if="$user.uin != data.item.uin">
+                    <b-icon icon="pencil-fill" @click="data.toggleDetails" variant="white"/>
+                  </b-button>
+                </div>
               </template>
+
+              <template #row-details="data">
+
+                    <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                      Edit <b-icon icon="pencil-fill" variant="white"/>
+                    </b-button>
+                    <b-button size="sm" :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
+                      Status <b-icon icon="check-circle-fill" variant="white"/>
+                    </b-button>
+                    <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
+                      Delete <b-icon icon="trash-fill" variant="white"/>
+                    </b-button>
+
+                <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+                <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                  <b-alert class="mb-0" show variant="danger">
+                    <h5>Are you sure you want to delete?</h5><strong>Product:</strong> {{data.item.name}}
+                  </b-alert>
+                  <template #modal-footer="{ cancel, hide }">
+                      <b-button variant="danger" size="sm" @click="deleteProduct(data.item.id), hide()">Delete</b-button>
+                      <b-button size="sm" @click="cancel()">Cancel</b-button>
+                  </template>
+                </b-modal>
+              </template>
+
           </b-table>
       </b-card>
       <b-card>
@@ -271,9 +277,7 @@ export default {
 
       marketProducts: [],
       marketProductFields: [
-          { key: 'imageName', sortable: false, label: 'Image' },
-          { key: 'name', sortable: true, label: 'Product' },
-          { key: 'actions', sortable: false, label: '' }
+          { key: 'name', sortable: true, label: 'Product' }
       ],
       marketProductsSortBy: 'id',
       marketProductsSortDesc: true,
@@ -327,7 +331,7 @@ export default {
     }
   },
   methods: {
-    getUser () {
+    getUser() {
       //console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
@@ -336,13 +340,6 @@ export default {
           title: this.user.transportModel,
           src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
         }]
-        // clear products action column
-        console.log(this.$user.uin, this.user.uin)
-        if (this.$user.uin != this.user.uin) {
-          this.marketProductFields[2] = {}
-          } else {
-            this.marketProductFields[2] = { key: 'actions', sortable: false, label: '' }
-          }
       });
     },
     getLocList() {
@@ -356,7 +353,6 @@ export default {
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
-            console.log(response)
         });
     },
     deleteProduct(productId) {
@@ -365,7 +361,7 @@ export default {
         .then(() => {
             this.$toast.success('Success');
             this.findMarketProducts();
-            console.log(productId + " deleted");
+            this.getUser();
         })
     },
     statusProduct(productId) {
@@ -399,7 +395,6 @@ export default {
     handleSubmit() {
       const data = Object.assign({}, this.userEdit)
       if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
-      console.log(this.imageSrc)
       data.languages = data.languages.join()
       this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
@@ -407,7 +402,18 @@ export default {
           this.$bvModal.hide('profile-modal')
         })
       });
-    }
+    },
+    cutText(text, limit){
+      if (text.length > limit){
+          for (let i = limit; i > 0; i--){
+              if(text.charAt(i) === ' ' && (text.charAt(i-1) != ','||text.charAt(i-1) != '.'||text.charAt(i-1) != ';')) {
+                  return text.substring(0, i) + '...';
+              }
+          }
+          return text.substring(0, limit) + '...';
+      }
+      else return text;
+    },
   }
 }
 </script>
