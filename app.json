@@ -1,0 +1,18 @@
+{
+  "apps": [
+      {
+        "name": "electroapp",
+        "script": "./node_modules/nuxt/bin/nuxt.js",
+        "watch": true,
+        "cwd": "/data02/virt32423/domeenid/www.nuforms.com/electrotallinnapp",
+        "args": "start"
+      },
+      {
+        "name": "filemanager",
+        "script": "app.js",
+        "watch": true,
+        "cwd": "/data02/virt32423/domeenid/www.nuforms.com/filemanager",
+        "args": "start"
+    }
+  ]
+}

@@ -1,23 +1,26 @@
 <template>
   <div id="app">
     <Sidebar />
+    <div class="navWrap"><NavBar /></div>
     <main>
-      <div class="navWrap"><NavBar /></div>
       <div class="fullScreen"><Nuxt /></div>
     </main>
   </div>
 </template>
 <style scoped>
 main {
-  display: flex;
-  flex-flow: column;
   height:100vh;
 }
 .navWrap {
-  flex:0 1 48px; 
-  height: 100%;
+  position: fixed;
+  height: 48px;
+  width: 100%;
+  z-index: 1;
 }
 .fullScreen {
-  flex:1 1 auto
+  height:calc(100vh - 48px);
+  position: absolute;
+  top:48px; left:0;
+  width:100%;
 }
 </style>
