@@ -27,6 +27,7 @@ export default {
     { src: '~/plugins/vue-cookie-law', ssr: false },
     { src: '~/plugins/axios', ssr: false },
     { src: '~/plugins/load-script' },
+    { src: '~plugins/vue-isotope.js', ssr: false },
     '~/plugins/globals'
   ],
 
@@ -123,5 +124,15 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vue-plugin-load-script'],
+    vendor: ['vueisotope'],
+    extend (config, { isClient }) {
+      if (isClient) {
+        config.resolve.alias = Object.assign(config.resolve.alias, {
+          'masonry': 'masonry-layout',
+          'isotope': 'isotope-layout'
+        })
+      }
+    }
   }
+
 }
