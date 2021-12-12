@@ -78,7 +78,7 @@ module.exports = {
     },
 
     findByUserUin: async (userUin) => {
-        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price, p.category FROM market_products p WHERE user_uin = ?';
+        let sql = 'SELECT p.id, p.user_uin, p.name, p.description, p.price, p.status, p.category FROM market_products p WHERE user_uin = ?';
         let params = [userUin];
 
         let result = await db.query(sql, params);
