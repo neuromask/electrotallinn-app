@@ -9,7 +9,7 @@
 </template>
 <style scoped>
 main {
-  height:100vh;
+  height:100%;
 }
 .navWrap {
   position: fixed;
@@ -18,7 +18,7 @@ main {
   z-index: 1;
 }
 .fullScreen {
-  height:calc(100vh - 48px);
+  height:calc(100% - 48px);
   position: absolute;
   top:48px; left:0;
   width:100%;
