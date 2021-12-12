@@ -17,7 +17,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' },
       { hid: "og:image", property: "og:image", content: "/etapp.jpg" },
-      { property: "og:image:width", content: "1080" },
+      { property: "og:image:width", content: "1920" },
       { property: "og:image:height", content: "1080" },
       { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` }
     ],

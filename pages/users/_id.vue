@@ -48,7 +48,7 @@
         <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
             <b-badge variant="warning" class="text-white">Market</b-badge> 
-            <span>Items<sup><b-badge class="text-white ml-2">{{ user.marketProductsCount }}</b-badge></sup></span>
+            <span>Items<sup><b-badge class="text-white ml-2">{{ marketProducts.length }}</b-badge></sup></span>
           </span>
           <span>
             <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
@@ -79,8 +79,8 @@
                     <p class="small">{{ cutText(data.item.description, 15) }}</p>
                     <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
                   </div>
-                  <b-button variant="primary" v-if="$user.uin == data.item.userUin">
-                    <b-icon icon="pencil-fill" @click="data.toggleDetails" variant="white"/>
+                  <b-button variant="primary" @click="data.toggleDetails" v-if="$user.uin == data.item.userUin">
+                    <b-icon icon="pencil-fill" variant="white"/>
                   </b-button>
                 </div>
               </template>
@@ -90,7 +90,8 @@
                     <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">
                       Edit <b-icon icon="pencil-fill" variant="white"/>
                     </b-button>
-                    <b-button size="sm" :class="data.item.status == 'inactive' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
+                    
+                    <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
                       Status <b-icon icon="check-circle-fill" variant="white"/>
                     </b-button>
                     <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
@@ -353,6 +354,7 @@ export default {
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
+            console.log(response)
         });
     },
     deleteProduct(productId) {
@@ -366,11 +368,10 @@ export default {
     },
     statusProduct(productId) {
       this.$axios
-        .$put(`${this.$config.baseUrl}/users/${this.user.uin}/marketProducts/${productId}/satus/toggle`)
+        .$put(`${this.$config.baseUrl}/users/${this.user.uin}/marketProducts/${productId}/status/toggle`)
         .then(() => {
             this.$toast.success('Success');
-            this.requests();
-            console.log(locId + " approved");
+            this.findMarketProducts();
         })
     },
     clearImage() {
