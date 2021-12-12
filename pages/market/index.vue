@@ -15,7 +15,7 @@
         <input type="text" v-model="filterText" placeholder="no filter">
         <button :class="[filterOption==='filterByText' ? 'is-checked' : '']" @click="filter('filterByText')">Filter</button>
       </div>-->
-      <b-button size="sm" class="mb-1" @click="filter('showAll')">All</b-button>
+      <b-button size="sm" class="mb-1" variant="primary" @click="filter('showAll')">All</b-button>
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isTransport' ? 'is-checked' : '']" @click="filter('isTransport')">Transport</b-button>
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isEquipment' ? 'is-checked' : '']" @click="filter('isEquipment')">Equipment</b-button>
       <b-button size="sm" class="mb-1" variant="primary" :class="[filterOption==='isSpare' ? 'is-checked' : '']" @click="filter('isSpare')">Spare Parts</b-button>
@@ -135,11 +135,6 @@ export default {
   },
   created() {
     this.getProducts();
-  },
-  computed: {
-    resetShow: function () {
-      return !!this.filter.category.length || !!this.sort.length || !!this.filter.searchText
-    }
   },
   methods: {
     getProducts() {

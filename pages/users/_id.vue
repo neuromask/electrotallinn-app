@@ -79,7 +79,7 @@
                     <p class="small">{{ cutText(data.item.description, 15) }}</p>
                     <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
                   </div>
-                  <b-button variant="primary" v-if="$user.uin != data.item.uin">
+                  <b-button variant="primary" v-if="$user.uin == data.item.userUin">
                     <b-icon icon="pencil-fill" @click="data.toggleDetails" variant="white"/>
                   </b-button>
                 </div>
