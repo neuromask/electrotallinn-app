@@ -91,8 +91,8 @@
                       Edit <b-icon icon="pencil-fill" variant="white"/>
                     </b-button>
                     
-                    <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-warning' : 'btn-success'" @click="statusProduct(data.item.id)">
-                      Status <b-icon icon="check-circle-fill" variant="white"/>
+                    <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-success' : 'btn-warning'" @click="statusProduct(data.item.id)">
+                      <span class="text-white text-capitalize">{{ data.item.status.toLowerCase() }}</span> <b-icon icon="check-circle-fill" variant="white"/>
                     </b-button>
                     <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
                       Delete <b-icon icon="trash-fill" variant="white"/>
@@ -449,5 +449,8 @@ export default {
 }
 .productList {
     max-height: 512px;
+}
+.text-capitalize:first-letter {
+    text-transform:capitalize;
 }
 </style>
