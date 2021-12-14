@@ -1,27 +1,27 @@
 module.exports = {
     validateMarketProduct: (marketProduct) => {
         if (!marketProduct.userUin) {
-            throw { error: 'Product userUin is empty!' }
+            throw { error: 'error.productUserUinEmpty' }
         }
 
         if (!marketProduct.name) {
-            throw { error: 'Product name is empty!' }
+            throw { error: 'error.productNameEmpty' }
         }
 
         if (!marketProduct.description) {
-            throw { error: 'Product description is empty!' }
+            throw { error: 'error.productDescriptionEmpty' }
         }
 
         if (!marketProduct.price) {
-            throw { error: 'Product price is empty!' }
+            throw { error: 'error.productPriceEmpty' }
         }
 
         if (!marketProduct.category) {
-            throw { error: 'Product category is empty!' }
+            throw { error: 'error.productCategoryEmpty' }
         }
 
         if (!marketProduct.images || marketProduct.images.length === 0) {
-            throw { error: 'Product should have at least one image!' }
+            throw { error: 'error.productImageEmpty' }
         }
     }
 };

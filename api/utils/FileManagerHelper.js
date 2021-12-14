@@ -29,7 +29,7 @@ module.exports = {
             return await utils.requestPromise(options, data);
         } catch (e) {
             console.error(e);
-            throw { error: `Failed to send file ${fileName}` };
+            throw { error: 'error.fileSendFailed', params: [fileName] };
         }
     },
 
@@ -48,7 +48,7 @@ module.exports = {
             return await utils.requestPromise(options);
         } catch (e) {
             console.error(e);
-            throw { error: `Failed to delete file ${fileName}` };
+            throw { error: 'error.fileDeleteFailed', params: [fileName] };
         }
     }
 };

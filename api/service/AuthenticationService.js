@@ -16,7 +16,7 @@ module.exports = {
                 return { ...tgUser, role: 'USER' };
             }
         } catch(e) {
-            throw { error: `${e}` }
+            throw { error: 'error.unexpected', params: [e] }
         }
     }
 };
