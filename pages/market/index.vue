@@ -1,17 +1,27 @@
 <i18n lang="yaml">
   en:
-    hello: "Hey"
-    your-profile: "Your profile"
+    category:
+      all: "All"
+      EQUIPMENT: "Equipment"
+      TRANSPORT: "Transport"
+      SPARE_PARTS: "Spare parts"
+      ACCESSORIES: "Accessories"
+      OTHER: "Other"
   ru:
-    hello: "Привет"
-    your-profile: "Ваш профиль"
+    category:
+      all: "Все"
+      EQUIPMENT: "Снаряженте"
+      TRANSPORT: "Транспорт"
+      SPARE_PARTS: "Комплектующие"
+      ACCESSORIES: "Аксусуары"
+      OTHER: "Другое"
 </i18n>
 <template>
   <section ref="top">
     <MarketProductModal @save="getProducts" />
     <div class="mb-3">
-      <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">All</b-btn>
-      <b-button v-for="cat in catOptions" :key="cat.value" size="sm" class="mr-1 mb-1" variant="primary" :class="[cat.value==='isOther' ? 'is-checked' : '']" @click="selectCat(cat.value)">{{cat.text}}</b-button>
+      <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('category.all') }}</b-btn>
+      <b-button v-for="cat in categories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :class="[cat==='isOther' ? 'is-checked' : '']" @click="selectCat(cat)">{{ $t('category.' + cat) }}</b-button>
     </div>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
@@ -49,7 +59,7 @@
             </b-card-body>
             <template #footer>
                 <div class="d-flex w-100 justify-content-between align-items-center">
-                    <p class="mb-1" v-if="product.category">Category: <strong role="button" @click="selectCat(product.category)">{{ getCat(product.category) }}</strong></p>
+                    <p class="mb-1" v-if="product.category">Category: <strong role="button" @click="selectCat(product.category)">{{ $t('category.' + product.category) }}</strong></p>
                     <p class="mb-0 small" v-if="product.date_created">{{ new Date(product.date_created).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' }) }}</p>
                 </div>
             </template>
@@ -71,13 +81,7 @@ export default {
         },
         sort: [],
         selectedCats: [], // Must be an array reference!
-        catOptions: [
-            { text: 'Equipment', value: 'EQUIPMENT' },
-            { text: 'Transport', value: 'TRANSPORT' },
-            { text: 'Spare parts', value: 'SPARE_PARTS' },
-            { text: 'Accessories', value: 'ACCESSORIES' },
-            { text: 'Other', value: 'OTHER' }
-        ]
+        categories: ['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']
     };
   },
   created() {
@@ -112,16 +116,10 @@ export default {
       this.filter.category = cat
       this.getProducts()
     },
-    getCat(productCat) {
-      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
-    },
     selectCat(productCat) {
       //window.scrollTo(0, this.$refs.top.offsetTop);
       this.selectedCats = [productCat]
       this.handleCatFilter([productCat])
-    },
-    filteredCats() {
-      if (this.filter.category) return this.getCat(this.filter.category)
     },
     resetFilters() {
       this.selectedCats = []

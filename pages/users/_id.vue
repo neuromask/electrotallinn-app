@@ -396,7 +396,7 @@ export default {
       return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
     },
     onUserEdit () {
-      this.userEdit = Object.assign({}, this.user)
+      this.userEdit = JSON.parse(JSON.stringify(this.user));
     },
     handleOk(bvModalEvt) {
       // Prevent modal from closing
@@ -405,7 +405,7 @@ export default {
       this.handleSubmit()
     },
     handleSubmit() {
-      const data = Object.assign({}, this.userEdit)
+      const data = JSON.parse(JSON.stringify(this.userEdit));
       if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
       data.languages = data.languages.join()
       this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {

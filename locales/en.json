@@ -7,5 +7,17 @@
     "yourProfile": "Your profile",
     "profiles": "Users",
     "ranks": "Ranks"
+  },
+  "error": {
+    "notFound": "Now Found",
+    "fileSendFailed": "Failed to send file {0}",
+    "unexpected": "Unexpected error: {0}",
+    "fileDeleteFailed": "Failed to delete file {0}",
+    "productUinEmpty": "Product userUin is empty!",
+    "productNameEmpty": "Product name is empty!",
+    "productDescriptionEmpty": "Product description is empty!",
+    "productPriceEmpty": "Product price is empty!",
+    "productCategoryEmpty": "Product category is empty!",
+    "productImageEmpty": "Product should have at least one image!"
   }
 }
