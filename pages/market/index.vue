@@ -1,3 +1,11 @@
+<i18n lang="yaml">
+  en:
+    hello: "Hey"
+    your-profile: "Your profile"
+  ru:
+    hello: "Привет"
+    your-profile: "Ваш профиль"
+</i18n>
 <template>
   <section ref="top">
     <MarketProductModal @save="getProducts" />

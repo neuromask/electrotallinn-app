@@ -120,7 +120,7 @@
                 this.handleSubmit()
             },
             handleSubmit() {
-                const data = Object.assign({}, this.productEdit);
+                const data = JSON.parse(JSON.stringify(this.productEdit));
                 data.images.forEach(image => {
                     if (image.fileB64) {
                         image.fileB64 = image.fileB64.split(',')[1]
