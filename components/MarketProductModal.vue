@@ -1,57 +1,58 @@
 <template>
     <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered :id="modalId" :title="title" @ok="handleOk" @show="handleModalShow">
-        <b-form @submit.stop.prevent="handleSubmit">
-            <b-card-group columns>
-                <b-card>
-                    <h5 class="mb-3">Product info</h5>
-                    <b-form-group label="Name">
-                        <b-form-input v-model="productEdit.name" placeholder="Product name" required/>
-                    </b-form-group>
-                    <b-form-group label="Desciprion">
-                        <b-form-textarea
-                            v-model="productEdit.description"
-                            placeholder="Product description"
-                            rows="3"
-                            required
-                            max-rows="6"
-                        ></b-form-textarea>
-                    </b-form-group>
-                    <b-form-group label="Price">
-                        <b-form-input type="number" v-model="productEdit.price" placeholder="Product price" required/>
-                    </b-form-group>
-                    <b-form-group label="Category">
-                        <b-form-select v-model="productEdit.category" :options="categoryOptions" required>
-                            <template #first>
-                                <b-form-select-option :value="null" disabled>Select category</b-form-select-option>
-                            </template>
-                        </b-form-select>
-                    </b-form-group>
-                </b-card>
+        
+            <b-form @submit.stop.prevent="handleSubmit">
+                <b-card-group columns>
+                    <b-card>
+                        <h5 class="mb-3">Product info</h5>
+                        <b-form-group label="Name">
+                            <b-form-input v-model="productEdit.name" placeholder="Product name" required/>
+                        </b-form-group>
+                        <b-form-group label="Desciprion">
+                            <b-form-textarea
+                                v-model="productEdit.description"
+                                placeholder="Product description"
+                                rows="3"
+                                required
+                                max-rows="6"
+                            ></b-form-textarea>
+                        </b-form-group>
+                        <b-form-group label="Price">
+                            <b-form-input type="number" v-model="productEdit.price" placeholder="Product price" required/>
+                        </b-form-group>
+                        <b-form-group label="Category">
+                            <b-form-select v-model="productEdit.category" :options="categoryOptions" required>
+                                <template #first>
+                                    <b-form-select-option :value="null" disabled>Select category</b-form-select-option>
+                                </template>
+                            </b-form-select>
+                        </b-form-group>
+                    </b-card>
 
-                <b-card>
-                    <h5 class="mb-3">Product photos</h5>
-                    <b-form-group class="m-0">
-                        <div class="d-flex mb-3">
-                            <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Select or drag photo" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
-                        </div>
-                        <b-row>
-                            <b-col cols="4" class="mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
-                                <b-button size="sm" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
-                                <b-img v-if="image.fileB64" class="image" thumbnail :src="image.fileB64"/>
-                                <b-img v-if="image.fileName" class="image" thumbnail :src="`${$config.baseFileUrl}/market/${image.fileName}`"/>
-                            </b-col>
-                        </b-row>
-                    </b-form-group>
-                </b-card>
+                    <b-card>
+                        <h5 class="mb-3">Product photos</h5>
+                        <b-form-group class="m-0">
+                            <div class="d-flex mb-3">
+                                <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Select or drag photo" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
+                            </div>
+                            <b-row>
+                                <b-col cols="4" class="mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
+                                    <b-button size="sm" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
+                                    <b-img v-if="image.fileB64" class="image" thumbnail :src="image.fileB64"/>
+                                    <b-img v-if="image.fileName" class="image" thumbnail :src="`${$config.baseFileUrl}/market/${image.fileName}`"/>
+                                </b-col>
+                            </b-row>
+                        </b-form-group>
+                    </b-card>
 
-                <b-card v-if="!$user.uin">
-                    <h5 class="mb-3">Warning!</h5>
-                    <b-alert class="mt-3 mb-0" show variant="warning">
-                        <p class="mb-0">Please add <strong>username</strong> in your Telegram settings, so buyer can directly contact you.</p>
-                    </b-alert>
-                </b-card>
-            </b-card-group>
-        </b-form>
+                    <b-card v-if="!$user.uin">
+                        <h5 class="mb-3">Warning!</h5>
+                        <b-alert class="mt-3 mb-0" show variant="warning">
+                            <p class="mb-0">Please add <strong>username</strong> in your Telegram settings, so buyer can directly contact you.</p>
+                        </b-alert>
+                    </b-card>
+                </b-card-group>
+            </b-form>
     </b-modal>
 </template>
 <script>

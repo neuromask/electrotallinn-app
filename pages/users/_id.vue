@@ -1,6 +1,5 @@
 <template>
   <section id="user-profile">
-    <MarketProductModal @save="findMarketProducts; getUser" />
     <CoolLightBox 
       :items="items" 
       :index="index"
@@ -20,138 +19,149 @@
         <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
       </a>
     </div>
-    <b-card-group columns>
-      <b-card>
-        <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
-          <span>
-            <b-badge variant="warning" class="text-white">Profile</b-badge> 
-            <span>Info</span>
-          </span>
-          <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
-        </h3>
-        <b-list-group class="text-left">
-          <b-list-group-item variant="light">Name: <strong>{{ user.firstName }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.location">Location: <strong>{{ user.location }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></b-list-group-item>
-        </b-list-group>
-      </b-card>
-      <b-card v-if="user.transportPhotoName">
-        <figure class="figure mb-0">
-        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
-        <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
-        </figure>
-      </b-card>
-      <b-card>
-        <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
-          <span>
-            <b-badge variant="warning" class="text-white">Market</b-badge> 
-            <span>Items<sup><b-badge class="text-white ml-2">{{ marketProducts.length }}</b-badge></sup></span>
-          </span>
-          <span>
-            <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
-          </span>
-        </h3>
+    
+
+
+    <b-tabs pills class="mt-5" content-class="mt-3">
+
+      <b-tab title="Profile" active>
+        <b-card-group columns>
+          <b-card>
+            <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
+              <span>
+                <b-badge variant="warning" class="text-white">Profile</b-badge> 
+                <span>Info</span>
+              </span>
+              <a v-if="$user.uin === user.uin" v-b-modal.profile-modal @click="onUserEdit"><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
+            </h3>
+            <b-list-group class="text-left">
+              <b-list-group-item variant="light">Name: <strong>{{ user.firstName }}</strong></b-list-group-item>
+              <b-list-group-item variant="light" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
+              <b-list-group-item variant="light" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
+              <b-list-group-item variant="light" v-if="user.languages && user.languages.length">Lang: {{ getFlags() }}</b-list-group-item>
+              <b-list-group-item variant="light" v-if="user.location">Location: <strong>{{ user.location }}</strong></b-list-group-item>
+              <b-list-group-item variant="light" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></b-list-group-item>
+            </b-list-group>
+          </b-card>
+
+          <b-card v-if="user.transportPhotoName">
+            <figure class="figure mb-0">
+            <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+            <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
+            </figure>
+          </b-card>
+        </b-card-group>
+
+      </b-tab>
+
+      <b-tab title="Products">
+        <b-card>
+          <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
+            <span>
+              <b-badge variant="warning" class="text-white">Market</b-badge> 
+              <span>Items<sup><b-badge class="text-white ml-2">{{ marketProducts.length }}</b-badge></sup></span>
+            </span>
+            <span>
+              <a v-if="$user.uin === user.uin" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
+              <MarketProductModal @save="findMarketProducts" />
+            </span>
+          </h3>
+            <b-table
+                class="rounded m-0 productList"
+                striped
+                table-variant="light"
+                :items="marketProducts"
+                :fields="marketProductFields"
+                :sort-by.sync="marketProductsSortBy"
+                :sort-desc.sync="marketProductsSortDesc"
+            >
+
+                <template #cell(name)="data">
+                  <div class="w-100 d-flex justify-content-between align-items-center">
+                    <div>
+                      <b-avatar v-if="data.item.images[0]" :to="`/market/${data.item.id}`" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
+                      <b-avatar v-else :to="`/market/${data.item.id}`" rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
+                    </div>
+                    <div class="ml-3 w-100">
+                      <nuxt-link :to="`/market/${data.item.id}`">
+                        <h4>{{ cutText(data.item.name, 20) }}</h4>
+                      </nuxt-link>
+                      <p class="small">{{ cutText(data.item.description, 15) }}</p>
+                      <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
+                    </div>
+                    <b-button variant="primary" @click="data.toggleDetails" v-if="$user.uin == data.item.userUin">
+                      <b-icon icon="pencil-fill" variant="white"/>
+                    </b-button>
+                  </div>
+                </template>
+
+                <template #row-details="data">
+
+                      <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">
+                        Edit <b-icon icon="pencil-fill" variant="white"/>
+                      </b-button>
+                      
+                      <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-success' : 'btn-warning'" @click="statusProduct(data.item.id)">
+                        <span class="text-white text-capitalize">{{ data.item.status.toLowerCase() }}</span> <b-icon icon="check-circle-fill" variant="white"/>
+                      </b-button>
+                      <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
+                        Delete <b-icon icon="trash-fill" variant="white"/>
+                      </b-button>
+
+                  <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
+                  <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
+                    <b-alert class="mb-0" show variant="danger">
+                      <h5>Are you sure you want to delete?</h5><strong>Product:</strong> {{data.item.name}}
+                    </b-alert>
+                    <template #modal-footer="{ cancel, hide }">
+                        <b-button variant="danger" size="sm" @click="deleteProduct(data.item.id), hide()">Delete</b-button>
+                        <b-button size="sm" @click="cancel()">Cancel</b-button>
+                    </template>
+                  </b-modal>
+                </template>
+
+            </b-table>
+        </b-card>
+      </b-tab>
+
+      <b-tab title="Map">
+        <b-card>
+          <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
+            <span>
+              <b-badge variant="warning" class="text-white">Map</b-badge> 
+              <span>Locations<sup><b-badge class="text-white ml-2">{{ user.locationsCount }}</b-badge></sup></span>
+            </span>
+          </h3>
           <b-table
-              class="rounded m-0 productList"
-              borderless
-              striped
-              table-variant="light"
-              sticky-header
-              :items="marketProducts"
-              :fields="marketProductFields"
-              :sort-by.sync="marketProductsSortBy"
-              :sort-desc.sync="marketProductsSortDesc"
+            class="rounded m-0"
+            striped
+            table-variant="light"
+            :items="listFull"
+            :fields="fieldsLoc"
           >
-
-              <template #cell(name)="data">
-                <div class="w-100 d-flex justify-content-between align-items-center">
-                  <div>
-                    <b-avatar v-if="data.item.images[0]" :to="`/market/${data.item.id}`" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
-                    <b-avatar v-else :to="`/market/${data.item.id}`" rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
-                  </div>
-                  <div class="ml-3 w-100">
-                    <nuxt-link :to="`/market/${data.item.id}`">
-                      <h4>{{ cutText(data.item.name, 20) }}</h4>
-                    </nuxt-link>
-                    <p class="small">{{ cutText(data.item.description, 15) }}</p>
-                    <p class="small"><strong>{{ getCat(data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
-                  </div>
-                  <b-button variant="primary" @click="data.toggleDetails" v-if="$user.uin == data.item.userUin">
-                    <b-icon icon="pencil-fill" variant="white"/>
-                  </b-button>
-                </div>
-              </template>
-
-              <template #row-details="data">
-
-                    <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">
-                      Edit <b-icon icon="pencil-fill" variant="white"/>
-                    </b-button>
-                    
-                    <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-success' : 'btn-warning'" @click="statusProduct(data.item.id)">
-                      <span class="text-white text-capitalize">{{ data.item.status.toLowerCase() }}</span> <b-icon icon="check-circle-fill" variant="white"/>
-                    </b-button>
-                    <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
-                      Delete <b-icon icon="trash-fill" variant="white"/>
-                    </b-button>
-
-                <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
-                <b-modal centered :id="'delete-modal-' + data.item.id" title="Confirm delete">
-                  <b-alert class="mb-0" show variant="danger">
-                    <h5>Are you sure you want to delete?</h5><strong>Product:</strong> {{data.item.name}}
-                  </b-alert>
-                  <template #modal-footer="{ cancel, hide }">
-                      <b-button variant="danger" size="sm" @click="deleteProduct(data.item.id), hide()">Delete</b-button>
-                      <b-button size="sm" @click="cancel()">Cancel</b-button>
-                  </template>
-                </b-modal>
-              </template>
-
+            <template #cell(title)="data">
+              <h4>{{ data.item.title }}</h4><p class="small">{{ data.item.description }}</p>
+            </template>
+            <template #cell(type)="data">
+              <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
+            </template>
+            <template #cell(imageName)="data">
+              <b-button-group size="sm" vertical>
+                <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
+                <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
+              </b-button-group>
+              <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
+                <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
+              </b-modal>
+              <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
+                <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
+              </b-modal>
+            </template>
           </b-table>
-      </b-card>
-      <b-card>
-        <h3 class="mb-3 font-weight-bold d-flex justify-content-between align-items-center">
-          <span>
-            <b-badge variant="warning" class="text-white">Map</b-badge> 
-            <span>Locations<sup><b-badge class="text-white ml-2">{{ user.locationsCount }}</b-badge></sup></span>
-          </span>
-        </h3>
-        <b-table
-          class="rounded m-0"
-          borderless
-          striped
-          table-variant="light"
-          sticky-header
-          :items="listFull"
-          :fields="fieldsLoc"
-        >
-          <template #cell(title)="data">
-            <h4>{{ data.item.title }}</h4><p class="small">{{ data.item.description }}</p>
-          </template>
-          <template #cell(type)="data">
-            <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
-          </template>
-          <template #cell(imageName)="data">
-            <b-button-group size="sm" vertical>
-              <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
-              <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
-            </b-button-group>
-            <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-              <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
-            </b-modal>
-            <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
-              <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
-            </b-modal>
-          </template>
-        </b-table>
-      </b-card>
-      <!--<b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">User</b-badge> Achievements</h3>
-      </b-card>-->
-    </b-card-group>
+        </b-card>
+      </b-tab>
+
+    </b-tabs>
 
     <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
@@ -267,7 +277,8 @@ export default {
         {
           key: 'title',
           sortable: true,
-          label: 'Name'
+          label: 'Name',
+          tdClass: 'w-100'
         },
         {
           key: 'imageName',

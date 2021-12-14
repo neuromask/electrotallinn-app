@@ -38,7 +38,6 @@ export default {
     { src: '~/plugins/vue-cookie-law', ssr: false },
     { src: '~/plugins/axios', ssr: false },
     { src: '~/plugins/load-script' },
-    { src: '~plugins/vue-isotope.js', ssr: false },
     '~/plugins/globals'
   ],
 
@@ -80,21 +79,29 @@ export default {
   },
 
   i18n: {
-    locales: ['en'],
+    strategy: 'prefix_except_default',
     defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        en: {
-          welcome: 'Welcome'
-        },
-        fr: {
-          welcome: 'Bienvenue'
-        },
-        es: {
-          welcome: 'Bienvenido'
-        }
+    langDir: '~/locales/',
+    vueI18nLoader: true,
+    locales: [
+      {
+         code: 'en',
+         name: 'English',
+         flag: '🇬🇧',
+         iso: 'en-US',
+         file: 'en.json'
+      },
+      {
+         code: 'ru',
+         name: 'Русский',
+         flag: '🇷🇺',
+         iso: 'ru-RU',
+         file: 'ru.json'
       }
+    ],
+    vueI18n: {
+      locale: 'en',
+      fallbackLocale: 'en'
     }
   },
 

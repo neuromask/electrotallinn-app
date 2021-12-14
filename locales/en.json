@@ -1,0 +1,11 @@
+{   
+  "nav": {
+    "home": "Home",
+    "market": "Market",
+    "map": "Map",
+    "users": "Profiles",
+    "yourProfile": "Your profile",
+    "profiles": "Users",
+    "ranks": "Ranks"
+  }
+}

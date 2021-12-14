@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-row>
-      <b-col cols="12" md="6" lg="4" class="mb-4" v-for="(user, idx) in userTable" :key="idx">
+    <transition-group name="card-list" mode="out-in" class="row">
+      <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="user in userTable" :key="user.id">
         <b-card
           bg-variant="info"
           no-body
@@ -9,12 +9,12 @@
           >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
             <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-            <b-avatar :to="`users/${user.uin}`" class="profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>
+            <b-avatar :to="localePath(`/users/${user.uin}`)" class="profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>
           </div>
           <div class="text-center mt-4">
-              <h4 class="mb-0" role="button" nuxt :to="`users/${user.uin}`">{{ user.firstName }}</h4> 
+              <nuxt-link :to="localePath(`/users/${user.uin}`)"><h4 class="mb-0" role="button">{{ user.firstName }}</h4></nuxt-link>
               <p class="text-muted d-block m-0" v-if="user.location">{{ user.location }}</p>
-              <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="`users/${user.uin}`"><b-icon icon="person-bounding-box" /> Profile</b-button>
+              <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="localePath(`/users/${user.uin}`)"><b-icon icon="person-bounding-box" /> Profile</b-button>
           </div>
           <b-card-body>        
             <b-list-group class="text-left">
@@ -48,7 +48,7 @@
           </b-card-body>
         </b-card>
       </b-col>
-    </b-row>
+    </transition-group>
   </div>
 </template>
 
@@ -112,5 +112,19 @@ export default {
     padding: 0.25rem;
     background-color: #ffffff;
     border: 1px solid #dee2e6;
+}
+
+.card-list-item {
+  transition: transform .4s ease;
+}
+.card-list-enter {
+  transform: scale(0);
+}
+.card-list-enter-to {
+  transform: scale(1);
+}
+.card-list-leave-to,
+.card-list-leave {
+  display: none;
 }
 </style>

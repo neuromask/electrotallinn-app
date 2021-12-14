@@ -164,10 +164,15 @@ hr:after {
   }
 
   .table th, .table td {
-      padding: 0.5rem!important;
+    padding: 0.5rem!important;
   }
 
   #banner {
-      height:200px!important;
+    height:200px!important;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+  }
+  .modal-footer .btn {
+    flex-basis: 100%;
   }
 }
