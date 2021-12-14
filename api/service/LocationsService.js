@@ -39,7 +39,7 @@ module.exports = {
 
         let location = await locationsRepository.findOne(id)
         if (!location) {
-            throw new Error('Not found')
+            throw { error: 'Not found' }
         }
 
         return await locationsRepository.updateImage(location.imageName, image)
@@ -50,7 +50,7 @@ module.exports = {
 
         let location = await locationsRepository.findOne(id)
         if (!location) {
-            throw new Error('Not found')
+            throw { error: 'Not found' }
         }
 
         return await locationsRepository.updateConfirmed(id, Math.abs(location.confirmed - 1))

@@ -16,7 +16,7 @@ module.exports = {
                 return { ...tgUser, role: 'USER' };
             }
         } catch(e) {
-            throw new Error(`${e}`)
+            throw { error: `${e}` }
         }
     }
 };

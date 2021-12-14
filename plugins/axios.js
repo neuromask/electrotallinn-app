@@ -7,7 +7,9 @@ export default function ({$axios, redirect, app}) {
         return config;
     });
 
-    $axios.onError(error => {
-        app.$toast.error(`Error: ${error.response.data.error ? error.response.data.error : error.response.data}`);
-    })
+    if (error.response.data.error) {
+        $axios.onError(error => {
+            app.$toast.error(`Error: ${error.response.data.error}`);
+        })
+    }
 }

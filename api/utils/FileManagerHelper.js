@@ -29,7 +29,7 @@ module.exports = {
             return await utils.requestPromise(options, data);
         } catch (e) {
             console.error(e);
-            throw new Error("Failed to send file " + fileName);
+            throw { error: `Failed to send file ${fileName}` };
         }
     },
 
@@ -37,7 +37,7 @@ module.exports = {
         const options = {
             hostname: FILE_MANAGER_HOST,
             port: FILE_MANAGER_PORT,
-            path: '/' + fileDir + '/' + fileName,
+            path: `/${fileDir}/${fileName}`,
             method: 'DELETE',
             headers: {
                 'Authorization': authHeader
@@ -48,7 +48,7 @@ module.exports = {
             return await utils.requestPromise(options);
         } catch (e) {
             console.error(e);
-            throw new Error("Failed to delete file " + fileName);
+            throw { error: `Failed to delete file ${fileName}` };
         }
     }
 };
