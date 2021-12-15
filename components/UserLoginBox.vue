@@ -24,7 +24,9 @@ export default {
             uin: data.id,
             photoUrl: data.photo_url,
             username: data.username,
-            role: response.user.role
+            role: response.user.role,
+            location: response.user.location,
+            transportPhotoName: response.user.transportPhotoName
           });
         });
     }

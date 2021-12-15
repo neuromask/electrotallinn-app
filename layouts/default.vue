@@ -4,7 +4,7 @@
     <ToastLogin />
     <main>
       <Banner />
-      <b-container class="bg-light mt-4 p-5 main-container position-relative">
+      <b-container class="bg-light mt-3 px-5 pt-0 main-container position-relative">
         <NavBar />
         <Nuxt />
       </b-container>

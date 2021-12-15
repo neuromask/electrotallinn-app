@@ -1,0 +1,101 @@
+nav:
+  home: Home
+  market: Market
+  map: Map
+  users: Profiles
+  myProfile: My profile
+  myLocations: My locations
+  myProducts: My products
+  profiles: Users
+  ranks: Ranks
+  products: Products
+  profile: Profile
+  locations: Locations
+error:
+  notFound: Now Found
+  fileSendFailed: Failed to send file {0}
+  unexpected: Unexpected error {0}
+  fileDeleteFailed: Failed to delete file {0}
+  productUinEmpty: Product userUin is empty!
+  productNameEmpty: Product name is empty!
+  productDescriptionEmpty: Product description is empty!
+  productPriceEmpty: Product price is empty!
+  productCategoryEmpty: Product category is empty!
+  productImageEmpty: Product should have at least one image!
+market:
+  category:
+    EQUIPMENT: Equipment
+    TRANSPORT: Transport
+    SPARE_PARTS: Spare parts
+    ACCESSORIES: Accessories
+    OTHER: Other
+profile:
+  name: Name
+  telegram: Telegram
+  age: Age
+  language: Language
+  location: Location
+  model: Model
+main:
+  contact: Contact
+  seller: Seller
+  product: Product
+  description: Description
+  dateAdded: Date added
+  addedBy: Added by
+  category: Category
+  photo: Фото
+  pointOnMap: Point on map
+  all: All
+  top: Top
+  rank: Rank
+  legend: Legend
+  points: Points
+  type: Type
+  name: Name
+  info: Info
+  achievements: Achievements
+  bot: Bot
+  commands: Commands
+  chat: Chat
+  textChat: Open {0} app and start chat with {1}.
+  textCommands: Add points to the {0} and products to the {1}.
+  textMap: map
+  textMarket: market
+  sell: Sell product on market
+  add: Add point to map
+  map: Map menu
+  market: Market menu
+  weather: Weather forecast
+  ali: Aliexpress links
+  help: List of bot commands
+  social: Social media links
+  pic: Search for image
+  titleMarket: Market
+  titleMap: Map
+  titleProfiles: Profiles
+  descMarket: Buy & Sell | Sell and buy stuff related to electric transport area.
+  descMap: Charge & Repair Map | Map with the locations of outlets for charging, repair in accessible places.
+  descProfiles: ElectroTallinn people | Profiles of ElectroPeople team. Let's know each other closer.
+  deleteWarning: Are you sure you want to delete?
+  confirmDelete: Confirm deletion
+  selectCategory: Select category
+  price: Price
+  productPrice: Product price
+  productPhotos: Product photos
+  selectPhoto: Select or drag photo
+  warning: Warning!
+  username: Username
+  addUserName: Please add {0} in your Telegram settings, so buyer can directly contact you.
+  transport: Transport
+  addProduct: Add product
+  editProduct: Edit product
+  loginToastWarning: Login with Telegram to manage your profile and market products.
+action:
+  edit: Edit
+  ACTIVE: Active
+  INACTIVE: Inactive
+  delete: Delete
+  cancel: Cancel
+  add: Add
+  

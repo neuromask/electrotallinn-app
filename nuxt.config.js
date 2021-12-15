@@ -33,6 +33,29 @@ export default {
     '@/assets/styles/main.scss'
   ],
 
+  router: {
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        let position = {}
+        if (to.matched.length < 2) {
+          position = { x: 0, y: 0 }
+        } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
+          position = { x: 0, y: 0 }
+        }
+        if (to.hash) {
+          position = { selector: to.hash }
+        }
+        return position
+      }
+    }
+  },
+
+  transition: {
+    mode: "out-in"
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vue-cookie-law', ssr: false },
@@ -89,18 +112,19 @@ export default {
          name: 'English',
          flag: '🇬🇧',
          iso: 'en-US',
-         file: 'en.json'
+         file: 'en.yaml'
       },
       {
          code: 'ru',
          name: 'Русский',
          flag: '🇷🇺',
          iso: 'ru-RU',
-         file: 'ru.json'
+         file: 'ru.yaml'
       }
     ],
     vueI18n: {
       locale: 'en',
+      silentFallbackWarn: true,
       fallbackLocale: 'en'
     }
   },
@@ -115,7 +139,7 @@ export default {
     height: '5px'
   },
 
- server: {
+  server: {
     port: process.env.SERVER_PORT || 3000, host: 'localhost', timing: false
     //port: 80, host: 'localhost', timing: false
   },
@@ -141,7 +165,13 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-plugin-load-script']
+    transpile: ['vue-plugin-load-script'],
+    cssSourceMap: false,
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.ya?ml$/,
+        use: 'js-yaml-loader',
+      })
+    }
   }
-
 }

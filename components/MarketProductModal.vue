@@ -1,42 +1,44 @@
 <template>
-    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered :id="modalId" :title="title" @ok="handleOk" @show="handleModalShow">
+    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered :cancel-title="$t('action.cancel')" :id="modalId" :title="title" @ok="handleOk" @show="handleModalShow">
         
             <b-form @submit.stop.prevent="handleSubmit">
                 <b-card-group columns>
                     <b-card>
-                        <h5 class="mb-3">Product info</h5>
-                        <b-form-group label="Name">
-                            <b-form-input v-model="productEdit.name" placeholder="Product name" required/>
+                        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
+                        <hr />
+                        <b-form-group :label="$t('main.name')">
+                            <b-form-input v-model="productEdit.name" :placeholder="$t('main.name')" required/>
                         </b-form-group>
-                        <b-form-group label="Desciprion">
+                        <b-form-group :label="$t('main.description')">
                             <b-form-textarea
                                 v-model="productEdit.description"
-                                placeholder="Product description"
+                                :placeholder="$t('main.description')"
                                 rows="3"
                                 required
                                 max-rows="6"
                             ></b-form-textarea>
                         </b-form-group>
-                        <b-form-group label="Price">
-                            <b-form-input type="number" v-model="productEdit.price" placeholder="Product price" required/>
+                        <b-form-group :label="$t('main.price')">
+                            <b-form-input type="number" v-model="productEdit.price" :placeholder="$t('main.productPrice')" required/>
                         </b-form-group>
-                        <b-form-group label="Category">
+                        <b-form-group :label="$t('main.category')">
                             <b-form-select v-model="productEdit.category" :options="categoryOptions" required>
                                 <template #first>
-                                    <b-form-select-option :value="null" disabled>Select category</b-form-select-option>
+                                    <b-form-select-option :value="null" disabled>{{ $t('main.selectCategory') }}</b-form-select-option>
                                 </template>
                             </b-form-select>
                         </b-form-group>
                     </b-card>
 
                     <b-card>
-                        <h5 class="mb-3">Product photos</h5>
+                        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }} <span v-if="productEdit.images">({{productEdit.images.length}}/3)</span></h3>
+                        <hr />
                         <b-form-group class="m-0">
                             <div class="d-flex mb-3">
-                                <b-form-file v-model="selectedImage" accept="image/jpeg, image/png" placeholder="Select or drag photo" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
+                                <b-form-file v-model="selectedImage" accept="image/jpeg" :placeholder="$t('main.selectPhoto')" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
                             </div>
                             <b-row>
-                                <b-col cols="4" class="mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
+                                <b-col cols="12" md="6" lg="4" class="mb-0 position-relative" v-for="(image, imageIndex) in productEdit.images" :key="imageIndex">
                                     <b-button size="sm" variant="danger" class="image-delete position-absolute" @click="handleImageDelete(imageIndex)"><b-icon icon="x" /></b-button>
                                     <b-img v-if="image.fileB64" class="image" thumbnail :src="image.fileB64"/>
                                     <b-img v-if="image.fileName" class="image" thumbnail :src="`${$config.baseFileUrl}/market/${image.fileName}`"/>
@@ -46,9 +48,11 @@
                     </b-card>
 
                     <b-card v-if="!$user.uin">
-                        <h5 class="mb-3">Warning!</h5>
+                        <h5 class="mb-3">{{ $t('main.warning') }}</h5>
                         <b-alert class="mt-3 mb-0" show variant="warning">
-                            <p class="mb-0">Please add <strong>username</strong> in your Telegram settings, so buyer can directly contact you.</p>
+                            <i18n path="main.addUserName" tag="p" class="mb-0">
+                                <strong>{{ $t('main.username') }}</strong>
+                            </i18n>                        
                         </b-alert>
                     </b-card>
                 </b-card-group>
@@ -75,13 +79,6 @@
                 },
                 selectedImage: null,
                 show: true,
-                categoryOptions: [
-                    { text: 'Equipment', value: 'EQUIPMENT' },
-                    { text: 'Transport', value: 'TRANSPORT' },
-                    { text: 'Spare parts', value: 'SPARE_PARTS' },
-                    { text: 'Accessories', value: 'ACCESSORIES' },
-                    { text: 'Other', value: 'OTHER' }
-                ]
             }
         },
         computed: {
@@ -89,7 +86,16 @@
                 return this.id ? `product-modal-${this.id}` : 'product-modal'
             },
             title() {
-                return this.id ? `Edit product ID ${this.id}` : 'Add product'
+                return this.id ? `${this.$t('main.editProduct')}` : this.$t('main.addProduct')
+            },
+            categoryOptions() {
+                return [
+                    { text: this.$t('market.category.EQUIPMENT'), value: 'EQUIPMENT' },
+                    { text: this.$t('market.category.TRANSPORT'), value: 'TRANSPORT' },
+                    { text: this.$t('market.category.SPARE_PARTS'), value: 'SPARE_PARTS' },
+                    { text: this.$t('market.category.ACCESSORIES'), value: 'ACCESSORIES' },
+                    { text: this.$t('market.category.OTHER'), value: 'OTHER' }
+                ]
             }
         },
         watch: {

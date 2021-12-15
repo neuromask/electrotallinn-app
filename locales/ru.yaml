@@ -1,0 +1,102 @@
+nav:
+  home: Главная
+  market: Маркет
+  map: Карта
+  users: Профили
+  myProfile: Мой профиль
+  myLocations: Мои локации
+  myProducts: Мои продукты
+  profiles: Люди
+  ranks: Ранги
+  products: Товары
+  profile: Профиль
+  locations: Локации
+  addProduct: Добавить продукт
+error:
+  notFound: Не найдено
+  fileSendFailed: Ошибка отпвки файла {0}
+  unexpected: Непредвиденная ошибка {0}
+  fileDeleteFailed: Не удалось удалить файл {0}
+  productUinEmpty: Нужно заполнить userUin!
+  productNameEmpty: Нужно заполнить название продукта!
+  productDescriptionEmpty: Нужно заполнить описание продукта!
+  productPriceEmpty: Нужно указать цену продукта!
+  productCategoryEmpty: Нужно выбрать категорию продукта!
+  productImageEmpty: Нужно добавить фото продукта!
+market:
+  category:
+    EQUIPMENT: Экипировка
+    TRANSPORT: Транспорт
+    SPARE_PARTS: Комплектующие
+    ACCESSORIES: Аксусуары
+    OTHER: Другое
+profile:
+  name: Имя
+  telegram: Телега
+  age: Возраст
+  language: Язык
+  location: Местообитания
+  model: Модель
+main:
+  contact: Контакт
+  seller: Продавец
+  product: Продукт
+  description: Описание
+  dateAdded: Дата добавления
+  addedBy: Добавил(а)
+  category: Категория
+  photo: Фото
+  pointOnMap: Точка на карте
+  all: Все
+  top: Топ
+  rank: Ранг
+  legend: Легенда
+  points: Очки
+  type: Тип
+  name: Название
+  info: Инфо
+  achievements: Достижения
+  bot: Бот
+  commands: Команды
+  chat: Чат
+  textChat: Запустите {0} приложение для общения с ботом {1}.
+  textCommands: Добавляйте точки на {0} и продукты в {1}.
+  textMap: карту
+  textMarket: маркет
+  sell: Продукт на продажу
+  add: Точку на карту
+  map: Меню карты
+  market: Меню маркета
+  weather: Прогноз погоды
+  ali: Aliexpress ссылки
+  help: Команды для бота
+  social: Ссылки на соц сети
+  pic: Искать картинку
+  titleMarket: Маркет
+  titleMap: Карта
+  titleProfiles: Профили
+  descMarket: Купи & Продай | Покупай и продавай вещи связанные с электротранспортом.
+  descMap: Карта Зарядки & Починки | Карта с месторасположением розеток и станций для ремонта.
+  descProfiles: Люди ElectroTallinn | Профили команды ElectroPeople. Давайте ближе узнаем друг друга.
+  deleteWarning: Вы уверены что хотите удалить?
+  confirmDelete: Подтвердите удаление
+  selectCategory: Выберите категорию
+  price: Цена
+  productPrice: Цена продукта
+  productPhotos: Фото продукта
+  selectPhoto: Выберите или перетащите
+  warning: Предупреждение!
+  username: Имя пользователя (username)
+  addUserName: Пожалуйста добавьте {0} в настройках Телеграма, чтоб покупатель смог связаться с Вами.
+  transport: Транспорт
+  addProduct: Добавление продукта
+  editProduct: Редактирование продукта
+  loginToastWarning: Залогиньтесь через Телеграм в меню на сайте для редактирования профиля и продуктов.
+action:
+  edit: Править
+  ACTIVE: Активно
+  INACTIVE: Неактивно
+  delete: Удалить
+  cancel: Отменить
+  add: Добавить
+  

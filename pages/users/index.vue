@@ -12,35 +12,35 @@
             <b-avatar :to="localePath(`/users/${user.uin}`)" class="profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>
           </div>
           <div class="text-center mt-4">
-              <nuxt-link :to="localePath(`/users/${user.uin}`)"><h4 class="mb-0" role="button">{{ user.firstName }}</h4></nuxt-link>
-              <p class="text-muted d-block m-0" v-if="user.location">{{ user.location }}</p>
-              <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="localePath(`/users/${user.uin}`)"><b-icon icon="person-bounding-box" /> Profile</b-button>
+              <nuxt-link :to="localePath(`/users/${user.uin}`)"><h4 class="mb-0 font-weight-bold" role="button">{{ user.firstName }}</h4></nuxt-link>
+              <p class="text-muted d-block m-0" v-if="user.location"><i>{{ user.location }}</i></p>
+              <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="localePath(`/users/${user.uin}`)"><b-icon icon="person-bounding-box" /> {{ $t('nav.profile') }}</b-button>
           </div>
           <b-card-body>        
             <b-list-group class="text-left">
               <b-list-group-item variant="light" class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1 text-dark"><strong>Info</strong></h5>
+                  <h5 class="mb-1 text-dark"><strong>{{ $t('main.info') }}</strong></h5>
                   <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
                 </div>
                 <div class="mb-1">
-                  <p class="mb-1" v-if="user.username">Telegram: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
-                  <p class="mb-1" v-if="user.birthyear">Age: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
-                  <p class="mb-1" v-if="user.languages && user.languages.length">Lang: {{ getFlags(user.languages) }}</p>
-                  <p class="mb-0" v-if="user.transportModel">Model: <strong>{{ user.transportModel }}</strong></p>
+                  <p class="mb-1" v-if="user.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
+                  <p class="mb-1" v-if="user.birthyear">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
+                  <p class="mb-1" v-if="user.languages && user.languages.length">{{ $t('profile.language') }}: {{ getFlags(user.languages) }}</p>
+                  <p class="mb-0" v-if="user.transportModel">{{ $t('profile.model') }}: <strong>{{ user.transportModel }}</strong></p>
                 </div>
               </b-list-group-item>
               <b-list-group-item variant="light" class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1 text-dark"><strong>Achievements</strong></h5>
+                  <h5 class="mb-1 text-dark"><strong>{{ $t('main.achievements') }}</strong></h5>
                   <h5><b-icon variant="warning" icon="trophy-fill" /></h5>
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
-                  <p class="m-0">Market</p>
+                  <nuxt-link class="m-0" :to="localePath(`/users/${user.uin}/products`)">{{ $t('nav.market') }}</nuxt-link>
                   <b-badge>{{ user.marketProductsCount }}</b-badge>
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
-                  <p class="m-0">Locations</p>
+                  <nuxt-link class="m-0" :to="localePath(`/users/${user.uin}/locations`)">{{ $t('nav.locations') }}</nuxt-link>
                   <b-badge>{{ user.locationsCount }}</b-badge>
                 </div>
               </b-list-group-item>

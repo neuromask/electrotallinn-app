@@ -10,29 +10,32 @@
     <b-card-group columns>
 
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Information</h3>
-        <div class="mb-1 d-flex justify-content-between align-items-start">
-          <h2 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h2>
+        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
+        <hr />
+        <div class="mb-3 d-flex justify-content-between align-items-start">
+          <h2 class="mb-0" variant="light" v-if="product.name">{{ product.name }}</h2>
           <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
         </div>
         <b-list-group class="text-left">
-          <b-list-group-item variant="light" v-if="product.description">Decription: <strong>{{ product.description }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.category">Category: <strong>{{ getCat(product.category) }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.dateCreated">Date added: <strong>{{ new Date(product.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.description">{{ $t('main.description') }}: <strong>{{ product.description }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.category">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.dateCreated">{{ $t('main.dateAdded') }}: <strong>{{ new Date(product.dateCreated).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card>
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Contact</b-badge> Seller</h3>
+        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.seller') }}</b-badge> {{ $t('main.contact') }}</h3>
+        <hr />
         <b-list-group class="text-left">
-          <b-list-group-item variant="light" v-if="product.userFirstName">Added by: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.username">Telegram: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
         </b-list-group>
         <b-alert v-if="!product.username" class="mt-3 mb-0" show variant="warning">
           <p class="mb-0">Join <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a> Telegram channel and find user by name: <strong>{{ product.userFirstName }}</strong></p>
         </b-alert>
       </b-card>
       <b-card class="images">
-        <h3 class="mb-3 font-weight-bold"><b-badge variant="warning" class="text-white">Product</b-badge> Photos</h3>
+        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }}</h3>
+        <hr />
         <div v-if="items.length" role="button" class="imageBig" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
         <div class="row">
           <div class="col-sm-4 mt-3" v-for="(image, imageIndex) in items" :key="imageIndex">
@@ -76,13 +79,7 @@ export default {
       product: {},
       image: null,
       imageSrc: null,
-      catOptions: [
-        { text: 'Equipment', value: 'EQUIPMENT' },
-        { text: 'Transport', value: 'TRANSPORT' },
-        { text: 'Spare parts', value: 'SPARE_PARTS' },
-        { text: 'Accessories', value: 'ACCESSORIES' },
-        { text: 'Other', value: 'OTHER' }
-      ]
+      categories: ['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']
     }
   },
   created () {
@@ -105,9 +102,6 @@ export default {
         }))
         console.log(this.items)
       });
-    },
-    getCat(productCat) {
-      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
     }
   }
 }

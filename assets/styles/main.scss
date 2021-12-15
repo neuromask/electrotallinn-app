@@ -16,6 +16,7 @@ html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helve
 .container {border-top:4px solid #ec970f;}
 .gm-ui-hover-effect {background: transparent!important;border: 0!important;}
 button {outline: none;box-shadow:none !important;}
+.badge {vertical-align: top;}
 .table > tbody > tr > td {
     vertical-align: middle;
     & h5, p, h4, h3 {
@@ -80,7 +81,7 @@ b-card-text p {
 }
 
 hr {
-    height: 1.6rem;
+    height: 0.8rem;
     border: 0;
     position: relative;
     display: block;
@@ -88,7 +89,7 @@ hr {
 hr:after {
     content:'';
     position: absolute;
-    left:0; top: 0.7rem;
+    left:0; top: 0.2rem;
     width:80px;
     height:3px;
     background-color: #ec970f;
@@ -127,6 +128,12 @@ hr:after {
 .navText {
   display: block;
 }
+.nav-item a {
+  font-weight: bold;
+}
+.nav-link .b-icon.bi {
+  font-size: 150%;
+}
 .sideMenu {
   left: 1rem;
   top: .1rem;
@@ -160,7 +167,6 @@ hr:after {
   .container {
     padding-left: 1rem!important;
     padding-right: 1rem!important;
-    padding-top: 1rem!important;
   }
 
   .table th, .table td {

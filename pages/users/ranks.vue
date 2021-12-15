@@ -1,9 +1,9 @@
-
 <template>
   <section>
     <b-row>
       <b-col cols="12" lg="4">
-        <h3><b-badge variant="warning" class="text-white font-weight-bold mb-3">Top</b-badge> ElectroPeople</h3>
+        <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">ElectroPeople</b-badge> {{ $t('main.top') }}</h3>
+        <hr />
         <b-table
           class="bg-info"
           borderless
@@ -28,7 +28,8 @@
             <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
           </template>
         </b-table>
-        <h3 class="mt-5"><b-badge variant="warning" class="text-white font-weight-bold mb-3">Legend</b-badge> Ranks</h3>
+        <h3 class="mt-5 font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.ranks') }}</b-badge> {{ $t('main.legend') }}</h3>
+        <hr />
         <b-table
           class="bg-info mb-5"
           borderless
@@ -39,7 +40,6 @@
           :fields="fieldsRank"
         >
           <template #cell(icon)="data">
-
             <b-img :src="require(`~/assets/img/ranks/${data.item.icon}.png`)" center fluid class="table-icon" />
           </template>
           <template #cell(name)="data">
@@ -51,7 +51,8 @@
         </b-table>
       </b-col>
       <b-col cols="12" lg="8">
-        <h3><b-badge variant="warning" class="text-white font-weight-bold mb-3">List</b-badge> Locations</h3>
+        <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.locations') }}</b-badge> {{ $t('main.all') }}</h3>
+        <hr />
         <b-table
           class="bg-info"
           borderless
@@ -63,20 +64,20 @@
           :sort-desc.sync="sortLocDesc"
         >
           <template #cell(title)="data">
-            <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>Added by: {{ data.item.userFirstName }}</small>
+            <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>{{ $t('main.addedBy') }}: {{ data.item.userFirstName }}</small>
           </template>
           <template #cell(type)="data">
             <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
           </template>
           <template #cell(imageName)="data">
             <b-button-group size="sm" vertical>
-              <b-button v-b-modal="'image-modal-'+data.item.id">Image</b-button>
-              <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">Map</b-button>
+              <b-button v-b-modal="'image-modal-'+data.item.id">{{ $t('main.photo') }}</b-button>
+              <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">{{ $t('nav.map') }}</b-button>
             </b-button-group>
-            <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
+            <b-modal :id="'image-modal-'+data.item.id" :title="$t('main.photo') +' - '+ data.item.title" ok-only>
               <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
             </b-modal>
-            <b-modal :id="'map-modal-'+data.item.id" title="Point on map" ok-only>
+            <b-modal :id="'map-modal-'+data.item.id" :title="$t('main.pointOnMap') +' - '+ data.item.title" ok-only>
               <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
             </b-modal>
           </template>
@@ -160,41 +161,7 @@ export default {
     listTop: [],
     sortLocBy: 'id',
     sortLocDesc: true,
-    fieldsLoc: [
-      {
-        key: 'type',
-        sortable: true,
-        label: 'Type'
-      },
-      {
-        key: 'title',
-        sortable: true,
-        label: 'Name'
-      },
-      {
-        key: 'imageName',
-        sortable: false,
-        label: 'Info'
-      }
-    ],
-    fieldsTop: [
-      {
-        key: 'indx',
-        sortable: false,
-        label: 'Rank'
-      },
 
-      {
-        key: 'userFirstName',
-        sortable: false,
-        label: 'Name'
-      },
-      {
-        key: 'count',
-        sortable: false,
-        label: 'Pts'
-      }
-    ],
     sortRankBy: 'count',
     sortRankDesc: true,
     fieldsRank: [
@@ -214,6 +181,44 @@ export default {
 
   }),
   computed: {
+    fieldsLoc() {
+      return [
+        {
+          key: 'type',
+          sortable: true,
+          label: this.$t('main.type')
+        },
+        {
+          key: 'title',
+          sortable: true,
+          label: this.$t('main.name')
+        },
+        {
+          key: 'imageName',
+          sortable: false,
+          label: this.$t('main.info')
+        }
+      ]
+    },
+    fieldsTop() {
+      return [
+        {
+          key: 'indx',
+          sortable: false,
+          label: this.$t('main.rank')
+        },
+        {
+          key: 'userFirstName',
+          sortable: false,
+          label: this.$t('profile.name')
+        },
+        {
+          key: 'count',
+          sortable: false,
+          label: this.$t('main.points')
+        }
+      ]
+    }
   },
   getters: {
   },
