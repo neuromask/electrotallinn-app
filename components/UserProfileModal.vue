@@ -1,12 +1,13 @@
 <template>
-    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
+    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" :cancel-title="$t('action.cancel')" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
         <b-card-group columns>
           <b-card>
             <div class="text-center mb-3">
               <b-img class="profile shadow" :src="user.photoUrl" rounded="circle" thumbnail />
             </div>
-            <h5 class="mb-3">Personal info</h5>
+            <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('nav.profile') }}</b-badge> {{ $t('main.info') }}</h3>
+            <hr />
             <b-form-group>
               <b-input-group append="Name">
                 <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
@@ -38,7 +39,8 @@
             </b-form-group>
           </b-card>
           <b-card>
-            <h5 class="mb-3">Your main electric transport</h5>
+            <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.transport') }}</b-badge> {{ $t('main.photo') }}</h3>
+            <hr />
             <b-form-group>
               <b-input-group append="Model">
                 <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
@@ -73,19 +75,10 @@ export default {
   props: {},
   data() {
     return {
-      items: [],
-      index: null,
-      profile: {},
       user: {},
       userEdit: {},
       image: null,
       imageSrc: null,
-      marketProducts: [],
-      marketProductFields: [
-          { key: 'name', sortable: true, label: 'Product' }
-      ],
-      marketProductsSortBy: 'id',
-      marketProductsSortDesc: true,
       languageOptions: [
           { text: '🇬🇧', value: 'english' },
           { text: '🇪🇪', value: 'estonian' },
@@ -103,14 +96,10 @@ export default {
   },
   created () {
     this.getUser()
-    this.getLocList()
-    this.findMarketProducts();
   },
   watch: {
     $route () {
      this.getUser();
-     this.getLocList();
-     this.findMarketProducts();
     },
     'userEdit.transportPhoto'(newValue, oldValue) {
       if (newValue !== oldValue) {
@@ -138,38 +127,8 @@ export default {
           title: this.user.transportModel,
           src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
         }]
+        this.userEdit = JSON.parse(JSON.stringify(this.user));
       });
-    },
-    getLocList() {
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
-        this.listFull = response;
-      });
-    },
-    getCat(productCat) {
-      return this.catOptions.filter(catOption => productCat.includes(catOption.value)).map(catOption => catOption.text).join(", ")
-    },
-    findMarketProducts() {
-        this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
-            this.marketProducts = response;
-            console.log(response)
-        });
-    },
-    deleteProduct(productId) {
-      this.$axios
-        .$delete(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts/${productId}`)
-        .then(() => {
-            this.$toast.success('Success');
-            this.findMarketProducts();
-            this.getUser();
-        })
-    },
-    statusProduct(productId) {
-      this.$axios
-        .$put(`${this.$config.baseUrl}/users/${this.user.uin}/marketProducts/${productId}/status/toggle`)
-        .then(() => {
-            this.$toast.success('Success');
-            this.findMarketProducts();
-        })
     },
     clearImage() {
       if (this.hasImage) {
@@ -180,9 +139,6 @@ export default {
     },
     getFlags() {
       return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
-    },
-    onUserEdit () {
-      this.userEdit = JSON.parse(JSON.stringify(this.user));
     },
     handleOk(bvModalEvt) {
       // Prevent modal from closing
@@ -200,32 +156,12 @@ export default {
           this.$bvModal.hide('profile-modal')
         })
       });
-    },
-    cutText(text, limit){
-      if (text.length > limit){
-          for (let i = limit; i > 0; i--){
-              if(text.charAt(i) === ' ' && (text.charAt(i-1) != ','||text.charAt(i-1) != '.'||text.charAt(i-1) != ';')) {
-                  return text.substring(0, i) + '...';
-              }
-          }
-          return text.substring(0, limit) + '...';
-      }
-      else return text;
-    },
+    }
   }
 }
 </script>
 
 <style scoped>
-.upper>div {
-    height: 320px;
-    background-color: #1a2740;
-    border-radius: 6px;
-}
-.profile {
-    width: 15rem;
-    bottom:-2rem;
-}
 .btn-close {
   top:0; right:0;
 }
@@ -233,22 +169,6 @@ export default {
   .card-columns {
     column-count: 2;
   }
-}
-.transportImage {
-    cursor: pointer;
-    object-fit: cover;
-}
-.productImage {
-    cursor: pointer;
-    object-fit: cover;
-    height: 60px;
-    width: 60px;
-}
-.productList {
-    max-height: 512px;
-}
-.text-capitalize:first-letter {
-    text-transform:capitalize;
 }
 </style>
 

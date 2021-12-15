@@ -6,8 +6,6 @@
       :effect="'fade'"
       @close="index = null">
     </CoolLightBox>
-    <MarketProductModal @save="getUser" />
-    
     <b-card-group columns>
       <b-card>
         <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">

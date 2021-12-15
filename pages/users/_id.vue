@@ -13,18 +13,21 @@
       <a v-if="$user.uin == user.uin" v-b-modal.profile-modal class="position-absolute" style="top:1rem; right:1.5rem;font-size:2rem">
         <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
       </a>
-      <MarketProductModal />
+      <UserProfileModal @save="getUser"/>
     </div>
 
     <b-navbar id="submenu" type="primary" class="my-3">
       <b-navbar-nav>
         <b-nav-item :to="localePath('/')" nuxt disabled><b-icon variant="dark" icon="arrow-return-right"></b-icon></b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}`), hash:'#submenu'}" exact nuxt>{{ $t('nav.profile') }}</b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/products`), hash:'#submenu'}" nuxt>{{ $t('nav.products') }}</b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/locations`), hash:'#submenu'}" nuxt>{{ $t('nav.locations') }}</b-nav-item>
+        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}`)}" exact nuxt>{{ $t('nav.profile') }}</b-nav-item>
+        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/products`)}" nuxt>{{ $t('nav.products') }}</b-nav-item>
+        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/locations`)}" nuxt>{{ $t('nav.locations') }}</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
-    <NuxtChild  />
+    <div class="sub-page">
+      <NuxtChild  />
+    </div>
+    
 
   </section>
 </template>
@@ -64,5 +67,8 @@ export default {
 .profile {
     width: 15rem;
     bottom:-1rem;
+}
+.sub-page {
+  min-height: 480px;
 }
 </style>
