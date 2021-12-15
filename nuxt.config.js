@@ -93,7 +93,23 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    '@nuxtjs/google-gtag',
   ],
+
+  'google-gtag':{
+    id: 'G-1720L3K7S5', // required
+    config:{
+      // this are the config options for `gtag
+      // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
+      anonymize_ip: false, // anonymize IP 
+      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
+      linker:{
+        domains:['app.electrotallinn.ee']
+      }
+    },
+    debug: true, // enable to track in dev mode
+    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
+  },
 
   bootstrapVue: {
     icons: true,
