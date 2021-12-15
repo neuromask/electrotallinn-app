@@ -10,10 +10,10 @@ module.exports = {
                 existingUser.photoUrl = tgUser.photoUrl;
                 existingUser.username = tgUser.username;
                 await usersRepository.update(uin, existingUser);
-                return { ...tgUser, role: existingUser.role };
+                return { ...tgUser, role: existingUser.role, location: existingUser.location, transportPhotoName: existingUser.transportPhotoName };
             } else {
                 await usersRepository.create(tgUser);
-                return { ...tgUser, role: 'USER' };
+                return { ...tgUser, role: 'USER', location: null, transportPhotoName: null };
             }
         } catch(e) {
             throw { error: 'error.unexpected', params: [e] }
