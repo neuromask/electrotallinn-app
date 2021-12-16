@@ -1,5 +1,6 @@
 <template>
   <section>
+    <MarketProductModal @save="findMarketProducts" />
     <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
       <span>
         <b-badge variant="warning" class="text-white">{{ $t('nav.market') }}</b-badge> 
