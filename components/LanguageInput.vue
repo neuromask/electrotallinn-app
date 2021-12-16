@@ -1,11 +1,16 @@
 <template>
   <div>
-    <b-button class="btn-lang" v-if="$i18n.locale == 'ru'" exact :to="switchLocalePath('en')" variant="primary" size="sm"><small>Eng</small></b-button>
-    <b-button class="btn-lang" v-if="$i18n.locale == 'en'" :to="switchLocalePath('ru')" variant="primary" size="sm"><small>Рус</small></b-button>
+    <b-button variant="primary" size="sm" class="btn-lang" exact v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)"><small>{{ locale.text }}</small></b-button>
   </div>
 </template>
 <script>
-export default {}
+export default {
+  computed: {
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
+  }
+}
 </script>
 <style>
 .btn-lang {

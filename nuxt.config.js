@@ -103,14 +103,16 @@ export default {
          name: 'English',
          flag: '🇬🇧',
          iso: 'en-US',
-         file: 'en.yaml'
+         file: 'en.yaml',
+         text: 'ENG'
       },
       {
          code: 'ru',
          name: 'Русский',
          flag: '🇷🇺',
          iso: 'ru-RU',
-         file: 'ru.yaml'
+         file: 'ru.yaml',
+         text: 'РУС'
       }
     ],
     vueI18n: {

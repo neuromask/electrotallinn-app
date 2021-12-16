@@ -79,7 +79,6 @@ export default {
       this.$axios
         .$get(this.$config.baseUrl + "/marketProducts", {params: this.filter}).then((response) => {
           this.productsFull = response;
-          console.log(this.productsFull)
         });
     },
     cutText(text, limit){

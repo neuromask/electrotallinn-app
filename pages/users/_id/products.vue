@@ -10,16 +10,7 @@
       </span>
     </h3>
     <hr />
-      <b-table
-          class="m-0 rounded"
-          striped
-          table-variant="info"
-          :items="marketProducts"
-          :fields="marketProductFields"
-          :sort-by.sync="marketProductsSortBy"
-          :sort-desc.sync="marketProductsSortDesc"
-      >
-
+      <b-table class="m-0 rounded" striped table-variant="info" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
           <template #cell(name)="data">
             <div class="w-100 d-flex justify-content-between align-items-center">
               <div>
@@ -97,7 +88,6 @@ export default {
     findMarketProducts() {
         this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
-            console.log(response)
         });
     },
     deleteProduct(productId) {
