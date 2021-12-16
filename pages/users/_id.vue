@@ -4,7 +4,7 @@
     <div class="upper position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-      <b-img class="profile position-absolute shadow" :src="user.photoUrl" rounded="circle" thumbnail/>
+      <b-avatar  class="profile position-absolute shadow text-dark" variant="info" size="15rem" :src="user.photoUrl" rounded="circle" thumbnail></b-avatar>
       <div class="position-absolute mt-4 bg-transparent text-center">
         <h2 v-if="$user.uin != user.uin" class="m-0 text-info shadow-sm"><strong>{{ user.firstName }} </strong></h2>
         <h2 v-if="$user.uin == user.uin" class="m-0 text-info shadow-sm"><strong>{{ $t('nav.myProfile') }}</strong></h2>
@@ -65,8 +65,8 @@ export default {
     border-radius: 6px;
 }
 .profile {
-    width: 15rem;
     bottom:-1rem;
+    padding: 0.25rem;
 }
 .sub-page {
   min-height: 480px;

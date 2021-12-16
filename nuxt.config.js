@@ -16,7 +16,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' },
-      { hid: "og:image", property: "og:image", content: "/etapp.jpg" },
+      { hid: "og:image", property: "og:image", content: "/app-et-02-en.jpg" },
       { property: "og:image:width", content: "1920" },
       { property: "og:image:height", content: "1080" },
       { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` }
@@ -96,6 +96,7 @@ export default {
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     langDir: '~/locales/',
+    baseUrl: 'https://app.electrotallinn.ee',
     vueI18nLoader: true,
     locales: [
       {

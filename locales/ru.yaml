@@ -14,7 +14,7 @@ nav:
   addProduct: Добавить продукт
 error:
   notFound: Не найдено
-  fileSendFailed: Ошибка отпвки файла {0}
+  fileSendFailed: Ошибка отправки файла {0}
   unexpected: Непредвиденная ошибка {0}
   fileDeleteFailed: Не удалось удалить файл {0}
   productUinEmpty: Нужно заполнить userUin!
@@ -28,7 +28,7 @@ market:
     EQUIPMENT: Экипировка
     TRANSPORT: Транспорт
     SPARE_PARTS: Комплектующие
-    ACCESSORIES: Аксусуары
+    ACCESSORIES: Аксессуары
     OTHER: Другое
 profile:
   name: Имя
@@ -82,11 +82,11 @@ main:
   descProfiles: Люди ElectroTallinn | Профили команды ElectroPeople. Давайте ближе узнаем друг друга.
   deleteWarning: Вы уверены что хотите удалить?
   confirmDelete: Подтвердите удаление
-  selectCategory: Выберите категорию
+  selectCategory: Выберете категорию
   price: Цена
   productPrice: Цена продукта
   productPhotos: Фото продукта
-  selectPhoto: Выберите или перетащите
+  selectPhoto: Выберете или перетащите
   warning: Предупреждение!
   username: Имя пользователя (username)
   addUserName: Пожалуйста добавьте {0} в настройках Телеграма, чтоб покупатель смог связаться с Вами.
