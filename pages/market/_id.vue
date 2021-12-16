@@ -92,15 +92,12 @@ export default {
   },
   methods: {
     getProduct () {
-      console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/marketProducts/${this.$route.params.id}`).then((response) => {
         this.product = response;
-        console.log(response);
         this.items = this.product.images.map(img => ({
           title: this.product.name,
           src: this.$config.baseFileUrl + '/market/' + img.fileName
         }))
-        console.log(this.items)
       });
     }
   }

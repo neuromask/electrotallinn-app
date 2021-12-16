@@ -34,6 +34,10 @@
         default: 'large',
         validator (value) { return ['small', 'medium', 'large'].includes(value) }
       },
+      lang: {
+        type: String,
+        default: 'en',
+      },
       userpic: {
         type: Boolean,
         default: true
@@ -54,6 +58,7 @@
       script.src = 'https://telegram.org/js/telegram-widget.js?3';
 
       script.setAttribute('data-size', this.size);
+      script.setAttribute('data-lang', this.lang);
       script.setAttribute('data-userpic', this.userpic);
       script.setAttribute('data-telegram-login', this.telegramLogin);
       script.setAttribute('data-init-auth', this.initAuth);

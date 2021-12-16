@@ -68,21 +68,19 @@ export default {
       listUserLocs: [],
     };
   },
-  created() {
+  mounted() {
     this.getUsers();
   },
   methods: {
     getUsers() {
-      this.$axios
-        .$get(this.$config.baseUrl + "/users").then((response) => {
-          this.userTable = response;
-          console.log(this.userTable)
-        });
+      this.$axios.$get(`${this.$config.baseUrl}/users`).then((response) => {
+        this.userTable = response;
+      });
     },
     getFlags (userLang) {
       return this.languageOptions.filter(language => userLang.includes(language.value)).map(language => language.text).join(" ")
     }
-  },
+  }
 };
 </script>
 

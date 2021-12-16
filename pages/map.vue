@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     handleReport (locationId) {
-      console.log(locationId);
       this.report = {
         locationId: locationId,
         message: ""
@@ -106,7 +105,6 @@ export default {
       this.$axios
         .get(baseUrl + '/locations')
         .then((response) => {
-          console.log(response);
           for (const location of response.data) {
             const markerIcon = require(`~/assets/img/icon/${this.locationIcons[location.type]}.svg`)
             const marker = new window.google.maps.Marker({

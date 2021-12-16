@@ -2,7 +2,7 @@
     <div>
         <div v-if="!$user.isLogged">
           <div class="d-flex justify-content-center align-items-center telegram-login-box">
-            <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" size="large" radius="4" @callback="loginTelegram" />
+            <TelegramLogin mode="callback" telegram-login="ElectroTallinnBot" :init-auth="true" :lang="$i18n.locale" size="large" radius="4" @callback="loginTelegram" />
           </div>
         </div>
     </div>

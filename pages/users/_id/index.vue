@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     getUser() {
-      //console.log(this.$nuxt.$route.path)
       this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);

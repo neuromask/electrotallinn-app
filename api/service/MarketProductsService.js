@@ -99,7 +99,6 @@ module.exports = {
         for (let image of images) {
             // delete files on file server
             let imageFileDeleteResult = await fileManagerHelper.delete('market', image.fileName, authHeader);
-            console.log(imageFileDeleteResult)
         }
 
         return await marketProductsRepository.delete(id)

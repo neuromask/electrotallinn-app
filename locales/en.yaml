@@ -35,7 +35,9 @@ profile:
   age: Age
   language: Language
   location: Location
+  locationPlace: City, Area
   model: Model
+  birthYear: Birth year
 main:
   contact: Contact
   seller: Seller
@@ -44,7 +46,7 @@ main:
   dateAdded: Date added
   addedBy: Added by
   category: Category
-  photo: Фото
+  photo: Photo
   pointOnMap: Point on map
   all: All
   top: Top
@@ -91,6 +93,8 @@ main:
   addProduct: Add product
   editProduct: Edit product
   loginToastWarning: Login with Telegram to manage your profile and market products.
+  cookieText: This website uses cookies to ensure you get the best experience on our website.
+  cookieBtn: Got it!
 action:
   edit: Edit
   ACTIVE: Active

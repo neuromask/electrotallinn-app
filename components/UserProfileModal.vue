@@ -8,47 +8,37 @@
             </div>
             <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('nav.profile') }}</b-badge> {{ $t('main.info') }}</h3>
             <hr />
-            <b-form-group>
-              <b-input-group append="Name">
-                <b-form-input id="input-1" v-model="userEdit.firstName" placeholder="Your name" required/>
-              </b-input-group>
+            <b-form-group :label="$t('profile.name')">
+              <b-form-input id="input-1" v-model="userEdit.firstName" :placeholder="$t('profile.name')" required/>
             </b-form-group>
 
-            <b-form-group>
-              <b-input-group append="Birth Year">
-                <b-form-input id="input-1-1" v-model="userEdit.birthyear" placeholder="Your birth year" required/>
-              </b-input-group>
+            <b-form-group :label="$t('profile.birthYear')">
+              <b-form-input type="number" :formatter="formatYear" id="input-1-1" v-model="userEdit.birthyear" placeholder="####" required/>
             </b-form-group>
 
-            <b-form-group>
-              <b-input-group append="Home">
-                <b-form-input id="input-2" v-model="userEdit.location" placeholder="Your location: City, Area" required/>
-              </b-input-group>
+            <b-form-group :label="$t('profile.location')">
+              <b-form-input id="input-2" v-model="userEdit.location" :placeholder="$t('profile.locationPlace')" required/>
             </b-form-group>
             
-            <b-form-group class="m-0">
-              <b-input-group append="Lng">
-                <b-form-checkbox-group
-                  v-model="userEdit.languages"
-                  :options="languageOptions"
-                  button-variant="light"
-                  name="buttons-1"
-                  buttons
-                />
-              </b-input-group>
+            <b-form-group class="m-0" :label="$t('profile.language')">
+              <b-form-checkbox-group
+                v-model="userEdit.languages"
+                :options="languageOptions"
+                button-variant="light"
+                name="buttons-1"
+                buttons
+              />
             </b-form-group>
           </b-card>
           <b-card>
             <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.transport') }}</b-badge> {{ $t('main.photo') }}</h3>
             <hr />
-            <b-form-group>
-              <b-input-group append="Model">
-                <b-form-input id="input-3" v-model="userEdit.transportModel" placeholder="Your transport model" required/>
-              </b-input-group>
+            <b-form-group :label="$t('profile.model')">
+              <b-form-input id="input-3" v-model="userEdit.transportModel" :placeholder="$t('profile.model')" required/>
             </b-form-group>
-            <b-form-group class="m-0">
+            <b-form-group class="m-0" :label="$t('main.photo')">
               <div class="d-flex mb-3">
-                <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" placeholder="Transport photo" class="w-auto flex-grow-1"/>
+                <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" :placeholder="$t('main.selectPhoto')" class="w-auto flex-grow-1"/>
                 <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
               </div>
               <b-img v-if="hasImage" :src="imageSrc" fluid block rounded/>
@@ -139,6 +129,9 @@ export default {
     },
     getFlags() {
       return this.languageOptions.filter(language => this.user.languages.includes(language.value)).map(language => language.text).join(" ")
+    },
+    formatYear(e){
+     return String(e).substring(0,4);
     },
     handleOk(bvModalEvt) {
       // Prevent modal from closing

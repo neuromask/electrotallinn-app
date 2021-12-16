@@ -112,7 +112,6 @@
             getProduct () {
                 this.$axios.$get(`${this.$config.baseUrl}/marketProducts/${this.id}`).then((response) => {
                     this.productEdit = response;
-                    console.log(response)
                 });
             },
             handleImageDelete(idx) {

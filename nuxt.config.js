@@ -33,28 +33,6 @@ export default {
     '@/assets/styles/main.scss'
   ],
 
-  router: {
-    scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) {
-        return savedPosition
-      } else {
-        let position = {}
-        if (to.matched.length < 2) {
-          position = { x: 0, y: 0 }
-        } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
-          position = { x: 0, y: 0 }
-        }
-        if (to.hash) {
-          position = { selector: to.hash }
-        }
-        return position
-      }
-    }
-  },
-
-  transition: {
-    mode: "out-in"
-  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -71,10 +49,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
-    '@nuxtjs/device',
-    ['@nuxtjs/google-analytics', {
-      id: 'G-H7BDVQX6FQ'
-    }]
+    '@nuxtjs/google-gtag',
+    '@nuxtjs/device'
   ],
 
   serverMiddleware: [
@@ -92,12 +68,11 @@ export default {
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/toast',
-    '@nuxtjs/google-gtag',
+    '@nuxtjs/toast'
   ],
 
   'google-gtag':{
-    id: 'G-1720L3K7S5', // required
+    id: process.env.GTAG_ID || 'G-1720L3K7S5', // required
     config:{
       // this are the config options for `gtag
       // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
