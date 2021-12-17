@@ -169,6 +169,9 @@ export default {
   build: {
     transpile: ['vue-plugin-load-script'],
     cssSourceMap: false,
+    babel: {
+      compact: true,
+    },
     extend(config, ctx) {
       config.module.rules.push({
         test: /\.ya?ml$/,
