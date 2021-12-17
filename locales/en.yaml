@@ -96,6 +96,7 @@ main:
   cookieText: This website uses cookies to ensure you get the best experience on our website.
   cookieBtn: Got it!
   editProfile: Edit your profile
+  selletNoUsername: 'Join {0} Telegram channel and find user by name: {1}'
 action:
   edit: Edit
   ACTIVE: Active

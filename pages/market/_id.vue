@@ -30,7 +30,10 @@
           <b-list-group-item variant="light" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
         </b-list-group>
         <b-alert v-if="!product.username" class="mt-3 mb-0" show variant="warning">
-          <p class="mb-0">Join <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a> Telegram channel and find user by name: <strong>{{ product.userFirstName }}</strong></p>
+          <i18n path="main.selletNoUsername" tag="p" class="mb-0">
+            <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a>
+            <strong>{{ product.userFirstName }}</strong>
+          </i18n>
         </b-alert>
       </b-card>
       <b-card class="images">

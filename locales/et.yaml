@@ -79,7 +79,7 @@ main:
   titleProfiles: Profiilid
   descMarket: Ost & Müük | Osta ja müü elektritranspordiga seotud asju.
   descMap: Laadi & Paranda | Kaart laadimise pistikupesade ja remondi asukohtadega.
-  descProfiilid: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Tutvustame üksteist lähemalt.
+  descProfiles: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Tutvustame üksteist lähemalt.
   deleteWarning: Kas olete kindel, et soovite kustutada?
   confirmDelete: Kustutamise kinnitamine
   selectCategory: Valige kategooria
@@ -97,6 +97,7 @@ main:
   cookieTekst: See veebileht kasutab küpsiseid, et saaksite meie veebilehest maksimumi võtta.
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili
+  selletNoUsername: 'Liituge {0} Telegrami kanaliga ja leidke kasutaja nime järgi: {1}'
 action:
   edit: Redigeeri
   ACTIVE: Aktiivne
