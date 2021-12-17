@@ -5,24 +5,24 @@ nav:
   users: Профили
   myProfile: Мой профиль
   myLocations: Мои локации
-  myProducts: Мои продукты
+  myProducts: Мои товары
   profiles: Люди
   ranks: Ранги
   products: Товары
   profile: Профиль
   locations: Локации
-  addProduct: Добавить продукт
+  addProduct: Добавить товар
 error:
   notFound: Не найдено
   fileSendFailed: Ошибка отправки файла {0}
   unexpected: Непредвиденная ошибка {0}
   fileDeleteFailed: Не удалось удалить файл {0}
   productUinEmpty: Нужно заполнить userUin!
-  productNameEmpty: Нужно заполнить название продукта!
-  productDescriptionEmpty: Нужно заполнить описание продукта!
-  productPriceEmpty: Нужно указать цену продукта!
-  productCategoryEmpty: Нужно выбрать категорию продукта!
-  productImageEmpty: Нужно добавить фото продукта!
+  productNameEmpty: Нужно заполнить название товара!
+  productDescriptionEmpty: Нужно заполнить описание товара!
+  productPriceEmpty: Нужно указать цену товара!
+  productCategoryEmpty: Нужно выбрать категорию товара!
+  productImageEmpty: Нужно добавить фото товара!
 market:
   category:
     EQUIPMENT: Экипировка
@@ -42,7 +42,7 @@ profile:
 main:
   contact: Контакт
   seller: Продавец
-  product: Продукт
+  product: Товар
   description: Описание
   dateAdded: Дата добавления
   addedBy: Добавил(а)
@@ -62,10 +62,10 @@ main:
   commands: Команды
   chat: Чат
   textChat: Запустите {0} приложение для общения с ботом {1}.
-  textCommands: Добавляйте точки на {0} и продукты в {1}.
+  textCommands: Добавляйте точки на {0} и товары в {1}.
   textMap: карту
   textMarket: маркет
-  sell: Продукт на продажу
+  sell: Товар на продажу
   add: Точку на карту
   map: Меню карты
   market: Меню маркета
@@ -84,20 +84,20 @@ main:
   confirmDelete: Подтвердите удаление
   selectCategory: Выберете категорию
   price: Цена
-  productPrice: Цена продукта
-  productPhotos: Фото продукта
+  productPrice: Цена товара
+  productPhotos: Фото товара
   selectPhoto: Выберете или перетащите
   warning: Предупреждение!
   username: Имя пользователя (username)
   addUserName: Пожалуйста добавьте {0} в настройках Телеграма, чтоб покупатель смог связаться с Вами.
   transport: Транспорт
-  addProduct: Добавление продукта
-  editProduct: Редактирование продукта
+  addProduct: Добавление товара
+  editProduct: Редактирование товара
   loginToastWarning: Залогиньтесь через Телеграм в меню на сайте для редактирования профиля и продуктов.
   cookieText: Этот веб-сайт использует файлы cookie, чтобы вы могли максимально эффективно использовать наш веб-сайт.
   cookieBtn: Понятно!
   editProfile: Редактировать профиль
-  selletNoUsername: 'Зайдите на канал {0} в Telegram и найдите пользователя: {1}'
+  sellerNoUsername: 'Зайдите на канал {0} в Telegram и найдите пользователя: {1}'
 action:
   edit: Править
   ACTIVE: Активно

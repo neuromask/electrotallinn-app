@@ -97,7 +97,7 @@ main:
   cookieTekst: See veebileht kasutab küpsiseid, et saaksite meie veebilehest maksimumi võtta.
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili
-  selletNoUsername: 'Liituge {0} Telegrami kanaliga ja leidke kasutaja nime järgi: {1}'
+  sellerNoUsername: 'Liituge {0} Telegrami kanaliga ja leidke kasutaja nime järgi: {1}'
 action:
   edit: Redigeeri
   ACTIVE: Aktiivne
