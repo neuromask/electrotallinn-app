@@ -34,7 +34,7 @@
                                 <b-button variant="primary" size="sm" v-b-modal="'map-modal-'+data.item.id">Map</b-button>
                             </b-button-group>
                             <b-modal :id="'image-modal-'+data.item.id" title="Photo" ok-only>
-                                <b-img style="max-height: 500px;" :src="$config.baseUrl + '/locations/image/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
+                                <b-img style="max-height: 500px;" :src="$config.apiUrl + '/locations/image/' + data.item.imageName + '?cache='+cacheKey" center fluid></b-img>
                                 <template #modal-footer="{ ok }">
                                     <b-button variant="secondary" @click="rotateImage(data.item.image, data.item.imageName)">Rotate </b-button>
                                     <b-button variant="primary" @click="ok()">Ok</b-button>
@@ -175,14 +175,14 @@
         methods: {
             requests() {
                 this.$axios
-                    .$get(this.$config.baseUrl + '/admin/locations')
+                    .$get(this.$config.apiUrl + '/admin/locations')
                     .then(response => {
                         this.listFull = response;
                     });
             },
             deleteLoc(locId) {
                 this.$axios
-                    .$delete(this.$config.baseUrl + '/admin/locations/' + locId)
+                    .$delete(this.$config.apiUrl + '/admin/locations/' + locId)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -191,7 +191,7 @@
             },
             statusLoc(locId) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/admin/locations/' + locId + '/confirmed/toggle')
+                    .$put(this.$config.apiUrl + '/admin/locations/' + locId + '/confirmed/toggle')
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -200,7 +200,7 @@
             },
             updateLoc(locId, location) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/admin/locations/' + locId, location)
+                    .$put(this.$config.apiUrl + '/admin/locations/' + locId, location)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -209,7 +209,7 @@
             },
             rotateImage(image, imageName) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/admin/locations/image/rotate/' + imageName)
+                    .$put(this.$config.apiUrl + '/admin/locations/image/rotate/' + imageName)
                     .then(() => {
                         this.$toast.success('Success');
                         this.requests();
@@ -219,7 +219,7 @@
             },
             getReports(locId) {
                 this.$axios
-                .$get(this.$config.baseUrl + '/admin/locations/' + locId + '/reports')
+                .$get(this.$config.apiUrl + '/admin/locations/' + locId + '/reports')
                 .then(response => {
                     this.locationReports = response;
                     console.log(this.locationReports)
@@ -227,7 +227,7 @@
             },
             deleteReport(locId, repId) {
                 this.$axios
-                    .$delete(this.$config.baseUrl + '/admin/locations/' + locId + '/reports/' + repId)
+                    .$delete(this.$config.apiUrl + '/admin/locations/' + locId + '/reports/' + repId)
                     .then(() => {
                         this.$toast.success('Success');
                         this.getReports(locId);

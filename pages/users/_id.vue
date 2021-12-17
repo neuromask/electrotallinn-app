@@ -3,7 +3,7 @@
     
     <div class="upper position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
-      <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.baseUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+      <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
       <b-avatar  class="profile position-absolute shadow text-dark" variant="info" size="15rem" :src="user.photoUrl" rounded="circle" thumbnail></b-avatar>
       <div class="position-absolute mt-4 bg-transparent text-center">
         <h2 v-if="$user.uin != user.uin" class="m-0 text-info shadow-sm"><strong>{{ user.firstName }} </strong></h2>
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     getUser() {
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
       });
     }

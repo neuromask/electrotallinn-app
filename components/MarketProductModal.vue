@@ -110,7 +110,7 @@
         },
         methods: {
             getProduct () {
-                this.$axios.$get(`${this.$config.baseUrl}/marketProducts/${this.id}`).then((response) => {
+                this.$axios.$get(`${this.$config.apiUrl}/marketProducts/${this.id}`).then((response) => {
                     this.productEdit = response;
                 });
             },
@@ -133,7 +133,7 @@
                 });
 
                 if (this.id) {
-                    this.$axios.$put(`${this.$config.baseUrl}/marketProducts/${this.id}`, data).then(() => {
+                    this.$axios.$put(`${this.$config.apiUrl}/marketProducts/${this.id}`, data).then(() => {
                         this.$toast.success('Success');
                         this.$nextTick(() => {
                             this.$emit('save');
@@ -141,7 +141,7 @@
                         })
                     });
                 } else {
-                    this.$axios.$post(`${this.$config.baseUrl}/marketProducts`, data).then(() => {
+                    this.$axios.$post(`${this.$config.apiUrl}/marketProducts`, data).then(() => {
                         this.$toast.success('Success');
                         this.$nextTick(() => {
                             this.$emit('save');

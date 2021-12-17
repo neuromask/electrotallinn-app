@@ -81,14 +81,14 @@
         methods: {
             findMarketProducts() {
                 this.$axios
-                    .$get(`${this.$config.baseUrl}/admin/marketProducts`)
+                    .$get(`${this.$config.apiUrl}/admin/marketProducts`)
                     .then(response => {
                         this.marketProducts = response;
                     });
             },
             deleteProduct(productId) {
                 this.$axios
-                    .$delete(`${this.$config.baseUrl}/admin/marketProducts/${productId}`)
+                    .$delete(`${this.$config.apiUrl}/admin/marketProducts/${productId}`)
                     .then(() => {
                         this.$toast.success('Success');
                         this.findMarketProducts();

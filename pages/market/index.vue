@@ -77,7 +77,7 @@ export default {
   methods: {
     getProducts() {
       this.$axios
-        .$get(this.$config.baseUrl + "/marketProducts", {params: this.filter}).then((response) => {
+        .$get(this.$config.apiUrl + "/marketProducts", {params: this.filter}).then((response) => {
           this.productsFull = response;
         });
     },

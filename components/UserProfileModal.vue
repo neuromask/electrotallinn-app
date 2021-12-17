@@ -43,7 +43,7 @@
               </div>
               <b-img v-if="hasImage" :src="imageSrc" fluid block rounded/>
               <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
-                <b-img :src="$config.baseUrl + '/users/image/' + userEdit.transportPhotoName" fluid block rounded/>
+                <b-img :src="$config.apiUrl + '/users/image/' + userEdit.transportPhotoName" fluid block rounded/>
                 <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
               </div>
             </b-form-group>
@@ -110,12 +110,12 @@ export default {
   methods: {
     getUser() {
       //console.log(this.$nuxt.$route.path)
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
         this.items = [{
           title: this.user.transportModel,
-          src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
+          src: this.$config.apiUrl + '/users/image/' + this.user.transportPhotoName
         }]
         this.userEdit = JSON.parse(JSON.stringify(this.user));
       });
@@ -143,7 +143,7 @@ export default {
       const data = JSON.parse(JSON.stringify(this.userEdit));
       if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
       data.languages = data.languages.join()
-      this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
+      this.$axios.$put(`${this.$config.apiUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
         this.$nextTick(() => {
           this.$emit('save');

@@ -24,7 +24,7 @@ export default {
     },
     loginTelegram(data) {
       this.$axios
-        .$post(this.$config.baseUrl + '/authentication/login', data)
+        .$post(this.$config.apiUrl + '/authentication/login', data)
         .then(response => {
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('jwt', response.token);

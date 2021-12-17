@@ -83,7 +83,7 @@ export default {
       this.$refs['modal-report'].show()
     },
     async handleReportSubmit() {
-        await this.$axios.post(this.$config.baseUrl + '/locations/report', this.report)
+        await this.$axios.post(this.$config.apiUrl + '/locations/report', this.report)
         this.$refs['modal-report'].hide()
     },
     initMap () {
@@ -96,14 +96,14 @@ export default {
       const mapContainer = this.$refs.googleMap
       this.map = new window.google.maps.Map(mapContainer, this.mapConfig)
       const infowindow = new window.google.maps.InfoWindow({})
-      const baseUrl = this.$config.baseUrl
+      const apiUrl = this.$config.apiUrl
 
       window.google.maps.event.addListener(this.map, 'click', function (event) {
         infowindow.close()
       })
 
       this.$axios
-        .get(baseUrl + '/locations')
+        .get(apiUrl + '/locations')
         .then((response) => {
           for (const location of response.data) {
             const markerIcon = require(`~/assets/img/icon/${this.locationIcons[location.type]}.svg`)
@@ -120,8 +120,8 @@ export default {
                 let dateCreated = new Date(location.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' });
                 infowindow.setContent(
                   "<div class='infocontent'>"
-                  + (location.imageName ? "<div class='locImageBlur' style='background-image: url(" + baseUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
-                  + (location.imageName ? "<div class='locImage' style='background-image: url(" + baseUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
+                  + (location.imageName ? "<div class='locImageBlur' style='background-image: url(" + apiUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
+                  + (location.imageName ? "<div class='locImage' style='background-image: url(" + apiUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
                     + "<div class='footer'>"
                       +"<h4>" + location.title + "</h4>"
                       +"<p>" + (location.description || '') + "</p>"

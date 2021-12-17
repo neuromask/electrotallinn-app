@@ -35,7 +35,7 @@
         </h3>
         <hr />
         <figure class="figure mb-0">
-        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.baseUrl + '/users/image/' + user.transportPhotoName"></b-img>
+        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.apiUrl + '/users/image/' + user.transportPhotoName"></b-img>
         <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
         </figure>
       </b-card>
@@ -83,12 +83,12 @@ export default {
   },
   methods: {
     getUser() {
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
         this.items = [{
           title: this.user.transportModel,
-          src: this.$config.baseUrl + '/users/image/' + this.user.transportPhotoName
+          src: this.$config.apiUrl + '/users/image/' + this.user.transportPhotoName
         }]
       });
     },

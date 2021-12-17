@@ -132,14 +132,14 @@
         methods: {
             findUnconfirmedLocations() {
                 this.$axios
-                    .$get(this.$config.baseUrl + '/admin/locations/unconfirmed')
+                    .$get(this.$config.apiUrl + '/admin/locations/unconfirmed')
                     .then(response => {
                         this.unconfirmedLocations = response;
                     });
             },
             findUnconfirmedProducts() {
                 this.$axios
-                    .$get(this.$config.baseUrl + '/admin/marketProducts/unconfirmed')
+                    .$get(this.$config.apiUrl + '/admin/marketProducts/unconfirmed')
                     .then(response => {
                         this.unconfirmedProducts = response;
                     });
@@ -147,7 +147,7 @@
 
             confirmLocation(locationId) {
                 this.$axios
-                    .$put(this.$config.baseUrl + '/admin/locations/' + locationId + '/confirmed/toggle')
+                    .$put(this.$config.apiUrl + '/admin/locations/' + locationId + '/confirmed/toggle')
                     .then(() => {
                         this.$toast.success('Success');
                         this.findUnconfirmedLocations();

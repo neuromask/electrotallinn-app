@@ -16,7 +16,7 @@ export default {
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: this.$t('meta.description') },
-        { hid: "og:image", property: "og:image", content:`app-et-${this.$i18n.locale}.jpg`, },
+        { hid: "og:image", property: "og:image", content:`${this.$config.baseUrl}/app-et-${this.$i18n.locale}.jpg`, },
         { property: "og:image:width", content: "1920" },
         { property: "og:image:height", content: "1080" },
         { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` },
@@ -70,7 +70,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/toast'
   ],
 
@@ -115,7 +115,7 @@ export default {
          code: 'en',
          name: 'English',
          flag: '🇬🇧',
-         iso: 'en-US',
+         iso: 'en',
          file: 'en.yaml',
          text: 'ENG'
       },
@@ -123,7 +123,7 @@ export default {
          code: 'ru',
          name: 'Русский',
          flag: '🇷🇺',
-         iso: 'ru-RU',
+         iso: 'ru',
          file: 'ru.yaml',
          text: 'РУС'
       },
@@ -131,7 +131,7 @@ export default {
          code: 'et',
          name: 'Eesti',
          flag: '🇪🇪',
-         iso: 'et-EE',
+         iso: 'et',
          file: 'et.yaml',
          text: 'EST'
       }
@@ -159,13 +159,12 @@ export default {
   },
 
   publicRuntimeConfig: {
-    //baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
     baseFileUrl: process.env.BASE_FILE_URL || 'https://files.electrotallinn.ee',
-    baseUrl: process.env.BASE_URL || 'https://app.electrotallinn.ee/api',
+    siteUrl: process.env.SITE_URL || 'https://app.electrotallinn.ee',
+    apiUrl: process.env.API_URL || 'https://app.electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY
   },
   privateRuntimeConfig: {
-
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

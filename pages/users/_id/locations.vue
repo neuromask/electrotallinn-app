@@ -26,7 +26,7 @@
           <b-button v-b-modal="'map-modal-'+data.item.id" variant="primary" size="sm">{{ $t('nav.map') }}</b-button>
         </b-button-group>
         <b-modal :id="'image-modal-'+data.item.id" :title="$t('main.photo') +' - '+ data.item.title" ok-only>
-          <b-img :src="$config.baseUrl + '/locations/image/' + data.item.imageName" center fluid />
+          <b-img :src="$config.apiUrl + '/locations/image/' + data.item.imageName" center fluid />
         </b-modal>
         <b-modal :id="'map-modal-'+data.item.id" :title="$t('main.pointOnMap') +' - '+ data.item.title" ok-only>
           <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     getLocList() {
-      this.$axios.$get(`${this.$config.baseUrl}/users/${this.$route.params.id}/locations`).then((response) => {
+      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}/locations`).then((response) => {
         this.listFull = response;
       });
     }
