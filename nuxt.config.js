@@ -124,8 +124,8 @@ export default {
   },
 
   toast: {
-    position: 'top-right',
-    duration: 3000
+    position: 'top-center',
+    duration: 4000
   },
 
   loading: {

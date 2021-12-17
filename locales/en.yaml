@@ -95,6 +95,7 @@ main:
   loginToastWarning: Login with Telegram to manage your profile and market products.
   cookieText: This website uses cookies to ensure you get the best experience on our website.
   cookieBtn: Got it!
+  editProfile: Edit your profile
 action:
   edit: Edit
   ACTIVE: Active

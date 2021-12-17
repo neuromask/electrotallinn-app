@@ -22,12 +22,15 @@
                 <nuxt-link :to="localePath(`/market/${data.item.id}`)">
                   <h4>{{ cutText(data.item.name, 20) }}</h4>
                 </nuxt-link>
-                <p class="small">{{ cutText(data.item.description, 15) }}</p>
+                <p class="small">{{ cutText(data.item.description, 25) }}</p>
                 <p class="small"><strong>{{ $t('market.category.' + data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
               </div>
-              <b-button variant="primary" @click="data.toggleDetails" v-if="$user.uin == $route.params.id">
-                <b-icon icon="pencil-fill" variant="white"/>
-              </b-button>
+              <h3>
+                <a v-if="$user.uin == $route.params.id">
+                  <b-icon v-if="data.detailsShowing" class="align-middle" icon="chevron-up" variant="primary" @click="data.toggleDetails"/>
+                  <b-icon v-else class="align-middle" variant="primary" icon="chevron-down" @click="data.toggleDetails"/>
+                </a>
+              </h3>
             </div>
           </template>
 

@@ -2,7 +2,7 @@
   <section ref="top">
     <div class="mb-3">
       <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('main.all') }}</b-btn>
-      <b-button v-for="cat in categories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :class="[cat==='isOther' ? 'is-checked' : '']" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>
+      <b-button v-for="cat in categories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :pressed="selectedCats.includes(cat)" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>
     </div>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
@@ -40,7 +40,7 @@
             </b-card-body>
             <template #footer>
                 <div class="d-flex w-100 justify-content-between align-items-center">
-                    <p class="mb-1" v-if="product.category">{{ $t('main.category') }}: <strong role="button" @click="selectCat(product.category)">{{ $t('market.category.' + product.category) }}</strong></p>
+                    <a class="mb-1 small" v-if="product.category" @click="selectCat(product.category)" role="button"><strong>{{ $t('market.category.' + product.category) }}</strong></a>
                     <p class="mb-0 small" v-if="product.date_created">{{ new Date(product.date_created).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</p>
                 </div>
             </template>

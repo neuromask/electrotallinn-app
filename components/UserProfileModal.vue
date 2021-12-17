@@ -1,5 +1,5 @@
 <template>
-    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" :cancel-title="$t('action.cancel')" scrollable centered id="profile-modal" title="Edit your profile" @ok="handleOk">
+    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" :cancel-title="$t('action.cancel')" scrollable centered id="profile-modal" :title="$t('main.editProfile')" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
         <b-card-group columns>
           <b-card>
