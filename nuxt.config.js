@@ -16,7 +16,7 @@ export default {
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: this.$t('meta.description') },
-        { hid: "og:image", property: "og:image", content:`${this.$config.baseUrl}/app-et-${this.$i18n.locale}.jpg`, },
+        { hid: "og:image", property: "og:image", content:`${this.$config.siteUrl}/app-et-${this.$i18n.locale}.jpg`, },
         { property: "og:image:width", content: "1920" },
         { property: "og:image:height", content: "1080" },
         { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` },
@@ -70,7 +70,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/toast'
   ],
 
