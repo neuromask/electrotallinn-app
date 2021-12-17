@@ -21,10 +21,10 @@ router.get('/:id(\\d+)', async function(request, response) {
 // CREATE
 router.post('/', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
     try {
-        if (+request.params.userUin !== request.user.uin && request.user.role !== 'ADMIN') {
+        /*if (+request.params.userUin !== request.user.uin && request.user.role !== 'ADMIN') {
             console.warn('Saving %s not allowed for user with uin %s', JSON.stringify(request.body), request.user.uin);
             return response.status(403).send("Not allowed");
-        }
+        }*/
 
         request.body.userUin = request.user.uin;
         request.body.userFirstName = request.user.firstName;
@@ -39,10 +39,10 @@ router.post('/', utils.verifyJWT, utils.checkAuthentication, async function(requ
 // UPDATE
 router.put('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
     try {
-        if (+request.params.userUin !== request.user.uin && request.user.role !== 'ADMIN') {
+        /*if (+request.params.userUin !== request.user.uin && request.user.role !== 'ADMIN') {
             console.warn('Saving %s not allowed for user with uin %s', JSON.stringify(request.body), request.user.uin);
             return response.status(403).send("Not allowed");
-        }
+        }*/
 
         let result = await marketProductsService.update(request.params.id, request.body, request.headers.authorization);
         response.send(result);
