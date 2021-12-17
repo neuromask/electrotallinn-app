@@ -70,7 +70,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
-    // '@nuxtjs/pwa',
+    '@nuxtjs/pwa',
     '@nuxtjs/toast'
   ],
 
