@@ -36,19 +36,19 @@ module.exports = {
         let result = await marketProductsRepository.create(marketProduct);
 
         marketProduct.images = marketProduct.images || [];
-        marketProduct.images.forEach(async item => {
+        for (const image of marketProduct.images) {
             try {
                 let fileName = utils.uuid() + '.jpg';
 
                 // create file on file server
-                let res = await fileManagerHelper.create('market', item.fileB64, fileName, authHeader);
+                await fileManagerHelper.create('market', image.fileB64, fileName, authHeader);
 
                 // create file record
-                marketProductImagesRepository.create({marketProductId: result.insertId, fileName: fileName});
+                await marketProductImagesRepository.create({marketProductId: result.insertId, fileName: fileName});
             } catch (e) {
                 console.error(e);
             }
-        });
+        }
 
         return result
     },
