@@ -1,30 +1,33 @@
-import getSiteMeta from "./utils/getSiteMeta";
-const meta = getSiteMeta();
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    htmlAttrs: {
-      lang: "en-GB",
-    },
-    title: 'ElectroTallinn App',
-    meta: [
-      ...meta,
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' },
-      { hid: "og:image", property: "og:image", content: "/app-et-02-en.jpg" },
-      { property: "og:image:width", content: "1920" },
-      { property: "og:image:height", content: "1080" },
-      { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      { hid: "canonical", rel: "canonical", href: "https://app.electrotallinn.ee", },
-    ]
+  head() {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
+    
+    return {
+      title: 'ElectroTallinn App',
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+        ...i18nHead.htmlAttrs
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: this.$t('meta.description') },
+        { hid: "og:image", property: "og:image", content:`app-et-${this.$i18n.locale}.jpg`, },
+        { property: "og:image:width", content: "1920" },
+        { property: "og:image:height", content: "1080" },
+        { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` },
+        ...i18nHead.meta
+      ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        ...i18nHead.link
+      ]
+    }
+
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -97,7 +100,16 @@ export default {
     defaultLocale: 'en',
     langDir: '~/locales/',
     baseUrl: 'https://app.electrotallinn.ee',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieDomain: null,
+      cookieKey: "i18n_redirected",
+      alwaysRedirect: false,
+      fallbackLocale: ""
+    },
+    seo: true,
     vueI18nLoader: true,
+    lazy: false,
     locales: [
       {
          code: 'en',
