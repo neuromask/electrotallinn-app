@@ -2,7 +2,7 @@ const type = "website";
 const url = "https://app.electrotallinn.ee";
 const title = "ElectroTallinn App";
 const description = "Electric market, charging and repair map, ElectroPeople profiles.";
-const mainImage = "/etapp.jpg";
+const mainImage = "/app-et-02-en.jpg";
 
 export default (meta) => {
   return [
