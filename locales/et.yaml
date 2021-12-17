@@ -31,8 +31,8 @@ market:
     ACCESSORIES: Aksessuaarid
     OTHER: Muud
 profile:
-  nimi: Nimi
-  telegramm: Telegram
+  name: Nimi
+  telegram: Telegram
   age: Vanus
   language: Keel
   location: elupaigad
@@ -78,8 +78,8 @@ main:
   titleMap: Kaart
   titleProfiles: Profiilid
   descMarket: Ost & Müük | Osta ja müü elektritranspordiga seotud asju.
-  descMap: Laadige & Parandage | Kaart müügikohtade ja remondi jaamade asukohaga.
-  descProfiilid: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Õpime üksteist paremini tundma.
+  descMap: Laadi & Paranda | Kaart laadimise pistikupesade ja remondi asukohtadega.
+  descProfiilid: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Tutvustame üksteist lähemalt.
   deleteWarning: Kas olete kindel, et soovite kustutada?
   confirmDelete: Kustutamise kinnitamine
   selectCategory: Valige kategooria
@@ -93,7 +93,7 @@ main:
   transport: Transport
   addProduct: Lisage toode
   editProduct: Toote redigeerimine
-  loginToastHoiatus: Logige Telegrami sisse saidi menüüs, et muuta oma profiili ja tooteid.
+  loginToastWarning: Logige Telegrami sisse saidi menüüs, et muuta oma profiili ja tooteid.
   cookieTekst: See veebileht kasutab küpsiseid, et saaksite meie veebilehest maksimumi võtta.
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili
