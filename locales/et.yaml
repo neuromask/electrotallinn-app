@@ -1,0 +1,106 @@
+nav:
+  home: Avaleht
+  market: Market
+  map: Kaart
+  users: Profiilid
+  myProfile: Minu profiil
+  myLocations: Minu asukohad
+  myProducts: Minu tooted
+  profiles: Inimesed
+  ranks: Auastmed
+  products: Tooted
+  profile: Profiil
+  locations: Asukohad
+  addProduct: Lisa toode
+error:
+  notFound: Ei leitud
+  fileSendFailed: Viga faili {0} saatmisel
+  unexpected: Ootamatu viga {0}
+  fileDeleteFailed: Faili {0} kustutamine ebaõnnestus
+  productUinEmpty: UserUin tuleb täita!
+  productNameEmpty: Peate sisestama toote nime!
+  productDescriptionEmpty: Tootekirjeldus on nõutav!
+  productPriceEmpty: Toote hind tuleb täpsustada!
+  productCategoryEmpty: peate valima tootekategooria!
+  productImageEmpty: Peate lisama tootefoto!
+market:
+  category:
+    EQUIPMENT: Varustus
+    TRANSPORT: Transport
+    SPARE_PARTS: Komponendid
+    ACCESSORIES: Aksessuaarid
+    OTHER: Muud
+profile:
+  nimi: Nimi
+  telegramm: Telegram
+  age: Vanus
+  language: Keel
+  location: elupaigad
+  locationPlace: Linn, piirkond
+  model: Mudel
+  birthYear: Sünniaasta
+main:
+  contact: Kontakt
+  seller: Müüja
+  product: Toode
+  description: Kirjeldus
+  dateAdded: Lisamise kuupäev
+  addedBy: Lisanud
+  category: Kategooria
+  photo: Foto
+  pointOnMap: Punkt kaardil
+  all: Kõik
+  top: Top
+  rank: Auaste
+  legend: Legend
+  points: Punktid
+  type: Tüüp
+  name: Nimi
+  info: Info
+  achievements: Saavutused
+  bot: Bot
+  commands: Käsud
+  chat: Chat
+  textChat: Käivitage rakendus {0} ja alustage chat botiga {1}.
+  textCommands: Lisage punktid {0} ja tooted {1}.
+  textMap: kardile
+  textMarket: turule
+  sell: Müüa toode
+  add: Punkt kaardile
+  map: Kaardimenüü
+  market: Turu menüü
+  weather: Ilmateade
+  ali: Aliexpressi lingid
+  help: Käsud robotile
+  social: Lingid sotsiaalvõrgustikele
+  pic: Otsi pilti
+  titleMarket: Turg
+  titleMap: Kaart
+  titleProfiles: Profiilid
+  descMarket: Ost & Müük | Osta ja müü elektritranspordiga seotud asju.
+  descMap: Laadige & Parandage | Kaart müügikohtade ja remondi jaamade asukohaga.
+  descProfiilid: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Õpime üksteist paremini tundma.
+  deleteWarning: Kas olete kindel, et soovite kustutada?
+  confirmDelete: Kustutamise kinnitamine
+  selectCategory: Valige kategooria
+  price: Hind
+  productPrice: Toote hind
+  productPhotos: Tootefoto
+  selectPhoto: valige või lohistage
+  warning: Hoiatus!
+  username: Kasutajanimi (username)
+  addUserName: Lisage Telegrami seadetesse {0}, et ostja saaks teiega ühendust võtta.
+  transport: Transport
+  addProduct: Lisage toode
+  editProduct: Toote redigeerimine
+  loginToastHoiatus: Logige Telegrami sisse saidi menüüs, et muuta oma profiili ja tooteid.
+  cookieTekst: See veebileht kasutab küpsiseid, et saaksite meie veebilehest maksimumi võtta.
+  cookieBtn: Sain aru!
+  editProfile: Redigeeri profiili
+action:
+  edit: Redigeeri
+  ACTIVE: Aktiivne
+  INACTIVE: mitteaktiivne
+  delete: Kustuta
+  cancel: Tühistada
+  add: Lisa

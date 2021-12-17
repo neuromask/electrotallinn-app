@@ -114,6 +114,14 @@ export default {
          iso: 'ru-RU',
          file: 'ru.yaml',
          text: 'РУС'
+      },
+      {
+         code: 'et',
+         name: 'Eesti',
+         flag: '🇪🇪',
+         iso: 'et-EE',
+         file: 'et.yaml',
+         text: 'EST'
       }
     ],
     vueI18n: {

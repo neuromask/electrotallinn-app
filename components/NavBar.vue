@@ -19,6 +19,6 @@
 }
 .lang-select {
   position: absolute;
-  top: calc(50% - 16px); right: 0;
+  top: calc(50% - 22px); right: 0;
 }
 </style>
