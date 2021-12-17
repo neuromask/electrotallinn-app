@@ -146,6 +146,7 @@ export default {
       this.$axios.$put(`${this.$config.baseUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
         this.$nextTick(() => {
+          this.$emit('save');
           this.$bvModal.hide('profile-modal')
         })
       });
