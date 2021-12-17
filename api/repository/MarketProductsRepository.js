@@ -83,5 +83,13 @@ module.exports = {
 
         let result = await db.query(sql, params);
         return utils.convertPropsToCamelcase(result);
+    },
+
+    exists: async (id, userUin) => {
+        let sql = 'SELECT 1 FROM market_products p WHERE id =? AND user_uin = ?';
+        let params = [id, userUin];
+
+        let result = await db.query(sql, params);
+        return !!result[0];
     }
 };

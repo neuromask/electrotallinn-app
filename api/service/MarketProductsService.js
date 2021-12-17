@@ -109,5 +109,9 @@ module.exports = {
         let product = await marketProductsRepository.findOne(id);
 
         return await marketProductsRepository.updateStatus(id, statuses[Math.abs(statuses.indexOf(product.status) - 1)]);
+    },
+
+    exists: async (id, userUin) => {
+        return await marketProductsRepository.exists(id, userUin);
     }
 };

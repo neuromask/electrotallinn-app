@@ -134,6 +134,7 @@
 
                 if (this.id) {
                     this.$axios.$put(`${this.$config.baseUrl}/marketProducts/${this.id}`, data).then(() => {
+                        this.$toast.success('Success');
                         this.$nextTick(() => {
                             this.$emit('save');
                             this.$bvModal.hide(this.modalId)
@@ -141,6 +142,7 @@
                     });
                 } else {
                     this.$axios.$post(`${this.$config.baseUrl}/marketProducts`, data).then(() => {
+                        this.$toast.success('Success');
                         this.$nextTick(() => {
                             this.$emit('save');
                             this.$bvModal.hide(this.modalId)
