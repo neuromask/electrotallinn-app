@@ -1,37 +1,32 @@
-<template>
-  <div id="app">
-    <Sidebar />
-    <div class="navWrap"><NavBar /></div>
-    <main>
-      <div class="fullScreen"><Nuxt /></div>
-    </main>
-  </div>
-</template>
-<style scoped>
-main {
-  height:100%;
+  // Global page headers: https://go.nuxtjs.dev/config-head
+  export default {
+  head: {
+    htmlAttrs: {
+      lang: "en-GB",
+    },
+    title: 'ElectroTallinn App',
+    meta: [
+      ...meta,
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' },
+      { hid: "og:image", property: "og:image", content: "/app-et-02-en.jpg" },
+      { property: "og:image:width", content: "1920" },
+      { property: "og:image:height", content: "1080" },
+      { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      { hid: "canonical", rel: "canonical", href: "https://app.electrotallinn.ee", },
+    ]
+  }
 }
-.navWrap {
-  position: fixed;
-  height: 48px;
-  width: 100%;
-  z-index: 1;
-}
-.fullScreen {
-  height:calc(100% - 48px);
-  position: absolute;
-  top:48px; left:0;
-  width:100%;
-}
-</style>
-<script>
 export default {
-  
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
-
+    
     return {
-      titleTemplate: '%s - ElectroTallinn App',
+      title: 'ElectroTallinn App',
       htmlAttrs: {
         lang: this.$i18n.locale,
         ...i18nHead.htmlAttrs
@@ -52,7 +47,6 @@ export default {
         ...i18nHead.link
       ]
     }
-  }
 
+  }
 }
-</script>

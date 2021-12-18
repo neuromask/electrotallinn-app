@@ -79,7 +79,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() { return { title: this.$t("nav.home"), } }
+}
 </script>
 
 <style scoped>

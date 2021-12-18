@@ -30,7 +30,7 @@ export default {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
 
     return {
-      title: 'ElectroTallinn App',
+      titleTemplate: '%s - ElectroTallinn App',
       htmlAttrs: {
         lang: this.$i18n.locale,
         ...i18nHead.htmlAttrs

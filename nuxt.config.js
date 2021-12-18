@@ -5,17 +5,14 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     htmlAttrs: {
-      lang: "en-GB",
+      lang: "en",
     },
-    title: 'ElectroTallinn App',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Electric market, charging and repair map, ElectroPeople profiles.' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      { hid: "canonical", rel: "canonical", href: "https://app.electrotallinn.ee", },
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
 

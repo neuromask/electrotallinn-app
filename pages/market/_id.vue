@@ -63,13 +63,9 @@ export default {
   },
   head() {
     return {
-      title: this.product.name + ' - ElectroTallinn Market',
+      title: this.product.name,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description'
-        }
+        { hid: 'description', name: 'description', content: this.product.description}
       ]
     }
   },

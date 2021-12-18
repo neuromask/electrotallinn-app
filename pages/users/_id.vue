@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  head() { return { title: this.user.firstName } },
   props: {},
   data() {
     return {

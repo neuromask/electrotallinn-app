@@ -31,6 +31,13 @@
 import mapStyle from '@/assets/json/mapStyle.json'
 
 export default {
+  head() { return { 
+    title: this.$t("nav.map"),
+      meta: [
+        { hid: 'description', name: 'description', content: 'Map showing the locations of outlets for charging, repair in accessible places.' },
+      ]
+    } 
+  },
   name: 'Map',
   layout: 'empty',
   props: {},
@@ -52,15 +59,6 @@ export default {
       },
       report: {},
     }
-  },
-  head () {
-      return {
-        title: 'Charging Map - ElectroTallinn',
-        meta: [
-          { hid: 'description', name: 'description', content: 'Map showing the locations of outlets for charging, repair in accessible places.' },
-          { name: 'format-detection', content: 'telephone=no' }
-        ]
-      }
   },
   mounted () {
     window.handleReport = this.handleReport;
