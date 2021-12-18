@@ -101,7 +101,6 @@ export default {
       {
          code: 'en',
          name: 'English',
-         flag: '🇬🇧',
          iso: 'en',
          file: 'en.yaml',
          text: 'ENG'
@@ -109,7 +108,6 @@ export default {
       {
          code: 'ru',
          name: 'Русский',
-         flag: '🇷🇺',
          iso: 'ru',
          file: 'ru.yaml',
          text: 'РУС'
@@ -117,7 +115,6 @@ export default {
       {
          code: 'et',
          name: 'Eesti',
-         flag: '🇪🇪',
          iso: 'et',
          file: 'et.yaml',
          text: 'EST'
@@ -128,6 +125,18 @@ export default {
       silentFallbackWarn: true,
       fallbackLocale: 'en'
     }
+  },
+
+  sitemap: {
+    exclude: [
+      '/admin*',
+      '/admin/*',
+      '/et/admin*',
+      '/et/admin/*',
+      '/ru/admin**',
+      '/ru/admin/*'
+    ],
+    i18n: true
   },
 
   toast: {
