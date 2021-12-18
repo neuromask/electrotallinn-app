@@ -57,7 +57,8 @@ export default {
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/sitemap'
   ],
 
   'google-gtag':{
