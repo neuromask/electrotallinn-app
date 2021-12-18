@@ -33,6 +33,12 @@
                                 <b-button size="sm" v-b-modal="'image-modal-'+data.item.id">Image</b-button>
                                 <b-button variant="primary" size="sm" v-b-modal="'map-modal-'+data.item.id">Map</b-button>
                             </b-button-group>
+                            <b-modal :id="'image-modal-'+data.item.id" :title="$t('main.photo') +' - '+ data.item.title" ok-only>
+                                <b-img :src="$config.apiUrl + '/locations/image/' + data.item.imageName" center fluid />
+                            </b-modal>
+                            <b-modal :id="'map-modal-'+data.item.id" :title="$t('main.pointOnMap') +' - '+ data.item.title" ok-only>
+                                <iframe width="100%" height="460px" frameBorder="0" :src="'https://maps.google.com/maps?q='+data.item.lat+','+data.item.lng+'&z=15&output=embed'" />
+                            </b-modal>
                         </div>
                         <div class="d-inline-block my-1">
                             <b-button-group size="sm">
@@ -47,6 +53,32 @@
                                 </b-button>
                             </b-button-group>
                         </div>
+                        <b-modal centered :id="'delete-modal-'+data.item.id" title="Confirm delete">
+                                Are you sure you want to delete?<br/>ID: {{data.item.id}}<br/>Name: {{data.item.title}}
+                                <template #modal-footer="{ cancel, hide }">
+                                    <b-button variant="primary" size="sm" @click="deleteLoc(data.item.id), hide()">OK</b-button>
+                                    <b-button size="sm" @click="cancel()">Cancel</b-button>
+                                </template>
+                            </b-modal>
+                            <b-modal size="xl" centered :id="'report-modal-'+data.item.id" title="Reports" ok-only>
+                                <b-table borderless striped :fields="fieldsReport" :items="locationReports" :sort-by="sortBy" :sort-desc="sortDesc" >
+                                    <template #cell(delete)="data">
+                                        <b-button variant="danger" @click="deleteReport(data.item.locationId, data.item.id)">
+                                            <b-icon icon="trash-fill" variant="white"/>
+                                        </b-button>
+                                    </template>
+                                </b-table>
+                            </b-modal>
+                    </template>
+                    <template #row-details="data">
+                        <b-card>
+                            <b-form inline>
+                                <b-form-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" v-model="data.item.title"/>
+                                <b-form-input id="inline-form-input-username" class="mb-2 mr-sm-2 mb-sm-0" v-model="data.item.description"/>
+                                <b-form-select v-model="data.item.type" class="mb-2 mr-sm-2 mb-sm-0" :options="$locationTypes"/>
+                                <b-button variant="primary" @click="updateLoc(data.item.id, data.item)">Update </b-button>
+                            </b-form>
+                        </b-card>
                     </template>
                 </b-table>
             </b-col>
@@ -123,6 +155,38 @@
 
                 unconfirmedProductsSortBy: 'id',
                 unconfirmedProductsSortDesc: true,
+                sortBy: 'id',
+                sortDesc: true,
+                locationReports: [],
+                fieldsReport: [
+                    {
+                        key: 'dateCreated',
+                        sortable: true,
+                        label: 'Date'
+                    },
+                    {
+                        key: 'userFirstName',
+                        sortable: false,
+                        label: 'Who Reported'
+                    },
+                    {
+                        key: 'message',
+                        label: 'Message'
+                    },
+                    {
+                        key: 'userUin',
+                        sortable: false,
+                        label: 'Reporter UIN'
+                    },
+                    {
+                        key: 'id',
+                        label: 'ID'
+                    },
+                    {
+                        key: 'delete',
+                        label: 'Delete'
+                    }
+                ]
             }
         },
         mounted() {

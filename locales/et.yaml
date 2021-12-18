@@ -55,7 +55,8 @@ main:
   top: Top
   rank: Auaste
   legend: Legend
-  points: Punktid
+  points: Pkd
+  medal: Medal
   type: Tüüp
   name: Nimi
   info: Info

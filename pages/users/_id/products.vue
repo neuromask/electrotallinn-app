@@ -25,12 +25,10 @@
                 <p class="small">{{ cutText(data.item.description, 25) }}</p>
                 <p class="small"><strong>{{ $t('market.category.' + data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
               </div>
-              <h3>
-                <a v-if="$user.uin == $route.params.id">
-                  <b-icon v-if="data.detailsShowing" class="align-middle" icon="chevron-up" variant="primary" @click="data.toggleDetails"/>
-                  <b-icon v-else class="align-middle" variant="primary" icon="chevron-down" @click="data.toggleDetails"/>
-                </a>
-              </h3>
+              <a v-if="$user.uin == $route.params.id">
+                <b-icon scale="2" v-if="data.detailsShowing" class="mr-2 align-middle" icon="chevron-up" variant="primary" @click="data.toggleDetails"/>
+                <b-icon scale="2" v-else variant="primary" class="mr-2 align-middle" icon="chevron-down" @click="data.toggleDetails"/>
+              </a>
             </div>
           </template>
 
@@ -69,8 +67,7 @@ export default {
     return {
       marketProducts: [],
       marketProductsSortBy: 'id',
-      marketProductsSortDesc: true,
-      categories: ['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']
+      marketProductsSortDesc: true
     }
   },
   computed: {

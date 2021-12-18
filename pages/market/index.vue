@@ -2,7 +2,7 @@
   <section ref="top">
     <div class="mb-3">
       <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('main.all') }}</b-btn>
-      <b-button v-for="cat in categories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :pressed="selectedCats.includes(cat)" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>
+      <b-button v-for="cat in $productCategories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :pressed="selectedCats.includes(cat)" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>
     </div>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
@@ -61,8 +61,7 @@ export default {
           category: []
         },
         sort: [],
-        selectedCats: [], // Must be an array reference!
-        categories: ['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']
+        selectedCats: []
     };
   },
   created() {

@@ -151,6 +151,14 @@ hr:after {
   padding-left: 1rem;
 }
 
+.list-group,
+.alert,
+.card,
+.rounded {
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+}
+
 @media (min-width: 576px) {
   .modal-style {
     padding: 2rem;

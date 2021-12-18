@@ -4,10 +4,7 @@
         <hr/>
         <b-row>
             <b-col cols="12">
-                <h3>
-                    <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
-                    Market products
-                </h3>
+                <h3><b-badge variant="warning" class="text-white font-weight-bold">List</b-badge> Products</h3>
                 <b-table
                     class="bg-info"
                     borderless
@@ -27,12 +24,15 @@
                         <p>{{ data.item.description }}</p>
                         <small>Added by: {{ data.item.userFirstName }}</small>
                     </template>
+                    <template #cell(category)="data">
+                        <p style="white-space:nowrap">{{ $t('market.category.' + data.item.category) }}</p>
+                    </template>
                     <template #cell(controls)="data">
                         <b-button-group size="sm">
                             <b-button variant="primary" v-b-modal="'product-modal-' + data.item.id">
                                 <b-icon icon="pencil-fill" variant="white"/>
                             </b-button>
-                            <b-button :class="data.item.status == 'INACTIVE' ? 'btn-warning' : 'btn-success'" @click="statusLoc(data.item.id)">
+                            <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-success' : 'btn-warning'" @click="statusProduct(data.item.id)">
                                 <b-icon icon="check-circle-fill" variant="white"/>
                             </b-button>
                             <b-button variant="danger" v-b-modal="'delete-modal-'+data.item.id">
@@ -85,6 +85,14 @@
                     .then(response => {
                         this.marketProducts = response;
                     });
+            },
+            statusProduct(productId) {
+                this.$axios
+                    .$put(`${this.$config.apiUrl}/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`)
+                    .then(() => {
+                        this.$toast.success('Success');
+                        this.findMarketProducts();
+                    })
             },
             deleteProduct(productId) {
                 this.$axios

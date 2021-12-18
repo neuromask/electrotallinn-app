@@ -25,4 +25,5 @@ export default ({ app }, inject) => {
         AIR: require('@/assets/img/icon/icon-air.svg'),
         WATER: require('@/assets/img/icon/icon-water.svg')
     }))
+    inject('productCategories', Vue.observable(['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']))
 }

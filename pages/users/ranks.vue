@@ -5,11 +5,10 @@
         <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">ElectroPeople</b-badge> {{ $t('main.top') }}</h3>
         <hr />
         <b-table
-          class="bg-info"
+          class="bg-info rounded"
           borderless
           outlined
           striped
-          hover
           :items="listTop"
           :fields="fieldsTop"
           :sort-by.sync="sortRankBy"
@@ -31,11 +30,10 @@
         <h3 class="mt-5 font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.ranks') }}</b-badge> {{ $t('main.legend') }}</h3>
         <hr />
         <b-table
-          class="bg-info mb-5"
+          class="bg-info mb-5 rounded"
           borderless
           outlined
           striped
-          hover
           :items="ranks"
           :fields="fieldsRank"
         >
@@ -54,10 +52,9 @@
         <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.locations') }}</b-badge> {{ $t('main.all') }}</h3>
         <hr />
         <b-table
-          class="bg-info"
+          class="bg-info rounded"
           borderless
           striped
-          hover
           :items="listFull"
           :fields="fieldsLoc"
           :sort-by.sync="sortLocBy"
@@ -67,7 +64,7 @@
             <h4>{{ data.item.title }}</h4><p>{{ data.item.description }}</p><small>{{ $t('main.addedBy') }}: {{ data.item.userFirstName }}</small>
           </template>
           <template #cell(type)="data">
-            <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
+            <b-img :src="$locationIcons[data.item.type]" center fluid-grow class="table-icon" />
           </template>
           <template #cell(imageName)="data">
             <b-button-group size="sm" vertical>
@@ -95,12 +92,6 @@ export default {
   props: {},
   data: () => ({
 
-    locationIcons: {
-      CHARGE: 'icon-charge',
-      REPAIR: 'icon-repair',
-      AIR: 'icon-air',
-      WATER: 'icon-water'
-    },
     ranks: [
       {
         num: 0,
@@ -163,24 +154,25 @@ export default {
     sortLocDesc: true,
 
     sortRankBy: 'count',
-    sortRankDesc: true,
-    fieldsRank: [
-      {
-        key: 'icon',
-        label: 'Medal'
-      },
-      {
-        key: 'name',
-        label: 'Rank'
-      },
-      {
-        key: 'minCount',
-        label: 'Pts'
-      }
-    ]
-
+    sortRankDesc: true
   }),
   computed: {
+    fieldsRank() {
+      return [
+        {
+          key: 'icon',
+          label: this.$t('main.medal')
+        },
+        {
+          key: 'name',
+          label: this.$t('main.rank')
+        },
+        {
+          key: 'minCount',
+          label: this.$t('main.points')
+        }
+      ]
+    },
     fieldsLoc() {
       return [
         {

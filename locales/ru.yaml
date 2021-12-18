@@ -55,7 +55,8 @@ main:
   top: Топ
   rank: Ранг
   legend: Легенда
-  points: Очки
+  points: Очк
+  medal: Медаль
   type: Тип
   name: Название
   info: Инфо

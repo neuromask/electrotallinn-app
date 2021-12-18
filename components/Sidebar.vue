@@ -26,7 +26,7 @@
         <div class="mb-3">
           <BotButton />
         </div>
-        <div class="mb-3">
+        <div class="mb-3 pt-1">
           <SocialLinks />
         </div>
         <a class="text-center d-block" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Website</a>

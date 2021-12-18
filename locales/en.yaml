@@ -54,7 +54,8 @@ main:
   top: Top
   rank: Rank
   legend: Legend
-  points: Points
+  points: Pts
+  medal: Medal
   type: Type
   name: Name
   info: Info

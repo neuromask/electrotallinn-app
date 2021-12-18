@@ -68,14 +68,7 @@
                                 </template>
                             </b-modal>
                             <b-modal size="xl" centered :id="'report-modal-'+data.item.id" title="Reports" ok-only>
-                                <b-table
-                                    borderless
-                                    striped
-                                    :fields="fieldsReport"
-                                    :items="locationReports" 
-                                    :sort-by="sortBy"
-                                    :sort-desc="sortDesc"
-                                    >
+                                <b-table borderless striped :fields="fieldsReport" :items="locationReports" :sort-by="sortBy" :sort-desc="sortDesc" >
                                     <template #cell(delete)="data">
                                         <b-button variant="danger" @click="deleteReport(data.item.locationId, data.item.id)">
                                             <b-icon icon="trash-fill" variant="white"/>
@@ -112,12 +105,6 @@
                 locationReports: [],
                 componentKey: 0,
                 cacheKey: +new Date(),
-                bgImages: [
-                    require("@/assets/img/pattern-icons.png"),
-                    require("@/assets/img/top.jpg"),
-                    require("@/assets/img/tallinn.svg"),
-                    require("@/assets/img/mol.svg")
-                ],
                 listFull: [],
                 sortBy: 'id',
                 sortDesc: true,
