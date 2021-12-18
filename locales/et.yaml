@@ -95,7 +95,7 @@ main:
   transport: Transport
   addProduct: Lisage toode
   editProduct: Toote redigeerimine
-  loginToastWarning: Logige Telegrami sisse saidi menüüs, et muuta oma profiili ja tooteid.
+  loginToastWarning: Logige Telegrami sisse menüüs, et muuta oma profiili ja tooteid.
   cookieTekst: See veebileht kasutab küpsiseid, et saaksite meie veebilehest maksimumi võtta.
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili

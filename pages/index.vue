@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-row class="mt-3">
+    <b-row>
       <b-col cols="12" lg="4" class="p-3">
         <UserProfileBox />
         <b-card>

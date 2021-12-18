@@ -14,10 +14,10 @@
 </template>
 <script>
 export default {
-  watch: {
+  /*watch: {
     $route () {
      if (!this.$user.isLogged) this.$bvToast.show('loginToast')
     }
-  }
+  }*/
 }
 </script>
