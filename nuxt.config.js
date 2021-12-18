@@ -20,6 +20,9 @@ export default {
         { property: "og:image:width", content: "1920" },
         { property: "og:image:height", content: "1080" },
         { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` },
+        { hid: "og:title", property: "og:title", content: 'ElectroTallinn App' },
+        { hid: "og:description", property: "og:description", content: this.$t('meta.description') },
+        { hid: "og:type", property: "og:type", content: 'website' },
         ...i18nHead.meta
       ],
       link: [
