@@ -46,7 +46,7 @@ main:
   seller: Продавец
   product: Товар
   description: Описание
-  dateAdded: Дата добавления
+  dateAdded: Добавлено
   addedBy: Добавил(а)
   category: Категория
   photo: Фото
