@@ -45,7 +45,6 @@ export default {
   serverMiddleware: [
     // Will register file from project server-middleware directory to handle /server-middleware/* requires
     { path: "/api", handler: "~/api/rest.js" }
-      // { path: "/api", handler: "~/api/rest_old.js" }
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

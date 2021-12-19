@@ -38,4 +38,13 @@ router.get('/image/:imageName', async function(request, response) {
     response.end(image, 'binary');
 });
 
+router.get('/nearest', async function(request, response) {
+    if (!request.query.lat || !request.query.lng) {
+        response.status(400).send('Coordinations missing');
+    }
+
+    let result = await locationsService.findNearestLocation(request.query.lat, request.query.lng)
+    response.send(result);
+});
+
 module.exports = router;
