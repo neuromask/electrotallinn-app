@@ -2,7 +2,7 @@
   <section>
     <h3 class="mb-0 font-weight-bold">
       <span>
-        <b-badge variant="warning" class="text-white">{{ $t('nav.map') }}</b-badge> 
+        <b-badge variant="warning" class="text-white">{{ $t('nav.sockets') }}</b-badge> 
         <span>{{ $t('nav.locations') }} ({{ listFull.length }})</span>
       </span>
     </h3>

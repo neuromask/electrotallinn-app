@@ -13,7 +13,7 @@ nav:
   products: Товары
   profile: Профиль
   locations: Локации
-  addProduct: Добавить товар
+  sockets: Розетки
 error:
   notFound: Не найдено
   fileSendFailed: Ошибка отправки файла {0}

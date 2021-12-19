@@ -13,6 +13,7 @@ nav:
   products: Products
   profile: Profile
   locations: Locations
+  sockets: Sockets
 error:
   notFound: Now Found
   fileSendFailed: Failed to send file {0}

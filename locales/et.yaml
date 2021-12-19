@@ -14,6 +14,7 @@ nav:
   profile: Profiil
   locations: Asukohad
   addProduct: Lisa toode
+  sockets: Pistikud
 error:
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel
