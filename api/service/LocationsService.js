@@ -105,6 +105,6 @@ module.exports = {
             }
         }
 
-        return { distance: distances[closest], ...locations[closest] };
+        return { distance: Math.round(distances[closest] * 10) / 10, ...locations[closest] };
     }
 };
