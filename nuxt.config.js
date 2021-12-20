@@ -37,10 +37,16 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    // '@nuxtjs/eslint-module'
-    '@nuxtjs/google-gtag',
+    '@nuxtjs/eslint-module',
     '@nuxtjs/device'
+    //'@aceforth/nuxt-optimized-images'
   ],
+
+  optimizedImages: {
+    optimizeImages: false,
+    optimizeImagesInDev: true,
+    handleImages: ['jpeg', 'png', 'svg']
+  },
 
   serverMiddleware: [
     // Will register file from project server-middleware directory to handle /server-middleware/* requires
@@ -57,6 +63,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    '@nuxtjs/google-gtag',
     '@nuxtjs/sitemap'
   ],
 
