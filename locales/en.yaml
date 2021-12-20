@@ -71,6 +71,7 @@ main:
   sell: Sell product on market
   add: Add point to map
   map: Map menu
+  nearest: Send your geo position to get nearest socket around you
   market: Market menu
   weather: Weather forecast
   ali: Aliexpress links

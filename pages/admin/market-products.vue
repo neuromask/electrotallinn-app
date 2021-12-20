@@ -1,10 +1,9 @@
 <template>
     <section id="admin">
-        <h2 class="mt-4">Admin area</h2>
-        <hr/>
         <b-row>
             <b-col cols="12">
                 <h3><b-badge variant="warning" class="text-white font-weight-bold">List</b-badge> Products</h3>
+                <hr/>
                 <b-table
                     class="bg-info"
                     borderless

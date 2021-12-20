@@ -72,6 +72,7 @@ main:
   sell: Müüa toode
   add: Punkt kaardile
   map: Kaardimenüü
+  nearest: Lähima pistikupesa leidmiseks saatke oma geopositsioon
   market: Turu menüü
   weather: Ilmateade
   ali: Aliexpressi lingid

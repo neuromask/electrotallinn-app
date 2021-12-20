@@ -1,13 +1,12 @@
 <template>
     <section id="admin">
-        <h2 class="mt-4">Admin area</h2>
-        <hr/>
         <b-row>
             <b-col cols="12">
                 <h3>
                     <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
                     Unconfirmed locations
                 </h3>
+                <hr/>
                 <b-table
                     class="bg-info"
                     borderless
@@ -83,48 +82,6 @@
                 </b-table>
             </b-col>
         </b-row>
-        <hr/>
-        <b-row>
-            <b-col cols="12">
-                <h3>
-                    <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
-                    Unconfirmed market products
-                </h3>
-                <b-table
-                    class="bg-info"
-                    borderless
-                    striped
-                    hover
-                    :items="unconfirmedProducts"
-                    :fields="unconfirmedProductsFields"
-                    :sort-by="unconfirmedProductsSortBy"
-                    :sort-desc="unconfirmedProductsSortDesc"
-                >
-                    <template #cell(id)="data">
-                        <h5 class="text-center">{{data.item.id}}</h5>
-                        <b-img :src="$locationIcons[data.item.type]" center fluid class="table-icon"/>
-                    </template>
-                    <template #cell(name)="data">
-                        <p><strong>{{ data.item.name }}</strong></p>
-                        <p>{{ data.item.description }}</p>
-                        <small>Added by: {{ data.item.userFirstName }}</small>
-                    </template>
-                    <template #cell(controls)="data">
-                        <b-button-group size="sm">
-                            <b-button variant="primary">
-                                <b-icon icon="pencil-fill" @click="data.toggleDetails" variant="white"/>
-                            </b-button>
-                            <b-button :class="data.item.status == 'NEW' ? 'btn-warning' : 'btn-success'" @click="statusLoc(data.item.id)">
-                                <b-icon icon="check-circle-fill" variant="white"/>
-                            </b-button>
-                            <b-button variant="danger" v-b-modal="'delete-modal-'+data.item.id">
-                                <b-icon icon="trash-fill" variant="white"/>
-                            </b-button>
-                        </b-button-group>
-                    </template>
-                </b-table>
-            </b-col>
-        </b-row>
     </section>
 </template>
 
@@ -191,7 +148,7 @@
         },
         mounted() {
             this.findUnconfirmedLocations();
-            this.findUnconfirmedProducts();
+            //this.findUnconfirmedProducts();
         },
         methods: {
             findUnconfirmedLocations() {

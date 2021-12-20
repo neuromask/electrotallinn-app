@@ -33,6 +33,7 @@
             <b-list-group-item class="text-dark" variant="primary"><kbd><strong>/help</strong></kbd> - {{ $t('main.help') }}</b-list-group-item>
             <b-list-group-item class="text-dark" variant="primary"><kbd><strong>/social</strong></kbd> - {{ $t('main.social') }}</b-list-group-item>
             <b-list-group-item class="text-dark" variant="primary"><kbd><strong>/pic</strong></kbd> - {{ $t('main.pic') }}</b-list-group-item>
+            <b-list-group-item class="text-dark" variant="primary"><kbd><b-icon icon="geo-alt-fill" /></kbd> - {{ $t('main.nearest') }}</b-list-group-item>
           </b-list-group>
         </b-card>
       </b-col>

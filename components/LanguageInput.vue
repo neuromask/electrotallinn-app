@@ -16,10 +16,10 @@ export default {
 </script>
 <style>
 .btn-lang {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 0.15rem 0.4rem;
-  font-size: 0.8rem;
-  line-height: 1.2;
+  border-top-right-radius: 0!important;
+  border-bottom-right-radius: 0!important;
+  padding: 0.15rem 0.4rem!important;
+  font-size: 0.8rem!important;
+  line-height: 1.2!important;
 }
 </style>
