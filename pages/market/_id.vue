@@ -39,10 +39,10 @@
       <b-card class="images">
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }}</h3>
         <hr />
-        <div v-if="items.length" role="button" class="imageBig" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
+        <div v-if="items.length" role="button" class="imageBig rounded" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
         <div class="row">
           <div class="col-sm-4 mt-3" v-for="(image, imageIndex) in items" :key="imageIndex">
-            <div role="button" class="image" @click="index = imageIndex" :style="{ backgroundImage: 'url(' + image.src + ')' }"></div>
+            <div role="button" class="image rounded" @click="index = imageIndex" :style="{ backgroundImage: 'url(' + image.src + ')' }"></div>
           </div>
         </div>
       </b-card>

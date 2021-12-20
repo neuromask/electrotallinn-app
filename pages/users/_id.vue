@@ -67,7 +67,6 @@ export default {
 }
 .profile {
     bottom:-1rem;
-    padding: 0.25rem;
 }
 .sub-page {
   min-height: 480px;

@@ -101,7 +101,6 @@ export default {
 
 .profile {
     bottom:-1rem;
-    padding: 0.25rem;
 }
 
 .card-list-item {

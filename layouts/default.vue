@@ -48,7 +48,7 @@ export default {
         ...i18nHead.meta
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'icon', type: 'image/png', href: `${this.$config.siteUrl}}/favicon.png` },
         ...i18nHead.link
       ]
     }
