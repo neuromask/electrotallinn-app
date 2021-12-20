@@ -3,14 +3,20 @@ const utils = require("../utils/Utils.js");
 
 module.exports = {
     findAll: async (filter) => {
-        let where = '';
-        for (const [key, value] of Object.entries(filter || {})) {
-            where = where + (where ? ' AND ' : ' WHERE ') + `${key} = ${value}`;
+        filter = filter || {};
+
+        let andList = [];
+        let filterParams = [];
+        for (const [key, value] of Object.entries(filter)) {
+            andList.push(`${key} = ?`);
+            filterParams.push(value);
         }
+        let where = (andList.length > 0 ? ' WHERE ' : '') + andList.join(' AND ') + ' ';
 
         let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created, ((SELECT count(1) FROM reports WHERE location_id = l.id) > 0) AS hasReports FROM locations l' + where;
+        let params = filterParams;
 
-        let result = await db.query(sql);
+        let result = await db.query(sql, params);
         return utils.convertPropsToCamelcase(result);
     },
 

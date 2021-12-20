@@ -74,7 +74,7 @@ module.exports = {
     },
 
     findNearestLocation: async (lat, lng) => {
-        let locations = await locationsRepository.findAll();
+        let locations = await locationsRepository.findAll({ type: 'CHARGE' });
 
         let pi = Math.PI;
         let R = 6371; //equatorial radius
@@ -83,10 +83,10 @@ module.exports = {
 
         for (let i = 0; i < locations.length; i++) {
             let lat2 = locations[i].lat;
-            let lon2 = locations[i].lng;
+            let lng2 = locations[i].lng;
 
             let chLat = lat2 - lat;
-            let chLon = lon2 - lng;
+            let chLon = lng2 - lng;
 
             let dLat = chLat * (pi / 180);
             let dLon = chLon * (pi / 180);
@@ -99,11 +99,12 @@ module.exports = {
             let d = R * c;
 
             distances[i] = d;
+
             if (closest === -1 || d < distances[closest] ) {
                 closest = i;
             }
         }
 
-        return locations[closest];
+        return { distance: distances[closest], ...locations[closest] };
     }
 };
