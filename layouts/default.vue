@@ -21,7 +21,7 @@
 .main-container {
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
   padding-bottom: 5rem!important;
-  min-height: 800px;  
+  min-height: 960px;  
 }
 </style>
 <script>

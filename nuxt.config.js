@@ -61,25 +61,15 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/dotenv',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    '@nuxtjs/google-gtag',
+    '@nuxtjs/gtm',
     '@nuxtjs/sitemap'
   ],
 
-  'google-gtag':{
-    id: process.env.GTAG_ID || 'G-1720L3K7S5', // required
-    config:{
-      // this are the config options for `gtag
-      // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
-      anonymize_ip: false, // anonymize IP 
-      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
-      linker:{
-        domains:['app.electrotallinn.ee']
-      }
-    },
-    debug: true, // enable to track in dev mode
-    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
+  gtm: {
+    id: process.env.GTAG_ID || 'G-1720L3K7S5', // Used as fallback if no runtime config is provided
   },
 
   bootstrapVue: {
@@ -180,34 +170,6 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true,
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.(css|vue)$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
-      }
-    },
-    html: {
-      minify: {
-        collapseBooleanAttributes: true,
-        decodeEntities: true,
-        minifyCSS: true,
-        minifyJS: true,
-        processConditionalComments: true,
-        removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        trimCustomFragments: true,
-        useShortDoctype: true,
-        preserveLineBreaks: false,
-        collapseWhitespace: true
-      }
-    },
     transpile: ['vue-plugin-load-script'],
     cssSourceMap: false,
     babel: {

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/i18n": "^7.0.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/toast": "^3.3.1",
@@ -19,7 +21,6 @@
     "cookie-parser": "^1.4.5",
     "core-js": "^3.15.1",
     "crypto": "^1.0.1",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "lodash.startcase": "^4.4.0",
@@ -32,8 +33,6 @@
   },
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/sitemap": "^2.4.0",
     "@types/scriptjs": "0.0.2",
     "autoprefixer": "^10.3.4",
