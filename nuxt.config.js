@@ -38,6 +38,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     //'@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
     '@nuxtjs/device'
     //'@aceforth/nuxt-optimized-images'
   ],
@@ -61,16 +62,25 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/dotenv',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    '@nuxtjs/gtm',
+    '@nuxtjs/google-gtag',
     '@nuxtjs/sitemap'
   ],
 
-  gtm: {
-    id: process.env.GTAG_ID || 'G-1720L3K7S5', // Used as fallback if no runtime config is provided
-    enabled: true
+  'google-gtag':{
+    id: process.env.GTAG_ID || 'G-1720L3K7S5', // required
+    config:{
+      // this are the config options for `gtag
+      // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
+      anonymize_ip: false, // anonymize IP 
+      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
+      linker:{
+        domains:['app.electrotallinn.ee']
+      }
+    },
+    debug: true, // enable to track in dev mode
+    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
   },
 
   bootstrapVue: {
