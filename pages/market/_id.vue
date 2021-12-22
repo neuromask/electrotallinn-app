@@ -1,14 +1,8 @@
 <template>
   <section id="product-page">
     <MarketProductModal />
-    <CoolLightBox 
-      :items="items" 
-      :index="index"
-      :effect="'fade'"
-      @close="index = null">
-    </CoolLightBox>
+    <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
-
       <b-card>
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
         <hr>
@@ -36,14 +30,11 @@
           </i18n>
         </b-alert>
       </b-card>
-      <b-card class="images">
+      <b-card>
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }}</h3>
         <hr>
-        <div v-if="items.length" role="button" class="imageBig rounded" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
-        <div class="row">
-          <div class="col-sm-4 mt-3" v-for="(image, imageIndex) in items" :key="imageIndex">
-            <div role="button" class="image rounded" @click="index = imageIndex" :style="{ backgroundImage: 'url(' + image.src + ')' }"></div>
-          </div>
+        <div class="images" v-for="(image, imageIndex) in items" :key="imageIndex">
+          <b-img role="button" center fluid-grow class="rounded image mb-3" @click="index = imageIndex" :src="image.src" />
         </div>
       </b-card>
     </b-card-group>
@@ -104,25 +95,16 @@ export default {
 </script>
 
 <style scoped>
-.imageBig {
-  height:256px;
-  background-size: cover;
-  background-position: center;
-}
 .image {
-  height:256px;
-  background-size: cover;
-  background-position: center;
+  max-height:470px;
+  object-fit: cover;
+}
+.images:last-child>img {
+  margin-bottom: 0!important;
 }
 @media (min-width: 576px) {
   .card-columns {
     column-count: 2;
-  }
-  .imageBig {
-    height:400px;
-  }
-  .image {
-    height:128px;
   }
 }
 </style>
