@@ -1,11 +1,6 @@
 <template>
   <section>
-    <CoolLightBox 
-      :items="items" 
-      :index="index"
-      :effect="'fade'"
-      @close="index = null">
-    </CoolLightBox>
+    <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
       <b-card>
         <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
@@ -15,14 +10,14 @@
           </span>
           <a v-if="$user.uin === user.uin" v-b-modal.profile-modal><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
         </h3>
-        <hr />
+        <hr>
         <b-list-group class="text-left">
           <b-list-group-item variant="light">{{ $t('profile.name') }}: <strong>{{ user.firstName }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.birthyear">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.languages && user.languages.length">{{ $t('profile.language') }}: {{ getFlags() }}</b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.location">{{ $t('profile.location') }}: <strong>{{ user.location }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="user.transportModel">{{ $t('profile.model') }}: <strong>{{ user.transportModel }}</strong></b-list-group-item>
+          <b-list-group-item v-if="user.username" variant="light">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
+          <b-list-group-item v-if="user.birthyear" variant="light">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
+          <b-list-group-item v-if="user.languages && user.languages.length" variant="light">{{ $t('profile.language') }}: {{ getFlags() }}</b-list-group-item>
+          <b-list-group-item v-if="user.location" variant="light">{{ $t('profile.location') }}: <strong>{{ user.location }}</strong></b-list-group-item>
+          <b-list-group-item v-if="user.transportModel" variant="light">{{ $t('profile.model') }}: <strong>{{ user.transportModel }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
 
@@ -33,10 +28,10 @@
             <span>{{ $t('main.photo') }}</span>
           </span>
         </h3>
-        <hr />
+        <hr>
         <figure class="figure mb-0">
-        <b-img class="transportImage" @click="index = 0" center fluid rounded :src="$config.apiUrl + '/users/image/' + user.transportPhotoName"></b-img>
-        <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
+          <b-img class="transportImage" center fluid rounded @click="index = 0" :src="`${$config.apiUrl}/users/image/${user.transportPhotoName}`" />
+          <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
         </figure>
       </b-card>
     </b-card-group>

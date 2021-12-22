@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" lg="4">
         <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">ElectroPeople</b-badge> {{ $t('main.top') }}</h3>
-        <hr />
+        <hr>
         <b-table
           class="bg-info rounded"
           borderless
@@ -28,7 +28,7 @@
           </template>
         </b-table>
         <h3 class="mt-5 font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.ranks') }}</b-badge> {{ $t('main.legend') }}</h3>
-        <hr />
+        <hr>
         <b-table
           class="bg-info mb-5 rounded"
           borderless
@@ -50,7 +50,7 @@
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.locations') }}</b-badge> {{ $t('main.all') }}</h3>
-        <hr />
+        <hr>
         <b-table
           class="bg-info rounded"
           borderless

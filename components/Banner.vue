@@ -1,15 +1,11 @@
 <template>
-  <NuxtLink to="/"><div id="banner" class="g-light" /></NuxtLink>
+  <NuxtLink to="/"><b-img-lazy src="~assets/img/top.jpg" center id="banner" /></NuxtLink>
 </template>
 <style>
 #banner {
-  border: 0;
-  margin: 0 auto;
   width: 100%;
   height:342px;
   max-width: 2048px;
-  background-position: center center;
-  background-size: cover;
-  background-image: url('~assets/img/top.jpg');
+  object-fit: cover;
 }
 </style>

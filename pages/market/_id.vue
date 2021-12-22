@@ -11,7 +11,7 @@
 
       <b-card>
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
-        <hr />
+        <hr>
         <div class="mb-3 d-flex justify-content-between align-items-start">
           <h2 class="mb-0" variant="light" v-if="product.name">{{ product.name }}</h2>
           <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
@@ -24,7 +24,7 @@
       </b-card>
       <b-card>
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.seller') }}</b-badge> {{ $t('main.contact') }}</h3>
-        <hr />
+        <hr>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
@@ -38,7 +38,7 @@
       </b-card>
       <b-card class="images">
         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }}</h3>
-        <hr />
+        <hr>
         <div v-if="items.length" role="button" class="imageBig rounded" @click="index = 0" :style="{ backgroundImage: 'url(' + items[0].src + ')' }"></div>
         <div class="row">
           <div class="col-sm-4 mt-3" v-for="(image, imageIndex) in items" :key="imageIndex">

@@ -10,7 +10,7 @@
         <a v-if="$user.uin == $route.params.id" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
       </span>
     </h3>
-    <hr />
+    <hr>
       <b-table class="m-0 rounded" striped table-variant="info" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
           <template #cell(name)="data">
             <div class="w-100 d-flex justify-content-between align-items-center">

@@ -10,7 +10,7 @@
                 <b-button variant="outline-secondary" v-if="$nuxt.$route.path == '/market'" size="sm" v-b-toggle.menuOptions>Menu <b-icon icon="list" /></b-button>
             </b-navbar-nav>-->
         </b-navbar>
-        <NuxtChild  />
+        <NuxtChild />
     </div>
 </template>
 <script>

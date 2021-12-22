@@ -6,7 +6,7 @@
         <span>{{ $t('nav.locations') }} ({{ listFull.length }})</span>
       </span>
     </h3>
-    <hr />
+    <hr>
     <b-table
       class="rounded m-0"
       striped

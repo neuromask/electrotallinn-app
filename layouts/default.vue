@@ -4,7 +4,7 @@
     <ToastLogin />
     <main v-cloak>
       <Banner />
-      <b-container class="bg-light mt-3 px-5 pt-0 main-container position-relative">
+      <b-container class="bg-light mt-3 px-5 pt-0 main-container rounded position-relative">
         <NavBar />
           <b-alert v-if="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
         <Nuxt />

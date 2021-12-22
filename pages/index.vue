@@ -5,7 +5,7 @@
         <UserProfileBox />
         <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.bot') }}</b-badge> {{ $t('main.chat') }}</h3>
-          <hr />
+          <hr>
           <i18n path="main.textChat" tag="h5" class="my-3">
             <a href="https://telegram.org/" target="_blank"><strong>Telegram</strong></a>
             <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
@@ -18,7 +18,7 @@
       <b-col cols="12" lg="8" class="p-3">
         <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.bot') }}</b-badge> {{ $t('main.commands') }}</h3>
-          <hr />
+          <hr>
           <i18n path="main.textCommands" tag="h5" class="my-3">
             <NuxtLink :to="localePath('/map')"><strong>{{ $t('main.textMap') }}</strong></NuxtLink>
             <NuxtLink :to="localePath('/market')"><strong>{{ $t('main.textMarket') }}</strong></NuxtLink>

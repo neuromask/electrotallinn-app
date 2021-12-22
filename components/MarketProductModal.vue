@@ -5,7 +5,7 @@
                 <b-card-group columns>
                     <b-card>
                         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
-                        <hr />
+                        <hr>
                         <b-form-group :label="$t('main.name')">
                             <b-form-input v-model="productEdit.name" :placeholder="$t('main.name')" required/>
                         </b-form-group>
@@ -32,7 +32,7 @@
 
                     <b-card>
                         <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }} <span v-if="productEdit.images">({{productEdit.images.length}}/3)</span></h3>
-                        <hr />
+                        <hr>
                         <b-form-group class="m-0">
                             <div class="d-flex mb-3">
                                 <b-form-file v-model="selectedImage" accept="image/jpeg" :placeholder="$t('main.selectPhoto')" class="w-auto flex-grow-1"><b-icon icon="search" /></b-form-file>
