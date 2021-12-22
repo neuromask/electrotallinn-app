@@ -16,10 +16,6 @@ export default {
     ]
   },
 
-  router: {
-    prefetchLinks: false
-  },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // CSS file in the project
