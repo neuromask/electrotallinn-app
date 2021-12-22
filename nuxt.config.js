@@ -70,6 +70,7 @@ export default {
 
   gtm: {
     id: process.env.GTAG_ID || 'G-1720L3K7S5', // Used as fallback if no runtime config is provided
+    enabled: true
   },
 
   bootstrapVue: {
