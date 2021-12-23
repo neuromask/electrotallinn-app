@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 @import 'variables.scss';
 @import 'animation.scss';
+@import 'slotmachine.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
 
@@ -198,5 +199,9 @@ hr:after {
   }
   .Cookie__buttons {
     margin-top: 0!important;
+  }
+  .navbar-expand .main-nav.navbar-nav .nav-link {
+    padding-right: .7rem;
+    padding-left: .7rem;
   }
 }

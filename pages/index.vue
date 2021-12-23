@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-row>
-      <b-col cols="12" lg="4" class="p-3">
+      <b-col cols="12" lg="4" class="pt-3">
         <UserProfileBox />
         <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.bot') }}</b-badge> {{ $t('main.chat') }}</h3>
@@ -11,11 +11,11 @@
             <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
           </i18n>
           <a href="https://t.me/electrotallinnbot" target="_blank">
-            <b-img class="card-img " rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
+            <b-img class="card-img " rounded="circle" src="@/assets/img/bot-avatar.svg"></b-img>
           </a>
         </b-card>
       </b-col>
-      <b-col cols="12" lg="8" class="p-3">
+      <b-col cols="12" lg="8" class="pt-3">
         <b-card>
           <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.bot') }}</b-badge> {{ $t('main.commands') }}</h3>
           <hr>

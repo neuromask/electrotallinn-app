@@ -5,6 +5,7 @@ nav:
   market: Маркет
   map: Карта
   users: Профили
+  game: Игра
   myProfile: Мой профиль
   myLocations: Мои локации
   myProducts: Мои товары
@@ -14,6 +15,16 @@ nav:
   profile: Профиль
   locations: Локации
   sockets: Розетки
+game:
+  top: Верх
+  center: Центр
+  bottom: Низ
+  pay: Стол
+  table: Выплаты
+  spin: Крути
+  balance: Баланс
+  totalWin: Сумма
+  win: Выигрыш!
 error:
   notFound: Не найдено
   fileSendFailed: Ошибка отправки файла {0}

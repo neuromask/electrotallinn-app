@@ -5,6 +5,7 @@ nav:
   market: Market
   map: Map
   users: Profiles
+  game: Game
   myProfile: My profile
   myLocations: My locations
   myProducts: My products
@@ -14,6 +15,16 @@ nav:
   profile: Profile
   locations: Locations
   sockets: Sockets
+game:
+  top: Top
+  center: Center
+  bottom: Bottom
+  pay: Pay
+  table: Table
+  spin: Spin
+  balance: Balance
+  totalWin: Total win
+  win: You win!
 error:
   notFound: Now Found
   fileSendFailed: Failed to send file {0}
