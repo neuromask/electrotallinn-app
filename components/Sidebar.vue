@@ -19,6 +19,7 @@
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/')" exact><b-icon icon="house-door-fill"></b-icon>{{ $t('nav.home') }}</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/market')"><b-icon icon="basket2-fill"></b-icon>{{ $t('nav.market') }}</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/map')"><b-icon icon="geo-alt-fill"></b-icon>{{ $t('nav.map') }}</b-list-group-item>
+          <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/game')"><b-icon icon="dice-5-fill"></b-icon>{{ $t('nav.game') }}</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/users')"><b-icon icon="person-fill"></b-icon>{{ $t('nav.users') }}</b-list-group-item>
           <!--<<b-list-group-item variant="info" class="font-weight-bold" nuxt to="/help"><b-icon icon="info-circle-fill"></b-icon>Help</b-list-group-item>-->
           <b-list-group-item variant="primary" class="font-weight-bold" href="/admin" v-if="$user.role === 'ADMIN'"><b-icon icon="shield-lock-fill" />Admin</b-list-group-item>
