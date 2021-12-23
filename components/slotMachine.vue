@@ -1,7 +1,7 @@
 <template>
     <section>
         <b-row>
-          <b-col cols="12" lg="8">
+          <b-col cols="12" lg="8" class="pb-3">
             <div class="d-flex position-relative" ref="wrapper">
               <div v-for="i in lineOptions.length" :key="i">
                   <div ref="winLine" :class="'win-line win-line-' + (i-1)"></div>
@@ -42,9 +42,10 @@
               </div>
             </b-card>
           </b-col>
-          <b-col cols="12" lg="4" class="pt-3">
+          <b-col cols="12" lg="4">
             <b-card>
-              <h3><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('game.pay') }}</b-badge> {{ $t('game.table') }}</h3>
+              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('game.pay') }}</b-badge> {{ $t('game.table') }}</h3>
+              <hr>
               <b-img src='~/assets/img/game/pay.png' cender fit alt='' />
               <div v-if="$user.role == 'ADMIN'" class='debug rounded mt-3'>
                   <div class='debug-content'>
