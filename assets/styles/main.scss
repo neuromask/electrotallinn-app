@@ -13,6 +13,9 @@ html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helve
         color:white;
     }
 }
+[v-cloak] {
+  display: none !important;
+}
 
 .container {border-top:4px solid #ec970f;}
 .gm-ui-hover-effect {background: transparent!important;border: 0!important;}
