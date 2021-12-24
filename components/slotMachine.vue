@@ -4,12 +4,12 @@
           <b-col cols="12" lg="8" class="pb-3">
             <div class="d-flex position-relative" ref="wrapper">
                 <div v-for="i in lineOptions.length" :key="i" ref="winLine" :class="`win-line blink win-line-${i-1}`"></div>
-              <div class='slot-container mx-auto' ref="container">
-                <div class='slot' v-for='slot in populateSlots' :key='slot.id' ref='slots'>
-                  <div class='slot-wrap'>
+              <div class="slot-container mx-auto" ref="container">
+                <div class="slot" v-for="slot in populateSlots" :key="slot.id" ref="slots">
+                  <div class="slot-wrap">
                     <div v-for="index in slotsAmount" :key="index">
-                      <div class='slot-item' :style="slotStyle" v-for='opt in slot.items' ref="slotBox" :key='opt.id'>
-                        <b-img fluid ref="slotImg" :src='opt.src' :alt='opt.label' />
+                      <div class="slot-item" :style="slotStyle" v-for="opt in slot.items" ref="slotBox" :key="opt.id">
+                        <b-img fluid ref="slotImg" :src="opt.src" :alt="opt.label" />
                       </div>
                     </div>
                   </div>
@@ -19,9 +19,9 @@
             <b-card class="mt-3">
               <div class="d-flex w-100 justify-content-between align-items-center">
                 <h3 class="m-0">{{ $t('game.balance') }}: <span class="font-weight-bold balance-amount">{{ balance }}</span></h3>
-                <b-button @click='start' variant="primary" :disabled='disabled' size="lg" class="pulse text-white font-weight-bold rounded btn-spin pulse text-uppercase">{{ $t('game.spin') }}</b-button>
+                <b-button @click="start" variant="primary" :disabled="disabled" size="lg" class="pulse text-white font-weight-bold rounded btn-spin pulse text-uppercase">{{ $t('game.spin') }}</b-button>
               </div>
-              <div ref='win' class="win">
+              <div ref="win" class="win">
                 <b-badge variant="warning" class="p-2 mt-3 w-100">
                   <h2 class="text-white font-weight-bold text-uppercase">{{ $t('game.win') }}</h2>
                   <b-badge variant="info" class="p-2 w-100">
@@ -31,7 +31,7 @@
                           <h6 ref="winShow" :class="`mb-0 text-left win-show win-show-${i-1}`"></h6>
                         </div>
                       </div>
-                      <h5 class='font-weight-bold mb-0 win-total'>{{ $t('game.totalWin') }}: <span ref='winTotal'></span></h5>
+                      <h5 class="font-weight-bold mb-0 win-total">{{ $t('game.totalWin') }}: <span ref="winTotal"></span></h5>
                     </div>
                   </b-badge>
                 </b-badge>
@@ -42,31 +42,31 @@
             <b-card>
               <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('game.pay') }}</b-badge> {{ $t('game.table') }}</h3>
               <hr>
-              <b-img src='~/assets/img/game/pay.png' cender fit alt='' />
-              <div v-if="$user.role == 'ADMIN'" class='debug rounded mt-3'>
-                  <div class='p-3'>
+              <b-img src="~/assets/img/game/pay.png" cender fit alt="" />
+              <div v-if="$user.role == 'ADMIN'" class="debug rounded mt-3">
+                  <div class="p-3">
                       <div class="mb-2">
                           <p class="mb-0">Balance:</p>
-                          <input id="balanceDebug" type='number' min='1' max='5000' maxlength='5' name='balanceDebug' v-model.number='balance' @input="inputCheck($event)" />
+                          <input id="balanceDebug" type="number" min="1" max="5000" maxlength="5" name="balanceDebug" v-model.number="balance" @input="inputCheck($event)" />
                       </div>
                       <div class="mb-2">
                           <p class="mb-0">Mode:
-                          <input type='radio' id='random' @change='radioRandom' value='random' v-model='positionMode'>
-                          <label class="mb-0" for='random'>Random</label>
-                          <input type='radio' value='fixed' @change='radioFixed' id='fixed' v-model='positionMode'>
-                          <label class="mb-0" for='fixed'>Fixed</label>
+                          <input type="radio" id="random" @change="radioRandom" value="random" v-model="positionMode">
+                          <label class="mb-0" for="random">Random</label>
+                          <input type="radio" value="fixed" @change="radioFixed" id="fixed" v-model="positionMode">
+                          <label class="mb-0" for="fixed">Fixed</label>
                           </p>
                       </div>
                       <div class="mb-2">
                           <p class="mb-0">Symbol:</p>
-                          <select v-for="i in slotsAmount" :key="i" @change="selectSymbol($event, i-1)" :disabled='debugInputsDis'>
-                              <option v-for='(option, index) in slots[0].items' :key='option.id' :value='index'>{{ option.label }}</option>
+                          <select v-for="i in slotsAmount" :key="i" @change="selectSymbol($event, i-1)" :disabled="debugInputsDis">
+                              <option v-for="(option, index) in slots[0].items" :key="option.id" :value="index">{{ option.label }}</option>
                           </select>
                       </div>
                       <div>
                           <p class="mb-0">Line:</p>
-                          <select v-for="i in slotsAmount" :key="i" @change="selectLine($event, i-1)" :disabled='debugInputsDis'>
-                              <option v-for='option in lineOptions' :key='option.value' :value='option.value'>{{ option.text }}</option>
+                          <select v-for="i in slotsAmount" :key="i" @change="selectLine($event, i-1)" :disabled="debugInputsDis">
+                              <option v-for="option in lineOptions" :key="option.value" :value="option.value">{{ option.text }}</option>
                           </select>
                       </div>
                   </div>
