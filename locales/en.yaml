@@ -24,7 +24,7 @@ game:
   spin: Spin
   balance: Balance
   totalWin: Total win
-  win: You win!
+  win: 🤑 You win! 🤑
 error:
   notFound: Now Found
   fileSendFailed: Failed to send file {0}

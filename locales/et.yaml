@@ -25,7 +25,7 @@ game:
   spin: Keera
   balance: Bilanss
   totalWin: Summa
-  win: Võit!
+  win: 🤑 Võit! 🤑
 error:
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel

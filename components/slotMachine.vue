@@ -6,12 +6,10 @@
                 <div v-for="i in lineOptions.length" :key="i" ref="winLine" :class="`win-line blink win-line-${i-1}`"></div>
               <div class='slot-container mx-auto' ref="container">
                 <div class='slot' v-for='slot in populateSlots' :key='slot.id' ref='slots'>
-                  <div class='slot-window'>
-                    <div class='slot-wrap'>
-                      <div v-for="index in slotsAmount" :key="index">
-                        <div class='slot-item' :style="slotStyle" v-for='opt in slot.items' ref="slotBox" :key='opt.id'>
-                          <b-img fluid ref="slotImg" :src='opt.src' :alt='opt.label' />
-                        </div>
+                  <div class='slot-wrap'>
+                    <div v-for="index in slotsAmount" :key="index">
+                      <div class='slot-item' :style="slotStyle" v-for='opt in slot.items' ref="slotBox" :key='opt.id'>
+                        <b-img fluid ref="slotImg" :src='opt.src' :alt='opt.label' />
                       </div>
                     </div>
                   </div>
@@ -204,7 +202,7 @@ export default {
         return {
           el: slot.querySelector(".slot-wrap"),
           finalPos: choice * this.slotStyle.pureHeight - this.slotStyle.pureHeight / 2,
-          startOffset: this.slotStyle.pureHeight * 8,
+          startOffset: this.slotStyle.pureHeight * 10,
           height: data.items.length * this.slotStyle.pureHeight,
           duration: 2000 + i * 500, // milliseconds
           isFinished: false
@@ -224,7 +222,7 @@ export default {
           return;
         }
         const timeRemaining = Math.max(opt.duration - timeDiff, 0);
-        const power = 3;
+        const power = 4;
         const offset =
           (Math.pow(timeRemaining, power) / Math.pow(opt.duration, power)) * opt.startOffset;
         // negative - slots go from top to bottom
