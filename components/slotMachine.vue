@@ -114,9 +114,6 @@ export default {
     window.removeEventListener("resize", this.myEventHandler);
   },
   beforeMount () {
-
-  },
-  mounted() {
     // audio setup
     this.audio.spin = new Audio(require('@/assets/audio/game/spin.mp3').default)
     this.audio.spin.volume = 0.3
@@ -124,7 +121,8 @@ export default {
     this.audio.spinEnd.volume = 0.5
     this.audio.win = new Audio(require('@/assets/audio/game/win.mp3').default)
     this.audio.win.volume = 0.2
-
+  },
+  mounted() {
     this.$refs.container.style.visibility = "visible";
     window.addEventListener("resize", this.myEventHandler);
     this.setSize();
