@@ -39,6 +39,10 @@
   background-color: $primary;
 }
 
+.btn-spin {
+  border: 3px solid $light !important;
+}
+
 .win {
   display: none;
 }

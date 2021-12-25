@@ -7,7 +7,7 @@
               <div class="slot-container mx-auto" ref="container">
                 <div class="slot" v-for="slot in populateSlots" :key="slot.id" ref="slots">
                   <div class="slot-wrap">
-                    <div v-for="index in slotsAmount" :key="index">
+                    <div v-for="index in 3" :key="index">
                       <div class="slot-item" :style="slotStyle" v-for="opt in slot.items" ref="slotBox" :key="opt.id">
                         <b-img fluid ref="slotImg" :src="opt.src" :alt="opt.label" />
                       </div>
@@ -19,7 +19,7 @@
             <b-card class="mt-3">
               <div class="d-flex w-100 justify-content-between align-items-center">
                 <h3 class="m-0">{{ $t('game.balance') }}: <span class="font-weight-bold balance-amount">{{ balance }}</span></h3>
-                <b-button @click="start" variant="primary" :disabled="disabled" size="lg" class="pulse text-white font-weight-bold rounded btn-spin pulse text-uppercase">{{ $t('game.spin') }}</b-button>
+                <b-button @click="start" variant="primary" :disabled="disabled" size="lg" class="rounded pulse btn-spin font-weight-bold pulse text-uppercase">{{ $t('game.spin') }}</b-button>
               </div>
               <div ref="win" class="win">
                 <b-badge variant="warning" class="p-2 mt-3 w-100">
@@ -89,9 +89,13 @@ export default {
           items: [
             { label: "BAT3", src: require("~/assets/img/game/icon-bat-3.svg") },
             { label: "BAT1", src: require("~/assets/img/game/icon-bat-1.svg") },
-            { label: "BAT2", src: require("~/assets/img/game/icon-bat-2.svg") },
             { label: "ET", src: require("~/assets/img/game/icon-med.svg") },
-            { label: "ZEUS", src: require("~/assets/img/game/icon-best.svg") }
+            { label: "BAT2", src: require("~/assets/img/game/icon-bat-2.svg") },
+            { label: "BATX", src: require("~/assets/img/game/icon-bat-x.svg") },
+            { label: "BAT1", src: require("~/assets/img/game/icon-bat-1.svg") },
+            { label: "BAT3", src: require("~/assets/img/game/icon-bat-3.svg") },
+            { label: "ZEUS", src: require("~/assets/img/game/icon-best.svg") },
+            { label: "BAT2", src: require("~/assets/img/game/icon-bat-2.svg") }
           ]
         }
       ],
@@ -204,7 +208,7 @@ export default {
           finalPos: choice * this.slotStyle.pureHeight - this.slotStyle.pureHeight / 2,
           startOffset: this.slotStyle.pureHeight * 10,
           height: data.items.length * this.slotStyle.pureHeight,
-          duration: 2000 + i * 500, // milliseconds
+          duration: 1500 + i * 300, // milliseconds
           isFinished: false
         };
       });
@@ -222,9 +226,8 @@ export default {
           return;
         }
         const timeRemaining = Math.max(opt.duration - timeDiff, 0);
-        const power = 4;
-        const offset =
-          (Math.pow(timeRemaining, power) / Math.pow(opt.duration, power)) * opt.startOffset;
+        const power = 5;
+        const offset = (Math.pow(timeRemaining, power) / Math.pow(opt.duration, power)) * opt.startOffset;
         // negative - slots go from top to bottom
         const pos = -1 * Math.floor(((offset + opt.finalPos) % opt.height) + opt.height);
         opt.el.style.transform = "translateY(" + pos + "px)";
@@ -247,8 +250,7 @@ export default {
         for (let i = 0; i < this.lineOptions.length; i++) {
           if (this.compareArrays(this.winResult[i], entry.items)) {
             this.winTotal += entry.payOut[i];
-            this.$refs.winShow[i].innerText =
-              this.lineOptions[i].text + ": " + entry.payOut[i];
+            this.$refs.winShow[i].innerText = this.lineOptions[i].text + ": " + entry.payOut[i];
             this.$refs.winLine[i].style.display = "block";
           }
         }
