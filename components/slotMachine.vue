@@ -9,7 +9,7 @@
                   <div class="slot-wrap">
                     <div v-for="index in 3" :key="index">
                       <div class="slot-item" :style="slotStyle" v-for="opt in slot.items" ref="slotBox" :key="opt.id">
-                        <b-img fluid ref="slotImg" :src="opt.src" :alt="opt.label" />
+                        <b-img fluid ref="slotImg" :src="require(`@/assets/img/game/${opt.src}`)" :alt="opt.label" />
                       </div>
                     </div>
                   </div>
@@ -77,28 +77,14 @@
     </section>
 </template>
 <script>
-import json from "../assets/json/win-rates.json";
+import json from "../assets/json/game.json";
 
 export default {
   name: "slotMachine",
   data: function() {
     return {
-      lines: json,
-      slots: [
-        {
-          items: [
-            { label: "BAT3", src: require("~/assets/img/game/icon-bat-3.svg") },
-            { label: "BAT1", src: require("~/assets/img/game/icon-bat-1.svg") },
-            { label: "ET", src: require("~/assets/img/game/icon-med.svg") },
-            { label: "BAT2", src: require("~/assets/img/game/icon-bat-2.svg") },
-            { label: "BATX", src: require("~/assets/img/game/icon-bat-x.svg") },
-            { label: "BAT1", src: require("~/assets/img/game/icon-bat-1.svg") },
-            { label: "BAT3", src: require("~/assets/img/game/icon-bat-3.svg") },
-            { label: "ZEUS", src: require("~/assets/img/game/icon-best.svg") },
-            { label: "BAT2", src: require("~/assets/img/game/icon-bat-2.svg") }
-          ]
-        }
-      ],
+      lines: json.winLines,
+      slots: json.slots,
       slotsAmount: 3,
       opts: null,
       startedAt: null,
@@ -112,6 +98,11 @@ export default {
       linePosition: 0.5, // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       linePositionFixed: [1, 1, 1], // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       wrapWidth: null,
+      audio: {
+        spin: '',
+        spinEnd: '',
+        win: ''
+      },
       slotStyle: {
         width: "140px",
         height: "180px",
@@ -122,7 +113,18 @@ export default {
   destroyed() {
     window.removeEventListener("resize", this.myEventHandler);
   },
+  beforeMount () {
+
+  },
   mounted() {
+    // audio setup
+    this.audio.spin = new Audio(require('@/assets/audio/game/spin.mp3').default)
+    this.audio.spin.volume = 0.3
+    this.audio.spinEnd = new Audio(require('@/assets/audio/game/spinEnd.mp3').default)
+    this.audio.spinEnd.volume = 0.5
+    this.audio.win = new Audio(require('@/assets/audio/game/win.mp3').default)
+    this.audio.win.volume = 0.2
+
     this.$refs.container.style.visibility = "visible";
     window.addEventListener("resize", this.myEventHandler);
     this.setSize();
@@ -206,14 +208,15 @@ export default {
         return {
           el: slot.querySelector(".slot-wrap"),
           finalPos: choice * this.slotStyle.pureHeight - this.slotStyle.pureHeight / 2,
-          startOffset: this.slotStyle.pureHeight * 10,
+          startOffset: this.slotStyle.pureHeight * (1+i/4)*10,
           height: data.items.length * this.slotStyle.pureHeight,
-          duration: 1500 + i * 300, // milliseconds
+          duration: 1500 + 500 * i, // milliseconds
           isFinished: false
         };
       });
       // animate
       this.animate();
+      this.audio.spin.play()
     },
     animate(timestamp) {
       if (this.startedAt == null) {
@@ -221,23 +224,28 @@ export default {
       }
       const timeDiff = timestamp - this.startedAt;
 
-      this.opts.forEach(opt => {
+      this.opts.forEach((opt, i) => {
         if (opt.isFinished) {
           return;
         }
         const timeRemaining = Math.max(opt.duration - timeDiff, 0);
-        const power = 5;
+        const power = 1;
         const offset = (Math.pow(timeRemaining, power) / Math.pow(opt.duration, power)) * opt.startOffset;
         // negative - slots go from top to bottom
         const pos = -1 * Math.floor(((offset + opt.finalPos) % opt.height) + opt.height);
         opt.el.style.transform = "translateY(" + pos + "px)";
         if (timeDiff > opt.duration) {
           opt.isFinished = true;
+          this.audio.spinEnd.play()
+          this.audio.spinEnd.currentTime = 0
+          timeDiff
         }
       });
       // animation check for all slots
       if (this.opts.every(o => o.isFinished)) {
         this.opts = null;
+        this.audio.spin.pause()
+        this.audio.spin.currentTime = 0
         this.startedAt = null;
         this.result();
       } else {
@@ -281,6 +289,7 @@ export default {
     },
     win() {
       if (this.winTotal) {
+        this.audio.win.play()
         this.$refs.win.style.display = "block";
         this.$refs.winTotal.innerText = this.winTotal;
         this.balance += parseInt(this.winTotal);

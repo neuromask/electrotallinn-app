@@ -1,0 +1,84 @@
+{
+  "slots": [
+    {
+      "items": [
+        { "label": "BAT3", "src": "icon-bat-3.svg" },
+        { "label": "BAT1", "src": "icon-bat-1.svg" },
+        { "label": "ET",   "src": "icon-med.svg" },
+        { "label": "BAT2", "src": "icon-bat-2.svg" },
+        { "label": "BATX", "src": "icon-bat-x.svg" },
+        { "label": "BAT1", "src": "icon-bat-1.svg" },
+        { "label": "BAT3", "src": "icon-bat-3.svg" },
+        { "label": "ZEUS", "src": "icon-best.svg" },
+        { "label": "BAT2", "src": "icon-bat-2.svg" }
+      ]
+    }
+  ],
+  "payTable": [
+    {
+      "items": [
+        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" },
+        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" },
+        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" }
+      ]
+    }
+  ],
+  "winLines": [
+    {
+      "items": [ "ZEUS", "ZEUS", "ZEUS" ],
+      "payOut": [ 1000, 500, 250 ]
+    },
+    {
+      "items": [ "ET", "ET", "ET" ],
+      "payOut": [ 150, 150, 150 ]
+    },
+    {
+      "items": [ "ZEUS", "ZEUS", "ET" ],
+      "payOut": [ 75, 75, 75 ]
+    },
+    {
+      "items": [ "ET", "ZEUS", "ET" ],
+      "payOut": [ 75, 75, 75 ]
+    },
+    {
+      "items": [ "BAT3", "BAT3", "BAT3" ],
+      "payOut": [ 50, 50, 50 ]
+    },
+    {
+      "items": [ "BAT2", "BAT2", "BAT2" ],
+      "payOut": [ 20, 20, 20 ]
+    },
+    {
+      "items": [ "BAT1", "BAT1", "BAT1" ],
+      "payOut": [ 10, 10, 10 ]
+    },
+    {
+      "items": [ "BAT3", "BAT2", "BAT1" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT1", "BAT1", "BAT3" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT1", "BAT1", "BAT2" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT3", "BAT3", "BAT1" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT3", "BAT3", "BAT2" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT2", "BAT2", "BAT1" ],
+      "payOut": [ 5, 5, 5 ]
+    },
+    {
+      "items": [ "BAT2", "BAT2", "BAT3" ],
+      "payOut": [ 5, 5, 5 ]
+    }
+  ]
+}
