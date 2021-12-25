@@ -1,5 +1,8 @@
 <template>
     <section>
+      <audio ref="spin"><source :src="require('@/assets/audio/game/spin.mp3').default" type="audio/mpeg"></audio>
+      <audio ref="spinEnd"><source :src="require('@/assets/audio/game/spinEnd.mp3').default" type="audio/mpeg"></audio>
+      <audio ref="win"><source :src="require('@/assets/audio/game/win.mp3').default" type="audio/mpeg"></audio>
         <b-row>
           <b-col cols="12" lg="8" class="pb-3">
             <div class="d-flex position-relative" ref="wrapper">
@@ -98,11 +101,6 @@ export default {
       linePosition: 0.5, // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       linePositionFixed: [1, 1, 1], // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       wrapWidth: null,
-      audio: {
-        spin: '',
-        spinEnd: '',
-        win: ''
-      },
       slotStyle: {
         width: "140px",
         height: "180px",
@@ -112,15 +110,6 @@ export default {
   },
   destroyed() {
     window.removeEventListener("resize", this.myEventHandler);
-  },
-  beforeMount () {
-    // audio setup
-    this.audio.spin = new Audio(require('@/assets/audio/game/spin.mp3').default)
-    this.audio.spin.volume = 0.3
-    this.audio.spinEnd = new Audio(require('@/assets/audio/game/spinEnd.mp3').default)
-    this.audio.spinEnd.volume = 0.5
-    this.audio.win = new Audio(require('@/assets/audio/game/win.mp3').default)
-    this.audio.win.volume = 0.2
   },
   mounted() {
     this.$refs.container.style.visibility = "visible";
@@ -214,7 +203,8 @@ export default {
       });
       // animate
       this.animate();
-      this.audio.spin.play()
+      this.$refs.spin.volume = 0.05;
+      this.$refs.spin.play();
     },
     animate(timestamp) {
       if (this.startedAt == null) {
@@ -234,18 +224,19 @@ export default {
         opt.el.style.transform = "translateY(" + pos + "px)";
         if (timeDiff > opt.duration) {
           opt.isFinished = true;
-          this.audio.spinEnd.play()
-          this.audio.spinEnd.currentTime = 0
           timeDiff
+          this.$refs.spinEnd.volume = 0.1;
+          this.$refs.spinEnd.play();
+          this.$refs.spinEnd.currentTime = 0;
         }
       });
       // animation check for all slots
       if (this.opts.every(o => o.isFinished)) {
         this.opts = null;
-        this.audio.spin.pause()
-        this.audio.spin.currentTime = 0
         this.startedAt = null;
         this.result();
+        this.$refs.spin.pause();
+        this.$refs.spin.currentTime = 0;
       } else {
         requestAnimationFrame(this.animate);
       }
@@ -287,7 +278,8 @@ export default {
     },
     win() {
       if (this.winTotal) {
-        this.audio.win.play()
+        this.$refs.win.volume = 0.1;
+        this.$refs.win.play();
         this.$refs.win.style.display = "block";
         this.$refs.winTotal.innerText = this.winTotal;
         this.balance += parseInt(this.winTotal);
