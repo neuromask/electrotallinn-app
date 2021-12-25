@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/"><b-img-lazy src="~assets/img/top.jpg" center id="banner" /></NuxtLink>
+  <NuxtLink :to="localePath('/')"><b-img-lazy src="~assets/img/top.jpg" center id="banner" /></NuxtLink>
 </template>
 <style>
 #banner {

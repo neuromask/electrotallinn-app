@@ -1,8 +1,5 @@
 <template>
     <section>
-      <audio ref="spin"><source :src="require('@/assets/audio/game/spin.mp3').default" type="audio/mpeg"></audio>
-      <audio ref="spinEnd"><source :src="require('@/assets/audio/game/spinEnd.mp3').default" type="audio/mpeg"></audio>
-      <audio ref="win"><source :src="require('@/assets/audio/game/win.mp3').default" type="audio/mpeg"></audio>
         <b-row>
           <b-col cols="12" lg="8" class="pb-3">
             <div class="d-flex position-relative" ref="wrapper">
@@ -203,8 +200,6 @@ export default {
       });
       // animate
       this.animate();
-      this.$refs.spin.volume = 0.05;
-      this.$refs.spin.play();
     },
     animate(timestamp) {
       if (this.startedAt == null) {
@@ -217,7 +212,7 @@ export default {
           return;
         }
         const timeRemaining = Math.max(opt.duration - timeDiff, 0);
-        const power = 1;
+        const power = 3;
         const offset = (Math.pow(timeRemaining, power) / Math.pow(opt.duration, power)) * opt.startOffset;
         // negative - slots go from top to bottom
         const pos = -1 * Math.floor(((offset + opt.finalPos) % opt.height) + opt.height);
@@ -225,9 +220,6 @@ export default {
         if (timeDiff > opt.duration) {
           opt.isFinished = true;
           timeDiff
-          this.$refs.spinEnd.volume = 0.1;
-          this.$refs.spinEnd.play();
-          this.$refs.spinEnd.currentTime = 0;
         }
       });
       // animation check for all slots
@@ -235,8 +227,6 @@ export default {
         this.opts = null;
         this.startedAt = null;
         this.result();
-        this.$refs.spin.pause();
-        this.$refs.spin.currentTime = 0;
       } else {
         requestAnimationFrame(this.animate);
       }
@@ -278,8 +268,6 @@ export default {
     },
     win() {
       if (this.winTotal) {
-        this.$refs.win.volume = 0.1;
-        this.$refs.win.play();
         this.$refs.win.style.display = "block";
         this.$refs.winTotal.innerText = this.winTotal;
         this.balance += parseInt(this.winTotal);
