@@ -17,7 +17,7 @@
           <template #cell(indx)="data">
             <div class="d-flex justify-content-center align-items-center">
               <b-badge variant="light"><h3 class="text-right font-weight-bold">{{ data.index + 1 }}</h3></b-badge>
-              <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center left fluid class="ml-3 table-icon" />
+              <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center fluid class="ml-3 table-icon" />
             </div>
           </template>
           <template #cell(userFirstName)="data">

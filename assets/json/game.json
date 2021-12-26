@@ -17,16 +17,22 @@
   "payTable": [
     {
       "items": [
-        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" },
-        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" },
-        { "amount": "1000", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg" }
+        { "amount": "500", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg", "winpos": "top" },
+        { "amount": "300", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg", "winpos": "center" },
+        { "amount": "200", "img1": "icon-best.svg", "img2": "icon-best.svg", "img3": "icon-best.svg", "winpos": "bottom" },
+        { "amount": "150", "img1": "icon-med.svg", "img2": "icon-med.svg", "img3": "icon-med.svg", "winpos": "" },
+        { "amount": "75", "img1": "icon-med.svg", "img2": "icon-best.svg", "img3": "icon-anyof.svg", "winpos": "" },
+        { "amount": "50", "img1": "icon-bat-3.svg", "img2": "icon-bat-3.svg", "img3": "icon-bat-3.svg", "winpos": "" },
+        { "amount": "20", "img1": "icon-bat-2.svg", "img2": "icon-bat-2.svg", "img3": "icon-bat-2.svg", "winpos": "" },
+        { "amount": "10", "img1": "icon-bat-1.svg", "img2": "icon-bat-1.svg", "img3": "icon-bat-1.svg", "winpos": "" },
+        { "amount": "5", "img1": "icon-anybat.svg", "img2": "icon-anybat.svg", "img3": "icon-anybat.svg", "winpos": "" }
       ]
     }
   ],
   "winLines": [
     {
       "items": [ "ZEUS", "ZEUS", "ZEUS" ],
-      "payOut": [ 1000, 500, 250 ]
+      "payOut": [ 500, 300, 200 ]
     },
     {
       "items": [ "ET", "ET", "ET" ],

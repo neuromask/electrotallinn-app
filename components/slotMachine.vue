@@ -2,76 +2,91 @@
     <section>
         <b-row>
           <b-col cols="12" lg="8" class="pb-3">
-            <div class="d-flex position-relative" ref="wrapper">
+            <b-card no-body class="rounded text-white overflow-hidden" bg-variant="secondary" :class="[mounted ? 'visible' : 'invisible']">
+              <div class="d-flex position-relative" ref="wrapper">
                 <div v-for="i in lineOptions.length" :key="i" ref="winLine" :class="`win-line blink win-line-${i-1}`"></div>
-              <div class="slot-container mx-auto" ref="container">
-                <div class="slot" v-for="slot in populateSlots" :key="slot.id" ref="slots">
-                  <div class="slot-wrap">
-                    <div v-for="index in 3" :key="index">
-                      <div class="slot-item" :style="slotStyle" v-for="opt in slot.items" ref="slotBox" :key="opt.id">
-                        <b-img fluid ref="slotImg" :src="require(`@/assets/img/game/${opt.src}`)" :alt="opt.label" />
+                <div class="slot-container mx-auto" ref="container">
+                  <div class="slot rounded overflow-hidden" v-for="slot in populateSlots" :key="slot.id" ref="slots">
+                    <div class="slot-wrap">
+                      <div v-for="index in 3" :key="index">
+                        <div class="slot-item" :style="slotStyle" v-for="opt in slot.items" ref="slotBox" :key="opt.id">
+                          <b-img fluid ref="slotImg" :src="require(`@/assets/img/game/${opt.src}`)" :alt="opt.label" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <b-card class="mt-3">
-              <div class="d-flex w-100 justify-content-between align-items-center">
-                <h3 class="m-0">{{ $t('game.balance') }}: <span class="font-weight-bold balance-amount">{{ balance }}</span></h3>
-                <b-button @click="start" variant="primary" :disabled="disabled" size="lg" class="rounded pulse btn-spin font-weight-bold pulse text-uppercase">{{ $t('game.spin') }}</b-button>
-              </div>
-              <div ref="win" class="win">
-                <b-badge variant="warning" class="p-2 mt-3 w-100">
-                  <h2 class="text-white font-weight-bold text-uppercase">{{ $t('game.win') }}</h2>
-                  <b-badge variant="info" class="p-2 w-100">
-                    <div class="d-flex w-100 justify-content-between align-items-center">
-                      <div>
-                        <div v-for="i in lineOptions.length" :key="i">
-                          <h6 ref="winShow" :class="`mb-0 text-left win-show win-show-${i-1}`"></h6>
+              <div class="p-3">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <h3 class="m-0">
+                    <b-badge variant="primary" class="p-2 font-weight-bold">
+                      <span class="balance-amount">{{ balance }}</span>
+                    </b-badge>
+                    {{ $t('game.balance') }}
+                  </h3>
+                  <b-button @click="start" variant="warning" :disabled="disabled" size="lg" class="text-white rounded pulse btn-spin font-weight-bold pulse text-uppercase">{{ $t('game.spin') }}</b-button>
+                </div>
+                <div ref="win" class="win">
+                  <b-badge variant="warning" class="p-2 mt-3 w-100">
+                    <h2 class="text-white font-weight-bold text-uppercase">{{ $t('game.win') }}</h2>
+                    <b-badge variant="info" class="p-2 w-100">
+                      <div class="d-flex w-100 justify-content-between align-items-center">
+                        <div>
+                          <div v-for="i in lineOptions.length" :key="i">
+                            <h6 ref="winShow" :class="`mb-0 text-left win-show win-show-${i-1}`"></h6>
+                          </div>
                         </div>
+                        <h5 class="font-weight-bold mb-0 win-total">{{ $t('game.totalWin') }}: <span ref="winTotal"></span></h5>
                       </div>
-                      <h5 class="font-weight-bold mb-0 win-total">{{ $t('game.totalWin') }}: <span ref="winTotal"></span></h5>
-                    </div>
+                    </b-badge>
                   </b-badge>
-                </b-badge>
+                </div>
               </div>
             </b-card>
           </b-col>
           <b-col cols="12" lg="4">
-            <b-card>
-              <h3 class="font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('game.pay') }}</b-badge> {{ $t('game.table') }}</h3>
-              <hr>
-              <b-img src="~/assets/img/game/pay.png" cender fit alt="" />
-              <div v-if="$user.role == 'ADMIN'" class="debug rounded mt-3">
-                  <div class="p-3">
-                      <div class="mb-2">
-                          <p class="mb-0">Balance:</p>
-                          <input id="balanceDebug" type="number" min="1" max="5000" maxlength="5" name="balanceDebug" v-model.number="balance" @input="inputCheck($event)" />
-                      </div>
-                      <div class="mb-2">
-                          <p class="mb-0">Mode:
-                          <input type="radio" id="random" @change="radioRandom" value="random" v-model="positionMode">
-                          <label class="mb-0" for="random">Random</label>
-                          <input type="radio" value="fixed" @change="radioFixed" id="fixed" v-model="positionMode">
-                          <label class="mb-0" for="fixed">Fixed</label>
-                          </p>
-                      </div>
-                      <div class="mb-2">
-                          <p class="mb-0">Symbol:</p>
-                          <select v-for="i in slotsAmount" :key="i" @change="selectSymbol($event, i-1)" :disabled="debugInputsDis">
-                              <option v-for="(option, index) in slots[0].items" :key="option.id" :value="index">{{ option.label }}</option>
-                          </select>
-                      </div>
-                      <div>
-                          <p class="mb-0">Line:</p>
-                          <select v-for="i in slotsAmount" :key="i" @change="selectLine($event, i-1)" :disabled="debugInputsDis">
-                              <option v-for="option in lineOptions" :key="option.value" :value="option.value">{{ option.text }}</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-            </b-card>
+            <b-table table-variant="dark" class="bg-secondary rounded overflow-hidden" borderless outlined striped :items="paytable" :fields="payFields" thead-class="d-none">
+              <template #cell(indx)="data">
+                <div class="d-flex justify-content-center align-items-center pay-table">
+                  <b-img :src="require(`@/assets/img/game/${data.item.img1}`)" center fluid />
+                  <b-img :src="require(`@/assets/img/game/${data.item.img2}`)" center fluid />
+                  <b-img :src="require(`@/assets/img/game/${data.item.img3}`)" center fluid />
+                  <b-badge variant="primary" class="pb-0 text-left">
+                    <h3 class="font-weight-bold mb-0 text-center">{{ data.item.amount }}</h3>
+                    <sup class="font-weight-bold text-secondary">{{data.item.winpos}}</sup>
+                  </b-badge>
+                </div>
+              </template>
+            </b-table>
+            <div v-if="$user.role == 'ADMIN'" class="debug rounded mt-3">
+                <div class="p-3">
+                    <div class="mb-2">
+                        <p class="mb-0">Balance:</p>
+                        <input id="balanceDebug" type="number" min="1" max="5000" maxlength="5" name="balanceDebug" v-model.number="balance" @input="inputCheck($event)" />
+                    </div>
+                    <div class="mb-2">
+                        <p class="mb-0">Mode:
+                        <input type="radio" id="random" @change="radioRandom" value="random" v-model="positionMode">
+                        <label class="mb-0" for="random">Random</label>
+                        <input type="radio" value="fixed" @change="radioFixed" id="fixed" v-model="positionMode">
+                        <label class="mb-0" for="fixed">Fixed</label>
+                        </p>
+                    </div>
+                    <div class="mb-2">
+                        <p class="mb-0">Symbol:</p>
+                        <select v-for="i in slotsAmount" :key="i" @change="selectSymbol($event, i-1)" :disabled="debugInputsDis">
+                            <option v-for="(option, index) in slots[0].items" :key="option.id" :value="index">{{ option.label }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p class="mb-0">Line:</p>
+                        <select v-for="i in slotsAmount" :key="i" @change="selectLine($event, i-1)" :disabled="debugInputsDis">
+                            <option v-for="option in lineOptions" :key="option.value" :value="option.value">{{ option.text }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
           </b-col>
         </b-row> 
     </section>
@@ -80,11 +95,11 @@
 import json from "../assets/json/game.json";
 
 export default {
-  name: "slotMachine",
   data: function() {
     return {
       lines: json.winLines,
       slots: json.slots,
+      paytable: json.payTable[0].items,
       slotsAmount: 3,
       opts: null,
       startedAt: null,
@@ -98,6 +113,7 @@ export default {
       linePosition: 0.5, // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       linePositionFixed: [1, 1, 1], // 2 - bottom, 1 - top, 0 - center, 0.5 - random
       wrapWidth: null,
+      mounted: false,
       slotStyle: {
         width: "140px",
         height: "180px",
@@ -109,7 +125,7 @@ export default {
     window.removeEventListener("resize", this.myEventHandler);
   },
   mounted() {
-    this.$refs.container.style.visibility = "visible";
+    this.mounted = true;
     window.addEventListener("resize", this.myEventHandler);
     this.setSize();
   },
@@ -123,6 +139,11 @@ export default {
         { text: this.$t("game.center"), value: 0 },
         { text: this.$t("game.bottom"), value: 2 }
       ];
+    },
+    payFields() {
+      return [
+        { key: 'indx'}
+      ]
     }
   },
   methods: {
@@ -291,3 +312,13 @@ export default {
   }
 };
 </script>
+<style scoped>
+.pay-table > img {
+  width: 60px;
+  height: 50px;
+  object-fit: cover;
+}
+.pay-table > span {
+  min-width: 80px;
+}
+</style>
