@@ -54,7 +54,7 @@
                   <b-img :src="require(`@/assets/img/game/${data.item.img3}`)" center fluid />
                   <b-badge variant="primary" class="pb-0 text-left">
                     <h3 class="font-weight-bold mb-0 text-center">{{ data.item.amount }}</h3>
-                    <sup class="font-weight-bold text-secondary">{{data.item.winpos}}</sup>
+                    <p v-if="data.item.winpos" style="margin-top:-5px" class="w-100 text-center mb-1 font-weight-bold text-secondary small">{{ $t(`game.${data.item.winpos}`) }}</p>
                   </b-badge>
                 </div>
               </template>
@@ -159,6 +159,7 @@ export default {
       this.slotStyle.pureHeight = (this.wrapWidth / 3) * 1.285;
     },
     start() {
+      this.$gtag('event', 'game_started', { 'event_category': 'game'})
       if (this.opts) {
         return;
       }

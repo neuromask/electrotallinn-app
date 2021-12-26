@@ -4,6 +4,7 @@
             <b-navbar-nav>
                 <b-nav-item :to="localePath('/')" nuxt disabled><b-icon variant="dark" icon="arrow-return-right"></b-icon></b-nav-item>
                 <b-nav-item :to="localePath('/game')" nuxt exact>{{ $t('nav.game') }}</b-nav-item>
+                <b-nav-item :to="localePath('/game/score')" nuxt>{{ $t('nav.score') }}</b-nav-item>
             </b-navbar-nav>
         </b-navbar>
         <NuxtChild />

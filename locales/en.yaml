@@ -15,6 +15,7 @@ nav:
   profile: Profile
   locations: Locations
   sockets: Sockets
+  score: Score
 game:
   top: Top
   center: Center

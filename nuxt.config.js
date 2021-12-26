@@ -83,6 +83,18 @@ export default {
     disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
   },
 
+  router: {
+    scrollBehavior(to) {
+      if (to.hash) {
+        return window.scrollTo({
+          top: document.querySelector(to.hash).offsetTop + window.innerHeight,
+          behavior: 'smooth'
+        })
+      }
+      return window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  },
+
   bootstrapVue: {
     icons: true,
     bootstrapCSS: false,

@@ -11,7 +11,7 @@
       </b-container>
     </main>
     <footer>
-      <client-only><cookie-law :buttonText="$t('main.cookieBtn')" :message="$t('main.cookieText')" theme="et"></cookie-law></client-only>
+      <client-only><cookie-law :buttonText="$t('main.cookieBtn')" :message="`🍪 ${$t('main.cookieText')}`" theme="et"></cookie-law></client-only>
       <Bottom />
     </footer>
   </div>

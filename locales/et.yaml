@@ -26,6 +26,7 @@ game:
   balance: Bilanss
   totalWin: Summa
   win: 🤑 Võit! 🤑
+  score: Skoor
 error:
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel

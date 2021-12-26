@@ -15,6 +15,7 @@ nav:
   profile: Профиль
   locations: Локации
   sockets: Розетки
+  score: Счет
 game:
   top: Верх
   center: Центр
