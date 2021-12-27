@@ -145,7 +145,6 @@ export default {
       let col3 = [...this.slots[0].items, ...new Array(extraItems).fill(randomItem())]
 
       const matrix = [this.shuffleArray(col1),this.shuffleArray(col2),this.shuffleArray(col3)]
-      console.log(matrix)
       return matrix
       //return new Array(this.slotsAmount).fill(this.slots[0]);
     },
@@ -317,7 +316,7 @@ export default {
     },
     win() {
       if (this.winTotal) {
-        console.log(this.winTotal)
+        //console.log(this.winTotal)
         this.$refs.win.style.display = "block";
         this.$refs.winTotal.innerText = this.winTotal;
         this.balance += parseInt(this.winTotal);

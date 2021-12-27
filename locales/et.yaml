@@ -104,9 +104,11 @@ main:
   titleMarket: Turg
   titleMap: Kaart
   titleProfiles: Profiilid
+  titleGame: Mäng
   descMarket: Ost & Müük | Osta ja müü elektritranspordiga seotud asju.
   descMap: Laadi & Paranda | Kaart laadimise pistikupesade ja remondi asukohtadega.
   descProfiles: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Tutvustame üksteist lähemalt.
+  descGame: Mängi mängu | Teeni punkte ja võida auhindu. Lisa punkte kaardile, et teenida rohkem punkte!
   deleteWarning: Kas olete kindel, et soovite kustutada?
   confirmDelete: Kustutamise kinnitamine
   selectCategory: Valige kategooria

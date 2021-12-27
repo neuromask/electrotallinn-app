@@ -4,7 +4,7 @@
             <b-form @submit.stop.prevent="handleSubmit">
                 <b-card-group columns>
                     <b-card>
-                        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
+                        <h3 class="mb-0 font-weight-bold">{{ $t('main.info') }}</h3>
                         <hr>
                         <b-form-group :label="$t('main.name')">
                             <b-form-input v-model="productEdit.name" :placeholder="$t('main.name')" required/>
@@ -31,7 +31,7 @@
                     </b-card>
 
                     <b-card>
-                        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }} <span v-if="productEdit.images">({{productEdit.images.length}}/3)</span></h3>
+                        <h3 class="mb-0 font-weight-bold">{{ $t('main.photo') }} <span v-if="productEdit.images">({{productEdit.images.length}}/3)</span></h3>
                         <hr>
                         <b-form-group class="m-0">
                             <div class="d-flex mb-3">

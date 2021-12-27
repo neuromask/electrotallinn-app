@@ -38,43 +38,35 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row>
-        <b-col cols="12" lg="4" class="p-3">
-            <b-card img-alt="Image" img-top class="p-3">
-                <h3 class="font-weight-bold mb-4">
-                    <b-badge variant="warning" class="text-white">ET⚡️</b-badge> {{ $t('main.titleMarket') }}
-                    <b-icon class="info-icon-tip" id="marketInfo" variant="primary" icon="info-circle-fill"></b-icon>
-                </h3>
-                <b-popover ref="popover" target="marketInfo" triggers="hover" :title="$tc('main.descMarket', 1)">
-                    {{ $tc('main.descMarket', 2) }}
-                </b-popover>
-                <NuxtLink :to="localePath('/market')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-market.svg')"></b-card-img></NuxtLink>
-            </b-card>
-        </b-col>
-        <b-col cols="12" lg="4" class="p-3">
-            <b-card img-alt="Image" img-top class="p-3">
-                <h3 class="font-weight-bold mb-4">
-                    <b-badge variant="warning" class="text-white">ET⚡️</b-badge> {{ $t('main.titleMap') }}
-                    <b-icon class="info-icon-tip" id="mapInfo" variant="primary" icon="info-circle-fill"></b-icon>
-                </h3>
-                <b-popover ref="popover" target="mapInfo" triggers="hover" :title="$tc('main.descMap', 1)">
-                    {{ $tc('main.descMap', 2) }}
-                </b-popover>
-                <NuxtLink :to="localePath('/map')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-map.svg')"></b-card-img></NuxtLink>
-            </b-card>
-        </b-col>
-        <b-col cols="12" lg="4" class="p-3">
-            <b-card img-alt="Image" img-top class="p-3">
-                <h3 class="font-weight-bold mb-4">
-                    <b-badge variant="warning" class="text-white">ET⚡️</b-badge> {{ $t('main.titleProfiles') }}
-                    <b-icon class="info-icon-tip" id="usersInfo" variant="primary" icon="info-circle-fill"></b-icon>
-                </h3>
-                <b-popover ref="popover" target="usersInfo" triggers="hover" :title="$tc('main.descProfiles', 1)">
-                    {{ $tc('main.descProfiles', 2) }}
-                </b-popover>
-                <NuxtLink :to="localePath('/users')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-user.svg')"></b-card-img></NuxtLink>
-            </b-card>
-        </b-col>
+    <b-row class="mt-3">
+      <b-col cols="12" lg="6" class="p-3">
+        <b-card img-alt="Image" img-top class="p-3">
+          <h3 class="font-weight-bold mb-4">{{ $t('main.titleMarket') }}<b-icon class="info-icon-tip" id="marketInfo" variant="primary" icon="info-circle-fill"></b-icon></h3>
+          <b-popover ref="popover" target="marketInfo" triggers="hover" :title="$tc('main.descMarket', 1)">{{ $tc('main.descMarket', 2) }}</b-popover>
+          <NuxtLink :to="localePath('/market')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-market.svg')"></b-card-img></NuxtLink>
+        </b-card>
+      </b-col>
+      <b-col cols="12" lg="6" class="p-3">
+          <b-card img-alt="Image" img-top class="p-3">
+            <h3 class="font-weight-bold mb-4">{{ $t('main.titleMap') }}<b-icon class="info-icon-tip" id="mapInfo" variant="primary" icon="info-circle-fill"></b-icon></h3>
+            <b-popover ref="popover" target="mapInfo" triggers="hover" :title="$tc('main.descMap', 1)">{{ $tc('main.descMap', 2) }}</b-popover>
+            <NuxtLink :to="localePath('/map')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-map.svg')"></b-card-img></NuxtLink>
+          </b-card>
+      </b-col>
+      <b-col cols="12" lg="6" class="p-3">
+        <b-card img-alt="Image" img-top class="p-3">
+          <h3 class="font-weight-bold mb-4">{{ $t('main.titleGame') }}<b-icon class="info-icon-tip" id="gameInfo" variant="primary" icon="info-circle-fill"></b-icon></h3>
+          <b-popover ref="popover" target="gameInfo" triggers="hover" :title="$tc('main.descGame', 1)">{{ $tc('main.descGame', 2) }}</b-popover>
+          <NuxtLink :to="localePath('/users')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-game.svg')"></b-card-img></NuxtLink>
+        </b-card>
+      </b-col>
+      <b-col cols="12" lg="6" class="p-3">
+        <b-card img-alt="Image" img-top class="p-3">
+          <h3 class="font-weight-bold mb-4">{{ $t('main.titleProfiles') }}<b-icon class="info-icon-tip" id="usersInfo" variant="primary" icon="info-circle-fill"></b-icon></h3>
+          <b-popover ref="popover" target="usersInfo" triggers="hover" :title="$tc('main.descProfiles', 1)">{{ $tc('main.descProfiles', 2) }}</b-popover>
+          <NuxtLink :to="localePath('/users')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-user.svg')"></b-card-img></NuxtLink>
+        </b-card>
+      </b-col>
     </b-row>
   </section>
 </template>

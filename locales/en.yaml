@@ -103,9 +103,11 @@ main:
   titleMarket: Market
   titleMap: Map
   titleProfiles: Profiles
+  titleGame: Game
   descMarket: Buy & Sell | Sell and buy stuff related to electric transport area.
   descMap: Charge & Repair Map | Map with the locations of outlets for charging, repair in accessible places.
   descProfiles: ElectroTallinn people | Profiles of ElectroPeople team. Let's know each other closer.
+  descGame: Play game | Earn points and win prizes. Add points to map to earn more points!
   deleteWarning: Are you sure you want to delete?
   confirmDelete: Confirm deletion
   selectCategory: Select category

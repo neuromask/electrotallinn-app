@@ -86,7 +86,6 @@ export default {
     getUsers() {
       this.$axios.$get(`${this.$config.apiUrl}/users`).then((response) => {
         this.userTable = response;
-        console.log(response)
       });
     },
     goToProfile() {

@@ -6,7 +6,7 @@
             <div class="text-center mb-3">
               <b-img class="profile shadow" :src="user.photoUrl" rounded="circle" thumbnail />
             </div>
-            <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('nav.profile') }}</b-badge> {{ $t('main.info') }}</h3>
+            <h3 class="mb-0 font-weight-bold">{{ $t('main.info') }}</h3>
             <hr>
             <b-form-group :label="$t('profile.name')">
               <b-form-input id="input-1" v-model="userEdit.firstName" :placeholder="$t('profile.name')" required/>
@@ -31,7 +31,7 @@
             </b-form-group>
           </b-card>
           <b-card>
-            <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.transport') }}</b-badge> {{ $t('main.photo') }}</h3>
+            <h3 class="mb-0 font-weight-bold">{{ $t('main.transport') }}</h3>
             <hr>
             <b-form-group :label="$t('profile.model')">
               <b-form-input id="input-3" v-model="userEdit.transportModel" :placeholder="$t('profile.model')" required/>
