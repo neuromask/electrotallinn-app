@@ -31,7 +31,7 @@ game:
   available: Game is available only for logged in users.
   warning: Please login in menu to play a game!
   rule1Title: Play game and win.
-  rule1: Win rate differs from time, so don't spend a lot of points playing game at once.
+  rule1: Win prizes, additional information in Telegram. | Win rate differs from time, so don't spend a lot of points playing game at once.
   rule2Title: Add point to the map.
   rule2: Add point to the {0} using {1} and get 500 points to your balance.
   mapBonus: 1 Point = 500 Balance

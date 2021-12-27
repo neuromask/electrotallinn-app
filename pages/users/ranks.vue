@@ -15,12 +15,13 @@
           :sort-desc.sync="sortRankDesc"
         >
           <template #cell(indx)="data">
-            <div class="d-flex justify-content-center align-items-center">
-              <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center fluid class="ml-3 table-icon" />
-            </div>
+            <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center fluid class="table-icon" />
           </template>
           <template #cell(userFirstName)="data">
-            <h4>{{ data.item.userFirstName }}</h4><i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
+            <div class="w-100">
+              <h4>{{ data.item.userFirstName }}</h4>
+              <i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
+            </div>
           </template>
           <template #cell(count)="data">
             <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
@@ -137,7 +138,7 @@ export default {
       {
         num: 7,
         icon: 'rank-8',
-        name: 'ElectroGodness',
+        name: 'ElectroGod',
         minCount: 75
       },
       {
@@ -159,11 +160,14 @@ export default {
       return [
         {
           key: 'icon',
-          label: this.$t('main.medal')
+          label: this.$t('main.medal'),
+          thClass: 'text-white bg-secondary',
+          tdClass: 'text-center bg-secondary'
         },
         {
           key: 'name',
-          label: this.$t('main.rank')
+          label: this.$t('main.rank'),
+          tdClass: 'w-100'
         },
         {
           key: 'minCount',
@@ -202,7 +206,8 @@ export default {
         {
           key: 'userFirstName',
           sortable: false,
-          label: this.$t('profile.name')
+          label: this.$t('profile.name'),
+          tdClass: 'w-100'
         },
         {
           key: 'count',

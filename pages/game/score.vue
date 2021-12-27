@@ -6,7 +6,8 @@
         <hr>
         <b-card>
           <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
-          <h5 class="mb-0">{{ $t('game.rule1') }}</h5>
+          <h5>{{ $tc('game.rule1', 1) }}</h5>
+          <p class="font-italic mb-0">{{ $tc('game.rule1', 2) }}</p>
           <hr>
           <h4 class="font-weight-bold">{{ $t('game.rule2Title') }}</h4>
           <i18n path="game.rule2" tag="h5" class="my-3">

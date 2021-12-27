@@ -32,7 +32,7 @@ game:
   available: Mäng on saadaval ainult sisse logitud kasutajatele.
   warning: Mängu mängimiseks logige sisse menüüs!
   rule1Title: Mängi mängu ja võida.
-  rule1: Võidumäär erineb ajast, nii et ärge kulutage mängule korraga palju punkte.
+  rule1: Võida auhindu, lisainfo Telegramis. | Võidumäär erineb ajast, nii et ärge kulutage mängule korraga palju punkte.
   rule2Title: Lisage punkt kaardile.
   rule2: Lisage punkt {0} kasutades {1} ja saate oma saldole 500 punkti.
   mapBonus: 1 punkt = 500 saldo
