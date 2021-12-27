@@ -21,26 +21,24 @@
         </b-card>
       </b-col>
       <b-col cols="12" lg="8">
-
-          <h3 class="font-weight-bold mb-0">{{ $t('nav.score') }}</h3>
-          <hr>
-          <b-table table-variant="light" class="rounded" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped @row-clicked="goToProfile" :items="userTable" :fields="scoreFields">
-            <template #cell(index)="data">
-              <b-badge variant="light" class="pb-0">
-                <h3 class="font-weight-bold mb-0">{{ data.index + 1 }}</h3>
-              </b-badge>
-            </template>
-            <template #cell(firstName)="data">
-              <div class="d-flex justify-content-start align-items-center">
-                <b-avatar :to="localePath(`/users/${data.item.uin}`)" variant="info" class="text-dark profile shadow mr-3" :src="data.item.photoUrl" size="3rem"></b-avatar>
-                <h4 class="font-weight-bold mb-0">{{ data.item.firstName }}</h4>
-              </div>
-            </template>
-            <template #cell(balance)="data">
-              <h3 class="font-weight-bold mb-0">{{ data.item.balance }}</h3>
-            </template>
-          </b-table>
-
+        <h3 class="font-weight-bold mb-0">{{ $t('nav.score') }}</h3>
+        <hr>
+        <b-table @row-clicked="gotoUserProfile" table-variant="light" class="rounded" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
+          <template #cell(index)="data">
+            <b-badge variant="light" class="pb-0">
+              <h3 class="font-weight-bold mb-0">{{ data.index + 1 }}</h3>
+            </b-badge>
+          </template>
+          <template #cell(firstName)="data">
+            <div class="d-flex justify-content-start align-items-center">
+              <b-avatar variant="info" class="text-dark profile shadow mr-3" :src="data.item.photoUrl" size="3rem"></b-avatar>
+              <h4 class="font-weight-bold mb-0">{{ data.item.firstName }}</h4>
+            </div>
+          </template>
+          <template #cell(balance)="data">
+            <h3 class="font-weight-bold mb-0">{{ data.item.balance }}</h3>
+          </template>
+        </b-table>
       </b-col>
     </b-row>
   </section>
@@ -89,8 +87,8 @@ export default {
         this.userTable = response;
       });
     },
-    goToProfile() {
-
+    gotoUserProfile(item, index, event) {
+      this.$router.push({path: this.localePath(`/users/${item.uin}`)});
     }
   }
 };
