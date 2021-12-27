@@ -3,7 +3,7 @@
     <MarketProductModal @save="findMarketProducts" />
     <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
       <span>
-        <b-badge variant="warning" class="text-white">{{ $t('nav.market') }}</b-badge> 
+        
         <span>{{ $t('nav.products') }} ({{ marketProducts.length }})</span>
       </span>
       <span>
@@ -11,7 +11,7 @@
       </span>
     </h3>
     <hr>
-      <b-table class="m-0 rounded" striped table-variant="info" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
+      <b-table class="m-0 rounded" striped table-variant="light" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
           <template #cell(name)="data">
             <div class="w-100 d-flex justify-content-between align-items-center">
               <div>

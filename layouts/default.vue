@@ -22,6 +22,7 @@
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
   padding-bottom: 5rem!important;
   min-height: 960px;  
+  overflow: visible!important;
 }
 </style>
 <script>

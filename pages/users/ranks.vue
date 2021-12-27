@@ -2,38 +2,38 @@
   <section>
     <b-row>
       <b-col cols="12" lg="4">
-        <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">ElectroPeople</b-badge> {{ $t('main.top') }}</h3>
+        <h3 class="font-weight-bold mb-0">{{ $t('main.top') }}</h3>
         <hr>
         <b-table
-          class="bg-info rounded"
+          class="rounded"
           borderless
-          outlined
           striped
+          table-variant="light"
           :items="listTop"
           :fields="fieldsTop"
           :sort-by.sync="sortRankBy"
           :sort-desc.sync="sortRankDesc"
         >
           <template #cell(indx)="data">
-            <div class="d-flex justify-content-center align-items-center">
-              <b-badge variant="light"><h3 class="text-right font-weight-bold">{{ data.index + 1 }}</h3></b-badge>
-              <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center fluid class="ml-3 table-icon" />
-            </div>
+            <b-img :src="require(`~/assets/img/ranks/${ranks[getRank(data.item.count)].icon}.png`)" center fluid class="table-icon" />
           </template>
           <template #cell(userFirstName)="data">
-            <h4>{{ data.item.userFirstName }}</h4><i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
+            <div class="w-100">
+              <h4>{{ data.item.userFirstName }}</h4>
+              <i class="rank-sub">{{ ranks[getRank(data.item.count)].name }}</i>
+            </div>
           </template>
           <template #cell(count)="data">
             <b-badge variant="dark" class="text-white font-weight-bold"><h4>{{ data.item.count }}</h4></b-badge>
           </template>
         </b-table>
-        <h3 class="mt-5 font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.ranks') }}</b-badge> {{ $t('main.legend') }}</h3>
+        <h3 class="font-weight-bold mb-0">{{ $t('main.legend') }}</h3>
         <hr>
         <b-table
-          class="bg-info mb-5 rounded"
+          class="rounded"
           borderless
-          outlined
           striped
+          table-variant="light"
           :items="ranks"
           :fields="fieldsRank"
         >
@@ -49,12 +49,13 @@
         </b-table>
       </b-col>
       <b-col cols="12" lg="8">
-        <h3 class="font-weight-bold mb-0"><b-badge variant="warning" class="text-white font-weight-bold">{{ $t('nav.locations') }}</b-badge> {{ $t('main.all') }}</h3>
+        <h3 class="font-weight-bold mb-0">{{ $t('nav.locations') }}</h3>
         <hr>
         <b-table
-          class="bg-info rounded"
+          class="rounded"
           borderless
           striped
+          table-variant="light"
           :items="listFull"
           :fields="fieldsLoc"
           :sort-by.sync="sortLocBy"
@@ -91,7 +92,6 @@
 export default {
   props: {},
   data: () => ({
-
     ranks: [
       {
         num: 0,
@@ -138,7 +138,7 @@ export default {
       {
         num: 7,
         icon: 'rank-8',
-        name: 'ElectroGodness',
+        name: 'ElectroGod',
         minCount: 75
       },
       {
@@ -152,7 +152,6 @@ export default {
     listTop: [],
     sortLocBy: 'id',
     sortLocDesc: true,
-
     sortRankBy: 'count',
     sortRankDesc: true
   }),
@@ -161,11 +160,14 @@ export default {
       return [
         {
           key: 'icon',
-          label: this.$t('main.medal')
+          label: this.$t('main.medal'),
+          thClass: 'text-white bg-secondary',
+          tdClass: 'text-center bg-secondary'
         },
         {
           key: 'name',
-          label: this.$t('main.rank')
+          label: this.$t('main.rank'),
+          tdClass: 'w-100'
         },
         {
           key: 'minCount',
@@ -197,12 +199,15 @@ export default {
         {
           key: 'indx',
           sortable: false,
-          label: this.$t('main.rank')
+          label: this.$t('main.rank'),
+          thClass: 'text-white bg-secondary',
+          tdClass: 'text-center bg-secondary'
         },
         {
           key: 'userFirstName',
           sortable: false,
-          label: this.$t('profile.name')
+          label: this.$t('profile.name'),
+          tdClass: 'w-100'
         },
         {
           key: 'count',

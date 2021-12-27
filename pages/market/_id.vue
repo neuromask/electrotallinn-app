@@ -4,7 +4,7 @@
     <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
       <b-card>
-        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.info') }}</h3>
+       <h3 class="font-weight-bold mb-0">{{ $t('main.info') }}</h3>
         <hr>
         <div class="mb-3 d-flex justify-content-between align-items-start">
           <h2 class="mb-0" variant="light" v-if="product.name">{{ product.name }}</h2>
@@ -17,7 +17,7 @@
         </b-list-group>
       </b-card>
       <b-card>
-        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.seller') }}</b-badge> {{ $t('main.contact') }}</h3>
+       <h3 class="font-weight-bold mb-0">{{ $t('main.contact') }}</h3>
         <hr>
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
@@ -31,7 +31,7 @@
         </b-alert>
       </b-card>
       <b-card>
-        <h3 class="mb-0 font-weight-bold"><b-badge variant="warning" class="text-white">{{ $t('main.product') }}</b-badge> {{ $t('main.photo') }}</h3>
+       <h3 class="font-weight-bold mb-0">{{ $t('main.photo') }}</h3>
         <hr>
         <div class="images" v-for="(image, imageIndex) in items" :key="imageIndex">
           <b-img role="button" center fluid-grow class="rounded image mb-3" @click="index = imageIndex" :src="image.src" />

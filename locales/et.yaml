@@ -16,6 +16,7 @@ nav:
   locations: Asukohad
   addProduct: Lisa toode
   sockets: Pistikud
+  score: Skoor
 game:
   top: Üles
   center: Keskel
@@ -23,10 +24,19 @@ game:
   pay: Palga
   table: Tabel
   spin: Keera
-  balance: Bilanss
+  balance: Saldo
   totalWin: Summa
   win: 🤑 Võit! 🤑
-  score: Skoor
+  rules: Reeglid
+  warnTitle: Hoiatus!
+  available: Mäng on saadaval ainult sisse logitud kasutajatele.
+  warning: Mängu mängimiseks logige sisse menüüs!
+  rule1Title: Mängi mängu ja võida.
+  rule1: Võida auhindu, lisainfo Telegramis. | Võidumäär erineb ajast, nii et ärge kulutage mängule korraga palju punkte.
+  rule2Title: Lisage punkt kaardile.
+  rule2: Lisage punkt {0} kasutades {1} ja saate oma saldole 500 punkti.
+  mapBonus: 1 punkt = 500 saldo
+  place: Koht
 error:
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel
@@ -94,9 +104,11 @@ main:
   titleMarket: Turg
   titleMap: Kaart
   titleProfiles: Profiilid
+  titleGame: Mäng
   descMarket: Ost & Müük | Osta ja müü elektritranspordiga seotud asju.
   descMap: Laadi & Paranda | Kaart laadimise pistikupesade ja remondi asukohtadega.
   descProfiles: ElectroTallinna inimesed | ElectroPeople meeskonna profiilid. Tutvustame üksteist lähemalt.
+  descGame: Mängi mängu | Teeni punkte ja võida auhindu. Lisa punkte kaardile, et teenida rohkem punkte!
   deleteWarning: Kas olete kindel, et soovite kustutada?
   confirmDelete: Kustutamise kinnitamine
   selectCategory: Valige kategooria

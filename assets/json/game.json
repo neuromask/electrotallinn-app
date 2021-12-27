@@ -2,15 +2,13 @@
   "slots": [
     {
       "items": [
-        { "label": "BAT3", "src": "icon-bat-3.svg" },
-        { "label": "BAT1", "src": "icon-bat-1.svg" },
-        { "label": "ET",   "src": "icon-med.svg" },
-        { "label": "BAT2", "src": "icon-bat-2.svg" },
         { "label": "BATX", "src": "icon-bat-x.svg" },
         { "label": "BAT1", "src": "icon-bat-1.svg" },
+        { "label": "BAT2", "src": "icon-bat-2.svg" },
         { "label": "BAT3", "src": "icon-bat-3.svg" },
-        { "label": "ZEUS", "src": "icon-best.svg" },
-        { "label": "BAT2", "src": "icon-bat-2.svg" }
+        { "label": "ET",   "src": "icon-med.svg" },
+        { "label": "ZEUS", "src": "icon-best.svg" }
+        
       ]
     }
   ],

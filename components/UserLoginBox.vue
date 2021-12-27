@@ -36,6 +36,7 @@ export default {
             photoUrl: data.photo_url,
             username: data.username,
             role: response.user.role,
+            balance: response.user.balance,
             location: response.user.location,
             transportPhotoName: response.user.transportPhotoName
           });

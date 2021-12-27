@@ -2,13 +2,10 @@
     <section id="admin">
         <b-row>
             <b-col cols="12">
-                <h3>
-                    <b-badge variant="warning" class="text-white font-weight-bold">List</b-badge>
-                    Unconfirmed locations
-                </h3>
+                <h3 class="font-weight-bold mb-0">Unconfirmed locations</h3>
                 <hr/>
                 <b-table
-                    class="bg-info"
+                    class="bg-info rounded"
                     borderless
                     striped
                     hover
