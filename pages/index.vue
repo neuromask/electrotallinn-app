@@ -57,7 +57,7 @@
         <b-card img-alt="Image" img-top class="p-3">
           <h3 class="font-weight-bold mb-4">{{ $t('main.titleGame') }}<b-icon class="info-icon-tip" id="gameInfo" variant="primary" icon="info-circle-fill"></b-icon></h3>
           <b-popover ref="popover" target="gameInfo" triggers="hover" :title="$tc('main.descGame', 1)">{{ $tc('main.descGame', 2) }}</b-popover>
-          <NuxtLink :to="localePath('/users')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-game.svg')"></b-card-img></NuxtLink>
+          <NuxtLink :to="localePath('/game')"><b-card-img class="p-5 bg-dark" :src="require('@/assets/img/home-game.svg')"></b-card-img></NuxtLink>
         </b-card>
       </b-col>
       <b-col cols="12" lg="6" class="p-3">
