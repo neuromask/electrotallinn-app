@@ -16,6 +16,7 @@ nav:
   locations: Asukohad
   addProduct: Lisa toode
   sockets: Pistikud
+  score: Skoor
 game:
   top: Üles
   center: Keskel
@@ -23,10 +24,19 @@ game:
   pay: Palga
   table: Tabel
   spin: Keera
-  balance: Bilanss
+  balance: Saldo
   totalWin: Summa
   win: 🤑 Võit! 🤑
-  score: Skoor
+  rules: Reeglid
+  warnTitle: Hoiatus!
+  available: Mäng on saadaval ainult sisse logitud kasutajatele.
+  warning: Mängu mängimiseks logige sisse menüüs!
+  rule1Title: Mängi mängu ja võida.
+  rule1: Võidumäär erineb ajast, nii et ärge kulutage mängule korraga palju punkte.
+  rule2Title: Lisage punkt kaardile.
+  rule2: Lisage punkt {0} kasutades {1} ja saate oma saldole 500 punkti.
+  mapBonus: 1 punkt = 500 saldo
+  place: Koht
 error:
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel

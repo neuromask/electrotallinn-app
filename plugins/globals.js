@@ -8,6 +8,7 @@ export default ({ app }, inject) => {
         photoUrl: null,
         username: null,
         id: null,
+        balance: null,
         role: null
     }))
     inject('map', Vue.observable({

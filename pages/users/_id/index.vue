@@ -5,7 +5,7 @@
       <b-card>
         <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
           <span>
-            <b-badge variant="warning" class="text-white">{{ $t('nav.profile') }}</b-badge> 
+            
             <span>{{ $t('main.info') }}</span>
           </span>
           <a v-if="$user.uin === user.uin" v-b-modal.profile-modal><b-icon class="align-middle" variant="primary" icon="pencil-square" /></a>
@@ -24,7 +24,7 @@
       <b-card v-if="user.transportPhotoName">
         <h3 class="mb-0 font-weight-bold">
           <span>
-            <b-badge variant="warning" class="text-white">{{ $t('main.transport') }}</b-badge> 
+            
             <span>{{ $t('main.photo') }}</span>
           </span>
         </h3>

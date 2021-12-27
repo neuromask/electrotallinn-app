@@ -5,7 +5,7 @@
     <b-row>
       <b-col cols="12" lg="4" class="p-3">
         <b-card>
-          <h3 class="font-weight-bold">
+          <h3 class="font-weight-bold mb-0">
             <b-badge variant="warning" class="text-white">Bot</b-badge> Chat
           </h3>
           <hr>
@@ -16,7 +16,7 @@
       </b-col>
       <b-col cols="12" lg="8" class="p-3">
         <b-card>
-          <h3 class="font-weight-bold">
+          <h3 class="font-weight-bold mb-0">
             <b-badge variant="warning" class="text-white">Bot</b-badge> Commands
           </h3>
           <hr>
