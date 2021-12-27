@@ -34,5 +34,9 @@ module.exports = {
 
     delete: async (uin) => {
         return await usersRepository.delete(uin)
+    },
+
+    updateBalance: async (uin, user) => {
+        return await usersRepository.updateBalance(uin, user.balance)
     }
 };

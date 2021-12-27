@@ -79,4 +79,14 @@ router.put('/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, async func
     response.send(result);
 });
 
+router.put('/:uin(\\d+)/balance', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
+  if (+request.params.uin !== request.user.uin && request.user.role !== 'ADMIN') {
+    console.warn('Saving balance for %s not allowed for user with uin %s', JSON.stringify(request.body), request.user.uin);
+    return response.status(403).send("Not allowed");
+  }
+
+  let result = await usersService.updateBalance(request.params.uin, request.body);
+  response.send(result);
+});
+
 module.exports = router;

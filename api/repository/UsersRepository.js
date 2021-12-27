@@ -64,5 +64,11 @@ module.exports = {
         let params = [uin];
 
         return await db.query(sql, params);
+    },
+
+    updateBalance: async (uin, balance) => {
+        let sql = 'UPDATE users SET balance = ? WHERE uin = ?';
+        let params = [balance, uin];
+        return await db.query(sql, params);
     }
 };
