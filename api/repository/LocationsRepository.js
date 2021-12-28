@@ -32,6 +32,13 @@ module.exports = {
         let sql = 'INSERT INTO locations (title, description, lat, lng, image, image_name, type, user_first_name, user_uin, confirmed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         let params = [location.title, location.description, location.lat, location.lng, location.image, location.image_name, location.type, location.userFirstName, location.userUin, 0];
 
+        // add 500 to user balance
+        if (location.userUin) {
+          let sql = 'UPDATE users SET balance = balance + 500 WHERE uin = ?';
+          let params = [location.userUin];
+          await db.query(sql, params);
+        }
+
         return await db.query(sql, params);
     },
 
