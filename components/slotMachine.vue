@@ -2,6 +2,8 @@
     <section>
       <b-row>
         <b-col cols="12" lg="8" class="pb-3">
+          <h3 class="font-weight-bold mb-0">{{ $t('nav.game') }}</h3>
+          <hr>
           <b-card no-body class="rounded text-white" bg-variant="secondary" :class="[mounted ? 'visible' : 'invisible']">
             <div class="d-flex position-relative" ref="wrapper">
               <div v-for="i in lineOptions.length" :key="i" ref="winLine" :class="`win-line blink win-line-${i-1}`"></div>
@@ -44,6 +46,8 @@
           </b-card>
         </b-col>
         <b-col cols="12" lg="4">
+          <h3 class="font-weight-bold mb-0">{{ $t('game.pay') }}</h3>
+          <hr>
           <b-table table-variant="dark" class="bg-secondary rounded" borderless outlined striped :items="paytable" :fields="payFields" thead-class="d-none">
             <template #cell(indx)="data">
               <div class="d-flex justify-content-center align-items-center pay-table">
@@ -99,6 +103,8 @@ export default {
       lines: json.winLines,
       slots: json.slots,
       paytable: json.payTable[0].items,
+      extraItems: 2,
+      gamePrice: 1,
       slotsAmount: 3,
       opts: null,
       startedAt: null,
@@ -139,10 +145,9 @@ export default {
       let randomItem = () => {
         return this.slots[0].items[this.randomInterval(1,2)]
       }
-      let extraItems = 3
-      let col1 = [...this.slots[0].items, ...new Array(extraItems).fill(randomItem())]
-      let col2 = [...this.slots[0].items, ...new Array(extraItems).fill(randomItem())]
-      let col3 = [...this.slots[0].items, ...new Array(extraItems).fill(randomItem())]
+      let col1 = [...this.slots[0].items, ...new Array(this.extraItems).fill(randomItem())]
+      let col2 = [...this.slots[0].items, ...new Array(this.extraItems).fill(randomItem())]
+      let col3 = [...this.slots[0].items, ...new Array(this.extraItems).fill(randomItem())]
 
       const matrix = [this.shuffleArray(col1),this.shuffleArray(col2),this.shuffleArray(col3)]
       return matrix
@@ -184,7 +189,7 @@ export default {
         return;
       }
       // reset
-      this.balance -= 1;
+      this.balance -= this.gamePrice;
       this.winTotal = null;
       this.$refs.win.style.display = "none";
       for (let i = 0; i < this.lineOptions.length; i++) {
@@ -292,7 +297,7 @@ export default {
       this.isFullFinished = true;
       this.win();
       this.isDisabled();
-      this.updateBalance();
+      //this.updateBalance();
     },
     compareArrays(a1, a2) {
       return (

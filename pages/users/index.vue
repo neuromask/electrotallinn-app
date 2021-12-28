@@ -1,6 +1,28 @@
 <template>
-  <div>
-    <transition-group name="card-list" mode="out-in" class="row">
+  <section>
+    <div class="d-flex w-100 justify-content-between align-items-center">
+    <h3 class="font-weight-bold mb-0">{{ $t('nav.users') }} ({{ userTable.length }})</h3>
+    <b-button-group>
+      <b-button @click="tableLayout = false" :pressed="!tableLayout" variant="primary"><b-icon icon="grid" /></b-button>
+      <b-button @click="tableLayout = true" :pressed="tableLayout" variant="primary"><b-icon icon="list-ul" /></b-button>
+    </b-button-group>
+    </div>
+    <hr>
+    <b-table v-if="tableLayout" @row-clicked="gotoUserProfile" table-variant="light" tbody-tr-class="clickable" class="rounded scoreTable" hover borderless striped :items="userTable" :fields="userFields">
+      <template #cell(photoUrl)="data">
+        <b-avatar variant="info" class="text-dark profile profileTable shadow" :src="data.item.photoUrl" size="3rem"></b-avatar>
+      </template>
+      <template #cell(firstName)="data">
+        <h4 class="font-weight-bold mb-0">{{ data.item.firstName }}</h4>
+        <p class="small"><i>{{ data.item.location }}</i></p>
+      </template>
+      <template #cell(balance)="data">
+        <b-button size="sm" variant="primary" class="text-info nowrap" nuxt :to="localePath(`/users/${data.item.uin}`)">
+          <b-icon icon="person-bounding-box" /> {{ $t('nav.profile') }}
+        </b-button>
+      </template>
+    </b-table>
+    <transition-group v-if="!tableLayout" name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="user in userTable" :key="user.id">
         <b-card bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
@@ -49,7 +71,7 @@
         </b-card>
       </b-col>
     </transition-group>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -66,7 +88,32 @@ export default {
           { text: '🇪🇸', value: 'spanish' }
       ],
       listUserLocs: [],
+      tableLayout: false
     };
+  },
+  computed: {
+    userFields() {
+      return [
+        {
+          key: 'photoUrl',
+          sortable: false,
+          label: this.$t('main.photo'),
+          thClass: 'text-white bg-secondary',
+          tdClass: 'text-center bg-secondary'
+        },
+        {
+          key: 'firstName',
+          sortable: false,
+          label: this.$t('profile.name'),
+          tdClass: 'w-100'
+        },
+        {
+          key: 'balance',
+          sortable: false,
+          label: this.$t('main.info')
+        },
+      ]
+    }
   },
   mounted() {
     this.getUsers();
@@ -79,6 +126,9 @@ export default {
     },
     getFlags (userLang) {
       return this.languageOptions.filter(language => userLang.includes(language.value)).map(language => language.text).join(" ")
+    },
+    gotoUserProfile(item, index, event) {
+      this.$router.push({path: this.localePath(`/users/${item.uin}`)});
     }
   }
 };
@@ -101,6 +151,9 @@ export default {
 
 .profile {
     bottom:-1rem;
+}
+.profileTable {
+    bottom:0;
 }
 
 .card-list-item {

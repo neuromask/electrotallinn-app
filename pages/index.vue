@@ -1,7 +1,9 @@
 <template>
   <section>
+    <h3 class="mb-0 font-weight-bold mt-3">{{ $t('nav.home') }}</h3>
+    <hr>
     <b-row>
-      <b-col cols="12" lg="4" class="pt-3">
+      <b-col cols="12" lg="4" class="pb-3">
         <UserProfileBox />
         <b-card>
           <h3 class="font-weight-bold mb-0">{{ $t('main.chat') }}</h3>
@@ -15,7 +17,7 @@
           </a>
         </b-card>
       </b-col>
-      <b-col cols="12" lg="8" class="pt-3">
+      <b-col cols="12" lg="8">
         <b-card>
           <h3 class="font-weight-bold mb-0">{{ $t('main.commands') }}</h3>
           <hr>

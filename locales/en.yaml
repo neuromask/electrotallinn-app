@@ -20,8 +20,7 @@ game:
   top: Top
   center: Center
   bottom: Bottom
-  pay: Pay
-  table: Table
+  pay: Payment
   spin: Spin
   balance: Balance
   totalWin: Total win

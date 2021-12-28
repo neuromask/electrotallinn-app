@@ -1,6 +1,5 @@
 <template>
   <section>
-    
     <div id="submenu" class="upper position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
       <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
@@ -26,8 +25,6 @@
     <div class="sub-page">
       <NuxtChild  />
     </div>
-    
-
   </section>
 </template>
 

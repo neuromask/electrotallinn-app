@@ -2,7 +2,6 @@
   "slots": [
     {
       "items": [
-        { "label": "BATX", "src": "icon-bat-x.svg" },
         { "label": "BAT1", "src": "icon-bat-1.svg" },
         { "label": "BAT2", "src": "icon-bat-2.svg" },
         { "label": "BAT3", "src": "icon-bat-3.svg" },

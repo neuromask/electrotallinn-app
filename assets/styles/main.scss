@@ -5,7 +5,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
 
-
+html {scroll-behavior: smooth;}
 html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;font-family: 'Montserrat', sans-serif;}
 .navbar {margin: 0; padding: 0;}
 .bg-dark {
@@ -34,6 +34,10 @@ button {outline: none;box-shadow:none !important;}
 .table-icon {
     max-width: 64px;
     max-height: 64px;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 a {
@@ -164,7 +168,11 @@ hr:after {
 .card,
 .rounded {
   border-radius: 0.5rem !important;
-  overflow: hidden!important;
+  overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 @media (min-width: 576px) {

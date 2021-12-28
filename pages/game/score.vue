@@ -23,7 +23,7 @@
       <b-col cols="12" lg="8">
         <h3 class="font-weight-bold mb-0">{{ $t('nav.score') }}</h3>
         <hr>
-        <b-table @row-clicked="gotoUserProfile" table-variant="light" class="rounded" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
+        <b-table @row-clicked="gotoUserProfile" sticky-header="800px" table-variant="light" class="rounded scoreTable" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
           <template #cell(index)="data">
             <b-badge variant="light" class="pb-0">
               <h3 class="font-weight-bold mb-0">{{ data.index + 1 }}</h3>
@@ -95,4 +95,7 @@ export default {
 </script>
 
 <style scoped>
+.scoreTable {
+  overflow: auto!important;
+}
 </style>
