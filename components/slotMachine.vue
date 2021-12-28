@@ -297,7 +297,7 @@ export default {
       this.isFullFinished = true;
       this.win();
       this.isDisabled();
-      //this.updateBalance();
+      this.updateBalance();
     },
     compareArrays(a1, a2) {
       return (

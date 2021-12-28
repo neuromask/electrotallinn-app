@@ -4,7 +4,7 @@
     <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
       <span>
         
-        <span>{{ $t('nav.products') }} ({{ marketProducts.length }})</span>
+        <span>{{ $t('nav.products') }} <span class="small">({{ marketProducts.length }})</span></span>
       </span>
       <span>
         <a v-if="$user.uin == $route.params.id" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>

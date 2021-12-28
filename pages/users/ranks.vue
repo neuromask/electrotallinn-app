@@ -2,7 +2,7 @@
   <section>
     <b-row>
       <b-col cols="12" lg="4">
-        <h3 class="font-weight-bold mb-0">{{ $t('main.top') }}</h3>
+        <h3 class="font-weight-bold mb-0">{{ $t('main.top') }} <span class="small">({{ listTop.length }})</span></h3>
         <hr>
         <b-table
           class="rounded"
@@ -49,7 +49,7 @@
         </b-table>
       </b-col>
       <b-col cols="12" lg="8">
-        <h3 class="font-weight-bold mb-0">{{ $t('nav.locations') }}</h3>
+        <h3 class="font-weight-bold mb-0">{{ $t('nav.locations') }} <span class="small">({{ listFull.length }})</span></h3>
         <hr>
         <b-table
           class="rounded"

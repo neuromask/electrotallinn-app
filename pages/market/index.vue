@@ -1,6 +1,6 @@
 <template>
   <section ref="top">
-    <h3 class="mb-0 font-weight-bold">{{ $t('nav.market') }} ({{ productsFull.length }})</h3>
+    <h3 class="mb-0 font-weight-bold">{{ $t('nav.market') }} <span class="small">({{ productsFull.length }})</span></h3>
     <hr>
     <div class="mb-3">
       <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('main.all') }}</b-btn>
