@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h3 class="mb-0 font-weight-bold">{{ $t('nav.locations') }} <span class="small">({{ listFull.length }})</span></h3>
-    <hr>
+    <h3 class="underline font-weight-bold">{{ $t('nav.locations') }} <span class="small">({{ listFull.length }})</span></h3>
+
     <b-table
       class="rounded m-0"
       striped

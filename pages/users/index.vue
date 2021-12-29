@@ -1,13 +1,13 @@
 <template>
   <section>
-    <div class="d-flex w-100 justify-content-between align-items-center">
-    <h3 class="font-weight-bold mb-0">{{ $t('nav.users') }} <span class="small">({{ userTable.length }})</span></h3>
+    <div class="d-flex w-100 justify-content-between align-items-start">
+    <h3 class="underline font-weight-bold">{{ $t('nav.users') }} <span class="small">({{ userTable.length }})</span></h3>
     <b-button-group>
       <b-button @click="tableLayout = false" :pressed="!tableLayout" variant="primary"><b-icon icon="grid" /></b-button>
       <b-button @click="tableLayout = true" :pressed="tableLayout" variant="primary"><b-icon icon="list-ul" /></b-button>
     </b-button-group>
     </div>
-    <hr>
+
     <b-table v-if="tableLayout" @row-clicked="gotoUserProfile" table-variant="light" tbody-tr-class="clickable" class="rounded scoreTable" hover borderless striped :items="userTable" :fields="userFields">
       <template #cell(photoUrl)="data">
         <b-avatar variant="info" class="text-dark profile profileTable shadow" :src="data.item.photoUrl" size="3rem"></b-avatar>
@@ -42,10 +42,10 @@
                   <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
                 </div>
                 <div class="mb-1">
-                  <p class="mb-1" v-if="user.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
-                  <p class="mb-1" v-if="user.birthyear">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
-                  <p class="mb-1" v-if="user.languages && user.languages.length">{{ $t('profile.language') }}: {{ getFlags(user.languages) }}</p>
-                  <p class="mb-0" v-if="user.transportModel">{{ $t('profile.model') }}: <strong>{{ user.transportModel }}</strong></p>
+                  <p class="mb-1 text-dark" v-if="user.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></p>
+                  <p class="mb-1 text-dark" v-if="user.birthyear">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></p>
+                  <p class="mb-1 text-dark" v-if="user.languages && user.languages.length">{{ $t('profile.language') }}: {{ getFlags(user.languages) }}</p>
+                  <p class="mb-0 text-dark" v-if="user.transportModel">{{ $t('profile.model') }}: <strong>{{ user.transportModel }}</strong></p>
                 </div>
               </b-list-group-item>
               <b-list-group-item variant="light" class="flex-column align-items-start">

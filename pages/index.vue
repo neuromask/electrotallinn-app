@@ -1,13 +1,11 @@
 <template>
   <section>
-    <h3 class="mb-0 font-weight-bold mt-3">{{ $t('nav.home') }}</h3>
-    <hr>
+    <h3 class="underline font-weight-bold mt-3">{{ $t('nav.home') }}</h3>
     <b-row>
       <b-col cols="12" lg="4" class="pb-3">
         <UserProfileBox />
         <b-card>
-          <h3 class="font-weight-bold mb-0">{{ $t('main.chat') }}</h3>
-          <hr>
+          <h3 class="font-weight-bold underline">{{ $t('main.chat') }}</h3>
           <i18n path="main.textChat" tag="h5" class="my-3">
             <a href="https://telegram.org/" target="_blank"><strong>Telegram</strong></a>
             <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
@@ -19,8 +17,7 @@
       </b-col>
       <b-col cols="12" lg="8">
         <b-card>
-          <h3 class="font-weight-bold mb-0">{{ $t('main.commands') }}</h3>
-          <hr>
+          <h3 class="font-weight-bold underline">{{ $t('main.commands') }}</h3>
           <i18n path="main.textCommands" tag="h5" class="my-3">
             <NuxtLink :to="localePath('/map')"><strong>{{ $t('main.textMap') }}</strong></NuxtLink>
             <NuxtLink :to="localePath('/market')"><strong>{{ $t('main.textMarket') }}</strong></NuxtLink>

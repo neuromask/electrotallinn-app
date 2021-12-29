@@ -2,8 +2,7 @@
   <section>
     <b-row>
       <b-col cols="12" lg="4" class="pb-3">
-        <h3 class="font-weight-bold mb-0">{{ $t('game.rules') }}</h3>
-        <hr>
+        <h3 class="underline font-weight-bold">{{ $t('game.rules') }}</h3>
         <b-card>
           <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
           <h5>{{ $tc('game.rule1', 1) }}</h5>
@@ -21,12 +20,11 @@
         </b-card>
       </b-col>
       <b-col cols="12" lg="8">
-        <h3 class="font-weight-bold mb-0">{{ $t('nav.score') }}</h3>
-        <hr>
+        <h3 class="underline font-weight-bold">{{ $t('nav.score') }}</h3>
         <b-table @row-clicked="gotoUserProfile" sticky-header="800px" table-variant="light" class="rounded scoreTable" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
           <template #cell(index)="data">
             <b-badge variant="light" class="pb-0">
-              <h3 class="font-weight-bold mb-0">{{ data.index + 1 }}</h3>
+              <h3 class="font-weight-bold">{{ data.index + 1 }}</h3>
             </b-badge>
           </template>
           <template #cell(firstName)="data">
@@ -36,7 +34,7 @@
             </div>
           </template>
           <template #cell(balance)="data">
-            <h3 class="font-weight-bold mb-0">{{ data.item.balance }}</h3>
+            <h3 class="font-weight-bold">{{ data.item.balance }}</h3>
           </template>
         </b-table>
       </b-col>

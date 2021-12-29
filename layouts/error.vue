@@ -3,7 +3,7 @@
       <h1 class="mt-5">Error <strong>{{error.statusCode}}</strong></h1>
       <h5 v-if="error.statusCode === 404">Page not found</h5>
       <h5>Please try something new :)</h5>
-      <hr>
+
       <b-img center fluid :src="require('@/assets/img/not-found.png')" />
   </section>
 </template>

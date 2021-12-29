@@ -4,7 +4,7 @@
     <h5 class="mb-5">Follow easy three steps to add product to the market</h5>
     <b-card-group deck>
       <b-card>
-          <h3 class="font-weight-bold mb-0">Telegram App</h3>
+          <h3 class="underline font-weight-bold">Telegram App</h3>
           <hr/>
           <h5 class="mb-4">Install <strong>Telegram</strong> app on your phone.</h5> 
           <b-card-img :src="require('@/assets/img/step-1.jpg')"></b-card-img>
@@ -16,7 +16,7 @@
       </b-card>
 
       <b-card>
-          <h3 class="font-weight-bold mb-0">Chat with Bot</h3>
+          <h3 class="underline font-weight-bold">Chat with Bot</h3>
           <hr/>
           <h5 class="mb-4">Start <strong>private chat</strong> with ElectroBot in Telegram.</h5>
           <b-card-img :src="require('@/assets/img/step-2.jpg')"></b-card-img>
@@ -28,7 +28,7 @@
       </b-card>
 
       <b-card>
-          <h3 class="font-weight-bold mb-0">Type command</h3>
+          <h3 class="underline font-weight-bold">Type command</h3>
           <hr/>
           <h5 class="mb-4">Type <kbd><strong>/sell</strong></kbd> command to bot and follow instructions.</h5>
           <b-card-img :src="require('@/assets/img/step-3.jpg')" bottom></b-card-img>

@@ -2,8 +2,7 @@
     <section>
       <b-row>
         <b-col cols="12" lg="8" class="pb-3">
-          <h3 class="font-weight-bold mb-0">{{ $t('nav.game') }}</h3>
-          <hr>
+          <h3 class="underline font-weight-bold">{{ $t('nav.game') }}</h3>
           <b-card no-body class="rounded text-white" bg-variant="secondary" :class="[mounted ? 'visible' : 'invisible']">
             <div class="d-flex position-relative" ref="wrapper">
               <div v-for="i in lineOptions.length" :key="i" ref="winLine" :class="`win-line blink win-line-${i-1}`"></div>
@@ -46,8 +45,7 @@
           </b-card>
         </b-col>
         <b-col cols="12" lg="4">
-          <h3 class="font-weight-bold mb-0">{{ $t('game.pay') }}</h3>
-          <hr>
+          <h3 class="underline font-weight-bold">{{ $t('game.pay') }}</h3>
           <b-table table-variant="dark" class="bg-secondary rounded" borderless outlined striped :items="paytable" :fields="payFields" thead-class="d-none">
             <template #cell(indx)="data">
               <div class="d-flex justify-content-center align-items-center pay-table">
@@ -55,7 +53,7 @@
                 <b-img :src="require(`@/assets/img/game/${data.item.img2}`)" center fluid />
                 <b-img :src="require(`@/assets/img/game/${data.item.img3}`)" center fluid />
                 <b-badge variant="light" class="pb-0 text-left">
-                  <h3 class="font-weight-bold mb-0 text-center">{{ data.item.amount }}</h3>
+                  <h3 class="font-weight-bold text-center">{{ data.item.amount }}</h3>
                   <p v-if="data.item.winpos" style="margin-top:-5px" class="w-100 text-center mb-1 font-weight-bold text-secondary small">{{ $t(`game.${data.item.winpos}`) }}</p>
                 </b-badge>
               </div>

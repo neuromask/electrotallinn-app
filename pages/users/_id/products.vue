@@ -1,16 +1,11 @@
 <template>
   <section>
     <MarketProductModal @save="findMarketProducts" />
-    <h3 class="mb-0 font-weight-bold d-flex justify-content-between align-items-center">
-      <span>
-        
-        <span>{{ $t('nav.products') }} <span class="small">({{ marketProducts.length }})</span></span>
-      </span>
-      <span>
-        <a v-if="$user.uin == $route.params.id" v-b-modal.product-modal><b-icon class="align-middle" variant="primary" icon="plus-square" /></a>
-      </span>
-    </h3>
-    <hr>
+    <div class="d-flex justify-content-between align-items-start">
+      <h3 class="underline font-weight-bold">{{ $t('nav.products') }} <span class="small">({{ marketProducts.length }})</span></h3>
+      <b-icon v-if="$user.uin == $route.params.id" role="button" v-b-modal.product-modal class="align-middle" font-scale="2" variant="primary" size icon="plus-square" />
+    </div>
+
       <b-table class="m-0 rounded" striped table-variant="light" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
           <template #cell(name)="data">
             <div class="w-100 d-flex justify-content-between align-items-center">

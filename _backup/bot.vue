@@ -5,10 +5,10 @@
     <b-row>
       <b-col cols="12" lg="4" class="p-3">
         <b-card>
-          <h3 class="font-weight-bold mb-0">
+          <h3 class="underline font-weight-bold">
             <b-badge variant="warning" class="text-white">Bot</b-badge> Chat
           </h3>
-          <hr>
+
           <BotButton />
           <h5 class="my-3">Start chat with bot using <strong>Telegram</strong> app on your phone.</h5>
           <b-img rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
@@ -16,10 +16,10 @@
       </b-col>
       <b-col cols="12" lg="8" class="p-3">
         <b-card>
-          <h3 class="font-weight-bold mb-0">
+          <h3 class="underline font-weight-bold">
             <b-badge variant="warning" class="text-white">Bot</b-badge> Commands
           </h3>
-          <hr>
+
           <b-list-group>
             <b-list-group-item class="text-dark" variant="light"><kbd><strong>/sell</strong></kbd> - Sell product on market</b-list-group-item>
             <b-list-group-item class="text-dark" variant="light"><kbd><strong>/add</strong></kbd> - Add point to map</b-list-group-item>

@@ -4,8 +4,8 @@
     <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
       <b-card>
-       <h3 class="font-weight-bold mb-0">{{ $t('main.info') }}</h3>
-        <hr>
+       <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
+
         <div class="mb-3 d-flex justify-content-between align-items-start">
           <h2 class="mb-0" variant="light" v-if="product.name">{{ product.name }}</h2>
           <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
@@ -17,8 +17,8 @@
         </b-list-group>
       </b-card>
       <b-card>
-       <h3 class="font-weight-bold mb-0">{{ $t('main.contact') }}</h3>
-        <hr>
+       <h3 class="underline font-weight-bold">{{ $t('main.contact') }}</h3>
+
         <b-list-group class="text-left">
           <b-list-group-item variant="light" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="`/users/${product.userUin}`"><strong>{{ product.userFirstName }}</strong></nuxt-link></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></b-list-group-item>
@@ -31,8 +31,8 @@
         </b-alert>
       </b-card>
       <b-card>
-       <h3 class="font-weight-bold mb-0">{{ $t('main.photo') }}</h3>
-        <hr>
+       <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
+
         <div class="images" v-for="(image, imageIndex) in items" :key="imageIndex">
           <b-img role="button" center fluid-grow class="rounded image mb-3" @click="index = imageIndex" :src="image.src" />
         </div>
