@@ -1,6 +1,5 @@
 <template>
     <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" scrollable centered :cancel-title="$t('action.cancel')" :id="modalId" :title="title" @ok="handleOk" @show="handleModalShow">
-        
             <b-form @submit.stop.prevent="handleSubmit">
                 <b-card-group columns>
                     <b-card>
@@ -29,7 +28,6 @@
                             </b-form-select>
                         </b-form-group>
                     </b-card>
-
                     <b-card>
                         <h3 class="mb-0 font-weight-bold">{{ $t('main.photo') }} <span v-if="productEdit.images">({{productEdit.images.length}}/3)</span></h3>
                         <hr>
@@ -46,7 +44,6 @@
                             </b-row>
                         </b-form-group>
                     </b-card>
-
                     <b-card v-if="!$user.uin">
                         <h5 class="mb-3">{{ $t('main.warning') }}</h5>
                         <b-alert class="mt-3 mb-0" show variant="warning">

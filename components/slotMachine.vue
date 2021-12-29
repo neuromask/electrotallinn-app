@@ -103,7 +103,7 @@ export default {
       lines: json.winLines,
       slots: json.slots,
       paytable: json.payTable[0].items,
-      extraItems: 2,
+      extraItems: 3,
       gamePrice: 1,
       slotsAmount: 3,
       opts: null,
@@ -143,7 +143,7 @@ export default {
   computed: {
     populateSlots() {
       let randomItem = () => {
-        return this.slots[0].items[this.randomInterval(1,2)]
+        return this.slots[0].items[this.randomInterval(0,2)]
       }
       let col1 = [...this.slots[0].items, ...new Array(this.extraItems).fill(randomItem())]
       let col2 = [...this.slots[0].items, ...new Array(this.extraItems).fill(randomItem())]
@@ -297,7 +297,7 @@ export default {
       this.isFullFinished = true;
       this.win();
       this.isDisabled();
-      this.updateBalance();
+      // this.updateBalance();
     },
     compareArrays(a1, a2) {
       return (
