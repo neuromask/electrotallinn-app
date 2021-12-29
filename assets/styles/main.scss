@@ -91,6 +91,13 @@ nav .nuxt-link-active:after  {
     color: $secondary;
     background-color: white;
 }
+.blur {
+  border: none;
+  background-color: transparent!important;
+  background-image: linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 70%);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
 
 b-card-text p {
     font-size: 18px;
@@ -216,11 +223,6 @@ hr:after {
     padding: 0.5rem!important;
   }
 
-  #banner {
-    height:200px!important;
-    image-rendering: auto;
-    image-rendering: crisp-edges;
-  }
   .modal-footer .btn {
     flex-basis: 100%;
   }
