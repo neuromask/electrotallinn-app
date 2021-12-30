@@ -11,6 +11,7 @@
         <a href="https://t.me/electrotallinnbot" target="_blank">
           <b-img class="card-img " rounded="circle" src="@/assets/img/bot-avatar.svg"></b-img>
         </a>
+        <UserProfileBox />
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="font-weight-bold underline">{{ $t('main.commands') }}</h3>
