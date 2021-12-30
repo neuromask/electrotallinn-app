@@ -3,7 +3,6 @@
         <b-row>
             <b-col cols="12">
                 <h3 class="underline font-weight-bold">Locations</h3>
-                <hr/>
                 <b-table 
                 class="bg-info rounded" 
                 borderless 

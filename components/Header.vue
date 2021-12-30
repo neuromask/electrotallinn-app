@@ -9,7 +9,7 @@
 <style>
 #banner {
   width: 100%;
-  height: 30vw;
+  height: 32vw;
   max-height:360px;
   object-fit: cover;
 }
