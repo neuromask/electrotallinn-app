@@ -4,7 +4,7 @@
     <Header />
     <main v-cloak>
       <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-3 main-container rounded position-relative overflow-visible">
-        <Navbar />
+        <Nav />
         <b-alert v-show="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
         <Nuxt />
       </b-container>

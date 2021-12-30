@@ -1,6 +1,6 @@
 <template>
     <div v-if="$user.isLogged">
-        <SlotMachine />
+        <Game />
     </div>
     <div class="alertBox mx-auto mt-5" v-else>
         <b-alert variant="warning" show>
