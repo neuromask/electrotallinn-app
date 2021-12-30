@@ -8,9 +8,12 @@
           <a href="https://telegram.org/" target="_blank"><strong>Telegram</strong></a>
           <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
         </i18n>
-        <a href="https://t.me/electrotallinnbot" target="_blank">
-          <b-img class="card-img " rounded="circle" src="@/assets/img/bot-avatar.svg"></b-img>
-        </a>
+        <b-card bg-variant="info mb-3">
+          <a href="https://t.me/electrotallinnbot" target="_blank">
+            <b-img class="card-img " rounded="circle" src="@/assets/img/bot-avatar.svg"></b-img>
+          </a>
+        </b-card>
+        
         <UserProfileBox />
       </b-col>
       <b-col cols="12" lg="8">
