@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <footer>
+    <client-only><cookie-law :buttonText="$t('main.cookieBtn')" :message="`🍪 ${$t('main.cookieText')}`" theme="et"></cookie-law></client-only>
     <b-container class="pb-2 px-5 border-0">
       <b-row>
         <b-col cols="12" lg="4" class="my-1 text-left d-flex justify-content-center align-items-center">
@@ -16,9 +17,7 @@
         </b-col>
       </b-row>
     </b-container>
-  </div>
+  </footer>
 </template>
 
-<style scoped>
-
-</style>
+<script></script>

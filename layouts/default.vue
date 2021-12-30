@@ -1,19 +1,15 @@
 <template>
   <div id="app">
     <Sidebar />
-    <ToastLogin />
+    <Header />
     <main v-cloak>
-      <Banner />
-      <b-container class="bg-light mt-3 px-5 pt-0 main-container rounded position-relative">
-        <NavBar />
-          <b-alert v-show="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
+      <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-3 main-container rounded position-relative overflow-visible">
+        <Navbar />
+        <b-alert v-show="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
         <Nuxt />
       </b-container>
     </main>
-    <footer>
-      <client-only><cookie-law :buttonText="$t('main.cookieBtn')" :message="`🍪 ${$t('main.cookieText')}`" theme="et"></cookie-law></client-only>
-      <Bottom />
-    </footer>
+    <Footer />
   </div>
 </template>
 
@@ -21,8 +17,8 @@
 .main-container {
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
   padding-bottom: 5rem!important;
-  min-height: 960px;  
-  overflow: visible!important;
+  min-height: 960px;
+
 }
 </style>
 <script>

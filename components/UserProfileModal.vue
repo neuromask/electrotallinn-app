@@ -1,54 +1,56 @@
 <template>
-    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="modal-style" :cancel-title="$t('action.cancel')" scrollable centered id="profile-modal" :title="$t('main.editProfile')" @ok="handleOk">
+    <b-modal body-bg-variant="light" header-bg-variant="light" size="xl" body-class="bg-lightning" :cancel-title="$t('action.cancel')" scrollable centered id="profile-modal" :title="$t('main.editProfile')" @ok="handleOk">
       <b-form  @submit.stop.prevent="handleSubmit">
-        <b-card-group columns>
-          <b-card>
-            <div class="text-center mb-3">
-              <b-img class="profile shadow" :src="user.photoUrl" rounded="circle" thumbnail />
-            </div>
-            <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
-
-            <b-form-group :label="$t('profile.name')">
-              <b-form-input id="input-1" v-model="userEdit.firstName" :placeholder="$t('profile.name')" required/>
-            </b-form-group>
-
-            <b-form-group :label="$t('profile.birthYear')">
-              <b-form-input type="number" :formatter="formatYear" id="input-1-1" v-model="userEdit.birthyear" placeholder="####" required/>
-            </b-form-group>
-
-            <b-form-group :label="$t('profile.location')">
-              <b-form-input id="input-2" v-model="userEdit.location" :placeholder="$t('profile.locationPlace')" required/>
-            </b-form-group>
-            
-            <b-form-group class="m-0" :label="$t('profile.language')">
-              <b-form-checkbox-group
-                v-model="userEdit.languages"
-                :options="languageOptions"
-                button-variant="light"
-                name="buttons-1"
-                buttons
-              />
-            </b-form-group>
-          </b-card>
-          <b-card>
-            <h3 class="underline font-weight-bold">{{ $t('main.transport') }}</h3>
-
-            <b-form-group :label="$t('profile.model')">
-              <b-form-input id="input-3" v-model="userEdit.transportModel" :placeholder="$t('profile.model')" required/>
-            </b-form-group>
-            <b-form-group class="m-0" :label="$t('main.photo')">
-              <div class="d-flex mb-3">
-                <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" :placeholder="$t('main.selectPhoto')" class="w-auto flex-grow-1"/>
-                <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
+        <b-row class="p-lg-4">
+          <b-col cols="12" lg="6" class="mb-3">
+            <b-card>
+              <div class="text-center mb-3">
+                <b-img class="profile shadow" :src="user.photoUrl" rounded="circle" thumbnail />
               </div>
-              <b-img v-if="hasImage" :src="imageSrc" fluid block rounded/>
-              <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
-                <b-img :src="$config.apiUrl + '/users/image/' + userEdit.transportPhotoName" fluid block rounded/>
-                <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
-              </div>
-            </b-form-group>
-          </b-card>
-        </b-card-group>
+              <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
+              <b-form-group :label="$t('profile.name')">
+                <b-form-input id="input-1" v-model="userEdit.firstName" :placeholder="$t('profile.name')" required/>
+              </b-form-group>
+
+              <b-form-group :label="$t('profile.birthYear')">
+                <b-form-input type="number" :formatter="formatYear" id="input-1-1" v-model="userEdit.birthyear" placeholder="####" required/>
+              </b-form-group>
+
+              <b-form-group :label="$t('profile.location')">
+                <b-form-input id="input-2" v-model="userEdit.location" :placeholder="$t('profile.locationPlace')" required/>
+              </b-form-group>
+              
+              <b-form-group class="m-0" :label="$t('profile.language')">
+                <b-form-checkbox-group
+                  v-model="userEdit.languages"
+                  :options="languageOptions"
+                  button-variant="light"
+                  name="buttons-1"
+                  buttons
+                />
+              </b-form-group>
+            </b-card>
+          </b-col>
+          <b-col cols="12" lg="6">
+            <b-card>
+              <h3 class="underline font-weight-bold">{{ $t('main.transport') }}</h3>
+              <b-form-group :label="$t('profile.model')">
+                <b-form-input id="input-3" v-model="userEdit.transportModel" :placeholder="$t('profile.model')" required/>
+              </b-form-group>
+              <b-form-group class="m-0" :label="$t('main.photo')">
+                <div class="d-flex mb-3">
+                  <b-form-file v-model="userEdit.transportPhoto" accept="image/jpeg" :placeholder="$t('main.selectPhoto')" class="w-auto flex-grow-1"/>
+                  <b-button v-if="hasImage" variant="danger" class="ml-3" @click="clearImage"><b-icon icon="x" /></b-button>
+                </div>
+                <b-img v-if="hasImage" :src="imageSrc" fluid block rounded/>
+                <div v-if="!hasImage && userEdit.transportPhotoName" class="position-relative">
+                  <b-img :src="$config.apiUrl + '/users/image/' + userEdit.transportPhotoName" fluid block rounded/>
+                  <b-button variant="danger" class="m-3 position-absolute btn-close" @click="clearImage"><b-icon icon="x" /></b-button>
+                </div>
+              </b-form-group>
+            </b-card>
+          </b-col>
+        </b-row>
       </b-form>
     </b-modal>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <b-navbar type="secondary" variant="info" class="main-nav px-3 pt-2 rounded shadow-sm justify-content-center align-items-start" sticky>
+    <b-navbar type="secondary" variant="info" class="main-nav rounded shadow-sm px-3 pt-2 justify-content-center align-items-start" sticky>
         <div class="position-absolute sideMenu" v-b-toggle.sidebar-variant><a href="#"><b-icon icon="list" /></a></div>
         <div class="lang-select"><LanguageInput /></div>
         <b-navbar-nav justified class="mx-auto text-center main-nav">
@@ -13,6 +13,9 @@
         </b-navbar-nav>
     </b-navbar>
 </template>
+
+<script></script>
+
 <style scoped>
 .main-nav {
     border-top-right-radius: 0!important;

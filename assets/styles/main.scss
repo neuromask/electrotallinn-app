@@ -20,6 +20,9 @@ html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helve
   outline: 0;
   box-shadow: none;
 }
+.overflow-visible {
+  overflow: visible!important;
+}
 
 .container {border-top:4px solid #ec970f;}
 .gm-ui-hover-effect {background: transparent!important;border: 0!important;}
@@ -156,7 +159,7 @@ hr:after {
   background: #f8da19;
 }
 
-.modal-style {
+.bg-lightning {
   background-image: url('~assets/img/mol.svg');
   background-position: center top;
   background-repeat: no-repeat;
@@ -201,9 +204,10 @@ hr:after {
   cursor: pointer;
 }
 
-@media (min-width: 576px) {
-  .modal-style {
-    padding: 2rem;
+@include media-breakpoint-up(lg) {
+  .full-row {
+    margin-right: -3rem;
+    margin-left: -3rem;
   }
 }
 
@@ -214,15 +218,9 @@ hr:after {
   .sideMenu {
     font-size: 2rem;
   }
-  .container {
-    padding-left: 1rem!important;
-    padding-right: 1rem!important;
-  }
-
   .table th, .table td {
     padding: 0.5rem!important;
   }
-
   .modal-footer .btn {
     flex-basis: 100%;
   }

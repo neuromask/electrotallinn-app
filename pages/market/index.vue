@@ -1,7 +1,6 @@
 <template>
   <section ref="top">
     <h3 class="underline font-weight-bold">{{ $t('nav.market') }} <span class="small">({{ productsFull.length }})</span></h3>
-
     <div class="mb-3">
       <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('main.all') }}</b-btn>
       <b-button v-for="cat in $productCategories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :pressed="selectedCats.includes(cat)" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>

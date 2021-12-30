@@ -1,6 +1,5 @@
 <template>
-
-  <div class="navbar">
+  <aside>
     <b-sidebar
       id="sidebar-variant"
       title="ET⚡ App"
@@ -34,12 +33,12 @@
         <p class="text-center small">Copyright © 2021 – ElectroTallinn<br>Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a><br>v 0.1 (Beta) ElectroTallinn App</p>
       </div>
     </b-sidebar>
-
-  </div>
+  </aside>
 </template>
 
-<style scoped>
+<script></script>
 
+<style scoped>
 .side-menu img,
 .side-menu svg {
   width: 1.6em;

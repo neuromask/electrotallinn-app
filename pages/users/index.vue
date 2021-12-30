@@ -2,7 +2,7 @@
   <section>
     <div class="d-flex w-100 justify-content-between align-items-start">
     <h3 class="underline font-weight-bold">{{ $t('nav.users') }} <span class="small">({{ userTable.length }})</span></h3>
-    <b-button-group>
+    <b-button-group size="sm">
       <b-button @click="tableLayout = false" :pressed="!tableLayout" variant="primary"><b-icon icon="grid" /></b-button>
       <b-button @click="tableLayout = true" :pressed="tableLayout" variant="primary"><b-icon icon="list-ul" /></b-button>
     </b-button-group>

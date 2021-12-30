@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Sidebar />
-    <div class="navWrap"><NavBar /></div>
+    <div class="navWrap"><Navbar /></div>
     <main>
       <div class="fullScreen"><Nuxt /></div>
     </main>
