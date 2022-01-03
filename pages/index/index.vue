@@ -125,16 +125,10 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
-              <b-img-lazy rounded fluid src="@/assets/img/cover/cover-01.jpg" role="button" />
-            </div>
-            <div style="display: none"><b-embed class="rounded" type="iframe" aspect="16by9" src="https://www.youtube.com/embed/M0ezw-mZuDQ?loop=1&autoplay=1" allowfullscreen /></div>
+            <LazyYoutube src="https://www.youtube.com/embed/M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
-              <b-img-lazy rounded fluid src="@/assets/img/cover/cover-02.jpg" role="button" />
-            </div>
-            <div style="display: none"><b-embed class="rounded" type="iframe" aspect="16by9" src="https://www.youtube.com/embed/ovVijvjmlt4?loop=1&autoplay=1" allowfullscreen /></div>
+            <LazyYoutube src="https://www.youtube.com/embed/ovVijvjmlt4" />
           </b-col>
         </b-row>
       </div>
@@ -143,7 +137,11 @@
 </template>
 
 <script>
+import { LazyYoutube } from "vue-lazytube";
 export default {
+  components: {
+    LazyYoutube
+  },
   head() { 
     return { title: this.$t("nav.home"), } 
   }
