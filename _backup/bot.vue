@@ -11,7 +11,7 @@
 
           <BotButton />
           <h5 class="my-3">Start chat with bot using <strong>Telegram</strong> app on your phone.</h5>
-          <b-img rounded="circle" :src="require('@/assets/img/bot-avatar.svg')"></b-img>
+          <b-img-lazy rounded="circle" :src="require('@/assets/img/bot-avatar.svg')" />
         </b-card>
       </b-col>
       <b-col cols="12" lg="8" class="p-3">
