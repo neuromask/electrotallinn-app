@@ -1,5 +1,5 @@
 <template>
-  <b-img :src="imgSrc()" :alt="alt" />
+  <b-img-lazy :src="imgSrc()" :alt="alt" />
 </template>
 
 <script>

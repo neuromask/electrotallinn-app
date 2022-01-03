@@ -2,7 +2,7 @@
   <section>
     <b-row class="mt-5 d-flex justify-content-center align-items-center">
       <b-col cols="12" lg="6" class="mb-5">
-        <b-img center fluid-grow :src="require('@/assets/img/not-found.png')" />
+        <b-img-lazy center fluid-grow :src="require('@/assets/img/not-found.png')" />
       </b-col>
       <b-col cols="12" lg="6">
         <b-card bg-variant="info" class="rounded shadow-sm">
