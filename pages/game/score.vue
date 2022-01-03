@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" lg="4" class="pb-3">
         <h3 class="underline font-weight-bold">{{ $t('game.rules') }}</h3>
-        <b-card>
+        <b-card class="shadow-sm">
           <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
           <h5>{{ $tc('game.rule1', 1) }}</h5>
           <p class="font-italic mb-0">{{ $tc('game.rule1', 2) }}</p>
@@ -21,7 +21,7 @@
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="underline font-weight-bold">{{ $t('nav.score') }}</h3>
-        <b-table @row-clicked="gotoUserProfile" sticky-header="800px" table-variant="light" class="rounded scoreTable" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
+        <b-table @row-clicked="gotoUserProfile" sticky-header="800px" table-variant="light" class="shadow-sm rounded overflow-auto" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
           <template #cell(index)="data">
             <b-badge variant="light" class="pb-0">
               <h3 class="font-weight-bold">{{ data.index + 1 }}</h3>
@@ -91,9 +91,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.scoreTable {
-  overflow: auto!important;
-}
-</style>

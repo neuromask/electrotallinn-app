@@ -51,12 +51,6 @@ export default {
         fullscreenControl: true,
         styles: mapStyle
       },
-      locationIcons: {
-        CHARGE: 'icon-charge',
-        REPAIR: 'icon-repair',
-        AIR: 'icon-air',
-        WATER: 'icon-water'
-      },
       report: {},
     }
   },
@@ -104,7 +98,7 @@ export default {
         .get(apiUrl + '/locations')
         .then((response) => {
           for (const location of response.data) {
-            const markerIcon = require(`~/assets/img/icon/${this.locationIcons[location.type]}.svg`)
+            const markerIcon = this.$locationIcons[location.type]
             const marker = new window.google.maps.Marker({
               position: new window.google.maps.LatLng(location.lat, location.lng),
               map: this.map,

@@ -7,8 +7,7 @@
       <b-button @click="tableLayout = true" :pressed="tableLayout" variant="primary"><b-icon icon="list-ul" /></b-button>
     </b-button-group>
     </div>
-
-    <b-table v-if="tableLayout" @row-clicked="gotoUserProfile" table-variant="light" tbody-tr-class="clickable" class="rounded scoreTable" hover borderless striped :items="userTable" :fields="userFields">
+    <b-table v-if="tableLayout" @row-clicked="gotoUserProfile" table-variant="light" tbody-tr-class="clickable" class="rounded scoreTable shadow-sm" hover borderless striped :items="userTable" :fields="userFields">
       <template #cell(photoUrl)="data">
         <b-avatar variant="info" class="text-dark profile profileTable shadow" :src="data.item.photoUrl" size="3rem"></b-avatar>
       </template>
@@ -24,7 +23,7 @@
     </b-table>
     <transition-group v-if="!tableLayout" name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="user in userTable" :key="user.id">
-        <b-card bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
+        <b-card class="shadow-sm" bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
             <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
             <b-avatar :to="localePath(`/users/${user.uin}`)" variant="info" class="text-dark profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>

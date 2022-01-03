@@ -7,7 +7,7 @@
           <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
           <b-icon v-if="$user.uin == $route.params.id" role="button" v-b-modal.profile-modal class="align-middle" font-scale="2" variant="primary" size icon="pencil-square" />
         </div>
-        <b-list-group class="text-left">
+        <b-list-group class="text-left shadow-sm">
           <b-list-group-item variant="light" class="text-dark">{{ $t('profile.name') }}: <strong>{{ user.firstName }}</strong></b-list-group-item>
           <b-list-group-item v-if="user.username" variant="light" class="text-dark">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+user.username" target="_blank"><strong>{{ user.username }}</strong></a></b-list-group-item>
           <b-list-group-item v-if="user.birthyear" variant="light" class="text-dark">{{ $t('profile.age') }}: <strong>{{ new Date().getFullYear() - user.birthyear }}</strong></b-list-group-item>
@@ -19,7 +19,7 @@
       <b-col v-if="user.transportPhotoName" cols="12" lg="6">
         <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
         <figure class="figure mb-0">
-          <b-img role="button" class="transportImage" center fluid rounded @click="index = 0" :src="`${$config.apiUrl}/users/image/${user.transportPhotoName}`" />
+          <b-img role="button" class="transportImage shadow-sm" center fluid rounded @click="index = 0" :src="`${$config.apiUrl}/users/image/${user.transportPhotoName}`" />
           <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
         </figure>
       </b-col>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  // use the component
+  // CoolLightBox component
   import CoolLightBox from 'vue-cool-lightbox'
   import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 

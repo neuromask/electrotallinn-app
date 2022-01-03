@@ -1,10 +1,19 @@
 <template>
   <section>
-      <h1 class="mt-5">Error <strong>{{error.statusCode}}</strong></h1>
-      <h5 v-if="error.statusCode === 404">Page not found</h5>
-      <h5>Please try something new :)</h5>
-
-      <b-img center fluid :src="require('@/assets/img/not-found.png')" />
+    <b-row class="mt-5 d-flex justify-content-center align-items-center">
+      <b-col cols="12" lg="6" class="mb-5">
+        <b-img center fluid-grow :src="require('@/assets/img/not-found.png')" />
+      </b-col>
+      <b-col cols="12" lg="6">
+        <b-card bg-variant="info" class="rounded shadow-sm">
+          <h1 class="font-weight-bold">{{ $t('error.error') }} <strong>{{error.statusCode}}</strong></h1>
+          <hr>
+          <h5 v-if="error.statusCode === 404">{{ $t('error.notFound') }}</h5>
+          <h5>{{ $t('error.try') }}</h5>
+          <b-button class="nowrap mt-3" variant="primary" :to="localePath('/')" nuxt exact><b-icon icon="house-door-fill" /> {{ $t('nav.home') }}</b-button>
+        </b-card>
+      </b-col>
+    </b-row>
   </section>
 </template>
 

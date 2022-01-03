@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="layout-default">
     <Sidebar />
     <Header />
     <main v-cloak>
-      <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-3 main-container rounded position-relative overflow-visible">
+      <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-2 main-container rounded position-relative overflow-visible">
         <Nav />
         <b-alert v-show="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
         <Nuxt />
@@ -18,7 +18,6 @@
   background: url('~/assets/img/tallinn-white.svg') center bottom no-repeat;
   padding-bottom: 5rem!important;
   min-height: 960px;
-
 }
 </style>
 <script>
@@ -28,7 +27,7 @@ export default {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
 
     return {
-      titleTemplate: '%s - ElectroTallinn App',
+      titleTemplate: '%s - ElectroTallinn',
       htmlAttrs: {
         lang: this.$i18n.locale,
         ...i18nHead.htmlAttrs

@@ -4,19 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --watch api --exec \"nuxt\"",
-    "build": "nuxt build",
+    "build": "nuxt build --modern=server",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate -m"
   },
   "dependencies": {
+    "@nuxt/content": "^1.15.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/i18n": "^7.0.3",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/svg": "^0.3.0",
     "@nuxtjs/toast": "^3.3.1",
-    "bootstrap": "^4.6.0",
-    "bootstrap-icons-vue": "^0.7.0",
+    "bootstrap-icons-vue": "^0.8.0",
     "bootstrap-vue": "^2.21.2",
     "cookie-parser": "^1.4.5",
     "core-js": "^3.15.1",

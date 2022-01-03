@@ -2,8 +2,8 @@
   <section>
     <div id="submenu" class="upper position-relative d-flex justify-content-center" style="z-index:10">
       <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
-      <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
-      <b-avatar  class="profile position-absolute shadow text-dark" variant="info" size="15rem" :src="user.photoUrl" rounded="circle" thumbnail></b-avatar>
+      <div class="overflow-hidden w-100 shadow-sm" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+      <b-avatar class="profile position-absolute shadow text-dark" variant="info" size="15rem" :src="user.photoUrl" rounded="circle" thumbnail></b-avatar>
       <div class="position-absolute mt-4 bg-transparent text-center">
         <h2 v-if="$user.uin != user.uin" class="m-0 text-info shadow-sm"><strong>{{ user.firstName }} </strong></h2>
         <h2 v-if="$user.uin == user.uin" class="m-0 text-info shadow-sm"><strong>{{ $t('nav.myProfile') }}</strong></h2>
@@ -14,16 +14,19 @@
       </a>
       <UserProfileModal @save="getUser"/>
     </div>
-    <b-navbar type="primary" class="my-3">
-      <b-navbar-nav>
-        <b-nav-item :to="localePath('/')" nuxt disabled><b-icon variant="dark" icon="arrow-return-right"></b-icon></b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}`), hash:'#submenu' }" exact nuxt>{{ $t('nav.profile') }}</b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/products`), hash:'#submenu' }" nuxt>{{ $t('nav.products') }}</b-nav-item>
-        <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/locations`), hash:'#submenu' }" nuxt>{{ $t('nav.locations') }}</b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
-    <div class="sub-page">
-      <NuxtChild  />
+    <div class="mt-5 sub-page">
+      <b-card no-body bg-variant="info" class="shadow-sm">
+        <b-card-header header-tag="nav">
+          <b-nav card-header tabs>
+            <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}`), hash:'#submenu' }" exact nuxt exact-active-class="active">{{ $t('nav.profile') }}</b-nav-item>
+            <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/products`), hash:'#submenu' }" nuxt exact-active-class="active">{{ $t('nav.products') }}</b-nav-item>
+            <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/locations`), hash:'#submenu' }" nuxt exact-active-class="active">{{ $t('nav.locations') }}</b-nav-item>
+          </b-nav>
+        </b-card-header>
+        <b-card-body>
+          <NuxtChild  />
+        </b-card-body>
+      </b-card>
     </div>
   </section>
 </template>
@@ -62,9 +65,9 @@ export default {
     border-radius: 6px;
 }
 .profile {
-    bottom:-1rem;
+    bottom:-2rem;
 }
 .sub-page {
-  min-height: 480px;
+  min-height: 640px;
 }
 </style>

@@ -39,7 +39,8 @@ export default {
     // https://go.nuxtjs.dev/eslint
     //'@nuxtjs/eslint-module',
     '@nuxtjs/dotenv',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxtjs/svg'
     //'@aceforth/nuxt-optimized-images'
   ],
 
@@ -56,12 +57,10 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxt/content',
     '@nuxtjs/i18n',
-    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
     '@nuxtjs/google-gtag',
@@ -69,7 +68,7 @@ export default {
   ],
 
   'google-gtag':{
-    id: process.env.GTAG_ID || 'G-1720L3K7S5', // required
+    id: process.env.GTAG_ID || 'G-73HXKBCYBZ', // required
     config:{
       // this are the config options for `gtag
       // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
@@ -103,7 +102,7 @@ export default {
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     langDir: '~/locales/',
-    baseUrl: 'https://app.electrotallinn.ee',
+    baseUrl: 'https://electrotallinn.ee',
     detectBrowserLanguage: {
       useCookie: true,
       cookieDomain: null,
@@ -145,6 +144,8 @@ export default {
   },
 
   sitemap: {
+    hostname: 'https://electrotallinn.ee',
+    //xmlNs: 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
     exclude: [
       '/admin*',
       '/admin/*',
@@ -153,7 +154,11 @@ export default {
       '/ru/admin**',
       '/ru/admin/*'
     ],
-    i18n: true
+    i18n: true,
+    i18n: {
+      locales: ['en', 'ru', 'et'],
+      routesNameSeparator: '___'
+    }
   },
 
   toast: {
@@ -173,8 +178,8 @@ export default {
 
   publicRuntimeConfig: {
     baseFileUrl: process.env.BASE_FILE_URL || 'https://files.electrotallinn.ee',
-    siteUrl: process.env.SITE_URL || 'https://app.electrotallinn.ee',
-    apiUrl: process.env.API_URL || 'https://app.electrotallinn.ee/api',
+    siteUrl: process.env.SITE_URL || 'https://electrotallinn.ee',
+    apiUrl: process.env.API_URL || 'https://electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY
   },
   privateRuntimeConfig: {

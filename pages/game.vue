@@ -1,8 +1,7 @@
 <template>
   <div>
-    <b-navbar type="primary" class="my-3">
-      <b-navbar-nav>
-        <b-nav-item :to="localePath('/')" nuxt disabled><b-icon variant="dark" icon="arrow-return-right"></b-icon></b-nav-item>
+    <b-navbar type="primary" class="mb-lg-5 mb-3">
+      <b-navbar-nav class="mx-auto text-center">
         <b-nav-item :to="localePath('/game')" nuxt exact>{{ $t('nav.game') }}</b-nav-item>
         <b-nav-item :to="localePath('/game/score')" nuxt>{{ $t('nav.score') }}</b-nav-item>
       </b-navbar-nav>

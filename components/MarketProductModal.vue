@@ -58,131 +58,142 @@
     </b-form>
   </b-modal>
 </template>
+
 <script>
-    const base64Encode = data => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(data);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
+const base64Encode = data =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(data);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 
-    export default {
-        props: {
-            id: null
-        },
-        data() {
-            return {
-                productEdit: {
-                    category: null,
-                    images: []
-                },
-                selectedImage: null,
-                show: true,
-            }
-        },
-        computed: {
-            modalId() {
-                return this.id ? `product-modal-${this.id}` : 'product-modal'
-            },
-            title() {
-                return this.id ? `${this.$t('main.editProduct')}` : this.$t('main.addProduct')
-            },
-            categoryOptions() {
-                return [
-                    { text: this.$t('market.category.EQUIPMENT'), value: 'EQUIPMENT' },
-                    { text: this.$t('market.category.TRANSPORT'), value: 'TRANSPORT' },
-                    { text: this.$t('market.category.SPARE_PARTS'), value: 'SPARE_PARTS' },
-                    { text: this.$t('market.category.ACCESSORIES'), value: 'ACCESSORIES' },
-                    { text: this.$t('market.category.OTHER'), value: 'OTHER' }
-                ]
-            }
-        },
-        watch: {
-            'selectedImage'(newValue, oldValue) {
-                if (newValue !== oldValue && newValue) {
-                    base64Encode(newValue).then(value => {
-                        this.productEdit.images.push({ fileB64: value });
-                        this.selectedImage = null
-                    });
-                }
-            }
-        },
-        methods: {
-            getProduct () {
-                this.$axios.$get(`${this.$config.apiUrl}/marketProducts/${this.id}`).then((response) => {
-                    this.productEdit = response;
-                });
-            },
-            handleImageDelete(idx) {
-                this.productEdit.images.splice(idx, 1)
-            },
-            handleOk(bvModalEvt) {
-                // Prevent modal from closing
-                bvModalEvt.preventDefault();
-
-                // Trigger submit handler
-                this.handleSubmit()
-            },
-            handleSubmit() {
-                const data = JSON.parse(JSON.stringify(this.productEdit));
-                data.images.forEach(image => {
-                    if (image.fileB64) {
-                        image.fileB64 = image.fileB64.split(',')[1]
-                    }
-                });
-
-                if (this.id) {
-                    this.$axios.$put(`${this.$config.apiUrl}/marketProducts/${this.id}`, data).then(() => {
-                        this.$toast.success('Success');
-                        this.$nextTick(() => {
-                            this.$emit('save');
-                            this.$bvModal.hide(this.modalId)
-                        })
-                    });
-                } else {
-                    this.$axios.$post(`${this.$config.apiUrl}/marketProducts`, data).then(() => {
-                        this.$toast.success('Success');
-                        this.$nextTick(() => {
-                            this.$emit('save');
-                            this.$bvModal.hide(this.modalId)
-                        })
-                    });
-                }
-            },
-            handleModalShow() {
-                if (this.id) {
-                    this.getProduct()
-                } else {
-                    this.productEdit = {
-                        category: null,
-                        images: []
-                    }
-                }
-            }
-        }
+export default {
+  props: {
+    id: null
+  },
+  data() {
+    return {
+      productEdit: {
+        category: null,
+        images: []
+      },
+      selectedImage: null,
+      show: true
+    };
+  },
+  computed: {
+    modalId() {
+      return this.id ? `product-modal-${this.id}` : "product-modal";
+    },
+    title() {
+      return this.id
+        ? `${this.$t("main.editProduct")}`
+        : this.$t("main.addProduct");
+    },
+    categoryOptions() {
+      return [
+        { text: this.$t("market.category.EQUIPMENT"), value: "EQUIPMENT" },
+        { text: this.$t("market.category.TRANSPORT"), value: "TRANSPORT" },
+        { text: this.$t("market.category.SPARE_PARTS"), value: "SPARE_PARTS" },
+        { text: this.$t("market.category.ACCESSORIES"), value: "ACCESSORIES" },
+        { text: this.$t("market.category.OTHER"), value: "OTHER" }
+      ];
     }
+  },
+  watch: {
+    selectedImage(newValue, oldValue) {
+      if (newValue !== oldValue && newValue) {
+        base64Encode(newValue).then(value => {
+          this.productEdit.images.push({ fileB64: value });
+          this.selectedImage = null;
+        });
+      }
+    }
+  },
+  methods: {
+    getProduct() {
+      this.$axios
+        .$get(`${this.$config.apiUrl}/marketProducts/${this.id}`)
+        .then(response => {
+          this.productEdit = response;
+        });
+    },
+    handleImageDelete(idx) {
+      this.productEdit.images.splice(idx, 1);
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault();
+
+      // Trigger submit handler
+      this.handleSubmit();
+    },
+    handleSubmit() {
+      const data = JSON.parse(JSON.stringify(this.productEdit));
+      data.images.forEach(image => {
+        if (image.fileB64) {
+          image.fileB64 = image.fileB64.split(",")[1];
+        }
+      });
+
+      if (this.id) {
+        this.$axios
+          .$put(`${this.$config.apiUrl}/marketProducts/${this.id}`, data)
+          .then(() => {
+            this.$toast.success("Success");
+            this.$nextTick(() => {
+              this.$emit("save");
+              this.$bvModal.hide(this.modalId);
+            });
+          });
+      } else {
+        this.$axios
+          .$post(`${this.$config.apiUrl}/marketProducts`, data)
+          .then(() => {
+            this.$toast.success("Success");
+            this.$nextTick(() => {
+              this.$emit("save");
+              this.$bvModal.hide(this.modalId);
+            });
+          });
+      }
+    },
+    handleModalShow() {
+      if (this.id) {
+        this.getProduct();
+      } else {
+        this.productEdit = {
+          category: null,
+          images: []
+        };
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
-    .upper>div {
-        height: 320px;
-        background-color: #1a2740;
-        border-radius: 6px;
-    }
-    .profile {
-        width: 15rem;
-        bottom:-2rem;
-    }
-    .image-delete,
-    .btn-close {
-        top:0; right:15px;
-    }
-    @media (min-width: 576px) {
-        .card-columns {
-            column-count: 2;
-        }
-    }
-    .transportImage {
-        cursor: pointer;
-    }
+.upper > div {
+  height: 320px;
+  background-color: #1a2740;
+  border-radius: 6px;
+}
+.profile {
+  width: 15rem;
+  bottom: -2rem;
+}
+.image-delete,
+.btn-close {
+  top: 0;
+  right: 15px;
+}
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+.transportImage {
+  cursor: pointer;
+}
 </style>

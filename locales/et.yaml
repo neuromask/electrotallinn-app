@@ -4,8 +4,13 @@ nav:
   home: Avaleht
   market: Market
   map: Kaart
+  blog: Blog
+  articles: Artiklid
   users: Profiilid
   game: Mäng
+  about: Meist
+  bot: Bot
+  contact: Kontakt
   myProfile: Mu profiil
   myLocations: Mu asukohad
   myProducts: Mu tooted
@@ -17,6 +22,22 @@ nav:
   addProduct: Lisa toode
   sockets: Pistikud
   score: Skoor
+home:
+  linkBox1: Liitu Facebooki grupiga | Info kavandatud sõitude kohta ja fotoreportaažid avaldatakse seal.
+  linkBox2: Liitu Telegrami grupiga | Hoidke end kursis viimaste uudistega ja osalege otse-eetris.
+  linkBox3: Liitu Discordi serveriga | Hoidke end kursis viimaste uudistega ja osalege otse-eetris.
+  infoBox1: Kes me oleme? | Grupp loodi ühissõitudeks ja üritustel osalemiseks. Sõitke ja vestelge meiega!
+  infoBox2: Transport | Ühendame sellised kergtranspordi liigid nagu elektriline tõukeratas, elektriratas, EUC ja elektrirula.
+  infoBox3: Mida me teeme? | Suhtleme, sõidame, jagame kogemusi, häälestame ja aitame üksteist tehnilistes küsimustes!
+  iconBox1: Kohtumise koht | Russalka
+  iconBox1Content: Kohtume Russalka monumendi juures, et suhelda ja sõitu alustada
+  iconBox2: Meie kreedo | Ettevaatlik sõidamine
+  iconBox2Content: Kiirust me ei ületa ja suhtume jalakäijatesse lugupidavalt
+  iconBox3: Ohutus | Ennekõike
+  iconBox3Content: Soovitame kõigil sõites kanda kiivrit ja kaitset, tervist osta ei saa
+  eventBox: Ametlikud ühissõidud ja võistlused | Eelseisva sündmuse kohta saate teada Facebook grupist, samuti Telegram teatekanalilt.
+blog:
+  readMore: Loe rohkem
 game:
   top: Üles
   center: Keskel
@@ -37,6 +58,8 @@ game:
   mapBonus: 1 punkt = 500 saldo
   place: Koht
 error:
+  error: Viga
+  try: Palun proovi midagi muud
   notFound: Ei leitud
   fileSendFailed: Viga faili {0} saatmisel
   unexpected: Ootamatu viga {0}
@@ -64,6 +87,7 @@ profile:
   model: Mudel
   birthYear: Sünniaasta
 main:
+  aboutText: Elektritranspordi grupp Tallinnas | Ühendab selliseid kergtranspordi liike nagu elektriline tõukeratas, elektriratas, monoratas ja elektriline rula.
   contact: Kontakt
   seller: Müüja
   product: Toode
@@ -72,6 +96,8 @@ main:
   addedBy: Lisanud
   category: Kategooria
   photo: Foto
+  allPhotos: Kõik fotod
+  video: Video
   pointOnMap: Punkt kaardil
   all: Kõik
   top: Top
@@ -133,3 +159,4 @@ action:
   delete: Kustuta
   cancel: Tühistada
   add: Lisa
+  findOut: Leia rohkem

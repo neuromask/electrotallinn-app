@@ -1,19 +1,12 @@
 <template>
   <section>
     <h3 class="underline font-weight-bold">{{ $t('nav.locations') }} <span class="small">({{ listFull.length }})</span></h3>
-
-    <b-table
-      class="rounded m-0"
-      striped
-      table-variant="light"
-      :items="listFull"
-      :fields="fieldsLoc"
-    >
+    <b-table class="rounded m-0 shadow-sm" striped table-variant="light" :items="listFull" :fields="fieldsLoc" >
       <template #cell(title)="data">
         <h4>{{ data.item.title }}</h4><p class="small">{{ data.item.description }}</p>
       </template>
       <template #cell(type)="data">
-        <b-img :src="require(`~/assets/img/icon/${locationIcons[data.item.type]}.svg`)" center fluid-grow class="table-icon" />
+        <b-img :src="$locationIcons[data.item.type]" center fluid class="table-icon"/>
       </template>
       <template #cell(imageName)="data">
         <b-button-group size="sm" vertical>
@@ -37,12 +30,6 @@ export default {
 
   data() {
     return {
-      locationIcons: {
-        CHARGE: 'icon-charge',
-        REPAIR: 'icon-repair',
-        AIR: 'icon-air',
-        WATER: 'icon-water'
-      },
       listFull: []
     }
   },

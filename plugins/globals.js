@@ -21,10 +21,10 @@ export default ({ app }, inject) => {
         {value: 'WATER', text: 'Water'}
     ]))
     inject('locationIcons', Vue.observable({
-        CHARGE: require("@/assets/img/icon/icon-charge.svg"),
-        REPAIR: require('@/assets/img/icon/icon-repair.svg'),
-        AIR: require('@/assets/img/icon/icon-air.svg'),
-        WATER: require('@/assets/img/icon/icon-water.svg')
+        CHARGE: require("@/assets/icons/locations/icon-charge.svg"),
+        REPAIR: require('@/assets/icons/locations/icon-repair.svg'),
+        AIR: require('@/assets/icons/locations/icon-air.svg'),
+        WATER: require('@/assets/icons/locations/icon-water.svg')
     }))
     inject('productCategories', Vue.observable(['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']))
 }

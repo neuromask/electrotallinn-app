@@ -1,8 +1,7 @@
 <template>
   <section>
-    <b-navbar type="secondary" class="my-3">
-      <b-navbar-nav>
-        <b-nav-item to="/" nuxt disabled><b-icon variant="dark" icon="arrow-return-right"></b-icon></b-nav-item>
+    <b-navbar type="primary" class="mb-lg-5 mb-3">
+      <b-navbar-nav class="mx-auto text-center">
         <b-nav-item to="/admin" nuxt exact>Board</b-nav-item>
         <b-nav-item to="/admin/locations" nuxt>Locations</b-nav-item>
         <b-nav-item to="/admin/market-products" nuxt>Market</b-nav-item>

@@ -3,9 +3,8 @@
     <b-row>
       <b-col cols="12" lg="4">
         <h3 class="underline font-weight-bold">{{ $t('main.top') }} <span class="small">({{ listTop.length }})</span></h3>
-
         <b-table
-          class="rounded"
+          class="rounded shadow-sm"
           borderless
           striped
           table-variant="light"
@@ -28,9 +27,8 @@
           </template>
         </b-table>
         <h3 class="underline font-weight-bold">{{ $t('main.legend') }}</h3>
-
         <b-table
-          class="rounded"
+          class="rounded shadow-sm"
           borderless
           striped
           table-variant="light"
@@ -50,11 +48,11 @@
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="underline font-weight-bold">{{ $t('nav.locations') }} <span class="small">({{ listFull.length }})</span></h3>
-
         <b-table
-          class="rounded"
+          class="rounded overflow-auto shadow-sm"
           borderless
           striped
+          sticky-header="1760px"
           table-variant="light"
           :items="listFull"
           :fields="fieldsLoc"

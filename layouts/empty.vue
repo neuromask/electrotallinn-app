@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Sidebar />
-    <div class="navWrap"><Navbar /></div>
+    <div class="navWrap"><Nav /></div>
     <main>
       <div class="fullScreen"><Nuxt /></div>
     </main>
@@ -31,7 +31,7 @@ export default {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
 
     return {
-      titleTemplate: '%s - ElectroTallinn App',
+      titleTemplate: '%s - ElectroTallinn',
       htmlAttrs: {
         lang: this.$i18n.locale,
         ...i18nHead.htmlAttrs

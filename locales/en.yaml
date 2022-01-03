@@ -4,8 +4,13 @@ nav:
   home: Home
   market: Market
   map: Map
+  blog: Blog
+  articles: Articles
   users: Profiles
   game: Game
+  about: About us
+  bot: Bot
+  contact: Contact
   myProfile: My profile
   myLocations: My locations
   myProducts: My products
@@ -16,6 +21,22 @@ nav:
   locations: Locations
   sockets: Sockets
   score: Score
+home:
+  linkBox1: Welcome to Facebook group | Information about the planned rides, events and photo reports is published there.
+  linkBox2: Join our Telegram group | Stay up to date with the latest news and participate in live communication.
+  linkBox3: Join our Discord Server | Stay up to date with the latest news and participate in live communication.
+  infoBox1: Who we are? | The group was created for joint rides and participation in events. Ride and chat with us!
+  infoBox2: Transport | We unite such types of light transport as an electric scooter, an electric bike, an EUC and an electric skateboard.
+  infoBox3: What we do? | We communicate, ride together, share experience, tune and help each other in technical matters!
+  iconBox1: Place to meet | Russalka
+  iconBox1Content: We meet near the Russalka monument to communicate and start the ride
+  iconBox2: Our credo | Careful riding
+  iconBox2Content: We do not exceed the speed limit and we treat pedestrians with respect
+  iconBox3: Safety | Above all
+  iconBox3Content: We recommend everyone to wear a helmet and protection when riding, you can't buy health
+  eventBox: Official joint rides and competitions | You can find out about the upcoming event in the Facebook group, as well as on the Telegram alert channel.
+blog:
+  readMore: Read more
 game:
   top: Top
   center: Center
@@ -36,6 +57,8 @@ game:
   mapBonus: 1 Point = 500 Balance
   place: Place
 error:
+  error: Error
+  try: Please try something other
   notFound: Now Found
   fileSendFailed: Failed to send file {0}
   unexpected: Unexpected error {0}
@@ -63,6 +86,7 @@ profile:
   model: Model
   birthYear: Birth year
 main:
+  aboutText: Electric transport group in Tallinn | Combines types of light transport such as an electric scooter, an electric bike, an EUC and an electric skate.
   contact: Contact
   seller: Seller
   product: Product
@@ -71,6 +95,8 @@ main:
   addedBy: Added by
   category: Category
   photo: Photo
+  allPhotos: All photos
+  video: Video
   pointOnMap: Point on map
   all: All
   top: Top
@@ -132,4 +158,5 @@ action:
   delete: Delete
   cancel: Cancel
   add: Add
+  findOut: Find out
   

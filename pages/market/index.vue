@@ -7,7 +7,7 @@
     </div>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
-        <b-card bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
+        <b-card class="shadow-sm" bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
           <div class="px-3 pt-3 pb-0">
             <div class="p-container overflow-hidden position-relative">
               <nuxt-link v-if="product.images.length" :to="localePath(`/market/${product.id}`)"><b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName"></b-img></nuxt-link>
@@ -111,47 +111,6 @@ export default {
 <style scoped>
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
-  display: none;
-}
-.card {
-  border-radius: 10px;
-}
-
-.p-container {
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    width:100%;
-    height: 12rem;
-}
-.p-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.title {
-    line-height: 1.1;
-}
-.description {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   line-height: 16px;     /* fallback */
-   max-height: 16px;      /* fallback */
-   -webkit-line-clamp: 1; /* number of lines to show */
-   -webkit-box-orient: vertical;
-}
-
-.card-list-item {
-  transition: transform .4s ease;
-}
-.card-list-enter {
-  transform: scale(0);
-}
-.card-list-enter-to {
-  transform: scale(1);
-}
-.card-list-leave-to,
-.card-list-leave {
   display: none;
 }
 
