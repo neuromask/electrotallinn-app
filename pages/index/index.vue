@@ -45,21 +45,21 @@
       <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox1', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" center fluid rounded src="~/assets/img/home/box2-home.jpg" />
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box2-home.jpg" />
           <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox1', 2) }}</p>
         </b-card>
       </b-col>
       <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox2', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
           <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox2', 2) }}</p>
         </b-card>
       </b-col>
       <b-col cols="12" lg="4">
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
           <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
         </b-card>
       </b-col>

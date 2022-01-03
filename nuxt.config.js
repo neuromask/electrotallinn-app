@@ -107,8 +107,9 @@ export default {
       useCookie: true,
       cookieDomain: null,
       cookieKey: "i18n_redirected",
-      alwaysRedirect: false,
-      fallbackLocale: ""
+      alwaysRedirect: true,
+      fallbackLocale: "en",
+      redirectOn: 'root'  // recommended
     },
     seo: true,
     vueI18nLoader: true,
@@ -192,6 +193,9 @@ export default {
   pwa: {
     manifest: {
       lang: 'en'
+    },
+    meta: {
+      theme_color: 'light'
     }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build

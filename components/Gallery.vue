@@ -3,7 +3,7 @@
     <CoolLightBox :items="images" :index="index" :effect="'fade'" @close="index = null" />
     <b-row>
       <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="triggerLightbox(imageIndex)">
-        <b-img-lazy role="button" class="shadow-sm" center fluid rounded :src="image.src" />
+        <b-img-lazy role="button" class="shadow-sm" center fluid rounded alt="ElectroTallinn" :src="image.src" />
       </b-col>
     </b-row>
   </div>
