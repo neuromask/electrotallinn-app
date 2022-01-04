@@ -1,6 +1,6 @@
 <template>
   <header class="mb-3 mb-lg-4">
-    <NuxtLink :to="localePath('/')"><b-img-lazy src="~assets/img/site-top.svg" center id="banner" /></NuxtLink>
+    <NuxtLink :to="localePath('/')"><b-img-lazy src="~assets/img/site-top-anim.svg" alt="ElectroTallinn - Electric transport group in Tallinn" center id="banner" /></NuxtLink>
   </header>
 </template>
 
@@ -13,4 +13,5 @@
   max-height:360px;
   object-fit: cover;
 }
+
 </style>

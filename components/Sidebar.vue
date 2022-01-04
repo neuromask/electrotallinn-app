@@ -9,12 +9,12 @@
       backdrop
     >
       <div class="px-3 py-0">
-        <nuxt-link to="/"><b-img-lazy class="mb-4 px-5" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
+        <nuxt-link to="/"><b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
         <div class="mb-4">
           <UserProfileBox />
           <UserLoginBox />
         </div>
-        <b-list-group class="my-4 side-menu">
+        <b-list-group class="my-4 side-menu shadow-sm">
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/')" exact><b-icon icon="house-door-fill"></b-icon>{{ $t('nav.home') }}</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/market')"><b-icon icon="basket2-fill"></b-icon>{{ $t('nav.market') }}</b-list-group-item>
           <b-list-group-item variant="info" class="font-weight-bold" nuxt :to="localePath('/map')"><b-icon icon="geo-alt-fill"></b-icon>{{ $t('nav.map') }}</b-list-group-item>

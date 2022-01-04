@@ -125,10 +125,10 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <LazyYoutube src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
+            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <LazyYoutube src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
+            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
           </b-col>
         </b-row>
       </div>

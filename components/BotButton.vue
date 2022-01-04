@@ -1,17 +1,14 @@
-<i18n lang="yaml">
-  en:
-    chat: "Chat"
-  ru:
-    chat: "Чат"
-</i18n>
 <template>
     <a href="https://t.me/electrotallinnbot" target="_blank">
-      <div class="botAvatarCont mb-0 w-100 d-flex justify-content-center align-items-center bg-light p-2 text-dark rounded">
+      <div class="botAvatarCont shadow-sm mb-0 w-100 d-flex justify-content-center align-items-center bg-light p-2 text-dark rounded">
         <b-avatar variant="info" :src="require('@/assets/img/bot-avatar.svg')"></b-avatar>
         <p class="mb-0 ml-2"><strong class="text-dark">ElectroBot</strong> {{ $t('main.chat') }}</p>
         </div>
     </a>
 </template>
+
+<script></script>
+
 <style>
 .botAvatar {
   float: left;
