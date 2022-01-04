@@ -1,12 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 @import 'variables.scss';
 @import 'animation.scss';
 @import 'slotmachine.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
 
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/montserrat-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/montserrat-bold.woff2') format('woff2');
+}
+
 html {scroll-behavior: smooth;}
-html, body, #app {height: 100%; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;font-family: 'Montserrat', sans-serif;}
+html, body, #app {height: 100%; margin: 0; padding: 0; font-family: 'Montserrat', Arial, sans-serif;}
 .navbar {margin: 0; padding: 0;}
 .bg-dark {
     & h1,h2,h3,h4,strong {
