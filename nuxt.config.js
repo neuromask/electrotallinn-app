@@ -198,6 +198,13 @@ export default {
       theme_color: 'white'
     }
   },
+  render: {
+    // Setting up cache for 'static' directory - a year in milliseconds
+    // https://web.dev/uses-long-cache-ttl
+    static: {
+      maxAge: 60 * 60 * 24 * 365 * 1000,
+    },
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vue-plugin-load-script'],
