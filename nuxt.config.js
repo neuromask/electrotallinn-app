@@ -195,7 +195,7 @@ export default {
       lang: 'en'
     },
     meta: {
-      theme_color: 'light'
+      theme_color: 'white'
     }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
