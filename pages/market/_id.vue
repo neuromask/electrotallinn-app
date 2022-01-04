@@ -9,14 +9,13 @@
         <b-list-group>
           <b-list-group-item class="text-secondary" variant="light" v-if="product.description">
             <div class="d-flex justify-content-between align-items-start">
-              <h4 class="font-weight-bold">{{ $t('main.description') }}</h4>
+              <h5 class="font-weight-bold">{{ $t('main.description') }}</h5>
               <h3 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h3>
             </div>
             <p class="mb-0 pre" v-html="linkify(product.description)"></p>
           </b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.price" class="text-secondary">{{ $t('main.price') }}: <strong>{{ product.price }} €</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.category" class="text-secondary">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
-          <b-list-group-item variant="light" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ new Date(product.dateCreated).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
+          <b-list-group-item variant="primary" v-if="product.category" class="text-secondary">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
+          <b-list-group-item variant="primary" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ new Date(product.dateCreated).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card class="shadow-sm">
