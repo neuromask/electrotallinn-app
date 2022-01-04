@@ -4,13 +4,17 @@
     <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
       <b-card class="shadow-sm">
-       <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
-        <div class="mb-3 d-flex justify-content-between align-items-start">
-          <h2 class="mb-0" variant="light" v-if="product.name">{{ product.name }}</h2>
+        <div class="d-flex justify-content-between align-items-start">
+          <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
           <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
         </div>
+        <h3 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h3>
         <b-list-group class="text-left">
-          <b-list-group-item variant="light" v-if="product.description">{{ $t('main.description') }}: <strong>{{ product.description }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.description">
+            <h5 class="mb-1 font-weight-bold">{{ $t('main.description') }}</h5>
+            <p class="mb-0 pre" v-html="linkify(product.description)"></p>
+          </b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.price">{{ $t('main.price') }}: <strong>{{ product.price }} €</strong></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.category">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
           <b-list-group-item variant="light" v-if="product.dateCreated">{{ $t('main.dateAdded') }}: <strong>{{ new Date(product.dateCreated).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
         </b-list-group>
@@ -69,6 +73,9 @@ export default {
   created () {
     this.getProduct()
   },
+  computed: {
+    
+  },
   watch: {
     $route () {
      this.getProduct();
@@ -83,6 +90,10 @@ export default {
           src: this.$config.baseFileUrl + '/market/' + img.fileName
         }))
       });
+    },
+    linkify(string) {
+      const URLMatcher = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
+      return string.replace(URLMatcher, match => `<a href="${match}" target="_blank">${match}</a>`)
     }
   }
 }

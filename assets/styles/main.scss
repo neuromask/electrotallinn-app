@@ -44,6 +44,11 @@ main {
 .overflow-visible {
   overflow: visible!important;
 }
+.pre {
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  font-family: inherit;
+}
 
 .gm-ui-hover-effect {background: transparent!important;border: 0!important;}
 button {outline: none;box-shadow:none !important;}
