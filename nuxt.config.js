@@ -19,7 +19,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // CSS file in the project
-    '@/assets/styles/main.scss'
+    '@/assets/styles/main.scss',
+    '~/node_modules/vuetube/dist/vuetube.css'
   ],
 
 
