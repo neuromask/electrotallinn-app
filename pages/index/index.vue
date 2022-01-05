@@ -137,11 +137,7 @@
 </template>
 
 <script>
-import 'vuetube/dist/vuetube.css'
 export default {
-
-  head() { 
-    return { title: this.$t("nav.home"), } 
-  }
+  head() { return { title: this.$t("nav.home"), } }
 }
 </script>
