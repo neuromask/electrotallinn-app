@@ -26,14 +26,12 @@
           </div>
         </template>
         <template #row-details="data">
-          <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">
-            {{ $t('action.edit') }} <b-icon icon="pencil-fill" variant="white"/>
+          <b-button size="sm" variant="primary" v-b-modal="'product-modal-' + data.item.id">{{ $t('action.edit') }} <b-icon icon="pencil-fill" variant="white"/>
           </b-button>
           <b-button size="sm" :class="data.item.status == 'ACTIVE' ? 'btn-success' : 'btn-warning'" @click="statusProduct(data.item.id)">
             <span class="text-white text-capitalize">{{ $t('action.' + data.item.status) }}</span> <b-icon icon="check-circle-fill" variant="white"/>
           </b-button>
-          <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">
-            {{ $t('action.delete') }} <b-icon icon="trash-fill" variant="white"/>
+          <b-button size="sm" variant="danger" v-b-modal="'delete-modal-' + data.item.id">{{ $t('action.delete') }} <b-icon icon="trash-fill" variant="white"/>
           </b-button>
           <MarketProductModal :id="data.item.id" @save="findMarketProducts" />
           <b-modal centered :id="'delete-modal-' + data.item.id" :title="$t('main.confirmDelete')">
