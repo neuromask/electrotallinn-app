@@ -125,7 +125,7 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <vue-tube class="rounded shadow-sm" videoId="M0ezw-mZuDQ"></vue-tube>
+            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="M0ezw-mZuDQ"></vue-tube>
           </b-col>
           <b-col cols="12" lg="6">
             <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="ovVijvjmlt4"></vue-tube>
@@ -137,7 +137,7 @@
 </template>
 
 <script>
-
+import 'vuetube/dist/vuetube.css'
 export default {
 
   head() { 
