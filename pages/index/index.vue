@@ -125,10 +125,10 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
+            <LazyYoutube customThumbnail="https://img.youtube.com/vi/M0ezw-mZuDQ/sddefault.jpg" class="rounded shadow-sm" src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
+            <LazyYoutube customThumbnail="https://img.youtube.com/vi/ovVijvjmlt4/sddefault.jpg" class="rounded shadow-sm" src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
           </b-col>
         </b-row>
       </div>
