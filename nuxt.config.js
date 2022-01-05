@@ -28,7 +28,6 @@ export default {
     { src: '~/plugins/vue-cookie-law', ssr: false },
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/load-script' },
-    { src: '~/plugins/vue-lazytube', ssr: true },
     '~/plugins/globals'
   ],
 

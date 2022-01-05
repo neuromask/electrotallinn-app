@@ -125,10 +125,10 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <LazyYoutube :customThumbnail="require('@/assets/img/cover/cover-01.jpg')" class="rounded shadow-sm" src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
+            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <LazyYoutube :customThumbnail="require('@/assets/img/cover/cover-02.jpg')" class="rounded shadow-sm" src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
+            <LazyYoutube class="rounded shadow-sm" src="https://www.youtube.com/watch?v=ovVijvjmlt4" />
           </b-col>
         </b-row>
       </div>
@@ -137,7 +137,11 @@
 </template>
 
 <script>
+import { LazyYoutube } from "vue-lazytube";
 export default {
+  components: {
+    LazyYoutube
+  },
   head() { 
     return { title: this.$t("nav.home"), } 
   }
