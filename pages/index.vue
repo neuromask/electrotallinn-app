@@ -4,6 +4,7 @@
       <b-navbar-nav class="mx-auto text-center">
         <b-nav-item :to="localePath('/')" nuxt exact>{{ $t('nav.about') }}</b-nav-item>
         <b-nav-item :to="localePath('/bot')" nuxt>{{ $t('nav.bot') }}</b-nav-item>
+        <b-nav-item :to="localePath('/donate')" nuxt>{{ $t('nav.donate') }}</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <NuxtChild />

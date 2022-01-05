@@ -22,6 +22,7 @@ nav:
   addProduct: Lisa toode
   sockets: Pistikud
   score: Skoor
+  donate: Anneta
 home:
   linkBox1: Liitu Facebooki grupiga | Info kavandatud sõitude kohta ja fotoreportaažid avaldatakse seal.
   linkBox2: Liitu Telegrami grupiga | Hoidke end kursis viimaste uudistega ja osalege otse-eetris.
@@ -36,6 +37,17 @@ home:
   iconBox3: Ohutus | Ennekõike
   iconBox3Content: Soovitame kõigil sõites kanda kiivrit ja kaitset, tervist osta ei saa
   eventBox: Ametlikud ühissõidud ja võistlused | Eelseisva sündmuse kohta saate teada Facebook grupist, samuti Telegram teatekanalilt.
+donate:
+  title1: Tänu ja toetuse väljendamine
+  title2: Kuhu raha läheb
+  donateDesc1: Grupp ei taotle raha kogumise eesmärki, kuid kui teil on soov sel viisil tänu avaldada, siis on võimalus annetada.
+  donateDesc2: See, et me suhtleme, kohtume, üksteist aitame ja koos sõidame, on juba piisav. Kuid rahaliselt toetades on võimalik projektist osa saada. Abistajate nimekiri täieneb jätkuvalt.
+  makeDonation: Tehke annetus
+  opportunity: See on võimalus, mitte taotlus. Iga sent on teretulnud :)
+  whoDonated: Toetanud
+  donate1: Tassi kohvi ja edasise motivatsiooni eest arengus.
+  donate2: Grupi atribuudid – võtmehoidjad, visiitkaardid, kleebised jne.
+  donate3: Hostimise ja domeeni eest tasumine, saidi tugi.
 blog:
   readMore: Loe rohkem
 game:

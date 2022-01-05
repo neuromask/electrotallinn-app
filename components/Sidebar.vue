@@ -29,8 +29,7 @@
         <div class="mb-3 pt-1">
           <SocialLinks />
         </div>
-        <a class="text-center d-block" href="https://electrotallinn.ee/" target="_blank">ElectroTallinn Website</a>
-        <p class="text-center small">Copyright © 2021 – ElectroTallinn<br>Crafted by Leo & <a href="https://nuforms.com/" target="_blank">Nuforms Design</a><br>v 0.1 (Beta) ElectroTallinn App</p>
+        <Copyright />
       </div>
     </b-sidebar>
   </aside>

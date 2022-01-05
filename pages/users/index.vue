@@ -54,15 +54,15 @@
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
                   <nuxt-link class="m-0 font-weight-bold" :to="localePath(`/users/${user.uin}/products`)">{{ $t('nav.market') }}</nuxt-link>
-                  <b-badge class="pb-0">{{ user.marketProductsCount }}</b-badge>
+                  <b-badge>{{ user.marketProductsCount }}</b-badge>
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
                   <nuxt-link class="m-0 font-weight-bold" :to="localePath(`/users/${user.uin}/locations`)">{{ $t('nav.locations') }}</nuxt-link>
-                  <b-badge class="pb-0">{{ user.locationsCount }}</b-badge>
+                  <b-badge>{{ user.locationsCount }}</b-badge>
                 </div>
                 <div class="mb-1 d-flex justify-content-between align-items-center">
                   <nuxt-link class="m-0 font-weight-bold" :to="localePath(`/game/score`)">{{ $t('game.balance') }}</nuxt-link>
-                  <b-badge class="pb-0">{{ user.balance }}</b-badge>
+                  <b-badge>{{ user.balance }}</b-badge>
                 </div>
               </b-list-group-item>
             </b-list-group>

@@ -21,6 +21,7 @@ nav:
   locations: Locations
   sockets: Sockets
   score: Score
+  donate: Donate
 home:
   linkBox1: Welcome to Facebook group | Information about the planned rides, events and photo reports is published there.
   linkBox2: Join our Telegram group | Stay up to date with the latest news and participate in live communication.
@@ -35,6 +36,17 @@ home:
   iconBox3: Safety | Above all
   iconBox3Content: We recommend everyone to wear a helmet and protection when riding, you can't buy health
   eventBox: Official joint rides and competitions | You can find out about the upcoming event in the Facebook group, as well as on the Telegram alert channel.
+donate:
+  title1: Expression of gratitude and support
+  title2: Where the money goes
+  donateDesc1: The group does not pursue the goal of raising funds, but if you have a desire to express gratitude in this way, then there is an opportunity to make a donation.
+  donateDesc2: The fact that we communicate, meet, help each other and ride together is already enough. But it is possible to become part of the project by supporting financially. The list of those who helped will continue to grow.
+  makeDonation: Make a donation
+  opportunity: This is an opportunity, not a request. Any penny is welcome :)
+  whoDonated: Supported by
+  donate1: For a cup of coffee and further motivation in development.
+  donate2: Group attributes - Keychains, business cards, stickers, etc.
+  donate3: Payment for hosting and domain, site support.
 blog:
   readMore: Read more
 game:
