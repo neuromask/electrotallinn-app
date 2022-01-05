@@ -28,7 +28,7 @@ export default {
     { src: '~/plugins/vue-cookie-law', ssr: false },
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/load-script' },
-    { src: '~/plugins/vuetube', ssr: true },
+    { src: '~/plugins/vue-tube', ssr: true },
     '~/plugins/globals'
   ],
 
