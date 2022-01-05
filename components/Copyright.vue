@@ -7,17 +7,3 @@
 </template>
 
 <script></script>
-
-<style>
-.botAvatar {
-  float: left;
-  width: 32px;
-  height:32px;
-}
-.botAvatarCont {
-  border: 0;
-  margin: 0 auto;
-  width: 100%;
-  height:48px;
-}
-</style>
