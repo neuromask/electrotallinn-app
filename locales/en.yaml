@@ -109,7 +109,9 @@ main:
   photo: Photo
   allPhotos: All photos
   video: Video
+  reportTitle: Report point
   pointOnMap: Point on map
+  reportArea: Please write what is wrong...
   all: All
   top: Top
   rank: Rank
@@ -171,4 +173,5 @@ action:
   cancel: Cancel
   add: Add
   findOut: Find out
+  send: Send
   

@@ -110,6 +110,8 @@ main:
   allPhotos: Все фото
   video: Видео
   pointOnMap: Точка на карте
+  reportTitle: Донести об ошибке
+  reportArea: Напишите пожалуйста что не так ...
   all: Все
   top: Топ
   rank: Ранг
@@ -171,4 +173,5 @@ action:
   cancel: Отменить
   add: Добавить
   findOut:  Узнать больше
+  send: Отправить
   

@@ -18,9 +18,9 @@ main {
   z-index: 1;
 }
 .fullScreen {
-  height:calc(100% - 48px);
+  height:calc(100% - 44px);
   position: absolute;
-  top:48px; left:0;
+  top:44px; left:0;
   width:100%;
 }
 </style>

@@ -111,6 +111,8 @@ main:
   allPhotos: Kõik fotod
   video: Video
   pointOnMap: Punkt kaardil
+  reportTitle: Teatage punktist
+  reportArea: Palun kirjutage mis viga...
   all: Kõik
   top: Top
   rank: Auaste
@@ -172,3 +174,4 @@ action:
   cancel: Tühistada
   add: Lisa
   findOut: Leia rohkem
+  send: Saada

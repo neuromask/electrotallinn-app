@@ -4,23 +4,9 @@
     <div id="badgePos">
       <a @click="getUserPos"><b-icon-record-circle /></a>
     </div>
-    <b-modal
-      ref="modal-report"
-      title="Report point"
-      ok-only
-      centered
-      ok-variant="secondary"
-      ok-title="Send"
-      @ok="handleReportSubmit"
-    >
+    <b-modal ref="modal-report" :title="$t('main.reportTitle')" ok-only centered ok-variant="secondary" :ok-title="$t('action.send')" @ok="handleReportSubmit" >
       <b-form @submit.stop.prevent="handleSubmit">
-        <b-form-textarea
-          id="textarea"
-          v-model="report.message"
-          placeholder="Please write what is wrong..."
-          rows="3"
-          max-rows="9"
-        ></b-form-textarea>
+        <b-form-textarea id="textarea" v-model="report.message" :placeholder="$t('main.reportArea')" rows="3" max-rows="9" ></b-form-textarea>
       </b-form>
     </b-modal>
   </section>
@@ -82,7 +68,7 @@ export default {
       
       this.mapConfig.mapTypeControlOptions = {
         style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: window.google.maps.ControlPosition.TOP_CENTER
+        position: window.google.maps.ControlPosition.TOP_LEFT
       }
 
       const mapContainer = this.$refs.googleMap
@@ -112,8 +98,8 @@ export default {
                 let dateCreated = new Date(location.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' });
                 infowindow.setContent(
                   "<div class='infocontent'>"
-                  + (location.imageName ? "<div class='locImageBlur' style='background-image: url(" + apiUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
-                  + (location.imageName ? "<div class='locImage' style='background-image: url(" + apiUrl + '/locations/image/' + location.imageName + ")'></div>" : '')
+                  + (location.imageName ? "<img class='locImageBlur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
+                  + (location.imageName ? "<img class='locImage' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
                     + "<div class='footer'>"
                       +"<h4>" + location.title + "</h4>"
                       +"<p>" + (location.description || '') + "</p>"
@@ -162,10 +148,12 @@ export default {
 </style>
 <style>
 .infocontent {
-    text-align: center;
-    position: relative;
-    width: 480px;
-    height: 480px;
+  text-align: center;
+  position: relative;
+  width: 480px;
+  height: 480px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 @media (max-width: 768px) {
   .infocontent {
@@ -174,67 +162,63 @@ export default {
   }
 }
 .infocontent .locImage {
-    position: absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background-size: contain; 
-    background-position: center; 
-    background-repeat: no-repeat;
+  position: absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit: contain;
 }
 .infocontent .locImageBlur {
-    position: absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    z-index: -1;
+  position: absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: -1;
 }
 .infocontent .footer {
-    position: fixed;
-    width: calc(100% - 28px);
-    bottom:0;
-    background-color: rgba(255,255,255,0.7);
-    padding:0.3rem 0.5rem 1rem;
+  position: fixed;
+  width: calc(100% - 28px);
+  bottom:0;
+  background-color: rgba(255,255,255,0.7);
+  padding:0.3rem 0.5rem 1rem;
 }
 .infocontent .socket {
-    overflow: hidden;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .infocontent button.close {
-    background: transparent;
-    border: 0;
+  background: transparent;
+  border: 0;
 }
 .infocontent p {
-    font-size: 14px;
-    margin: 0;
-    padding-bottom:0;
+  font-size: 14px;
+  margin: 0;
+  padding-bottom:0;
 }
 .infocontent h4 {
-    font-size:16px;
-    margin: 0;
-    padding-top:0;
+  font-size:16px;
+  margin: 0;
+  padding-top:0;
 }
 .infocontent small {
-    font-size: 10px;
-    float: left;
+  font-size: 10px;
+  float: left;
 }
 .infocontent .report {
-    border:1px solid #1a2740;
-    background: white;
-    border-radius: 4px;
+  border:1px solid #1a2740;
+  background: white;
+  border-radius: 4px;
 }
 .infocontent p {
     margin:0;
 }
 .locations div[role=dialog] {
-    max-width: 90vw!important;
+  max-width: 90vw!important;
 }
 </style>

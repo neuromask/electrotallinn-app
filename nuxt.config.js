@@ -26,8 +26,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vue-cookie-law', ssr: false },
-    { src: '~/plugins/axios', ssr: false },
+    { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/load-script' },
+    { src: '~/plugins/vue-lazytube', ssr: true },
     '~/plugins/globals'
   ],
 

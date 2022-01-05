@@ -137,11 +137,7 @@
 </template>
 
 <script>
-import { LazyYoutube } from "vue-lazytube";
 export default {
-  components: {
-    LazyYoutube
-  },
   head() { 
     return { title: this.$t("nav.home"), } 
   }
