@@ -182,7 +182,8 @@ export default {
     baseFileUrl: process.env.BASE_FILE_URL || 'https://files.electrotallinn.ee',
     siteUrl: process.env.SITE_URL || 'https://electrotallinn.ee',
     apiUrl: process.env.API_URL || 'https://electrotallinn.ee/api',
-    googleKey: process.env.GOOGLE_KEY
+    googleKey: process.env.GOOGLE_KEY,
+    flickrKey: process.env.FLICKR_KEY
   },
   privateRuntimeConfig: {
   },
