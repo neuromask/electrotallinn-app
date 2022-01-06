@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-button-group vertical>
-    <b-button variant="primary" size="sm" class="btn-lang" exact v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)"><small>{{ locale.text }}</small></b-button>
-  </b-button-group>
+      <b-button variant="primary" size="sm" class="btn-lang text-white" v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)"><small>{{ locale.text }}</small></b-button>
+    </b-button-group>
   </div>
 </template>
 <script>

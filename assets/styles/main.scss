@@ -92,13 +92,13 @@ a {
   padding: 0.25rem !important;
 }
 
-nav .nuxt-link-active,
-nav .nav-link {
+.navbar-nav .nuxt-link-active,
+.navbar-nav .nav-link {
   display: inline-block;
   position: relative;
   padding-bottom: 0.5rem;
 }
-nav .nav-link:after {
+.navbar-nav .nav-link:after {
   content: ' ';
   position: absolute;
   width: 100%;
@@ -110,11 +110,11 @@ nav .nav-link:after {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
-nav .nav-link:hover:after {
+.navbar-nav .nav-link:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-nav .nuxt-link-active:after  {
+.navbar-nav .nuxt-link-active:after  {
   content: ' ';
   position: absolute;
   width: 100%;
