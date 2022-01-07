@@ -1,6 +1,6 @@
 <template>
     <b-button block class="shadow-sm mb-0" variant="light" href="https://t.me/electrotallinnbot" target="_blank">
-        <b-avatar class="shadow-sm" variant="info" :src="require('@/assets/img/bot-avatar.svg')" />
+        <b-avatar class="shadow-sm" variant="info" :src="require('@/assets/img/logo/bot-avatar.svg')" />
         <span class="ml-2"><strong class="text-dark">ElectroBot</strong> {{ $t('main.chat') }}</span>
     </b-button>
 </template>

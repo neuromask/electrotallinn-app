@@ -8,7 +8,7 @@
           <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
         </i18n>
         <b-card class="shadow-sm">
-          <b-img role="button" class="card-img" rounded="circle" href="https://t.me/electrotallinnbot" target="_blank" src="@/assets/img/bot-avatar.svg" />
+          <b-img role="button" class="card-img" rounded="circle" href="https://t.me/electrotallinnbot" target="_blank" src="@/assets/img/logo/bot-avatar.svg" />
         </b-card>
       </b-col>
       <b-col cols="12" lg="8">

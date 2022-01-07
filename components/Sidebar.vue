@@ -9,7 +9,7 @@
       backdrop
     >
       <div class="px-3 py-0">
-        <nuxt-link to="/"><b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/circle.svg" fluid center /></nuxt-link>
+        <nuxt-link to="/"><b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/logo/circle.svg" fluid center /></nuxt-link>
         <div class="mb-4">
           <UserProfileBox />
           <UserLoginBox />
