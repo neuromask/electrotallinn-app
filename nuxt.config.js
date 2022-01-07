@@ -197,7 +197,7 @@ export default {
       lang: 'en'
     },
     meta: {
-      theme_color: 'white'
+      theme_color: '#1a2740'
     }
   },
   render: {

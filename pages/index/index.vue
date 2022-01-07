@@ -4,8 +4,8 @@
       <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
         <h3 class="mb-0 font-weight-bold mb-3">ElectroTallinn - {{ $tc('main.aboutText', 1) }}</h3>
         <hr>
-        <h5 class="font-italic opacity-75 mb-2">{{ $t('meta.description') }}</h5>
-        <h5 class="font-italic opacity-75 mb-3">{{ $tc('main.aboutText', 2) }}</h5>
+        <p class="opacity-75 mb-2 lead">{{ $t('meta.description') }}</p>
+        <p class="font-weight-bold opacity-75 mb-3">{{ $tc('main.aboutText', 2) }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
       </b-col>
@@ -72,7 +72,7 @@
             <h5 class="mb-1 text-dark font-weight-bold">{{ $tc('home.eventBox', 1) }}</h5>
             <hr>
             <p class="mb-0 text-dark opacity-75">{{ $tc('home.eventBox', 2) }}</p>
-            <b-button class="nowrap mt-2 ml-auto w-100 font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
+            <b-button block class="nowrap mt-2 ml-auto font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
           </div>
         </b-alert>
       </b-col>
@@ -125,10 +125,10 @@
         </div>
         <b-row>
           <b-col class="mb-3" cols="12" lg="6">
-            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="M0ezw-mZuDQ"></vue-tube>
+            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="ovVijvjmlt4"></vue-tube>
+            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="ovVijvjmlt4" />
           </b-col>
         </b-row>
       </div>

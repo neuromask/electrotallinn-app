@@ -99,6 +99,7 @@ profile:
   model: Model
   birthYear: Birth year
 main:
+  goalText: Electric transport group in Tallinn. The main goal of the group is to unite those who are ill with electric transport for joint rides and participation in the events.
   aboutText: Electric transport group in Tallinn | Combines types of light transport such as an electric scooter, an electric bike, an EUC and an electric skate.
   contact: Contact
   seller: Seller

@@ -100,6 +100,7 @@ profile:
   model: Mudel
   birthYear: Sünniaasta
 main:
+  goalText: Elektritranspordi grupp Tallinnas. Grupi peamine eesmärk on ühendamine inimesi elektritranspordiga ühissõiduks ja üritustel osalemiseks.
   aboutText: Elektritranspordi grupp Tallinnas | Ühendab selliseid kergtranspordi liike nagu elektriline tõukeratas, elektriratas, monoratas ja elektriline rula.
   contact: Kontakt
   seller: Müüja
