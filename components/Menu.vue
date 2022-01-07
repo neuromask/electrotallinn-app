@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-list-group flush horizontal class="side-menu w-100">
+    <b-list-group flush class="side-menu w-100">
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/')" exact><b-icon icon="house-door-fill"></b-icon>{{ $t('nav.home') }}</b-list-group-item>
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/market')"><b-icon icon="basket2-fill"></b-icon>{{ $t('nav.market') }}</b-list-group-item>
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/blog')"><b-icon icon="chat-square-text-fill"></b-icon>{{ $t('nav.blog') }}</b-list-group-item>
@@ -68,11 +68,13 @@
 footer .list-group {
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 }
 footer .list-group-item {
   padding: 0.4rem 1.25rem;
   border:0;
   width: auto;
+  
 }
 footer .side-menu svg {
   width: 1em;
