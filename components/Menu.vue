@@ -73,8 +73,8 @@ footer .list-group {
 footer .list-group-item {
   padding: 0.4rem 1.25rem;
   border:0;
-  width: auto;
-  
+  min-width: 160px;
+  flex-basis: 0;
 }
 footer .side-menu svg {
   width: 1em;

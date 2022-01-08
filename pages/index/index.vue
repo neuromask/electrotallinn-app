@@ -42,6 +42,23 @@
       </b-col>
     </b-row>
     <b-row class="mb-5">
+      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
+        <b-icon font-scale="3" icon="geo-alt-fill" />
+        <h5 class="font-weight-bold mb-0">{{ $t('nav.locations') }}</h5>
+        <p class="display-3 mb-0"><countTo ref="count1" separator=" " :autoplay="false" :duration="4000" :endVal="138" /></p>
+      </b-col>
+      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
+        <b-icon font-scale="3" icon="person-fill" />
+        <h5 class="font-weight-bold mb-0">{{ $t('nav.profiles') }}</h5>
+        <p class="display-3 mb-0"><countTo v-observe-visibility="visibilityChanged" ref="count2" separator=" " :autoplay="false" :duration="4000" :endVal="22" /></p>
+      </b-col>
+      <b-col class="text-center" cols="12" lg="4">
+        <b-icon font-scale="3" icon="basket2-fill" />
+        <h5 class="font-weight-bold mb-0">{{ $t('nav.products') }}</h5>
+        <p class="display-3 mb-0"><countTo ref="count3" separator=" " :autoplay="false" :duration="4000" :endVal="10" /></p>
+      </b-col>
+    </b-row>
+    <b-row class="mb-5">
       <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox1', 1) }}</h4>
@@ -137,7 +154,21 @@
 </template>
 
 <script>
+import countTo from 'vue-count-to';
+
 export default {
-  head() { return { title: this.$t("nav.home"), } }
+  head() { return { title: this.$t("nav.home"), } },
+  components: { countTo },
+  beforeMount() {
+    
+  },
+  methods: {
+    visibilityChanged (isVisible, entry) {
+      this.isVisible = isVisible
+      this.$refs.count1.start();
+      this.$refs.count2.start();
+      this.$refs.count3.start();
+    },
+  }
 }
 </script>

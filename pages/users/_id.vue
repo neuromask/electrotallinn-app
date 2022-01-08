@@ -17,7 +17,7 @@
     <div class="mt-5 sub-page">
       <b-card no-body bg-variant="info" class="shadow-sm">
         <b-card-header header-tag="nav">
-          <b-nav card-header tabs>
+          <b-nav card-header justified tabs>
             <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}`), hash:'#submenu' }" exact nuxt exact-active-class="active">{{ $t('nav.profile') }}</b-nav-item>
             <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/products`), hash:'#submenu' }" nuxt exact-active-class="active">{{ $t('nav.products') }}</b-nav-item>
             <b-nav-item :to="{ path: localePath(`/users/${$route.params.id}/locations`), hash:'#submenu' }" nuxt exact-active-class="active">{{ $t('nav.locations') }}</b-nav-item>

@@ -20,7 +20,7 @@
         <div class="mb-3">
           <BotButton />
         </div>
-        <div class="mb-3 pt-1">
+        <div class="mb-3">
           <SocialLinks />
         </div>
         <Copyright />

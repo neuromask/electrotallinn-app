@@ -29,6 +29,7 @@ export default {
     { src: '~/plugins/axios', ssr: true },
     { src: '~/plugins/load-script' },
     { src: '~/plugins/vue-tube', ssr: true },
+    { src: '~/plugins/observe-visibility', ssr: true },
     '~/plugins/globals'
   ],
 
