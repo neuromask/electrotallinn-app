@@ -4,7 +4,7 @@
       <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
         <h3 class="mb-0 font-weight-bold mb-3">ElectroTallinn - {{ $tc('main.aboutText', 1) }}</h3>
         <hr>
-        <p class="opacity-75 mb-2 lead">{{ $t('meta.description') }}</p>
+        <p class="mb-2 lead">{{ $t('meta.description') }}</p>
         <p class="font-weight-bold opacity-75 mb-3">{{ $tc('main.aboutText', 2) }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
@@ -43,19 +43,25 @@
     </b-row>
     <b-row class="mb-5">
       <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
-        <b-icon font-scale="3" icon="geo-alt-fill" />
-        <h5 class="font-weight-bold mb-0">{{ $t('nav.locations') }}</h5>
-        <p class="display-3 mb-0"><countTo ref="count1" separator=" " :autoplay="false" :duration="4000" :endVal="138" /></p>
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-light" font-scale="3" icon="geo-alt-fill" />
+          <p class="display-3 mb-0"><countTo ref="count1" separator=" " :autoplay="false" :duration="4000" :endVal="138" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.locations') }}</h5>
+        </b-card>
       </b-col>
       <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
-        <b-icon font-scale="3" icon="person-fill" />
-        <h5 class="font-weight-bold mb-0">{{ $t('nav.profiles') }}</h5>
-        <p class="display-3 mb-0"><countTo v-observe-visibility="visibilityChanged" ref="count2" separator=" " :autoplay="false" :duration="4000" :endVal="22" /></p>
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-light" font-scale="3" icon="person-fill" />
+          <p class="display-3 mb-0"><countTo v-observe-visibility="visibilityChanged" ref="count2" separator=" " :autoplay="false" :duration="4000" :endVal="22" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.profiles') }}</h5>
+        </b-card>
       </b-col>
       <b-col class="text-center" cols="12" lg="4">
-        <b-icon font-scale="3" icon="basket2-fill" />
-        <h5 class="font-weight-bold mb-0">{{ $t('nav.products') }}</h5>
-        <p class="display-3 mb-0"><countTo ref="count3" separator=" " :autoplay="false" :duration="4000" :endVal="10" /></p>
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-light" font-scale="3" icon="basket2-fill" />
+          <p class="display-3 mb-0"><countTo ref="count3" separator=" " :autoplay="false" :duration="4000" :endVal="10" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.products') }}</h5>
+        </b-card>
       </b-col>
     </b-row>
     <b-row class="mb-5">
@@ -83,13 +89,13 @@
     </b-row>
     <div class="w-100 my-5 justify-content-center">
       <b-col cols="12" lg="8" class="mx-auto p-0">
-        <b-alert show variant="primary" class="bg-pat d-flex justify-content-between align-items-center mb-0 rounded shadow-sm w-100">
+        <b-alert show variant="primary" class="bg-pat d-flex justify-content-between align-items-center mb-0 rounded shadow-sm w-100 p-3">
           <b-icon variant="primary" width="48" height="48" icon="calendar-event-fill" class="mr-4 mr-lg-5 ml-lg-4" />
           <div class="w-100">
-            <h5 class="mb-1 text-dark font-weight-bold">{{ $tc('home.eventBox', 1) }}</h5>
+            <h5 class="mb-0 text-dark font-weight-bold">{{ $tc('home.eventBox', 1) }}</h5>
             <hr>
-            <p class="mb-0 text-dark opacity-75">{{ $tc('home.eventBox', 2) }}</p>
-            <b-button block class="nowrap mt-2 ml-auto font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
+            <p class="mb-3 text-dark opacity-75">{{ $tc('home.eventBox', 2) }}</p>
+            <b-button block class="nowrap ml-auto font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
           </div>
         </b-alert>
       </b-col>
@@ -99,9 +105,9 @@
         <div class="d-flex justify-content-between align-items-center mb-0 w-100">
           <b-icon variant="info" width="48" height="48" icon="geo-alt-fill" class="mr-4 ml-lg-4" />
           <div class="w-100">
-            <h4 class="mb-0">{{ $tc('home.iconBox1', 1) }}</h4>
+            <h3 class="mb-0">{{ $tc('home.iconBox1', 1) }}</h3>
             <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox1', 2) }}</h5>
-            <p class="mb-0 opacity-75">{{ $t('home.iconBox1Content') }}</p>
+            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox1Content') }}</p>
           </div>
         </div>
       </b-col>
@@ -109,9 +115,9 @@
         <div class="d-flex justify-content-between align-items-center mb-0 w-100">
           <b-icon variant="info" width="48" height="48" icon="asterisk" class="mr-4 ml-lg-4" />
           <div class="w-100">
-            <h4 class="mb-0">{{ $tc('home.iconBox2', 1) }}</h4>
+            <h3 class="mb-0">{{ $tc('home.iconBox2', 1) }}</h3>
             <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox2', 2) }}</h5>
-            <p class="mb-0 opacity-75">{{ $t('home.iconBox2Content') }}</p>
+            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox2Content') }}</p>
           </div>
         </div>
       </b-col>
@@ -119,9 +125,9 @@
         <div class="d-flex justify-content-between align-items-center mb-0 w-100">
           <b-icon variant="info" width="48" height="48" icon="suit-heart-fill" class="mr-4 ml-lg-4" />
           <div class="w-100">
-            <h4 class="mb-0">{{ $tc('home.iconBox3', 1) }}</h4>
+            <h3 class="mb-0">{{ $tc('home.iconBox3', 1) }}</h3>
             <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox3', 2) }}</h5>
-            <p class="mb-0 opacity-75">{{ $t('home.iconBox3Content') }}</p>
+            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox3Content') }}</p>
           </div>
         </div>
       </b-col>

@@ -54,12 +54,6 @@ export default {
   data() {
     return {
       BACKEND_BASE: 'https://etmap.nuforms.com',
-      bgImages: [
-        require("@/assets/img/pattern-icons.png"),
-        require("@/assets/img/top.jpg"),
-        require("@/assets/img/tallinn.svg"),
-        require("@/assets/img/mol.svg")
-      ],
     }
   },
   mounted () {

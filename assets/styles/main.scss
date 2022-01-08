@@ -179,7 +179,12 @@ hr:after {
 }
 
 .bg-pat {
-  background-image: url('~assets/img/pattern-icons.png');
+  background-image: url('~assets/img/pattern-icons.svg');
+  background-position: center;
+}
+.bg-pat-dark {
+  background-image: url('~assets/img/pattern-icons-dark.svg');
+  background-position: center;
 }
 
 .Cookie--et {

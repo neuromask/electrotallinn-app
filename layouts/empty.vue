@@ -11,7 +11,7 @@
 main {
   height:100%;
 }
-.navWrap {
+.navWrap .main-nav {
   position: fixed;
   height: 48px;
   width: 100%;
@@ -19,7 +19,7 @@ main {
 }
 .fullScreen {
   height:calc(100% - 44px);
-  position: absolute;
+  position: fixed;
   top:44px; left:0;
   width:100%;
 }

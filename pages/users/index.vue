@@ -25,7 +25,7 @@
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="user in userTable" :key="user.id">
         <b-card class="shadow-sm" bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
           <div class="upper p-3 position-relative d-flex justify-content-center align-items-end">
-            <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons.png') + ')'}]"></div>
+            <div class="overflow-hidden w-100" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons-dark.svg') + ')'}]"></div>
             <b-avatar :to="localePath(`/users/${user.uin}`)" variant="info" class="text-dark profile position-absolute shadow" :src="user.photoUrl" size="12rem"></b-avatar>
           </div>
           <div class="text-center mt-4">
