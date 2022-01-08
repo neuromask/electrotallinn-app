@@ -17,11 +17,11 @@
         <div class="my-4">
           <Menu />
         </div>
-        <div class="mb-3">
-          <BotButton />
-        </div>
-        <div class="mb-3">
+        <div class="mb-4">
           <SocialLinks />
+        </div>
+        <div class="mb-4">
+          <BotButton />
         </div>
         <Copyright />
       </div>
