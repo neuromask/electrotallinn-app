@@ -133,8 +133,7 @@
       </b-col>
     </b-row>
     <b-row class="bg-lightning full-row px-lg-5 px-3">
-      <SocialBlock class="my-5" />
-      <div class="w-100">
+      <div class="w-100 mt-5">
         <div class="d-flex justify-content-between align-items-start">
           <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
           <b-button font-scale="2" variant="primary" href="https://www.flickr.com/photos/electrotallinn/" target="_blank"><b-icon icon="card-image" /> {{ $t('main.allPhotos') }}</b-button>
@@ -155,6 +154,7 @@
           </b-col>
         </b-row>
       </div>
+      <SocialBlock />
     </b-row>
   </section>
 </template>

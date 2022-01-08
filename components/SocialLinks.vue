@@ -1,5 +1,5 @@
 <template>
-  <div class="social-links d-flex justify-content-between">
+  <div class="social-links d-flex justify-content-center">
     <a href="https://www.facebook.com/groups/electrotallinn" target="_blank"><b-icon icon="facebook"></b-icon></a>
     <a href="https://www.instagram.com/electrotallinn/" target="_blank"><b-icon icon="instagram"></b-icon></a>
     <a href="https://www.youtube.com/electrotallinn" target="_blank"><b-icon icon="youtube"></b-icon></a>
@@ -18,7 +18,7 @@
   background: #ffffff;
   color:#4482a9;
   padding: 4px;
-
+  margin: 0 .3rem;
   box-shadow: 0 .125rem 0 rgba(26,39,64,.2)!important;
 }
 .social-links a:hover {
