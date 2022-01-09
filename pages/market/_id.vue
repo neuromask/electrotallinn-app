@@ -1,7 +1,6 @@
 <template>
   <section id="product-page">
     <MarketProductModal />
-    <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
     <b-card-group columns>
       <b-card class="shadow-sm">
         <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
@@ -42,14 +41,9 @@
 </template>
 
 <script>
-  // use the component
-  import CoolLightBox from 'vue-cool-lightbox'
-  import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 export default {
-  components: {
-    CoolLightBox,
-  },
+
   head() {
     return {
       title: this.product.name,
@@ -62,6 +56,7 @@ export default {
   props: {},
   data() {
     return {
+      
       items: [],
       index: null,
       product: {},

@@ -33,7 +33,7 @@ main {
   background-image: linear-gradient(to top, #c0d1e6, #c0d1e6, #d3dcec, #e3e7f2, #f2f3f9, #ffffff);
 }
 .shadow-sm {
-  box-shadow: 0 0.125rem 0rem rgb(26 39 64 / 20%) !important;
+  box-shadow: 0 0.125rem 0rem rgba(26, 39, 64, .2) !important;
 }
 [v-cloak] {
   display: none !important;

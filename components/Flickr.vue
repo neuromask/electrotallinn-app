@@ -1,8 +1,7 @@
 <template>
   <section>
-    <CoolLightBox :items="images" :index="index" :effect="'fade'" @close="index = null" />
     <b-row>
-      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="triggerLightbox(imageIndex)">
+      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="() => showImg(imageIndex)">
         <b-img-lazy role="button" class="shadow-sm" center fluid rounded :alt="image.date" :src="image.thumb" />
           <div class="mt-2">
             <!-- <p v-if="image.title" class="image-title">{{image.title}}</p> -->
@@ -12,24 +11,21 @@
             </div>
           </div>
       </b-col>
+      <vue-easy-lightbox v-if="images.length > 0" escDisabled moveDisabled :visible="visible" :imgs="images" :index="index" @hide="handleHide" ></vue-easy-lightbox>
     </b-row>
   </section>
 </template>
 
 <script>
-// CoolLightBox component
-import CoolLightBox from 'vue-cool-lightbox'
-import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 import axios from 'axios';
 
 export default {
   name: 'flickr',
-  components: {
-    CoolLightBox,
-  },
+
   data() {
     return {
+      visible: false,
       loading: false,
       images: [],
       index: null
@@ -72,8 +68,12 @@ export default {
         }
       })
     },
-    triggerLightbox(index) {
-      this.index = index;
+    showImg (index) {
+      this.index = index
+      this.visible = true
+    },
+    handleHide () {
+      this.visible = false
     }
   },
   mounted(){

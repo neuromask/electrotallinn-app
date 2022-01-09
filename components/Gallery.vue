@@ -1,6 +1,5 @@
 <template>
   <div>
-    <CoolLightBox :items="images" :index="index" :effect="'fade'" @close="index = null" />
     <b-row>
       <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="triggerLightbox(imageIndex)">
         <b-img-lazy role="button" class="shadow-sm" center fluid rounded alt="ElectroTallinn" :src="image.src" />
@@ -10,14 +9,9 @@
 </template>
 
 <script>
-// CoolLightBox component
-import CoolLightBox from 'vue-cool-lightbox'
-import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 export default {
-  components: {
-    CoolLightBox,
-  },
+
   props: {
     loc: null
   },

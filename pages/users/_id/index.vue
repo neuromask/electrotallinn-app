@@ -1,6 +1,6 @@
 <template>
   <section>
-    <CoolLightBox :items="items" :index="index" :effect="'fade'" @close="index = null" />
+
     <b-row>
       <b-col cols="12" lg="6" class="mb-3">
         <div class="d-flex justify-content-between align-items-start">
@@ -28,14 +28,9 @@
 </template>
 
 <script>
-  // CoolLightBox component
-  import CoolLightBox from 'vue-cool-lightbox'
-  import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 export default {
-  components: {
-    CoolLightBox,
-  },
+
   name: 'UserProfile',
   props: {},
   data() {
