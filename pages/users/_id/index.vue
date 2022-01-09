@@ -19,6 +19,7 @@
       <b-col v-if="user.transportPhotoName" cols="12" lg="6">
         <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
         <figure class="figure mb-0">
+          <Tinybox no-thumbs loop v-model="index" :images="images" />
           <b-img role="button" class="transportImage shadow-sm" center fluid rounded @click="index = 0" :src="`${$config.apiUrl}/users/image/${user.transportPhotoName}`" />
           <figcaption class="figure-caption text-center mb-0">{{ user.transportModel }}</figcaption>
         </figure>
@@ -28,14 +29,12 @@
 </template>
 
 <script>
-
 export default {
-
   name: 'UserProfile',
   props: {},
   data() {
     return {
-      items: [],
+      images: [],
       index: null,
       profile: {},
       user: {},
@@ -64,8 +63,8 @@ export default {
       this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
-        this.items = [{
-          title: this.user.transportModel,
+        this.images = [{
+          caption: this.user.transportModel,
           src: this.$config.apiUrl + '/users/image/' + this.user.transportPhotoName
         }]
       });

@@ -32,7 +32,8 @@
       </b-card>
       <b-card class="shadow-sm">
        <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
-        <div class="images" v-for="(image, imageIndex) in items" :key="imageIndex">
+        <Tinybox v-if="images.length > 0" no-thumbs loop v-model="index" :images="images" />
+        <div class="images" v-for="(image, imageIndex) in images" :key="imageIndex">
           <b-img role="button" center fluid-grow class="rounded image mb-3" @click="index = imageIndex" :src="image.src" />
         </div>
       </b-card>
@@ -41,9 +42,7 @@
 </template>
 
 <script>
-
 export default {
-
   head() {
     return {
       title: this.product.name,
@@ -56,8 +55,7 @@ export default {
   props: {},
   data() {
     return {
-      
-      items: [],
+      images: [],
       index: null,
       product: {},
       image: null,
@@ -79,8 +77,8 @@ export default {
     getProduct () {
       this.$axios.$get(`${this.$config.apiUrl}/marketProducts/${this.$route.params.id}`).then((response) => {
         this.product = response;
-        this.items = this.product.images.map(img => ({
-          title: this.product.name,
+        this.images = this.product.images.map(img => ({
+          caption: this.product.name,
           src: this.$config.baseFileUrl + '/market/' + img.fileName
         }))
       });

@@ -1,7 +1,8 @@
 <template>
   <div>
     <b-row>
-      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="triggerLightbox(imageIndex)">
+      <Tinybox v-if="images.length > 0" no-thumbs loop v-model="index" :images="images" />
+      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="index = imageIndex">
         <b-img-lazy role="button" class="shadow-sm" center fluid rounded alt="ElectroTallinn" :src="image.src" />
       </b-col>
     </b-row>
@@ -27,9 +28,6 @@ export default {
   methods: {
     importAll(r) {
       r.keys().forEach(key => (this.images.push({ src: r(key) })));
-    },
-    triggerLightbox(index) {
-      this.index = index;
     }
   },
 };
