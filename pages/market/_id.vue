@@ -32,7 +32,7 @@
       </b-card>
       <b-card class="shadow-sm">
        <h3 class="underline font-weight-bold">{{ $t('main.photo') }}</h3>
-        <Tinybox v-if="images.length > 0" no-thumbs loop v-model="index" :images="images" />
+        <Tinybox v-if="images.length > 0" v-model="index" :images="images" />
         <div class="images" v-for="(image, imageIndex) in images" :key="imageIndex">
           <b-img role="button" center fluid-grow class="rounded image mb-3" @click="index = imageIndex" :src="image.src" />
         </div>
@@ -79,7 +79,8 @@ export default {
         this.product = response;
         this.images = this.product.images.map(img => ({
           caption: this.product.name,
-          src: this.$config.baseFileUrl + '/market/' + img.fileName
+          src: this.$config.baseFileUrl + '/market/' + img.fileName,
+          thumbnail: this.$config.baseFileUrl + '/market/' + img.fileName
         }))
       });
     },

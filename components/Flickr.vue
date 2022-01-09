@@ -1,10 +1,10 @@
 <template>
   <section>
-    <Tinybox v-if="images.length > 0" no-thumbs loop v-model="index" :images="images" />
+    <Tinybox v-if="images.length > 0" v-model="index" :images="images" />
     <b-row>
       <b-pagination limit="9" class="w-100" align="center" v-model="currentPage" :total-rows="totalRows" @change="loadImages" ></b-pagination>
         <b-col class="my-1" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="index = imageIndex">
-          <b-img-lazy role="button" class="shadow-sm" center fluid rounded :alt="image.date" :src="image.thumb"  />
+          <b-img-lazy role="button" class="shadow-sm" center fluid rounded :alt="image.date" :src="image.thumbnail"  />
             <div class="mt-2">
               <!-- <p v-if="image.title" class="image-title">{{image.title}}</p> -->
               <div class="d-flex justify-content-between align-items-start small">
@@ -58,7 +58,7 @@ export default {
           this.images = this.images.map(img => ({
             caption: img.datetaken,
             src: img.url_o,
-            thumb: img.url_n,
+            thumbnail: img.url_n,
             date: img.datetaken,
             views: img.views
           }))
