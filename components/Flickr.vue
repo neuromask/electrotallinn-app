@@ -1,8 +1,9 @@
 <template>
   <section>
+    <Tinybox v-if="images.length > 0" no-thumbs loop v-model="index" :images="images" />
     <b-row>
-      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="() => showImg(imageIndex)">
-        <b-img-lazy role="button" class="shadow-sm" center fluid rounded :alt="image.date" :src="image.thumb" />
+      <b-col class="mb-3" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="index = imageIndex">
+        <b-img-lazy role="button" class="shadow-sm" center fluid rounded :alt="image.date" :src="image.thumb"  />
           <div class="mt-2">
             <!-- <p v-if="image.title" class="image-title">{{image.title}}</p> -->
             <div class="d-flex justify-content-between align-items-start small">
@@ -11,7 +12,6 @@
             </div>
           </div>
       </b-col>
-      <vue-easy-lightbox v-if="images.length > 0" escDisabled moveDisabled :visible="visible" :imgs="images" :index="index" @hide="handleHide" ></vue-easy-lightbox>
     </b-row>
   </section>
 </template>
@@ -25,11 +25,13 @@ export default {
 
   data() {
     return {
-      visible: false,
       loading: false,
       images: [],
       index: null
     }
+  },
+  mounted() {
+    this.loadImages()
   },
   methods: {
     loadImages() {
@@ -38,7 +40,7 @@ export default {
         .then((response) => {
           this.images = response.data.photos.photo;
           this.images = this.images.map(img => ({
-            title: img.datetaken,
+            caption: img.datetaken,
             src: img.url_o,
             thumb: img.url_n,
             date: img.datetaken,
@@ -67,17 +69,7 @@ export default {
           per_page: 64,
         }
       })
-    },
-    showImg (index) {
-      this.index = index
-      this.visible = true
-    },
-    handleHide () {
-      this.visible = false
     }
-  },
-  mounted(){
-    this.loadImages()
   }
 };
 </script>
