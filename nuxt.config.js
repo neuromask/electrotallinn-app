@@ -31,6 +31,7 @@ export default {
     { src: '~/plugins/vue-tube', ssr: true },
     { src: '~/plugins/observe-visibility', ssr: true },
     { src: '~/plugins/vue-tinybox', ssr: true },
+    '~/plugins/jsonld',
     '~/plugins/globals'
   ],
 
