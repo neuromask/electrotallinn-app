@@ -30,7 +30,7 @@ export default {
     { src: '~/plugins/load-script' },
     { src: '~/plugins/vue-tube', ssr: true },
     { src: '~/plugins/observe-visibility', ssr: true },
-    { src: '~/plugins/vue-tinybox', ssr: false },
+    { src: '~/plugins/vue-tinybox', ssr: true },
     '~/plugins/globals'
   ],
 
@@ -191,7 +191,11 @@ export default {
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxyHeaders: false,
+    credentials: false,
+    proxy: true
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

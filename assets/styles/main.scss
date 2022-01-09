@@ -35,10 +35,14 @@ main {
 .shadow-sm {
   box-shadow: 0 0.125rem 0rem rgba(26, 39, 64, .2) !important;
 }
-.tinybox[data-v-7c98eda5] {
+.tinybox {
   background-color: rgba(26, 39, 64, .6)!important;
   z-index: 2000!important;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+}
+.tinybox__content__image {
+  background-color: $primary!important;
+  max-width: 100%!important;
 }
 [v-cloak] {
   display: none !important;
