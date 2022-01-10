@@ -42,11 +42,16 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     //'@nuxtjs/eslint-module',
+    '@nuxtjs/moment',
     '@nuxtjs/dotenv',
     '@nuxtjs/device',
     '@nuxtjs/svg'
     //'@aceforth/nuxt-optimized-images'
   ],
+
+  moment: {
+    locales: ['et','ru']
+  },
 
   optimizedImages: {
     optimizeImages: false,

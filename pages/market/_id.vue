@@ -14,7 +14,7 @@
             <p class="mb-0 pre" v-html="linkify(product.description)"></p>
           </b-list-group-item>
           <b-list-group-item variant="primary" v-if="product.category" class="text-secondary">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
-          <b-list-group-item variant="primary" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ new Date(product.dateCreated).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</strong></b-list-group-item>
+          <b-list-group-item variant="primary" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ $moment(product.dateCreated).format('LL') }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card class="shadow-sm">
@@ -64,9 +64,7 @@ export default {
   },
   created () {
     this.getProduct()
-  },
-  computed: {
-    
+    this.$moment.locale(this.$i18n.locale);
   },
   watch: {
     $route () {

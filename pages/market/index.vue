@@ -1,6 +1,6 @@
 <template>
   <section ref="top">
-    <h3 class="underline font-weight-bold">{{ $t('nav.market') }} <span class="small">({{ productsFull.length }})</span></h3>
+    <h3 class="underline font-weight-bold">{{ $t('nav.products') }} <span class="small">({{ productsFull.length }})</span></h3>
     <div class="mb-3">
       <b-btn size="sm" class="mr-1 mb-1" variant="primary" @click="resetFilters()">{{ $t('main.all') }}</b-btn>
       <b-button v-for="cat in $productCategories" :key="cat" size="sm" class="mr-1 mb-1" variant="primary" :pressed="selectedCats.includes(cat)" @click="selectCat(cat)">{{ $t('market.category.' + cat) }}</b-button>
@@ -38,7 +38,7 @@
           <template #footer>
             <div class="d-flex w-100 justify-content-between align-items-center">
               <a class="mb-1 small" v-if="product.category" @click="selectCat(product.category)" role="button"><strong>{{ $t('market.category.' + product.category) }}</strong></a>
-              <p class="mb-0 small" v-if="product.date_created">{{ new Date(product.date_created).toLocaleDateString($i18n.locale, { year:"numeric", month:"short", day: 'numeric' }) }}</p>
+              <p class="mb-0 small" v-if="product.date_created">{{ $moment(product.date_created).format('LL') }}</p>
             </div>
           </template>
         </b-card>
@@ -62,6 +62,7 @@ export default {
   },
   created() {
     this.getProducts();
+    this.$moment.locale(this.$i18n.locale);
   },
   computed: {
     resetShow: function () {
