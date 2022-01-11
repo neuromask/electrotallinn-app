@@ -73,7 +73,8 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
     '@nuxtjs/google-gtag',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    'vue-social-sharing/nuxt'
   ],
 
   'google-gtag':{

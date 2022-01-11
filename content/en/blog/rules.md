@@ -18,6 +18,7 @@ Source: https://www.riigiteataja.ee/akt/130032021003
 > 
 > Provided that a vehicle with a maximum speed of 25 km/h or whose engine power does not allow moving at a speed of more than 25 km/h was placed on the market earlier than January 1, 2021, it is also considered a light vehicle.
 
-#### Light vehicle rules and restrictions:
+***
+#### Light vehicle rules and restrictions [ [**PDF**](https://store.electrotallinn.ee/docs/rules.pdf) ]
 
-<markdown-image class="rounded" src="rules-en.png" alt="Traffic rules in Estonia" />
+<markdown-image class="w-150 mt-3 rounded" src="rules-en.png" alt="Traffic rules in Estonia"></markdown-image>

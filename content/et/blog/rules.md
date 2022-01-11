@@ -18,6 +18,7 @@ Source: https://www.riigiteataja.ee/akt/130032021003
 > 
 > Tingimusel, et sõiduk, mille maksimaalne kiirus on 25 km/h või mille mootori võimsus ei võimalda liikuda kiirusega üle 25 km/h, viidi turule varem kui 1. jaanuaril 2021, loetakse see ka tuleks. sõidukit.
 
-#### Kergesõidukite reeglid ja piirangud:
+***
+#### Kergesõidukite reeglid ja piirangud [ [**PDF**](https://store.electrotallinn.ee/docs/rules.pdf) ]
 
-<markdown-image class="rounded" src="rules-et.png" alt="Liikluseeskirjad Eestis" />
+<markdown-image class="w-150 mt-3 rounded" src="rules-et.png" alt="Liikluseeskirjad Eestis"></markdown-image>

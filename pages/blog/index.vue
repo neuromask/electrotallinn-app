@@ -7,7 +7,7 @@
           <div class="px-3 pt-3 pb-0">
             <div class="p-container overflow-hidden position-relative">
               <nuxt-link v-if="post.image" :to="localePath(post.path)">
-                <markdown-image class="p-image" :src="post.image" :alt="post.title" />
+                <markdown-image class="p-image" :src="post.image" :alt="post.title"></markdown-image>
               </nuxt-link>
             </div>
           </div>

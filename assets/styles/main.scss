@@ -79,7 +79,7 @@ h1, .h1 {
 blockquote {
   border-left: 6px solid $warning;
   position: relative;
-  padding: 1rem 1rem 0.1rem 1.4rem;
+  padding: 1rem 1rem 0.5rem 1.4rem;
   background:rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
 }
@@ -157,6 +157,7 @@ hr {
   border: 0;
   position: relative;
   display: block;
+  margin: 2rem 0;
 }
 hr:after {
   content:'';
@@ -317,6 +318,14 @@ hr:after {
   .full-row {
     margin-right: -3rem;
     margin-left: -3rem;
+  }
+  .w-140 {
+    width: 140%!important;
+    margin-left: -20%;
+  }
+  .w-150 {
+    width: 150%!important;
+    margin-left: -25%;
   }
 }
 
