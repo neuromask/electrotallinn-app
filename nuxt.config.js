@@ -1,3 +1,5 @@
+import getRoutes from "./utils/getRoutes";
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
@@ -169,7 +171,10 @@ export default {
     i18n: {
       locales: ['en', 'ru', 'et'],
       routesNameSeparator: '___'
-    }
+    },
+    routes() {
+      return getRoutes();
+    },
   },
 
   toast: {

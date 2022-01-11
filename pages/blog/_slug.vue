@@ -4,7 +4,7 @@
     <b-col cols="12" lg="8">
       <h1 class="font-weight-bold underline">{{ post.title }}</h1>
       <nuxt-content :document="post" />
-      <h3 class="underline mt-5">Share</h3>
+      <h3 class="underline mt-5">{{ $t('action.share') }}</h3>
       <div class="share-network-list text-white">
         <ShareNetwork
           v-for="network in networks"
