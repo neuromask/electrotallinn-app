@@ -24,12 +24,12 @@ main {
   width:100%;
 }
 </style>
+
 <script>
 export default {
   
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
-
     return {
       titleTemplate: '%s - ElectroTallinn',
       htmlAttrs: {
@@ -41,7 +41,7 @@ export default {
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: this.$t('meta.description') },
         { hid: "og:image", property: "og:image", content:`${this.$config.siteUrl}/app-et-${this.$i18n.locale}.jpg`, },
-        { hid: 'og:url', property: 'og:url', content: `https://app.electrotallinn.ee` },
+        { hid: 'og:url', property: 'og:url', content: this.$config.siteUrl+this.$nuxt.$route.path },
         { hid: "og:title", property: "og:title", content: 'ElectroTallinn App' },
         { hid: "og:description", property: "og:description", content: this.$t('meta.description') },
         { hid: "og:type", property: "og:type", content: 'website' },
