@@ -21,4 +21,4 @@ Source: https://www.riigiteataja.ee/akt/130032021003
 ***
 #### Kergesõidukite reeglid ja piirangud [ [**PDF**](https://store.electrotallinn.ee/docs/rules.pdf) ]
 
-<markdown-image class="w-150 mt-3 rounded" src="rules-et.png" alt="Liikluseeskirjad Eestis"></markdown-image>
+<markdown-image class="w-150 mt-3" src="rules-et.png" alt="Liikluseeskirjad Eestis"></markdown-image>

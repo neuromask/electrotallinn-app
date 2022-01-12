@@ -11,7 +11,7 @@ tags:
 
 ## Elektriliste tõukerataste, jalgrataste ja muude sõidukite häälestamine, uuendamine ja varuosad.
 
-<markdown-image class="w-150 rounded mt-3" src="site-services-head.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
+<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
 ***
 
@@ -23,7 +23,7 @@ tags:
 
 ### Dualtron, Kaabo, Zero, Kugoo
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mix.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
 #### Erinevad riigid
 
@@ -39,7 +39,7 @@ https://www.carbonrevo.com/ – väga stiilne häälestus võimsatele tõukerata
 
 ### Ninebot и Xiaomi
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mi.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
 #### Leedu
 
@@ -89,7 +89,7 @@ https://t.me/ninebot_max – Telegrami kanal
 
 ### Kontrollerid, platvormid, akud ja BMS
 
-<markdown-image class="w-150 rounded my-3" src="site-services-con-battery.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
 #### Erinevad riigid
 

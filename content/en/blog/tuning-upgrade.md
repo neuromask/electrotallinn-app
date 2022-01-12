@@ -11,7 +11,7 @@ tags:
 
 ## Tuning, upgrade and spare parts for electric scooters, bicycles and other vehicles.
 
-<markdown-image class="w-150 rounded mt-3" src="site-services-head.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
+<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
 ***
 
@@ -23,7 +23,7 @@ tags:
 
 ### Dualtron, Kaabo, Zero, Kugoo
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mix.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
 #### Different countries
 
@@ -39,7 +39,7 @@ https://www.carbonrevo.com/ - very stylish tuning for powerful scooters
 
 ### Ninebot и Xiaomi
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mi.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
 #### Lithuania
 
@@ -89,7 +89,7 @@ https://t.me/ninebot_max - Telegram channel
 
 ### Controllers, Platforms, Batteries and BMS
 
-<markdown-image class="w-150 rounded my-3" src="site-services-con-battery.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
 #### Different countries
 

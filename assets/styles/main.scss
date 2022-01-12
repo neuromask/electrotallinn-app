@@ -271,6 +271,7 @@ hr:after {
     width:100%;
     height: 12rem;
 }
+.p-image img,
 .p-image {
     width: 100%;
     height: 100%;
@@ -310,6 +311,8 @@ hr:after {
   box-shadow: 0 .125rem 0 rgba(26,39,64,.2)!important;
 }
 
+
+
 .opacity-75 { opacity: .75; }
 .opacity-50 { opacity: .50; }
 .opacity-25 { opacity: .25; }
@@ -325,7 +328,13 @@ hr:after {
   }
   .w-150 {
     width: 150%!important;
-    margin-left: -25%;
+    margin-left: -25%!important;
+  }
+  .d-inline-grid {
+    display: inline-grid;
+  }
+  .w-49 {
+    width: 49% !important;
   }
 }
 

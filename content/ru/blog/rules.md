@@ -20,5 +20,5 @@ tags:
 ***
 #### Правила и ограничения для Легкого ТС [ [**PDF**](https://store.electrotallinn.ee/docs/rules.pdf) ]
 
-<markdown-image class="w-150 mt-3 rounded" src="rules-ru.png" alt="ПДД в Эстонии"></markdown-image>
+<markdown-image class="w-150 mt-3" src="rules-ru.png" alt="ПДД в Эстонии"></markdown-image>
 

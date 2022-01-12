@@ -11,7 +11,7 @@ tags:
 
 ## Тюнинг, апгрейд и запчасти для электросамокатов, велосипедов и других средств передвижения.
 
-<markdown-image class="w-150 rounded mt-3" src="site-services-head.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
+<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
 ***
 
@@ -23,7 +23,7 @@ tags:
 
 ### Dualtron, Kaabo, Zero, Kugoo
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mix.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
 #### Разные страны
 
@@ -39,7 +39,7 @@ https://www.carbonrevo.com/ — очень стильный тюнинг под 
 
 ### Ninebot и Xiaomi
 
-<markdown-image class="w-150 rounded my-3" src="site-services-mi.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
 #### Литва
 
@@ -89,7 +89,7 @@ https://t.me/ninebot_max — Telegram канал
 
 ### Контроллеры, Платформы, Батареи и BMS
 
-<markdown-image class="w-150 rounded my-3" src="site-services-con-battery.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
+<markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
 #### Разные страны
 
