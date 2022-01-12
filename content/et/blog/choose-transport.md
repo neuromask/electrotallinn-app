@@ -63,10 +63,12 @@ Peamised omadused on laos vajalikud, et hiljem ei peaks te vaeva nägema uuendam
 - Pidurid: **hüdraulika**
 - Rehvid: laiad **10 × 3,0**
 
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Victor" src = "transport/dualtron-victor.jpg" alt = "Dualtron Victor"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Zero 10X" src = "transport/zero-10x.jpg" alt = "Zero 10X"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Vsett 10 Plus" src = "transport/vsett-10-plus.jpg" alt = "Vsett 10 Plus"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-3" caption = "Kaabo Mantis Pro" src = "transport/kaabo-mantis-pro.jpg" alt = "Kaabo Mantis Pro"></markdown-image>
+<div class="w-150 text-center">
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Victor" src = "transport/dualtron-victor.jpg" alt = "Dualtron Victor"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Zero 10X" src = "transport/zero-10x.jpg" alt = "Zero 10X"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Vsett 10 Plus" src = "transport/vsett-10-plus.jpg" alt = "Vsett 10 Plus"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-3" caption = "Kaabo Mantis Pro" src = "transport/kaabo-mantis-pro.jpg" alt = "Kaabo Mantis Pro"></markdown-image>
+</div>
 
 #### Milliseid rollerimudeleid on aeg ja meie katsetanud:
 
@@ -99,10 +101,12 @@ Põhiomadused on baasis vajalikud, et hiljem ei peaks te vaeva nägema uuendamis
 - Pidurid: **hüdraulika**
 - Rehvid: **11 tolli CST**
 
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Thunder" src = "transport/dualtron-thunder.jpg" alt = "Dualtron Thunder"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Kaabo Wolf Warriror" src = "transport/kaabo-wolf-warrior.jpg" alt = "Kaabo Wolf Warriror"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Ultra 2 72v" src = "transport/dualtron-ultra-2.jpg" alt = "Dualtron Ultra 2 72v"></markdown-image>
-<markdown-image class = "w-49 d-inline-grid mb-3" caption = "Zero 11X" src = "transport/zero-11x.jpg" alt = "Zero 11X"> </markdown-image>
+<div class="w-150 text-center">
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Thunder" src = "transport/dualtron-thunder.jpg" alt = "Dualtron Thunder"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Kaabo Wolf Warriror" src = "transport/kaabo-wolf-warrior.jpg" alt = "Kaabo Wolf Warriror"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Ultra 2 72v" src = "transport/dualtron-ultra-2.jpg" alt = "Dualtron Ultra 2 72v"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-3" caption = "Zero 11X" src = "transport/zero-11x.jpg" alt = "Zero 11X"> </markdown-image>
+</div>
 
 #### Milliseid rollerimudeleid on aeg ja meie katsetanud:
 

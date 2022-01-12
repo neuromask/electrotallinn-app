@@ -20,7 +20,7 @@
               <p class="text-muted d-block mb-0" v-if="product.description">{{ cutText(product.description, 35) }}</p>
             </div>
 
-            <b-list-group class="text-left">
+            <b-list-group class="text-left shadow-sm">
               <b-list-group-item variant="light" class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between align-items-center">
                   <div>

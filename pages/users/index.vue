@@ -34,7 +34,7 @@
               <b-button size="sm" variant="warning" class="text-info mt-2" nuxt :to="localePath(`/users/${user.uin}`)"><b-icon icon="person-bounding-box" /> {{ $t('nav.profile') }}</b-button>
           </div>
           <b-card-body>        
-            <b-list-group class="text-left">
+            <b-list-group class="text-left shadow-sm">
               <b-list-group-item variant="light" class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1 text-dark"><strong>{{ $t('main.info') }}</strong></h5>

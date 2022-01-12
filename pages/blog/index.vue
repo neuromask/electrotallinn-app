@@ -5,7 +5,7 @@
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="post in posts" :key="post.title">
         <b-card class="shadow-sm" bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
           <div class="px-3 pt-3 pb-0">
-            <div class="p-container overflow-hidden position-relative">
+            <div class="p-container position-relative">
               <nuxt-link v-if="post.image" :to="localePath(post.path)">
                 <markdown-image class="p-image" :src="post.image" :alt="post.title"></markdown-image>
               </nuxt-link>
