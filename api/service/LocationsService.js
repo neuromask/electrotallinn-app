@@ -1,4 +1,6 @@
 const locationsRepository = require("../repository/LocationsRepository.js");
+const usersRepository = require("../repository/UsersRepository.js");
+
 const utils = require("../utils/Utils.js");
 
 module.exports = {
@@ -53,7 +55,12 @@ module.exports = {
             throw { error: 'error.notFound' }
         }
 
-        return await locationsRepository.updateConfirmed(id, Math.abs(location.confirmed - 1))
+        let confirmed = Math.abs(location.confirmed - 1);
+        if (confirmed && !location.rewarded) {
+          usersRepository.addBalance(location.userUin, 500);
+        }
+
+        return await locationsRepository.updateConfirmed(id, confirmed)
     },
 
     getTopLocationSubmitters: async () => {
