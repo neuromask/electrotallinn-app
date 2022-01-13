@@ -9,9 +9,7 @@ tags:
 
 ## Klassifitseerimine ja abi elektritõukeratta valikul.
 
-<markdown-image class = "w-150 mt-3" src = "site-choose-head.jpg" alt = "Häälestamine, täiendused ja osad"> </markdown-image>
-
-***
+<markdown-image class = "hero-image my-5" src = "site-choose-head.jpg" alt = "Häälestamine, täiendused ja osad"> </markdown-image>
 
 > ##### Ära tee kiirustades vigu!
 >
@@ -102,7 +100,7 @@ Põhiomadused on baasis vajalikud, et hiljem ei peaks te vaeva nägema uuendamis
 - Rehvid: **11 tolli CST**
 
 <div class="w-150 text-center">
-  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Thunder" src = "transport/dualtron-thunder.jpg" alt = "Dualtron Thunder"></markdown-image>
+  <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Thunder 2" src = "transport/dualtron-thunder-2.jpg" alt = "Dualtron Thunder 2"></markdown-image>
   <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Kaabo Wolf Warriror" src = "transport/kaabo-wolf-warrior.jpg" alt = "Kaabo Wolf Warriror"></markdown-image>
   <markdown-image class = "w-49 d-inline-grid mb-1" caption = "Dualtron Ultra 2 72v" src = "transport/dualtron-ultra-2.jpg" alt = "Dualtron Ultra 2 72v"></markdown-image>
   <markdown-image class = "w-49 d-inline-grid mb-3" caption = "Zero 11X" src = "transport/zero-11x.jpg" alt = "Zero 11X"> </markdown-image>

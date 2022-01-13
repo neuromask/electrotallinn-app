@@ -1,5 +1,5 @@
 <template>
-<article>
+<article class="article">
   <b-row class="justify-content-md-center">
     <b-col cols="12" lg="8">
       <h1 class="font-weight-bold underline">{{ post.title }}</h1>

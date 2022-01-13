@@ -11,9 +11,7 @@ tags:
 
 ## Tuning, upgrade and spare parts for electric scooters, bicycles and other vehicles.
 
-<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
-
-***
+<markdown-image class="hero-image my-5" src="site-services-head.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
 > Useful links to places where you can order spare parts for our vehicles, from small models to monsters under 50kg. You can find almost anything you want on serial and custom vehicles. Links to e-shops, aliexpress and people selling their products.
 > 
@@ -21,7 +19,7 @@ tags:
 
 ***
 
-### Dualtron, Kaabo, Zero, Kugoo
+### **Dualtron, Kaabo, Zero, Kugoo**
 
 <markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
@@ -37,7 +35,7 @@ https://www.carbonrevo.com/ - very stylish tuning for powerful scooters
 
 ***
 
-### Ninebot и Xiaomi
+### **Ninebot and Xiaomi**
 
 <markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 
@@ -87,7 +85,7 @@ https://t.me/ninebot_max - Telegram channel
 
 ***
 
-### Controllers, Platforms, Batteries and BMS
+### **Controllers, Platforms, Batteries and BMS**
 
 <markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Tuning, upgrade and spare parts"></markdown-image>
 

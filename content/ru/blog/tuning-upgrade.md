@@ -11,9 +11,7 @@ tags:
 
 ## Тюнинг, апгрейд и запчасти для электросамокатов, велосипедов и других средств передвижения.
 
-<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
-
-***
+<markdown-image class="hero-image my-5" src="site-services-head.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
 > Полезные ссылки на места, где можно заказать запчасти на наши транспортные средства, начиная с маленьких моделей и заканчивая монстрами под 50кг. Можно найти почти все что вы только пожелаете на серийные, так и кастомные средства передвижения. Ссылки на е-магазины, aliexpress и людей, торгующих изделиями своего производства.
 > 
@@ -21,7 +19,7 @@ tags:
 
 ***
 
-### Dualtron, Kaabo, Zero, Kugoo
+### **Dualtron, Kaabo, Zero, Kugoo**
 
 <markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
@@ -37,7 +35,7 @@ https://www.carbonrevo.com/ — очень стильный тюнинг под 
 
 ***
 
-### Ninebot и Xiaomi
+### **Ninebot и Xiaomi**
 
 <markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 
@@ -87,7 +85,7 @@ https://t.me/ninebot_max — Telegram канал
 
 ***
 
-### Контроллеры, Платформы, Батареи и BMS
+### **Контроллеры, Платформы, Батареи и BMS**
 
 <markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Тюнинг, апгрейд и запчасти"></markdown-image>
 

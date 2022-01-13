@@ -11,9 +11,7 @@ tags:
 
 ## Elektriliste tõukerataste, jalgrataste ja muude sõidukite häälestamine, uuendamine ja varuosad.
 
-<markdown-image class="w-150 mt-3" src="site-services-head.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
-
-***
+<markdown-image class="hero-image my-5" src="site-services-head.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
 > Kasulikud lingid kohtadele, kust saab tellida meie sõidukitele varuosi, alates väikestest mudelitest kuni alla 50 kg kaaluvate koletisteni. Seeria- ja kohandatud sõidukitelt leiate peaaegu kõike, mida soovite. Lingid e-poodidele, aliexpressile ja nende tooteid müüvatele inimestele.
 > 
@@ -21,7 +19,7 @@ tags:
 
 ***
 
-### Dualtron, Kaabo, Zero, Kugoo
+### **Dualtron, Kaabo, Zero, Kugoo**
 
 <markdown-image class="w-150 my-3" src="site-services-mix.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
@@ -37,7 +35,7 @@ https://www.carbonrevo.com/ – väga stiilne häälestus võimsatele tõukerata
 
 ***
 
-### Ninebot и Xiaomi
+### **Ninebot ja Xiaomi**
 
 <markdown-image class="w-150 my-3" src="site-services-mi.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 
@@ -87,7 +85,7 @@ https://t.me/ninebot_max – Telegrami kanal
 
 ***
 
-### Kontrollerid, platvormid, akud ja BMS
+### **Kontrollerid, platvormid, akud ja BMS**
 
 <markdown-image class="w-150 my-3" src="site-services-con-battery.jpg" alt="Tuunimine, uuendamine ja varuosad"></markdown-image>
 

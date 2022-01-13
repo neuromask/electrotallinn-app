@@ -1,7 +1,7 @@
 ---
 title: Traffic rules in Estonia
 description: Traffic rules for eScooters and other types of light transport in Estonia
-image: rules-en.png
+image: rules-hero.jpg
 position: 1
 tags:
   - content
@@ -10,7 +10,7 @@ tags:
 ---
 ### Traffic rules for eScooters and other types of light transport in Estonia
 
-Source: https://www.riigiteataja.ee/akt/130032021003
+<markdown-image class="hero-image my-5" src="rules-hero.jpg" alt="Traffic rules in Estonia"></markdown-image>
 
 >#### Definition
 >
@@ -18,7 +18,7 @@ Source: https://www.riigiteataja.ee/akt/130032021003
 > 
 > Provided that a vehicle with a maximum speed of 25 km/h or whose engine power does not allow moving at a speed of more than 25 km/h was placed on the market earlier than January 1, 2021, it is also considered a light vehicle.
 
-***
+Source: https://www.riigiteataja.ee/akt/130032021003
 #### Light vehicle rules and restrictions [ [**PDF**](https://store.electrotallinn.ee/docs/rules.pdf) ]
 
 <markdown-image class="w-150 mt-3" src="rules-en.png" alt="Traffic rules in Estonia"></markdown-image>

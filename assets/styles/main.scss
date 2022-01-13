@@ -247,6 +247,8 @@ hr:after {
   padding-right: 1rem;
   padding-left: 1rem;
 }
+
+.article table,
 .tinybox__thumbs__item,
 .tinybox__content__image,
 .list-group,
@@ -311,7 +313,19 @@ hr:after {
   box-shadow: 0 .125rem 0 rgba(26,39,64,.2)!important;
 }
 
-
+.article table th,
+.article table td {
+  border-color: #dee7f2;
+  padding: 0.5rem 0.2rem;
+}
+.article table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.article table {
+  background-color: #edf2f8;
+  width: 100%;
+  padding: 0.2rem;
+}
 
 .opacity-75 { opacity: .75; }
 .opacity-50 { opacity: .50; }
@@ -335,6 +349,10 @@ hr:after {
   }
   .w-49 {
     width: 49% !important;
+  }
+  .hero-image {
+    width: 180%!important;
+    margin-left: -40%!important;
   }
 }
 
