@@ -94,16 +94,6 @@ export default {
     disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
   },
 
-  router: {
-    scrollBehavior (to, from, savedPosition) {
-      if (to.hash) {
-        return {selector: to.hash}
-      } else {
-        return {x: 0, y: 0}
-      }
-    }
-  },
-
   bootstrapVue: {
     icons: true,
     bootstrapCSS: false,

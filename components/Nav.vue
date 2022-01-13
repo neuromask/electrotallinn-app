@@ -3,7 +3,7 @@
       <div class="position-absolute sideMenu" v-b-toggle.sidebar-variant><a href="#"><b-icon icon="list" /></a></div>
       <div class="lang-select"><LanguageInput /></div>
       <b-navbar-nav class="mx-auto text-center main-nav">
-        <b-nav-item :to="localePath('/')" nuxt exact><b-icon icon="house-door-fill" /><span class="navText">{{ $t('nav.home') }}</span></b-nav-item>
+        <b-nav-item :to="localePath('/')" nuxt :exact="!$nuxt.$route.name.includes('index')"><b-icon icon="house-door-fill" /><span class="navText">{{ $t('nav.home') }}</span></b-nav-item>
         <b-nav-item :to="localePath('/market')" nuxt><b-icon icon="basket2-fill" /><span class="navText">{{ $t('nav.market') }}</span></b-nav-item>
         <b-nav-item :to="localePath('/blog')" nuxt><b-icon icon="chat-square-text-fill" /><span class="navText">{{ $t('nav.blog') }}</span></b-nav-item>
         <b-nav-item :to="localePath('/map')" nuxt><b-icon icon="geo-alt-fill" /><span class="navText">{{ $tc('nav.map', 1) }}</span></b-nav-item>
