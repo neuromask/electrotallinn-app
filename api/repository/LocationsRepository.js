@@ -21,7 +21,7 @@ module.exports = {
     },
 
     findOne: async (id) => {
-        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created FROM locations WHERE id = ?';
+        let sql = 'SELECT id, title, lat, lng, description, type, image_name, confirmed, user_first_name, user_uin, date_created, rewarded FROM locations WHERE id = ?';
         let params = [id];
 
         let result = await db.query(sql, params);
@@ -31,13 +31,6 @@ module.exports = {
     save: async (location) => {
         let sql = 'INSERT INTO locations (title, description, lat, lng, image, image_name, type, user_first_name, user_uin, confirmed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         let params = [location.title, location.description, location.lat, location.lng, location.image, location.image_name, location.type, location.userFirstName, location.userUin, 0];
-
-        // add 500 to user balance
-        if (location.userUin) {
-          let sql = 'UPDATE users SET balance = balance + 500 WHERE uin = ?';
-          let params = [location.userUin];
-          await db.query(sql, params);
-        }
 
         return await db.query(sql, params);
     },

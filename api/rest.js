@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
 
+const homeController = require('./controller/HomeController');
 const authenticationController = require('./controller/AuthenticationController');
 const usersController = require('./controller/UsersController');
 const locationsController = require('./controller/LocationsController');
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 // Backend
 
+app.use('/home', homeController);
 app.use('/authentication', authenticationController);
 app.use('/users', usersController);
 app.use('/locations', locationsController);
