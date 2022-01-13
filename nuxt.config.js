@@ -76,6 +76,7 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/google-gtag',
     '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     'vue-social-sharing/nuxt'
   ],
 
@@ -165,6 +166,11 @@ export default {
     routes() {
       return getRoutes();
     },
+  },
+
+  robots: {
+    UserAgent: '*',
+    Sitemap: 'https://electrotallinn.ee/sitemap.xml'
   },
 
   toast: {

@@ -159,6 +159,9 @@ hr {
   display: block;
   margin: 2rem 0;
 }
+hr.hr-sm {
+  margin: 1rem 0;
+}
 hr:after {
   content:'';
   position: absolute;

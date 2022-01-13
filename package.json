@@ -15,6 +15,7 @@
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/i18n": "^7.0.3",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/toast": "^3.3.1",
     "bootstrap-icons-vue": "^0.8.0",
     "bootstrap-vue": "^2.21.2",
