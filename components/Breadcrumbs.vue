@@ -1,34 +1,48 @@
 <template>
-    <b-breadcrumb>
-      <b-breadcrumb-item :to="'/'" class="title">
-        Home
-      </b-breadcrumb-item>
-      <b-breadcrumb-item 
-        nuxt
-        v-for="link, i in breadcrumbsLinks"
-        :key="i"
-        :to="link"
-        >
-        {{ link.title }}
-      </b-breadcrumb-item>
-    </b-breadcrumb>
+  <div class="d-flex justify-content-center" v-if="crumbs.length != 0">
+<!--       <b-button size="sm" v-bind="attrs" v-on="on" @click="$router.back()" >
+        <b-icon>back</b-icon>
+      </b-button> -->
+
+    <b-breadcrumb class="py-0" :items="crumbs"></b-breadcrumb>
+  </div>
 </template>
 
 <script>
-import startCase from 'lodash.startcase'
-
-  export default {
-    name: 'breadcrumbs',
-    computed: {
-      breadcrumbsLinks () {
-        let tmp = []
-        if (this.$route.matched) {
-          this.$route.matched.forEach(link => {
-            tmp.push(Object.assign({title: startCase(link.path)}, link))
+export default {
+  computed: {
+    crumbs() {
+      let fullPath = this.$route.fullPath
+      fullPath = (fullPath.substr(-1) === '/') ? fullPath.slice(0, -1) : fullPath;
+      const params = fullPath.substring(1).split('/')  
+      const crumbs = []
+      let path = ''
+      console.log(fullPath)
+      
+      params.forEach((param, index) => {
+        
+        path = `${path}/${param}`
+        const match = this.$router.match(path)
+        console.log(match.name)
+        if (match.name !== null && !match.name.includes('index')) {
+          console.log(index)
+          crumbs.push({
+            text: this.$t(`nav.${param}`),
+            to: { name: match.name },
+            ...match,
           })
         }
-        return tmp
-      }
-    }
-  }
+        if (match.name.includes('index')) {
+          crumbs.push({
+            text: this.$t('nav.home'),
+            to: { name: match.name }
+          })
+        }
+        
+      })
+      console.log(crumbs)
+      return crumbs
+    },
+  },
+}
 </script>

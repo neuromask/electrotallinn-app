@@ -2,6 +2,7 @@
   <div id="app" class="layout-default">
     <Sidebar />
     <Header />
+    <!-- <Breadcrumbs /> -->
     <main v-cloak>
       <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-2 main-container rounded position-relative overflow-visible">
         <Nav />
@@ -21,6 +22,8 @@
 }
 </style>
 <script>
+import jsonLd from "~/assets/json/jsonld.json";
+
 export default {
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
@@ -49,47 +52,7 @@ export default {
     }
   },
   jsonld() {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'NGO',
-      'name': 'ElectroTallinn',
-      'legalName': 'ElectroTallinn',
-      'url': 'https://electrotallinn.ee',
-      'logo': 'https://store.electrotallinn.ee/electrotallinn-logo.jpg',
-      'foundingDate': '2020',
-      'founders': [
-        {
-          '@type': 'Person',
-          'name': 'Aleksandr Ponomarjov'
-        }
-      ],
-      'address': {
-        '@type': 'PostalAddress',
-        'streetAddress': 'Paepargi 45',
-        'addressLocality': 'Harjumaa',
-        'addressRegion': 'EE',
-        'postalCode': '11417',
-        'addressCountry': 'Estonia'
-      },
-      'contactPoint': {
-        '@type': 'ContactPoint',
-        'contactType': 'joint rides',
-        'telephone': '[+372 55604175]',
-        'email': 'electrotallinn.ee@gmail.com'
-      },
-      'sameAs': [
-        'https://www.facebook.com/groups/electrotallinn',
-        'https://www.instagram.com/electrotallinn',
-        'https://www.reddit.com/r/electrotallinn',
-        'https://t.me/electrotallinn',
-        'https://discord.io/electrotallinn',
-        'https://500px.com/p/electrotallinn',
-        'https://www.youtube.com/electrotallinn',
-        'https://www.tiktok.com/@electrotallinn',
-        'https://vk.com/electrotallinn',
-        'https://www.flickr.com/electrotallinn'
-      ]
-    }
+     return jsonLd;
   }
 }
 </script>

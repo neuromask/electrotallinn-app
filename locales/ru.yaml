@@ -2,6 +2,7 @@ meta:
   description: Рынок электротранспорта, карта зарядки и ремонта, профили ElectroPeople.
 nav:
   home: Главная
+  index: Главная
   market: Маркет
   map: Карта
   blog: Блог

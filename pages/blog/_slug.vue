@@ -37,6 +37,17 @@ export default {
       post.sharing
     return { post }
   },
+  data () {
+    return {
+      networks: [
+        { network: 'facebook', name: 'Facebook', icon: 'facebook', color: '#1877f2' },
+        { network: 'reddit', name: 'Reddit', icon: 'bookmark-fill', color: '#ff4500' },
+        { network: 'telegram', name: 'Telegram', icon: 'card-text', color: '#0088cc' },
+        { network: 'twitter', name: 'Twitter', icon: 'twitter', color: '#1da1f2' },
+        { network: 'whatsapp', name: 'Whatsapp', icon: 'telephone', color: '#25d366' }
+      ]
+    }
+  },
   head() { 
     return { 
       title: this.post.title,
@@ -50,16 +61,33 @@ export default {
       ]
     }
   },
-  data () {
+  jsonld() {
     return {
-      networks: [
-        { network: 'facebook', name: 'Facebook', icon: 'facebook', color: '#1877f2' },
-        { network: 'reddit', name: 'Reddit', icon: 'bookmark-fill', color: '#ff4500' },
-        { network: 'telegram', name: 'Telegram', icon: 'card-text', color: '#0088cc' },
-        { network: 'twitter', name: 'Twitter', icon: 'twitter', color: '#1da1f2' },
-        { network: 'whatsapp', name: 'Whatsapp', icon: 'telephone', color: '#25d366' }
-      ]
-    }
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": this.post.title + " - ElectroTallinn",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": this.$config.siteUrl+this.post.path
+      },
+      "headline": this.post.title,
+      "description": this.post.description,
+      "image": this.$config.siteUrl + require(`/assets/blog/${this.post.image}`),
+      "author": {
+        "@type": "Website",
+        "name": "ElectroTallinn",
+        "url": this.$config.siteUrl 
+      },
+      "url": this.$config.siteUrl,
+      "publisher": {
+        "@type": "Organization",
+        "name": "ElectroTallinn",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://electrotallinn.ee/electrotallinn-logo.jpg"
+        }
+      }
+    };
   }
 }
 </script>
