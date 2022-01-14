@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="layout-default">
     <Sidebar />
-    <Header />
-    <!-- <Breadcrumbs /> -->
-    <main v-cloak>
-      <b-container fluid="xl" class="bg-light px-lg-5 pt-0 mt-2 main-container rounded position-relative overflow-visible">
+    <Header class="mb-3" />
+    <Breadcrumbs />
+    <main class="mt-2">
+      <b-container fluid="xl" class="bg-light px-lg-5 pt-0 main-container rounded position-relative overflow-visible">
         <Nav />
         <b-alert v-show="!this.$user.isLogged" class="mt-3 mb-0" variant="warning" show dismissible><b-icon icon="arrow-up" /> {{ $t('main.loginToastWarning') }}</b-alert>
         <Nuxt />

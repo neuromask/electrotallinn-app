@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-list-group class="side-menu w-100">
-      <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/')" exact><b-icon icon="house-door-fill"></b-icon>{{ $t('nav.home') }}</b-list-group-item>
+      <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/')" exact><b-icon icon="house-fill"></b-icon>{{ $t('nav.home') }}</b-list-group-item>
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/market')"><b-icon icon="basket2-fill"></b-icon>{{ $t('nav.market') }}</b-list-group-item>
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/blog')"><b-icon icon="chat-square-text-fill"></b-icon>{{ $t('nav.blog') }}</b-list-group-item>
       <b-list-group-item class="font-weight-bold text-primary" nuxt :to="localePath('/map')"><b-icon icon="geo-alt-fill"></b-icon>{{ $t('nav.map') }}</b-list-group-item>

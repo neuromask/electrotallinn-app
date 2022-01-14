@@ -1,6 +1,7 @@
 {
   "@context":"https://schema.org",
-  "@type":"NGO",
+  "@type": "Organization",
+  "@id":"https://electrotallinn.ee",
   "name":"ElectroTallinn",
   "legalName":"ElectroTallinn",
   "description":"Electric transport group in Tallinn. The main goal of the group is to unite those who are ill with electric transport for joint rides and participation in the events.",
@@ -8,7 +9,6 @@
   "logo":"https://electrotallinn.ee/electrotallinn-logo.jpg",
   "image": "https://electrotallinn.ee/electrotallinn-logo.jpg",
   "foundingDate":"2020",
-  "hasMap": "https://g.page/electrotallinn?share",
   "founders":[
     {
         "@type":"Person",
