@@ -39,7 +39,6 @@ export default {
       params.forEach((param, index) => {
         path = `${path}/${param}`
         const match = this.$router.match(path)
-        console.log(match.name)
         if (match.name !== null) {
           if (index == 0) {
             crumbs.push({
@@ -82,7 +81,7 @@ export default {
           }
         }
       })
-      console.log(crumbs)
+      //console.log(crumbs)
       return crumbs
     },
   },
