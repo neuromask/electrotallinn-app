@@ -81,14 +81,14 @@ export default {
   ],
 
   gtm: {
-    enabled: true, /* see below */
+    enabled: undefined, /* see below */
     debug: false,
  
     id: undefined,
     layer: 'dataLayer',
     variables: {},
  
-    pageTracking: true,
+    pageTracking: false,
     pageViewEventName: 'nuxtRoute',
  
     autoInit: true,
