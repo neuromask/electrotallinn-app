@@ -81,7 +81,7 @@ export default {
   ],
 
   gtm: {
-    enabled: undefined, /* undefined */
+    enabled: true, /* undefined */
     debug: false,
  
     id: undefined,
