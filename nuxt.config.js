@@ -88,14 +88,14 @@ export default {
     layer: 'dataLayer',
     variables: {},
  
-    pageTracking: false,
+    pageTracking: true,
     pageViewEventName: 'nuxtRoute',
  
     autoInit: true,
     respectDoNotTrack: true,
  
     scriptId: 'gtm-script',
-    scriptDefer: false,
+    scriptDefer: true,
     scriptURL: 'https://www.googletagmanager.com/gtm.js',
     crossOrigin: false,
  
