@@ -134,7 +134,7 @@ export default {
       'SidebarPlugin',
       'TabsPlugin',
       'TablePlugin',
-      
+      'PaginationPlugin'
     ],
     directivePlugins: [],
     components: [
