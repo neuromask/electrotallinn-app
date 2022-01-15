@@ -182,7 +182,7 @@ export default {
       this.slotStyle.pureHeight = (this.wrapWidth / 3) * 1.285;
     },
     start(e, isTest) {
-      this.$gtag('event', 'game_started', { 'event_category': 'game'})
+      this.$gtm.push({ event: 'game_started' })
       if (this.opts || this.balance < 1) {
         return;
       }

@@ -74,29 +74,37 @@ export default {
     '@nuxtjs/i18n',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    '@nuxtjs/google-gtag',
+    '@nuxtjs/gtm',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     'vue-social-sharing/nuxt'
   ],
 
-  'google-gtag':{
-    id: process.env.GTAG_ID || 'G-73HXKBCYBZ', // required
-    config:{
-      // this are the config options for `gtag
-      // check out official docs: https://developers.google.com/analytics/devguides/collection/gtagjs/
-      anonymize_ip: false, // anonymize IP 
-      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
-      linker:{
-        domains:['app.electrotallinn.ee']
-      }
-    },
-    debug: true, // enable to track in dev mode
-    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...)
+  gtm: {
+    enabled: undefined, /* see below */
+    debug: false,
+ 
+    id: undefined,
+    layer: 'dataLayer',
+    variables: {},
+ 
+    pageTracking: false,
+    pageViewEventName: 'nuxtRoute',
+ 
+    autoInit: true,
+    respectDoNotTrack: true,
+ 
+    scriptId: 'gtm-script',
+    scriptDefer: true,
+    scriptURL: 'https://www.googletagmanager.com/gtm.js',
+    crossOrigin: false,
+ 
+    noscript: true,
+    noscriptId: 'gtm-noscript',
+    noscriptURL: 'https://www.googletagmanager.com/ns.html'
   },
 
   bootstrapVue: {
-
     bootstrapCSS: false,
     bootstrapVueCSS: false,
     componentPlugins: [
@@ -264,7 +272,10 @@ export default {
     siteUrl: process.env.SITE_URL || 'https://electrotallinn.ee',
     apiUrl: process.env.API_URL || 'https://electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY,
-    flickrKey: process.env.FLICKR_KEY
+    flickrKey: process.env.FLICKR_KEY,
+    gtm: {
+      id: process.env.GOOGLE_TAG_MANAGER_ID || 'GTM-WCXP8ZF'
+    }
   },
   privateRuntimeConfig: {
   },
