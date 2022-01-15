@@ -5,23 +5,21 @@
       <h3 class="underline font-weight-bold">{{ $t('nav.products') }} <span class="small">({{ marketProducts.length }})</span></h3>
       <b-icon v-if="$user.uin == $route.params.id" role="button" v-b-modal.product-modal class="align-middle" font-scale="2" variant="primary" size icon="plus-square" />
     </div>
-    <b-table class="m-0 rounded shadow-sm" striped table-variant="light" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
+    <b-table @row-clicked="gotoProduct" hover tbody-tr-class="clickable" class="m-0 rounded shadow-sm" striped table-variant="light" :items="marketProducts" :fields="marketProductFields" :sort-by.sync="marketProductsSortBy" :sort-desc.sync="marketProductsSortDesc">
         <template #cell(name)="data">
           <div class="w-100 d-flex justify-content-between align-items-center">
             <div>
-              <b-avatar v-if="data.item.images[0]" :to="localePath(`/market/${data.item.id}`)" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
-              <b-avatar v-else :to="localePath(`/market/${data.item.id}`)" rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
+              <b-avatar v-if="data.item.images[0]" rounded :src="`${$config.baseFileUrl}/market/${data.item.images[0].fileName}`" size="4.5rem"></b-avatar>
+              <b-avatar v-else rounded :src="require('@/assets/img/no-image.png')" size="4.5rem"></b-avatar>
             </div>
             <div class="ml-3 w-100">
-              <nuxt-link :to="localePath(`/market/${data.item.id}`)">
-                <h4>{{ cutText(data.item.name, 20) }}</h4>
-              </nuxt-link>
+              <h4>{{ cutText(data.item.name, 20) }}</h4>
               <p class="small">{{ cutText(data.item.description, 25) }}</p>
               <p class="small"><strong>{{ $t('market.category.' + data.item.category) }}</strong> | <strong>{{ data.item.price }}€</strong></p>
             </div>
             <a v-if="$user.uin == $route.params.id">
-              <b-icon scale="2" v-if="data.detailsShowing" class="mr-2 align-middle" icon="chevron-up" variant="primary" @click="data.toggleDetails"/>
-              <b-icon scale="2" v-else variant="primary" class="mr-2 align-middle" icon="chevron-down" @click="data.toggleDetails"/>
+              <b-icon font-scale="2" v-if="data.detailsShowing" class="mr-2 align-middle" icon="chevron-up" variant="primary" @click="data.toggleDetails"/>
+              <b-icon font-scale="2" v-else variant="primary" class="mr-2 align-middle" icon="chevron-down" @click="data.toggleDetails"/>
             </a>
           </div>
         </template>
@@ -104,6 +102,9 @@ export default {
           return text.substring(0, limit) + '...';
       }
       else return text;
+    },
+    gotoProduct(item, index, event) {
+      this.$router.push({path: this.localePath(`/market/${item.id}`)});
     }
   }
 }
