@@ -81,21 +81,21 @@ export default {
   ],
 
   gtm: {
-    enabled: true, /* undefined */
+    enabled: true, /* see below */
     debug: false,
  
     id: undefined,
     layer: 'dataLayer',
     variables: {},
  
-    pageTracking: false,
+    pageTracking: true,
     pageViewEventName: 'nuxtRoute',
  
     autoInit: true,
     respectDoNotTrack: true,
  
     scriptId: 'gtm-script',
-    scriptDefer: true,
+    scriptDefer: false,
     scriptURL: 'https://www.googletagmanager.com/gtm.js',
     crossOrigin: false,
  
@@ -175,7 +175,8 @@ export default {
       'BIconListUl',
       'BIconTrophyFill',
       'BIconChevronUp',
-      'BIconChevronDown'
+      'BIconChevronDown',
+      'BIconRecordCircle'
     ],
     directives: []
   },
