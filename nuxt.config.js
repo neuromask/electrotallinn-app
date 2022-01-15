@@ -138,6 +138,8 @@ export default {
       'BIconDice5Fill',
       'BIconPersonFill',
       'BIconHeart',
+      'BIconSuitHeartFill',
+      'BIconAsterisk',
       'BIconSearch',
       'BIconX',
       'BIconShieldLockFill',

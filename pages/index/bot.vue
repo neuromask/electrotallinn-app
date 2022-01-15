@@ -18,16 +18,16 @@
           <NuxtLink :to="localePath('/market')"><strong>{{ $t('main.textMarket') }}</strong></NuxtLink>
         </i18n>
         <b-list-group class="shadow-sm">
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/sell</strong></kbd> - {{ $t('main.sell') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/add</strong></kbd> - {{ $t('main.add') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/map</strong></kbd> - {{ $t('main.map') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/market</strong></kbd> - {{ $t('main.market') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/weather</strong></kbd> - {{ $t('main.weather') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/ali</strong></kbd> - {{ $t('main.ali') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/help</strong></kbd> - {{ $t('main.help') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/social</strong></kbd> - {{ $t('main.social') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><strong>/pic</strong></kbd> - {{ $t('main.pic') }}</b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light"><kbd><b-icon icon="geo-alt-fill" /></kbd> - {{ $t('main.nearest') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/sell</strong></b-badge></h5> - {{ $t('main.sell') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/add</strong></b-badge></h5> - {{ $t('main.add') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/map</strong></b-badge></h5> - {{ $t('main.map') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/market</strong></b-badge></h5> - {{ $t('main.market') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/weather</strong></b-badge></h5> - {{ $t('main.weather') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/ali</strong></b-badge></h5> - {{ $t('main.ali') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/help</strong></b-badge></h5> - {{ $t('main.help') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/social</strong></b-badge></h5> - {{ $t('main.social') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/pic</strong></b-badge></h5> - {{ $t('main.pic') }}</b-list-group-item>
+          <b-list-group-item class="text-dark" variant="light"><b-badge><b-icon font-scale="1.5" icon="geo-alt-fill" /></b-badge> - {{ $t('main.nearest') }}</b-list-group-item>
         </b-list-group>
       </b-col>
     </b-row>
