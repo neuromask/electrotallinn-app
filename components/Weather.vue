@@ -18,14 +18,14 @@
       </div>
       <div class="d-flex w-100 justify-content-between align-items-center">
         <div>
-          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.feels_like) }}°<small>C</small></b-badge></h5> {{ $t('weather.feels') }}</div>
-          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.temp_max) }}°<small>C</small></b-badge></h5> {{ $t('weather.max') }}</div>
-          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.temp_min) }}°<small>C</small></b-badge></h5> {{ $t('weather.min') }}</div>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.main.feels_like) }}°<small>C</small></b-badge></h5> {{ $t('weather.feels') }}</div>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.main.temp_max) }}°<small>C</small></b-badge></h5> {{ $t('weather.max') }}</div>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.main.temp_min) }}°<small>C</small></b-badge></h5> {{ $t('weather.min') }}</div>
         </div>
         <div>
-          <div class="mb-0 text-light text-right">{{ $t('weather.wind') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.wind.speed) }} <small>m/s</small></b-badge></h5></div>
-          <div class="mb-0 text-light text-right">{{ $t('weather.humidity') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.humidity) }} <small>%</small></b-badge></h5></div>
-          <div class="mb-0 text-light text-right">{{ $t('weather.pressure') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.pressure) }} <small>hPa</small></b-badge></h5></div>
+          <div class="mb-0 text-light text-right">{{ $t('weather.wind') }} <h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.wind.speed) }} <small>m/s</small></b-badge></h5></div>
+          <div class="mb-0 text-light text-right">{{ $t('weather.humidity') }} <h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.main.humidity) }} <small>%</small></b-badge></h5></div>
+          <div class="mb-0 text-light text-right">{{ $t('weather.pressure') }} <h5 class="d-inline"><b-badge variant="info" class="py-0 align-baseline">{{ Math.round(weather.main.pressure) }} <small>hPa</small></b-badge></h5></div>
         </div>
       </div>
     </b-card>
