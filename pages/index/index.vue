@@ -4,13 +4,12 @@
       <b-col>
         <h3 class="mb-0 font-weight-bold mb-3">ElectroTallinn - {{ $tc('main.aboutText', 1) }}</h3>
         <hr class="hr-sm">
-        <p class="mb-2 lead">{{ $t('meta.description') }}</p>
-        <p class="font-weight-bold opacity-75 mb-3">{{ $tc('main.aboutText', 2) }}</p>
+        <p class="mb-3 lead">{{ $tc('main.aboutText', 2) }} {{ $t('meta.description') }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
       </b-col>
     </b-row>
-    <b-row align-v="center" class="mb-5">
+    <b-row class="mb-5">
       <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
         <Weather />
       </b-col>
@@ -47,29 +46,6 @@
       </b-col>
     </b-row>
     <b-row class="mb-5">
-      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
-        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
-          <b-icon class="text-yellow" font-scale="3" icon="geo-alt-fill" />
-          <p class="display-3 mb-0"><countTo ref="count1" separator=" " :autoplay="false" :duration="4000" :endVal="locationsCount" /></p>
-          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.locations') }}</h5>
-        </b-card>
-      </b-col>
-      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
-        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
-          <b-icon class="text-yellow" font-scale="3" icon="person-fill" />
-          <p class="display-3 mb-0"><countTo v-observe-visibility="visibilityChanged" ref="count2" separator=" " :autoplay="false" :duration="4000" :endVal="profilesCount" /></p>
-          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.profiles') }}</h5>
-        </b-card>
-      </b-col>
-      <b-col class="text-center" cols="12" lg="4">
-        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
-          <b-icon class="text-yellow" font-scale="3" icon="basket2-fill" />
-          <p class="display-3 mb-0"><countTo ref="count3" separator=" " :autoplay="false" :duration="4000" :endVal="productsCount" /></p>
-          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.products') }}</h5>
-        </b-card>
-      </b-col>
-    </b-row>
-    <b-row class="mb-5">
       <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox1', 1) }}</h4>
@@ -89,6 +65,29 @@
           <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
           <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
           <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
+        </b-card>
+      </b-col>
+    </b-row>
+    <b-row class="mb-5">
+      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-yellow" font-scale="3" icon="geo-alt-fill" />
+          <p class="display-3 mb-0"><countTo ref="count1" separator=" " :autoplay="false" :duration="4000" :endVal="locationsCount" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.locations') }}</h5>
+        </b-card>
+      </b-col>
+      <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-yellow" font-scale="3" icon="person-fill" />
+          <p class="display-3 mb-0"><countTo v-observe-visibility="visibilityChanged" ref="count2" separator=" " :autoplay="false" :duration="4000" :endVal="profilesCount" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.profiles') }}</h5>
+        </b-card>
+      </b-col>
+      <b-col class="text-center" cols="12" lg="4">
+        <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
+          <b-icon class="text-yellow" font-scale="3" icon="basket2-fill" />
+          <p class="display-3 mb-0"><countTo ref="count3" separator=" " :autoplay="false" :duration="4000" :endVal="productsCount" /></p>
+          <h5 class="text-light font-weight-bold mb-0">{{ $t('nav.products') }}</h5>
         </b-card>
       </b-col>
     </b-row>

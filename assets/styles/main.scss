@@ -329,6 +329,12 @@ hr:after {
   padding: 0.2rem;
 }
 
+.blur-box {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+}
+
 .opacity-75 { opacity: .75; }
 .opacity-50 { opacity: .50; }
 .opacity-25 { opacity: .25; }
@@ -337,6 +343,10 @@ hr:after {
   .full-row {
     margin-right: -3rem;
     margin-left: -3rem;
+  }
+  .w-120 {
+    width: 120%!important;
+    margin-left: -10%;
   }
   .w-140 {
     width: 140%!important;

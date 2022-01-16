@@ -6,11 +6,12 @@
         <h6 class="date mb-0 text-right"><span class="font-weight-bold">{{ $moment().format('LT') }}</span><span class="text-light d-block">{{ $moment().format('ll') }}</span></h6>
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center mb-3 mt-2">
-        <div class="temp py-2 px-4 rounded">
-          <div class="d-flex justify-content-center align-items-center">
+        <div class="blur-box py-2 px-4 rounded">
+          <div class="d-flex justify-content-center align-items-center position-relative">
             <span class="display-2 font-weight-bold">{{ Math.round(weather.main.temp) }}</span>
             <span class="display-4">°C</span>
             <b-img class="image" :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
+            <b-icon role="button" class="position-absolute" style="top:0; right:-1rem" font-scale="2" icon="arrow-clockwise" @click="fetchWeather" />
           </div>
           <div class="weather font-weight-bold text-center text-yellow">{{ weather.weather[0].description }}</div>
         </div>
@@ -79,12 +80,6 @@ export default {
 }
 #weather.warm {
   background-image: url("@/assets/img/weather/warm-bg.jpg");
-}
-
-.temp {
-  background-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(3px);
 }
 
 .image {
