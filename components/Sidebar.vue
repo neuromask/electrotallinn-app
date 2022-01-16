@@ -11,7 +11,7 @@
     >
       <div class="px-3 my-4">
         <nuxt-link :to="localePath('/')">
-          <b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/logo/circle.svg" fluid center />
+          <b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/logo/circle.svg" alt="ElectroTallinn logotype" fluid center />
         </nuxt-link>
         <div>
           <UserProfileBox />

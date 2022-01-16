@@ -10,7 +10,7 @@
           <div class="d-flex justify-content-center align-items-center position-relative">
             <span class="display-2 font-weight-bold">{{ Math.round(weather.main.temp) }}</span>
             <span class="display-4">°C</span>
-            <b-img class="image" :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
+            <b-img class="image" alt="weather icon" :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
             <b-icon role="button" class="position-absolute" style="top:0; right:-1rem" font-scale="2" icon="arrow-clockwise" @click="fetchWeather" />
           </div>
           <h5 class="weather font-weight-bold text-center text-yellow mb-0">{{ weather.weather[0].description }}</h5>
