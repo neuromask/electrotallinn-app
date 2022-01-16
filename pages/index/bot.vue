@@ -3,9 +3,9 @@
     <b-row>
       <b-col cols="12" lg="4" class="pb-3">
         <h3 class="font-weight-bold underline">{{ $t('main.chat') }}</h3>
-        <i18n path="main.textChat" tag="h5" class="my-3">
-          <a href="https://telegram.org/" target="_blank"><strong>Telegram</strong></a>
-          <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
+        <i18n path="main.textChat" tag="p" class="my-3 lead">
+          <a href="https://telegram.org/" target="_blank"><span class="font-weight-bold">Telegram</span></a>
+          <a href="https://t.me/electrotallinnbot" target="_blank"><span class="font-weight-bold">ElectroBot</span></a>
         </i18n>
         <b-card class="shadow-sm">
           <b-img role="button" class="card-img" rounded="circle" href="https://t.me/electrotallinnbot" target="_blank" src="@/assets/img/logo/bot-avatar.svg" />
@@ -13,9 +13,9 @@
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="font-weight-bold underline">{{ $t('main.commands') }}</h3>
-        <i18n path="main.textCommands" tag="h5" class="my-3">
-          <NuxtLink :to="localePath('/map')"><strong>{{ $t('main.textMap') }}</strong></NuxtLink>
-          <NuxtLink :to="localePath('/market')"><strong>{{ $t('main.textMarket') }}</strong></NuxtLink>
+        <i18n path="main.textCommands" tag="p" class="my-3 lead">
+          <NuxtLink :to="localePath('/map')"><span class="font-weight-bold">{{ $t('main.textMap') }}</span></NuxtLink>
+          <NuxtLink :to="localePath('/market')"><span class="font-weight-bold">{{ $t('main.textMarket') }}</span></NuxtLink>
         </i18n>
         <b-list-group class="shadow-sm">
           <b-list-group-item class="text-dark" variant="light"><h5 class="d-inline"><b-badge><strong>/sell</strong></b-badge></h5> - {{ $t('main.sell') }}</b-list-group-item>

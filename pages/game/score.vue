@@ -5,13 +5,13 @@
         <h3 class="underline font-weight-bold">{{ $t('game.rules') }}</h3>
         <b-card class="shadow-sm">
           <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
-          <h5>{{ $tc('game.rule1', 1) }}</h5>
+          <p class="lead mb-0">{{ $tc('game.rule1', 1) }}</p>
           <p class="font-italic mb-0">{{ $tc('game.rule1', 2) }}</p>
           <hr>
           <h4 class="font-weight-bold">{{ $t('game.rule2Title') }}</h4>
-          <i18n path="game.rule2" tag="h5" class="my-3">
-            <NuxtLink :to="localePath('/map')"><strong>{{ $t('main.textMap') }}</strong></NuxtLink>
-            <a href="https://t.me/electrotallinnbot" target="_blank"><strong>ElectroBot</strong></a>
+          <i18n path="game.rule2" tag="p" class="my-3 lead">
+            <NuxtLink :to="localePath('/map')"><span class="font-weight-bold">{{ $t('main.textMap') }}</span></NuxtLink>
+            <a href="https://t.me/electrotallinnbot" target="_blank"><span class="font-weight-bold">ElectroBot</span></a>
           </i18n>
           <div class="bg-light p-3 rounded mt-3">
             <b-img rounded="circle" src="@/assets/img/game/map-bonus.svg"></b-img>
@@ -21,7 +21,7 @@
       </b-col>
       <b-col cols="12" lg="8">
         <h3 class="underline font-weight-bold">{{ $t('nav.score') }}</h3>
-        <b-table @row-clicked="gotoUserProfile" tbody-tr-class="clickable" sticky-header="800px" table-variant="light" class="shadow-sm rounded overflow-auto" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
+        <b-table @row-clicked="gotoUserProfile" tbody-tr-class="clickable" sticky-header="900px" table-variant="light" class="shadow-sm rounded overflow-auto" :sort-by.sync="sortRankBy" :sort-desc.sync="sortRankDesc" hover borderless striped :items="userTable" :fields="scoreFields">
           <template #cell(index)="data">
             <b-badge variant="light" class="pb-0">
               <h3 class="font-weight-bold">{{ data.index + 1 }}</h3>

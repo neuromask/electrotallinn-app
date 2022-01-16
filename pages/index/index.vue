@@ -113,8 +113,8 @@
           <b-icon variant="info" width="48" height="48" icon="geo-alt-fill" class="mr-4 ml-lg-4" />
           <div class="w-100">
             <h3 class="mb-0">{{ $tc('home.iconBox1', 1) }}</h3>
-            <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox1', 2) }}</h5>
-            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox1Content') }}</p>
+            <p class="mb-1 lead font-weight-bold">{{ $tc('home.iconBox1', 2) }}</p>
+            <p class="mb-0">{{ $t('home.iconBox1Content') }}.</p>
           </div>
         </div>
       </b-col>
@@ -123,8 +123,8 @@
           <b-icon variant="info" width="48" height="48" icon="asterisk" class="mr-4 ml-lg-4" />
           <div class="w-100">
             <h3 class="mb-0">{{ $tc('home.iconBox2', 1) }}</h3>
-            <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox2', 2) }}</h5>
-            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox2Content') }}</p>
+            <p class="mb-1 lead font-weight-bold">{{ $tc('home.iconBox2', 2) }}</p>
+            <p class="mb-0">{{ $t('home.iconBox2Content') }}.</p>
           </div>
         </div>
       </b-col>
@@ -133,8 +133,8 @@
           <b-icon variant="info" width="48" height="48" icon="suit-heart-fill" class="mr-4 ml-lg-4" />
           <div class="w-100">
             <h3 class="mb-0">{{ $tc('home.iconBox3', 1) }}</h3>
-            <h5 class="mb-1 font-weight-bold">{{ $tc('home.iconBox3', 2) }}</h5>
-            <p class="mb-0 font-weight-bold opacity-75">{{ $t('home.iconBox3Content') }}</p>
+            <p class="mb-1 lead font-weight-bold">{{ $tc('home.iconBox3', 2) }}</p>
+            <p class="mb-0">{{ $t('home.iconBox3Content') }}.</p>
           </div>
         </div>
       </b-col>
