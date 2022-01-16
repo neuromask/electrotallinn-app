@@ -1,7 +1,10 @@
 <template>
   <section>
-    <b-row class="my-5 justify-content-center">
-      <b-col cols="12" lg="8" class="mx-auto">
+    <b-row class="my-5 align-items-center">
+      <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
+        <b-img-lazy class="px-4" src="~/assets/img/logo/circle.svg" fluid center />
+      </b-col>
+      <b-col cols="12" lg="8">
         <div>
           <h2 class="mb-0 font-weight-bold">ElectroTallinn</h2>
           <h3 class="mb-0 font-weight-bold">{{ $tc('main.aboutText', 1) }}</h3>
@@ -10,6 +13,29 @@
         <p class="mb-3 lead">{{ $tc('main.aboutText', 2) }} {{ $t('meta.description') }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
+      </b-col>
+    </b-row>
+    <b-row class="mb-5">
+      <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
+        <b-card class="shadow-sm">
+          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox1', 1) }}</h4>
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box2-home.jpg" />
+          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox1', 2) }}</p>
+        </b-card>
+      </b-col>
+      <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
+        <b-card class="shadow-sm">
+          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox2', 1) }}</h4>
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
+          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox2', 2) }}</p>
+        </b-card>
+      </b-col>
+      <b-col cols="12" lg="4">
+        <b-card class="shadow-sm">
+          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
+          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
+        </b-card>
       </b-col>
     </b-row>
     <b-row class="mb-5">
@@ -48,29 +74,19 @@
         </b-list-group>
       </b-col>
     </b-row>
-    <b-row class="mb-5">
-      <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
-        <b-card class="shadow-sm">
-          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox1', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box2-home.jpg" />
-          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox1', 2) }}</p>
-        </b-card>
+    <b-row class="my-5 justify-content-center">
+      <b-col cols="12" lg="8" class="mx-auto">
+        <b-alert show variant="primary" class="bg-pat d-flex justify-content-between align-items-center mb-0 rounded shadow-sm w-100 p-3">
+          <b-icon variant="primary" width="48" height="48" icon="calendar-event-fill" class="mr-4 mr-lg-5 ml-lg-4" />
+          <div class="w-100">
+            <h5 class="mb-0 text-dark font-weight-bold">{{ $tc('home.eventBox', 1) }}</h5>
+            <hr class="hr-sm">
+            <p class="mb-3 text-dark opacity-75">{{ $tc('home.eventBox', 2) }}</p>
+            <b-button block class="nowrap ml-auto font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
+          </div>
+        </b-alert>
       </b-col>
-      <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
-        <b-card class="shadow-sm">
-          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox2', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
-          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox2', 2) }}</p>
-        </b-card>
-      </b-col>
-      <b-col cols="12" lg="4">
-        <b-card class="shadow-sm">
-          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
-          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
-        </b-card>
-      </b-col>
-    </b-row>
+    </b-row >
     <b-row class="mb-5">
       <b-col class="mb-3 mb-lg-0 text-center" cols="12" lg="4">
         <b-card bg-variant="dark" class="bg-pat-dark shadow-sm w-75 mx-auto text-white">
@@ -94,19 +110,6 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row class="my-5 justify-content-center">
-      <b-col cols="12" lg="8" class="mx-auto">
-        <b-alert show variant="primary" class="bg-pat d-flex justify-content-between align-items-center mb-0 rounded shadow-sm w-100 p-3">
-          <b-icon variant="primary" width="48" height="48" icon="calendar-event-fill" class="mr-4 mr-lg-5 ml-lg-4" />
-          <div class="w-100">
-            <h5 class="mb-0 text-dark font-weight-bold">{{ $tc('home.eventBox', 1) }}</h5>
-            <hr class="hr-sm">
-            <p class="mb-3 text-dark opacity-75">{{ $tc('home.eventBox', 2) }}</p>
-            <b-button block class="nowrap ml-auto font-weight-bold" font-scale="2" variant="primary" href="https://www.facebook.com/groups/electrotallinn/events" target="_blank">{{ $t('action.findOut') }} <b-icon icon="arrow-right-short" /></b-button>
-          </div>
-        </b-alert>
-      </b-col>
-    </b-row >
     <b-row class="bg-warning full-row px-lg-5 py-5">
       <b-col cols="12" lg="4" class="mb-3 mb-lg-0 text-white">
         <div class="d-flex justify-content-between align-items-center mb-0 w-100">
