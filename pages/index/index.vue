@@ -1,8 +1,11 @@
 <template>
   <section>
-    <b-row class="my-5">
-      <b-col>
-        <h3 class="mb-0 font-weight-bold mb-3">ElectroTallinn - {{ $tc('main.aboutText', 1) }}</h3>
+    <b-row class="my-5 justify-content-center">
+      <b-col cols="12" lg="8" class="mx-auto">
+        <div>
+          <h2 class="mb-0 font-weight-bold">ElectroTallinn</h2>
+          <h3 class="mb-0 font-weight-bold">{{ $tc('main.aboutText', 1) }}</h3>
+        </div>
         <hr class="hr-sm">
         <p class="mb-3 lead">{{ $tc('main.aboutText', 2) }} {{ $t('meta.description') }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
@@ -91,8 +94,8 @@
         </b-card>
       </b-col>
     </b-row>
-    <div class="w-100 my-5 justify-content-center">
-      <b-col cols="12" lg="8" class="mx-auto p-0">
+    <b-row class="my-5 justify-content-center">
+      <b-col cols="12" lg="8" class="mx-auto">
         <b-alert show variant="primary" class="bg-pat d-flex justify-content-between align-items-center mb-0 rounded shadow-sm w-100 p-3">
           <b-icon variant="primary" width="48" height="48" icon="calendar-event-fill" class="mr-4 mr-lg-5 ml-lg-4" />
           <div class="w-100">
@@ -103,7 +106,7 @@
           </div>
         </b-alert>
       </b-col>
-    </div>
+    </b-row >
     <b-row class="bg-warning full-row px-lg-5 py-5">
       <b-col cols="12" lg="4" class="mb-3 mb-lg-0 text-white">
         <div class="d-flex justify-content-between align-items-center mb-0 w-100">

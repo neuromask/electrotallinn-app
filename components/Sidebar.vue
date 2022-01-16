@@ -1,6 +1,7 @@
 <template>
   <aside>
     <b-sidebar
+      no-header
       id="sidebar-variant"
       title="ET⚡ App"
       bg-variant="dark"
@@ -8,9 +9,11 @@
       shadow
       backdrop
     >
-      <div class="px-3 py-0">
-        <nuxt-link to="/"><b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/logo/circle.svg" fluid center /></nuxt-link>
-        <div class="mb-4">
+      <div class="px-3 my-4">
+        <nuxt-link :to="localePath('/')">
+          <b-img-lazy class="mb-4 px-5 shadow-sm" src="~/assets/img/logo/circle.svg" fluid center />
+        </nuxt-link>
+        <div>
           <UserProfileBox />
           <UserLoginBox />
         </div>
