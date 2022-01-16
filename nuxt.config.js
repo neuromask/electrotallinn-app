@@ -274,6 +274,7 @@ export default {
     apiUrl: process.env.API_URL || 'https://electrotallinn.ee/api',
     googleKey: process.env.GOOGLE_KEY,
     flickrKey: process.env.FLICKR_KEY,
+    weatherKey: process.env.WEATHER_KEY,
     gtm: {
       id: process.env.GOOGLE_TAG_MANAGER_ID || 'GTM-WCXP8ZF'
     }

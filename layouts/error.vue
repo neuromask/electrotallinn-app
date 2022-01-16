@@ -10,7 +10,7 @@
           <hr>
           <h5 v-if="error.statusCode === 404">{{ $t('error.notFound') }}</h5>
           <h5>{{ $t('error.try') }}</h5>
-          <b-button class="nowrap mt-3" variant="primary" :to="localePath('/')" nuxt exact><b-icon icon="house-door-fill" /> {{ $t('nav.home') }}</b-button>
+          <b-button class="nowrap mt-3 text-white font-weight-bold" variant="primary" :to="localePath('/')" nuxt exact><b-icon icon="house-fill" /> {{ $t('nav.home') }}</b-button>
         </b-card>
       </b-col>
     </b-row>

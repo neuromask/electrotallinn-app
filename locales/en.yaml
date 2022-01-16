@@ -169,6 +169,13 @@ main:
   cookieBtn: Got it!
   editProfile: Edit your profile
   sellerNoUsername: 'Join {0} Telegram channel and find user by name: {1}'
+weather:
+  feels: Feels like
+  max: Max.
+  min: Min.
+  wind: Wind
+  humidity: Humidity
+  pressure: Pressure
 action:
   edit: Edit
   ACTIVE: Active

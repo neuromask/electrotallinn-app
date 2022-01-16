@@ -170,6 +170,13 @@ main:
   cookieBtn: Понятно!
   editProfile: Редактировать профиль
   sellerNoUsername: 'Зайдите на канал {0} в Telegram и найдите пользователя: {1}'
+weather:
+  feels: Чувствуется
+  max: Макс.
+  min: Мин.
+  wind: Ветер
+  humidity: Влажность
+  pressure: Давление
 action:
   edit: Править
   ACTIVE: Активно

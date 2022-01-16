@@ -170,6 +170,13 @@ main:
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili
   sellerNoUsername: 'Liituge {0} Telegrami kanaliga ja leidke kasutaja nime järgi: {1}'
+weather:
+  feels: Tundub
+  max: Maks.
+  min: Min.
+  wind: Tuul
+  humidity: Niiskus
+  pressure: Rõhk
 action:
   edit: Redigeeri
   ACTIVE: Aktiivne

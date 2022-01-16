@@ -1,7 +1,7 @@
 <template>
   <section>
-    <b-row align-v="center" class="mb-5">
-      <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
+    <b-row class="my-5">
+      <b-col>
         <h3 class="mb-0 font-weight-bold mb-3">ElectroTallinn - {{ $tc('main.aboutText', 1) }}</h3>
         <hr class="hr-sm">
         <p class="mb-2 lead">{{ $t('meta.description') }}</p>
@@ -9,7 +9,9 @@
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
       </b-col>
-      <b-col cols="12" lg="6">
+    </b-row>
+    <b-row align-v="center" class="mb-5">
+      <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
         <b-list-group class="shadow-sm">
           <b-list-group-item variant="light" href="https://www.facebook.com/groups/electrotallinn" target="_blank" class="text-secondary">
             <b-media tag="div">
@@ -39,6 +41,9 @@
             </b-media>
           </b-list-group-item>
         </b-list-group>
+      </b-col>
+      <b-col cols="12" lg="6">
+        <Weather />
       </b-col>
     </b-row>
     <b-row class="mb-5">
