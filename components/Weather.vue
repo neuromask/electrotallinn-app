@@ -13,19 +13,19 @@
             <b-img class="image" :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
             <b-icon role="button" class="position-absolute" style="top:0; right:-1rem" font-scale="2" icon="arrow-clockwise" @click="fetchWeather" />
           </div>
-          <div class="weather font-weight-bold text-center text-yellow">{{ weather.weather[0].description }}</div>
+          <h5 class="weather font-weight-bold text-center text-yellow mb-0">{{ weather.weather[0].description }}</h5>
         </div>
       </div>
       <div class="d-flex w-100 justify-content-between align-items-center">
         <div>
-          <p class="mb-0 text-light">{{ $t('weather.feels') }}: <span class="font-weight-bold text-white">{{ Math.round(weather.main.feels_like) }}</span>°<small>C</small></p>
-          <p class="mb-0 text-light">{{ $t('weather.max') }}: <span class="font-weight-bold text-white">{{ Math.round(weather.main.temp_max) }}</span>°<small>C</small></p>
-          <p class="mb-0 text-light">{{ $t('weather.min') }}: <span class="font-weight-bold text-white">{{ Math.round(weather.main.temp_min) }}</span>°<small>C</small></p>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.feels_like) }}°<small>C</small></b-badge></h5> {{ $t('weather.feels') }}</div>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.temp_max) }}°<small>C</small></b-badge></h5> {{ $t('weather.max') }}</div>
+          <div class="mb-0 text-light"><h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.temp_min) }}°<small>C</small></b-badge></h5> {{ $t('weather.min') }}</div>
         </div>
         <div>
-          <p class="mb-0 text-right text-light">{{ $t('weather.wind') }}: <span class="font-weight-bold text-white">{{ Math.round(weather.wind.speed) }}</span> <small>m/s</small></p>
-          <p class="mb-0 text-right text-light">{{ $t('weather.humidity') }}: <span class="font-weight-bold text-white">{{ weather.main.humidity }}</span> <small>%</small></p>
-          <p class="mb-0 text-right text-light">{{ $t('weather.pressure') }}: <span class="font-weight-bold text-white">{{ weather.main.pressure }}</span> <small>hPa</small></p>
+          <div class="mb-0 text-light text-right">{{ $t('weather.wind') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.wind.speed) }} <small>m/s</small></b-badge></h5></div>
+          <div class="mb-0 text-light text-right">{{ $t('weather.humidity') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.humidity) }} <small>%</small></b-badge></h5></div>
+          <div class="mb-0 text-light text-right">{{ $t('weather.pressure') }} <h5 class="d-inline"><b-badge variant="info" class="py-0">{{ Math.round(weather.main.pressure) }} <small>hPa</small></b-badge></h5></div>
         </div>
       </div>
     </b-card>
