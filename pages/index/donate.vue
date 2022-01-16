@@ -1,7 +1,6 @@
 <template>
   <section>
-    <h2>{{ $t('donate.title1') }}</h2>
-    <b-row class="my-5">
+    <b-row class="mb-5">
       <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <h3 class="font-weight-bold underline">{{ $t('donate.makeDonation') }}</h3>
         <b-card class="shadow-sm p-3 text-center">
@@ -16,11 +15,11 @@
       </b-col>
       <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <h3 class="font-weight-bold underline">{{ $t('main.description') }}</h3>
-        <p>{{ $t('donate.donateDesc1') }}</p>
+        <p><span class="lead">{{ $t('donate.title1') }}.</span><br>{{ $t('donate.donateDesc1') }}</p>
           <b-img class="mb-3" fluid src="@/assets/img/page/et-battery-h.svg" />
-        <p>{{ $t('donate.donateDesc2') }}</p>
+        <p class="mb-0">{{ $t('donate.donateDesc2') }}</p>
       </b-col>
-      <b-col cols="12" lg="4">
+      <b-col cols="12" lg="4" class="mb-lg-0">
         <h3 class="font-weight-bold underline">{{ $t('donate.whoDonated') }}</h3>
         <b-list-group class="shadow-sm">
           <b-list-group-item class="text-dark" variant="light" v-for="donate in donates" :key="donate.name">
@@ -33,7 +32,7 @@
         </b-list-group>
       </b-col>
     </b-row>
-    <h2 class="mb-lg-5 mb-3">{{ $t('donate.title2') }}</h2>
+    <h3 class="font-weight-bold underline">{{ $t('donate.title2') }}</h3>
     <b-row>
       <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <b-img class="mb-3 shadow-sm" rounded fluid src="@/assets/img/page/donate-1.jpg" />
