@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-100">
     <b-row>
       <b-col class="mb-3" cols="12" lg="4" v-for="(image, imageIndex) in images" :key="imageIndex">
         <b-link :href="image.href" target="_blank">
