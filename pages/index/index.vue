@@ -12,6 +12,9 @@
     </b-row>
     <b-row align-v="center" class="mb-5">
       <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
+        <Weather />
+      </b-col>
+      <b-col cols="12" lg="6">
         <b-list-group class="shadow-sm">
           <b-list-group-item variant="light" href="https://www.facebook.com/groups/electrotallinn" target="_blank" class="text-secondary">
             <b-media tag="div">
@@ -41,9 +44,6 @@
             </b-media>
           </b-list-group-item>
         </b-list-group>
-      </b-col>
-      <b-col cols="12" lg="6">
-        <Weather />
       </b-col>
     </b-row>
     <b-row class="mb-5">

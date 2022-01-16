@@ -10,7 +10,7 @@
           <div class="d-flex justify-content-center align-items-center">
             <span class="display-2 font-weight-bold">{{ Math.round(weather.main.temp) }}</span>
             <span class="display-4">°C</span>
-            <b-img class="image" :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
+            <b-img class="image" :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`" />
           </div>
           <div class="weather font-weight-bold text-center text-yellow">{{ weather.weather[0].description }}</div>
         </div>
