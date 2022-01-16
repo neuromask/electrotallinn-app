@@ -1,10 +1,10 @@
 <template>
   <section>
     <b-row>
-      <b-col cols="12" lg="4">
+      <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <h3 class="underline font-weight-bold">{{ $t('main.top') }} <span class="small">({{ listTop.length }})</span></h3>
         <b-table
-          class="rounded shadow-sm"
+          class="rounded shadow-sm mb-5"
           borderless
           striped
           table-variant="light"
@@ -79,9 +79,7 @@
           </template>
         </b-table>
       </b-col>
-
     </b-row>
-
   </section>
 </template>
 

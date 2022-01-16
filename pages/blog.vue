@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar type="primary" class="mb-lg-5 mb-3">
+    <b-navbar type="primary" class="mb-5">
       <b-navbar-nav class="mx-auto text-center">
         <b-nav-item :to="localePath('/blog')" nuxt exact>{{ $t('nav.articles') }}</b-nav-item>
       </b-navbar-nav>

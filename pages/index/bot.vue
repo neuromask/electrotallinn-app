@@ -1,7 +1,7 @@
 <template>
   <section>
     <b-row>
-      <b-col cols="12" lg="4" class="pb-3">
+      <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <h3 class="font-weight-bold underline">{{ $t('main.chat') }}</h3>
         <i18n path="main.textChat" tag="p" class="my-3 lead">
           <a href="https://telegram.org/" target="_blank"><span class="font-weight-bold">Telegram</span></a>
