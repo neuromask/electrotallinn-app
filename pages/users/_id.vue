@@ -1,13 +1,15 @@
 <template>
   <section>
     <div id="submenu" class="upper position-relative d-flex justify-content-center" style="z-index:10">
-      <div class="w-100 h-100 position-absolute" style="background-color:rgba(26, 39, 64, 0.7)"></div>
-      <div class="overflow-hidden w-100 shadow-sm" :style="[user.transportPhotoName ? {'background-size': 'cover','background-position': 'center', 'background-image': 'url(' + $config.apiUrl + '/users/image/' + user.transportPhotoName + ')'} : {'background-image': 'url(' + require('~/assets/img/pattern-icons-dark.svg') + ')'}]"></div>
-      <b-avatar class="profile position-absolute shadow text-dark" variant="info" size="15rem" :src="user.photoUrl" rounded="circle" thumbnail></b-avatar>
+      <div class="rounded shadow-sm p-container bg-secondary">
+        <b-img-lazy v-if="user.transportPhotoName" class="p-image opacity-25" :src="$config.apiUrl + '/users/image/' + user.transportPhotoName" />
+        <b-img v-else blank class="p-image bg-pat-dark" />
+      </div>
+      <b-avatar style="bottom:-2rem;right: calc(50% - 8rem)" :to="localePath(`/users/${user.uin}`)" variant="info" class="profile text-dark position-absolute shadow-sm" :src="user.photoUrl" size="16rem" />
       <div class="position-absolute mt-4 bg-transparent text-center">
-        <h2 v-if="$user.uin != user.uin" class="m-0 text-info shadow-sm"><strong>{{ user.firstName }} </strong></h2>
-        <h2 v-if="$user.uin == user.uin" class="m-0 text-info shadow-sm"><strong>{{ $t('nav.myProfile') }}</strong></h2>
-        <i v-if="user.location" class="text-light shadow-sm">{{ user.location }}</i>
+        <h2 v-if="$user.uin != user.uin" class="m-0 text-info"><strong>{{ user.firstName }} </strong></h2>
+        <h2 v-if="$user.uin == user.uin" class="m-0 text-info"><strong>{{ $t('nav.myProfile') }}</strong></h2>
+        <i v-if="user.location" class="text-light">{{ user.location }}</i>
       </div>
       <a v-if="$user.uin == user.uin" v-b-modal.profile-modal class="position-absolute" style="top:1rem; right:1.5rem;font-size:2rem">
         <b-icon class="shadow-sm" variant="info" icon="pencil-square" />
@@ -61,11 +63,6 @@ export default {
 <style scoped>
 .upper>div {
     height: 320px;
-    background-color: #1a2740;
-    border-radius: 6px;
-}
-.profile {
-    bottom:-2rem;
 }
 .sub-page {
   min-height: 640px;

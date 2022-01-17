@@ -9,7 +9,7 @@
           <b-list-group-item class="text-secondary" variant="light" v-if="product.description">
             <div class="d-flex justify-content-between align-items-start">
               <h5 class="font-weight-bold">{{ $t('main.description') }}</h5>
-              <h3 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h3>
+              <h3 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="warning" class="shadow-sm text-white">{{ product.price }}€</b-badge></h3>
             </div>
             <p class="mb-0 pre" v-html="linkify(product.description)"></p>
           </b-list-group-item>

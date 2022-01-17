@@ -239,7 +239,7 @@ hr:after {
 }
 .sideMenu {
   left: 1rem;
-  top: .1rem;
+  top: 0;
   font-size: 3rem;
 }
 .navWrap .navText {
@@ -274,8 +274,6 @@ hr:after {
 }
 
 .p-container {
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
     width:100%;
     height: 12rem;
 }

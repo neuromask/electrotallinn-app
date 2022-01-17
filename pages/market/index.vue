@@ -7,38 +7,35 @@
     </div>
     <transition-group name="card-list" mode="out-in" class="row">
       <b-col cols="12" md="6" lg="4" class="card-list-item mb-4" v-for="product in productsFull" :key="product.id">
-        <b-card class="shadow-sm" bg-variant="info" no-body style="font-size:0.9rem; line-height:1rem;" >
-          <div class="px-3 pt-3 pb-0">
-            <div class="p-container overflow-hidden position-relative">
-              <nuxt-link v-if="product.images.length" :to="localePath(`/market/${product.id}`)"><b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName"></b-img></nuxt-link>
-              <h2 style="top:0.7rem;right:1rem" class="mb-1 text-nowrap text-warning position-absolute" v-if="product.price"><b-badge variant="primary">{{ product.price }}€</b-badge></h2>
-            </div>
+        <b-card class="shadow-sm" bg-variant="info" style="font-size:0.9rem; line-height:1rem;" >
+          <div class="mb-3 rounded shadow-sm p-container overflow-hidden position-relative">
+            <nuxt-link v-if="product.images.length" :to="localePath(`/market/${product.id}`)">
+              <b-img class="p-image" :src="$config.baseFileUrl + '/market/' + product.images[0].fileName" />
+            </nuxt-link>
+            <h2 style="top:0.7rem;right:1rem" class="mb-1 text-nowrap text-warning position-absolute" v-if="product.price"><b-badge class="shadow-sm text-white" variant="warning">{{ product.price }}€</b-badge></h2>
           </div>
-          <b-card-body>
-            <div class="mb-3">
-              <nuxt-link v-if="product.name" :to="localePath(`/market/${product.id}`)"><h5 class="title mb-1 text-secondary font-weight-bold">{{ cutText(product.name, 25) }}</h5></nuxt-link>
-              <p class="text-muted d-block mb-0" v-if="product.description">{{ cutText(product.description, 35) }}</p>
-            </div>
-
-            <b-list-group class="text-left shadow-sm">
-              <b-list-group-item variant="light" class="flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                  <div>
-                    <p class="mb-0 small" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="localePath(`/users/${product.userUin}`)"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
-                    <p class="mb-0 small" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
-                    <p class="mb-0 small" v-if="!product.username">{{ $t('profile.telegram') }}: <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a></p>
-                  </div>
-                  <div>
-                    <b-button size="sm" variant="warning" class="text-info" nuxt :to="localePath(`/market/${product.id}`)"><b-icon icon="search" /> {{ $t('main.info') }}</b-button>
-                  </div>
+          <div class="mb-3">
+            <nuxt-link v-if="product.name" :to="localePath(`/market/${product.id}`)"><h5 class="title mb-1 text-secondary font-weight-bold">{{ cutText(product.name, 25) }}</h5></nuxt-link>
+            <p class="text-muted d-block mb-0" v-if="product.description">{{ cutText(product.description, 35) }}</p>
+          </div>
+          <b-list-group class="text-left shadow-sm">
+            <b-list-group-item variant="light" class="flex-column align-items-start px-3">
+              <div class="d-flex w-100 justify-content-between align-items-center">
+                <div>
+                  <p class="mb-1" v-if="product.userFirstName">{{ $t('main.addedBy') }}: <nuxt-link :to="localePath(`/users/${product.userUin}`)"><strong>{{ product.userFirstName }}</strong></nuxt-link></p>
+                  <p class="mb-0" v-if="product.username">{{ $t('profile.telegram') }}: <a :href="'https://t.me/'+product.username" target="_blank"><strong>{{ product.username }}</strong></a></p>
+                  <p class="mb-0" v-if="!product.username">{{ $t('profile.telegram') }}: <a href="https://t.me/electrotallinn" target="_blank"><strong>ElectroTallinn</strong></a></p>
                 </div>
-              </b-list-group-item>
-            </b-list-group>
-          </b-card-body>
+                <div>
+                  <b-button size="sm" variant="primary" class="text-info" nuxt :to="localePath(`/market/${product.id}`)"><b-icon icon="search" /> {{ $t('main.info') }}</b-button>
+                </div>
+              </div>
+            </b-list-group-item>
+          </b-list-group>
           <template #footer>
             <div class="d-flex w-100 justify-content-between align-items-center">
-              <a class="mb-1 small" v-if="product.category" @click="selectCat(product.category)" role="button"><strong>{{ $t('market.category.' + product.category) }}</strong></a>
-              <p class="mb-0 small" v-if="product.date_created">{{ $moment(product.date_created).format('LL') }}</p>
+              <a class="mb-1" v-if="product.category" @click="selectCat(product.category)" role="button"><strong>{{ $t('market.category.' + product.category) }}</strong></a>
+              <p class="mb-0" v-if="product.date_created">{{ $moment(product.date_created).format('LL') }}</p>
             </div>
           </template>
         </b-card>
