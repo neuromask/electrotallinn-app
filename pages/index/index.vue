@@ -2,7 +2,7 @@
   <section>
     <b-row class="my-5 align-items-center">
       <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
-        <b-img-lazy class="px-4" src="~/assets/img/logo/circle.svg" width="320" height="320" alt="ElectroTallinn logotype" fluid center />
+        <b-img-lazy class="px-4" src="~/assets/img/logo/circle-anim.svg" width="320" height="320" alt="ElectroTallinn logotype" fluid center />
       </b-col>
       <b-col cols="12" lg="8">
         <div>
