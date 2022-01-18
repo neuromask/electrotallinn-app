@@ -10,7 +10,7 @@
           <h3 class="mb-0 font-weight-bold">{{ $tc('main.aboutText', 1) }}</h3>
         </div>
         <hr class="hr-sm">
-        <p class="mb-3 lead">{{ $tc('main.aboutText', 2) }} {{ $t('meta.description') }}</p>
+        <p class="mb-3 lead">{{ $t('main.goalText') }} {{ $tc('main.aboutText', 2) }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
       </b-col>
