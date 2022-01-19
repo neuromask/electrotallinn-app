@@ -10,7 +10,7 @@
           <h3 class="mb-0 font-weight-bold">{{ $tc('main.aboutText', 1) }}</h3>
         </div>
         <hr class="hr-sm">
-        <p class="mb-3 lead">{{ $t('main.goalText') }} {{ $tc('main.aboutText', 2) }}</p>
+        <p class="mb-3 lead">{{ $t('main.goalText') }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
         <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
       </b-col>
@@ -25,16 +25,16 @@
       </b-col>
       <b-col cols="12" lg="4" class="mb-lg-0 mb-3">
         <b-card class="shadow-sm">
-          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox2', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" width="320" height="320" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
-          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox2', 2) }}</p>
+          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" width="320" height="320" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
+          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
         </b-card>
       </b-col>
       <b-col cols="12" lg="4">
         <b-card class="shadow-sm">
-          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox3', 1) }}</h4>
-          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" width="320" height="320" center fluid rounded src="~/assets/img/home/box3-home.jpg" />
-          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox3', 2) }}</p>
+          <h4 class="font-weight-bold mx-auto underline">{{ $tc('home.infoBox2', 1) }}</h4>
+          <b-img-lazy class="shadow-sm mb-3" alt="ElectroTallinn" width="320" height="320" center fluid rounded src="~/assets/img/home/box1-home.jpg" />
+          <p class="text-center mb-0 opacity-75">{{ $tc('home.infoBox2', 2) }}</p>
         </b-card>
       </b-col>
     </b-row>

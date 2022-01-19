@@ -41,9 +41,6 @@ export default {
 </script>
 
 <style scoped>
-.card-body {
-    position: relative;
-}
 .card-img {
   border-radius: 20%;
   border: 1rem solid #c0d1e6;;
@@ -53,10 +50,5 @@ export default {
   border-radius: 20%;
   border: 1rem solid #4482a9;
   transition: border-color 0.4s ease-out;
-}
-.info-icon-tip {
-    float:right;
-    width: 32px;
-    height: 32px;
 }
 </style>
