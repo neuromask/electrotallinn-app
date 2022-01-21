@@ -178,7 +178,8 @@ export default {
       'BIconChevronDown',
       'BIconArrowClockwise',
       'BIconArrowUp',
-      'BIconRecordCircle'
+      'BIconRecordCircle',
+      'BIconPlusSquare'
     ],
     directives: []
   },
