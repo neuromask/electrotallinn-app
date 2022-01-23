@@ -1,8 +1,10 @@
 export default function ({$axios, redirect, app}) {
     $axios.onRequest(config => {
-        let jwt = localStorage.getItem('jwt');
-        if (jwt) {
-            config.headers["Authorization"] = `Bearer ${jwt}`;
+        if (config.url.startsWith(app.$config.apiUrl)) {
+            let jwt = localStorage.getItem('jwt');
+            if (jwt) {
+                config.headers["Authorization"] = `Bearer ${jwt}`;
+            }
         }
         return config;
     });
