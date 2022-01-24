@@ -5,9 +5,8 @@
         <b-img-lazy v-if="user.transportPhotoName" class="p-image opacity-25" :src="$config.apiUrl + '/users/image/' + user.transportPhotoName" />
         <b-img v-else blank class="p-image bg-pat-dark" />
       </div>
-      <b-avatar style="bottom:-2rem;right: calc(50% - 8rem)" variant="info" class="profile text-dark position-absolute shadow-sm" size="16rem" />
-<!--       <b-avatar style="bottom:-2rem;right: calc(50% - 8rem)" variant="info" class="profile text-dark position-absolute shadow-sm" :src="user.photoUrl" size="16rem" />
- -->      <div class="position-absolute mt-4 bg-transparent text-center">
+      <b-avatar style="bottom:-2rem;right: calc(50% - 8rem)" variant="info" class="profile text-dark position-absolute shadow-sm" :src="user.photoUrl" size="16rem" />
+      <div class="position-absolute mt-4 bg-transparent text-center">
         <h2 v-if="$user.uin != user.uin" class="m-0 text-info"><strong>{{ user.firstName }} </strong></h2>
         <h2 v-if="$user.uin == user.uin" class="m-0 text-info"><strong>{{ $t('nav.myProfile') }}</strong></h2>
         <i v-if="user.location" class="text-light">{{ user.location }}</i>
