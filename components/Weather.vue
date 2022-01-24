@@ -33,8 +33,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: "App",
   data() {
@@ -51,9 +49,7 @@ export default {
   },
   methods: {
     fetchWeather() {
-      axios({
-        method: 'get',
-        url: `${this.url_base}weather`,
+      this.$axios.$get(`${this.url_base}weather`, {
         params: {
           q: "tallinn",
           appid: this.$config.weatherKey,
@@ -61,7 +57,7 @@ export default {
           lang: this.$i18n.locale
         }
       }).then((response) => {
-        this.weather = response.data;
+        this.weather = response;
       })
     },
     getIcon(code) {

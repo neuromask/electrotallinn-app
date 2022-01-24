@@ -241,7 +241,6 @@ export default {
       '/ru/admin**',
       '/ru/admin/*'
     ],
-    i18n: true,
     i18n: {
       locales: ['en', 'ru', 'et'],
       routesNameSeparator: '___'
@@ -288,8 +287,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxyHeaders: false,
-    credentials: false,
-    proxy: true
+    credentials: false
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

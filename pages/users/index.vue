@@ -28,7 +28,8 @@
             <b-img-lazy v-if="user.transportPhotoName" class="p-image opacity-75" :src="$config.apiUrl + '/users/image/' + user.transportPhotoName" />
             <b-img v-else blank class="p-image bg-pat-dark" />
           </div>
-          <b-avatar style="top:2rem;right: calc(50% - 6rem)" :to="localePath(`/users/${user.uin}`)" variant="info" class="profile text-dark position-absolute shadow-sm" :src="user.photoUrl" size="12rem" />
+          <b-avatar :text="user.firstName.substring(0,2)" style="top:2rem;right: calc(50% - 6rem)" :to="localePath(`/users/${user.uin}`)" variant="info" class="profile text-dark position-absolute shadow-sm" size="12rem" />
+          <!--<b-avatar style="top:2rem;right: calc(50% - 6rem)" :to="localePath(`/users/${user.uin}`)" variant="info" class="profile text-dark position-absolute shadow-sm" :src="user.photoUrl" size="12rem" />-->
           <div class="text-center mt-4 mb-3">
             <nuxt-link :to="localePath(`/users/${user.uin}`)">
               <h4 class="mb-0 font-weight-bold" role="button">{{ user.firstName }}</h4>

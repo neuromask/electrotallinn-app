@@ -1,9 +1,8 @@
 <template>
   <section>
     <Tinybox v-if="images.length > 0" v-model="index" :images="images" />
-      
     <div class="text-center">
-      <b-pagination v-if="images.length > 0" limit="9" class="mb-3 shadow-sm d-inline-flex" align="left" v-model="currentPage" :current-page="currentPage" :total-rows="totalRows" @change="loadImages" />
+      <b-pagination v-if="images.length > 0" limit="9" class="mb-3 shadow-sm d-inline-flex" align="left" v-model="currentPage" :per-page="perPage" :total-rows="totalRows" @change="loadImages"  />
     </div>
     <b-row>
       <b-col class="my-3" role="button" cols="6" lg="3" v-for="image, imageIndex in images" :key="imageIndex" @click="index = imageIndex">
@@ -14,14 +13,12 @@
       </b-col>
     </b-row>
     <div class="text-center">
-      <b-pagination v-if="images.length > 0" limit="9" class="mt-3 shadow-sm d-inline-flex" align="center" v-model="currentPage" :total-rows="totalRows" @change="loadImages" />
+      <b-pagination v-if="images.length > 0" limit="9" class="mt-3 shadow-sm d-inline-flex" align="center" v-model="currentPage" :per-page="perPage" :total-rows="totalRows" @change="loadImages" />
     </div>
   </section>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'flickr',
   data() {
@@ -46,9 +43,7 @@ export default {
         this.$nuxt.$loading.start()
       })
       this.loading = true;
-      axios({
-        method: 'get',
-        url: 'https://api.flickr.com/services/rest',
+      this.$axios.$get('https://api.flickr.com/services/rest',{
         params: {
           method: 'flickr.people.getPhotos',
           api_key: this.$config.flickrKey,
@@ -61,22 +56,22 @@ export default {
           per_page: this.perPage,
         }
       }).then((response) => {
-          this.images = response.data.photos.photo;
-          //console.log(response.data.photos)
-          this.images = this.images.map(img => ({
-            caption: 'ElectroTallinn - ' + this.$moment(img.datetaken).format('LL | LT'),
-            src: img.url_o,
-            thumbnail: img.url_n,
-            date: this.$moment(img.datetaken).format('ll | LT')
-            //views: img.views
-          }))
-          this.$nuxt.$loading.finish();
-          this.loading = false;
-          this.totalRows = response.data.photos.total
-        })
-        .catch((error) => {
-          console.log("An error ocurred: ", error);
-        })
+        this.images = response.photos.photo;
+        //console.log(response.data.photos)
+        this.images = this.images.map(img => ({
+          caption: 'ElectroTallinn - ' + this.$moment(img.datetaken).format('LL | LT'),
+          src: img.url_o,
+          thumbnail: img.url_n,
+          date: this.$moment(img.datetaken).format('ll | LT')
+          //views: img.views
+        }))
+        this.$nuxt.$loading.finish();
+        this.loading = false;
+        this.totalRows = response.photos.total
+      })
+      .catch((error) => {
+        console.log("An error ocurred: ", error);
+      })
     }
   }
 };
