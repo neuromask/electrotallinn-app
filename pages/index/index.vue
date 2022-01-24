@@ -12,7 +12,8 @@
         <hr class="hr-sm">
         <p class="mb-3 lead">{{ $t('main.goalText') }}</p>
         <b-button class="font-weight-bold mr-2" variant="primary" size="lg" :to="localePath('/market')">{{ $t('nav.market') }}</b-button>
-        <b-button class="font-weight-bold" variant="outline-primary" size="lg" :to="localePath('/users')">{{ $t('nav.users') }}</b-button>
+        <b-button class="font-weight-bold" variant="outline-primary" size="lg" v-b-modal.video-modal>{{ $t('main.video') }} <b-icon icon="youtube" /></b-button>
+        <VideoModal />
       </b-col>
     </b-row>
     <b-row class="mb-5">
