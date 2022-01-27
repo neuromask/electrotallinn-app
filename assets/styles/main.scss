@@ -28,6 +28,10 @@ html, body, #app {height: 100%; margin: 0; padding: 0; font-family: 'Montserrat'
         color:white;
     }
 }
+::selection {
+  color: $white;
+  background-color: $warning;
+}
 main {
   background-image: linear-gradient(to top, #c0d1e6, #c0d1e6, #d3dcec, #e3e7f2, #f2f3f9, #ffffff);
 }
@@ -195,12 +199,16 @@ hr:after {
 }
 
 .bg-pat {
-  background-image: url('~assets/img/pattern-icons.svg');
+  background-image: url('~assets/img/pattern/pattern-icons.svg');
   background-position: center;
 }
 .bg-pat-dark {
-  background-image: url('~assets/img/pattern-icons-dark.svg');
+  background-image: url('~assets/img/pattern/pattern-icons-dark.svg');
   background-position: center;
+}
+.bg-pat-white {
+  background-image: url('~assets/img/pattern/pattern-icons-white.svg');
+  background-position: bottom;
 }
 
 .Cookie--et {
@@ -399,4 +407,28 @@ hr:after {
   .layout-default .main-nav {
     margin: 0 -15px;
   }
+}
+
+/*
+Scrollbar
+================================================== */
+
+html {
+  --scrollbarBG: #1a2740;
+  --thumbBG: #c0d1e6;
+}
+body::-webkit-scrollbar {
+  width: 1rem;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
 }
