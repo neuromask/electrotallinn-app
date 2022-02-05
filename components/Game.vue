@@ -11,7 +11,7 @@
                   <div class="slot-wrap">
                     <div v-for="index in 3" :key="index">
                       <div class="slot-item" :style="slotStyle" v-for="opt in slotColumn" ref="slotBox" :key="opt.id">
-                        <b-img fluid ref="slotImg" :src="require(`@/assets/img/game/${opt.src}`)" :alt="opt.label" />
+                        <b-img fluid-grow ref="slotImg" :src="require(`@/assets/img/game/${opt.src}`)" :alt="opt.label" />
                       </div>
                     </div>
                   </div>
