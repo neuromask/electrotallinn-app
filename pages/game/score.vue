@@ -4,19 +4,18 @@
       <b-col cols="12" lg="4" class="mb-lg-0 mb-5">
         <h3 class="underline font-weight-bold">{{ $t('game.rules') }}</h3>
         <b-card class="shadow-sm">
-          <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
-          <p class="lead mb-0">{{ $tc('game.rule1', 1) }}</p>
-          <p class="font-italic mb-0">{{ $tc('game.rule1', 2) }}</p>
-          <hr>
           <h4 class="font-weight-bold">{{ $t('game.rule2Title') }}</h4>
           <i18n path="game.rule2" tag="p" class="my-3 lead">
             <NuxtLink :to="localePath('/map')"><span class="font-weight-bold">{{ $t('main.textMap') }}</span></NuxtLink>
             <a href="https://t.me/electrotallinnbot" target="_blank"><span class="font-weight-bold">ElectroBot</span></a>
           </i18n>
-          <div class="bg-light p-3 rounded mt-3">
+          <div class="bg-light p-3 rounded my-3">
             <b-img rounded="circle" src="@/assets/img/game/map-bonus.svg"></b-img>
             <h5 class="mb-0 font-weight-bold text-center mt-3 text-uppercase">{{ $t('game.mapBonus') }}</h5>
           </div>
+          <h4 class="font-weight-bold">{{ $t('game.rule1Title') }}</h4>
+          <p class="lead mb-0">{{ $tc('game.rule1', 1) }}</p>
+          <p class="font-italic mb-0">{{ $tc('game.rule1', 2) }}</p>
         </b-card>
       </b-col>
       <b-col cols="12" lg="8">
