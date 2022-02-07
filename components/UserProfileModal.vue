@@ -19,6 +19,18 @@
               <b-form-group :label="$t('profile.location')">
                 <b-form-input id="input-2" v-model="userEdit.location" :placeholder="$t('profile.locationPlace')" required/>
               </b-form-group>
+
+              <b-form-group label="Facebook">
+                <b-form-input id="input-3" v-model="userEdit.facebookUrl" placeholder="Facebook url" />
+              </b-form-group>
+
+              <b-form-group label="Instagram">
+                <b-form-input id="input-4" v-model="userEdit.instagramUrl" placeholder="Instagram url" />
+              </b-form-group>
+
+              <b-form-group label="Youtube">
+                <b-form-input id="input-5" v-model="userEdit.youtubeUrl" placeholder="Youtube url" />
+              </b-form-group>
               
               <b-form-group class="m-0" :label="$t('profile.language')">
                 <b-form-checkbox-group

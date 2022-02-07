@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div id="submenu" class="upper position-relative d-flex justify-content-center" style="z-index:10">
+    <div id="submenu" class="upper position-relative d-flex justify-content-center mb-5" style="z-index:10">
       <div class="rounded shadow-sm p-container bg-secondary">
         <b-img-lazy v-if="user.transportPhotoName" class="p-image opacity-25" :src="$config.apiUrl + '/users/image/' + user.transportPhotoName" />
         <b-img v-else blank class="p-image bg-pat-dark" />
@@ -16,7 +16,8 @@
       </a>
       <UserProfileModal @save="getUser"/>
     </div>
-    <div class="mt-5 sub-page">
+    <SocialLinksUser :facebookUrl="user.facebookUrl" :instagramUrl="user.instagramUrl" :youtubeUrl="user.youtubeUrl" />
+    <div class="sub-page">
       <b-card no-body bg-variant="info" class="shadow-sm">
         <b-card-header header-tag="nav">
           <b-nav card-header justified tabs>

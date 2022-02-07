@@ -36,6 +36,7 @@
             </nuxt-link>
             <p class="text-muted d-block m-0" v-if="user.location"><i>{{ user.location }}</i></p>
           </div>
+          <SocialLinksUser :facebookUrl="user.facebookUrl" :instagramUrl="user.instagramUrl" :youtubeUrl="user.youtubeUrl" />
           <b-list-group class="text-left shadow-sm">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
@@ -122,6 +123,7 @@ export default {
     getUsers() {
       this.$axios.$get(`${this.$config.apiUrl}/users`).then((response) => {
         this.userTable = response;
+        console.log(this.userTable)
       });
     },
     getFlags (userLang) {

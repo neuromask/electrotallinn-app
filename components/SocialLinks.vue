@@ -8,28 +8,3 @@
     <a href="https://t.me/electrotallinn" target="_blank"  v-html="require('~/assets/icons/bootstrap/telegram.svg?raw')"></a>
   </div>
 </template>
-
-<style scoped>
-.social-links a {
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-  border-radius: 20%;
-  background: #ffffff;
-  color:#4482a9;
-  padding: 4px;
-  margin: 0 .3rem;
-  box-shadow: 0 .125rem 0 rgba(26,39,64,.2)!important;
-}
-.social-links a:hover {
-  background-color: #c0d1e6;
-  transition: background-color 0.4s ease-out;
-  transition: color 0.4s ease-out;
-  color:rgba(26, 39, 64,1);
-}
-.social-links .bi,
-.social-links a svg {
-  width: 100% !important;
-  height: 100% !important;
-}
-</style>

@@ -1,6 +1,5 @@
 <template>
   <section>
-
     <b-row>
       <b-col cols="12" lg="6" class="mb-3">
         <div class="d-flex justify-content-between align-items-start">
