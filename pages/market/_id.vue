@@ -3,18 +3,18 @@
     <MarketProductModal />
     <b-card-group columns>
       <b-card class="shadow-sm">
-        <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
+        <div class="d-flex justify-content-between align-items-start">
+          <h3 class="underline font-weight-bold">{{ $t('main.info') }}</h3>
+          <h2 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="warning" class="shadow-sm text-white">{{ product.price }}€</b-badge></h2>
+        </div>
         <h3 class="mb-3" variant="light" v-if="product.name">{{ product.name }}</h3>
         <b-list-group>
           <b-list-group-item class="text-secondary" variant="light" v-if="product.description">
-            <div class="d-flex justify-content-between align-items-start">
-              <h5 class="font-weight-bold">{{ $t('main.description') }}</h5>
-              <h3 class="m-0 text-nowrap text-warning" v-if="product.price"><b-badge variant="warning" class="shadow-sm text-white">{{ product.price }}€</b-badge></h3>
-            </div>
+            <h5 class="font-weight-bold">{{ $t('main.description') }}</h5>
             <p class="mb-0 pre" v-html="linkify(product.description)"></p>
           </b-list-group-item>
-          <b-list-group-item variant="primary" v-if="product.category" class="text-secondary">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
-          <b-list-group-item variant="primary" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ $moment(product.dateCreated).format('LL') }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.category" class="text-secondary">{{ $t('main.category') }}: <strong>{{ $t('market.category.' + product.category) }}</strong></b-list-group-item>
+          <b-list-group-item variant="light" v-if="product.dateCreated" class="text-secondary">{{ $t('main.dateAdded') }}: <strong>{{ $moment(product.dateCreated).format('LL') }}</strong></b-list-group-item>
         </b-list-group>
       </b-card>
       <b-card class="shadow-sm">
