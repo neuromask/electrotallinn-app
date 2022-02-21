@@ -9,6 +9,8 @@ nav:
   article: Article
   users: Profiles
   game: Game
+  slot: Slot Machine
+  minecraft: Minecraft Server
   about: About
   gallery: Gallery
   bot: Bot
@@ -52,6 +54,24 @@ donate:
   donate3: Payment for hosting and domain, site support.
 blog:
   readMore: Read more
+minecraft:
+  server: Server
+  hardware: Hardware
+  ip: IP
+  worktime: Work time
+  version: Version
+  mode: Mode
+  survival: Survival
+  how: How to start
+  screenshots: Screenshots
+  step1: Download launcher
+  step11: Follow link and download {0}
+  step2: Start the game
+  step22: Select Minecraft <strong>OptiFine 1.18.1</strong> version in the launcher and launch the game
+  step3: Play
+  step33: Add our server IP <strong>play.electrotallinn.ee</strong> in the game and play with us!
+  rules: Rules
+  rulesTest: '- The server is located in Estonia, and we are governed by Estonian law.<br>- Getting game time dishonestly will be prosecuted minute by minute.<br>- Any bypass will be bypassed sooner or later.<br>- Players have the right to violate any rules in relationship with each other by mutual consent of the parties.<br>- The administration reserves the right to make decisions to suppress violations, based on their own moral principles, but guided by common sense.'
 game:
   top: Top
   center: Center

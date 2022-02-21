@@ -9,6 +9,8 @@ nav:
   article: Artikkel
   users: Profiilid
   game: Mäng
+  slot: Mänguautomaat
+  minecraft: Minecraft Server
   about: Meist
   gallery: Galerii
   bot: Bot
@@ -53,6 +55,24 @@ donate:
   donate3: Hostimise ja domeeni eest tasumine, saidi tugi.
 blog:
   readMore: Loe rohkem
+minecraft:
+  server: Server
+  hardware: Riistvara
+  ip: IP
+  worktime: Tööaeg
+  version: Versioon
+  mode: Režiim
+  survival: Ellujäämine
+  how: Kuidas alustada
+  screenshots: Ekraanipildid
+  step1: Laadige alla käivitusprogramm
+  step11: Järgige linki ja laadige alla {0}
+  step2: Alustage mängu
+  step22: Valige käivitusprogrammis Minecrafti versioon <strong>OptiFine 1.18.1</strong> ja käivitage mäng
+  step3: Mängige
+  step33: Lisage mängu meie serveri IP <strong>play.electrotallinn.ee</strong> ja mängige meiega!
+  rules: Reeglid
+  rulesTest: '- Server asub Eestis ja meie suhtes kehtivad Eesti seadused.<br>- Ebaausa mänguaja hankimise eest karistatakse minut minuti kaupa.<br>- Igast möödasõidust möödutakse varem või hiljem.<br> - Mängijatel on poolte vastastikusel nõusolekul õigus rikkuda mis tahes reegleid omavahelistes suhetes.<br>- Administratsioon jätab endale õiguse teha otsuseid rikkumiste mahasurumiseks, lähtudes nende endi moraalsetest põhimõtetest, kuid juhindudes tervest mõistusest.'
 game:
   top: Üles
   center: Keskel

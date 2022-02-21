@@ -123,7 +123,7 @@ export default {
     getUsers() {
       this.$axios.$get(`${this.$config.apiUrl}/users`).then((response) => {
         this.userTable = response;
-        console.log(this.userTable)
+        // console.log(this.userTable)
       });
     },
     getFlags (userLang) {
