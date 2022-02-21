@@ -62,6 +62,7 @@ minecraft:
   worktime: Tööaeg
   version: Versioon
   mode: Režiim
+  map: Kaart
   survival: Ellujäämine
   how: Kuidas alustada
   screenshots: Ekraanipildid
