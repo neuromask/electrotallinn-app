@@ -55,6 +55,7 @@ donate:
 blog:
   readMore: Read more
 minecraft:
+  description: The server was created for cozy gatherings in voice chat, pleasant communication and fun with friends. This server is a hobby project, which, in no case, does not pretend to be some kind of financial development.
   server: Server
   hardware: Hardware
   ip: IP

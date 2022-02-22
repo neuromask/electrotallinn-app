@@ -2,6 +2,36 @@
   <section>
     <b-img class="mb-5" fluid-grow src="@/assets/img/minecraft/minecraft-et.svg" />
      <b-row class="mb-3">
+      <b-col cols="12" lg="6" class="mb-lg-0">
+        <h3 class="font-weight-bold underline">{{ $t('minecraft.server') }}</h3>
+        <b-card class="shadow-sm mb-3">
+          <b-img class="px-5 py-3" fluid-grow src="@/assets/img/minecraft/minecraft-et2.svg" />
+          <b-list-group class="text-left shadow-sm">
+            <b-list-group-item variant="light" class="flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>{{ $t('main.description') }}</strong></h5>
+                <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
+              </div>
+              <div class="mb-0">
+                <p class="mb-0 text-dark lead">{{ $t('minecraft.description') }}</p>
+              </div>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>{{ $t('main.info') }}</strong></h5>
+                <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
+              </div>
+              <div class="mb-1">
+                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
+              </div>
+            </b-list-group-item>
+          </b-list-group>
+        </b-card>
+      </b-col>
       <b-col cols="12" lg="6" class="mb-3">
         <h3 class="font-weight-bold underline">{{ $t('minecraft.how') }}</h3>
         <b-list-group class="shadow-sm mb-3">
@@ -20,30 +50,14 @@
             <p class="mb-0" v-html="$t('minecraft.step33')"></p>
           </b-list-group-item>
         </b-list-group>
+        <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
+        <b-card class="shadow-sm mb-3">
+          <b-img class="rounded shadow-sm mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
+          <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
+        </b-card>
         <h3 class="font-weight-bold underline">{{ $t('minecraft.rules') }}</h3>
         <b-card class="shadow-sm">
           <p class="mb-1 text-dark" v-html="$t('minecraft.rulesTest')"></p>
-        </b-card>
-      </b-col>
-      <b-col cols="12" lg="6" class="mb-lg-0">
-        <h3 class="font-weight-bold underline">{{ $t('minecraft.server') }}</h3>
-        <b-card class="shadow-sm">
-          <b-img class="px-5 py-3" fluid-grow src="@/assets/img/minecraft/minecraft-et2.svg" />
-          <b-list-group class="text-left shadow-sm">
-            <b-list-group-item variant="light" class="flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 text-dark"><strong>{{ $t('main.info') }}</strong></h5>
-                <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
-              </div>
-              <div class="mb-1">
-                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
-              </div>
-            </b-list-group-item>
-          </b-list-group>
         </b-card>
       </b-col>
     </b-row>
@@ -52,7 +66,6 @@
       <h3 class="m-0 text-nowrap text-warning"><b-badge variant="warning" class="shadow-sm text-white">21.02.2022</b-badge></h3>
     </div>
     <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" src="/mcmap.html" title="World Map"></iframe>-->
-    <b-button href="http://mcmap.nuforms.com/" class="mb-3 w-100" target="_blank">{{ $t('minecraft.map') }}</b-button>
     <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
     <GalleryMinecraft />
   </section>
