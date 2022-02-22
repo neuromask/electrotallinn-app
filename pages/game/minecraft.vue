@@ -51,7 +51,7 @@
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
       <h3 class="m-0 text-nowrap text-warning"><b-badge variant="warning" class="shadow-sm text-white">21.02.2022</b-badge></h3>
     </div>
-    <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" src="/et-mc-map/unmined.index.html" title="World Map"></iframe>
+    <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" :src="$config.mcMapIp" title="World Map"></iframe>
     <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
     <GalleryMinecraft />
   </section>
