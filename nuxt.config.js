@@ -274,6 +274,7 @@ export default {
     baseFileUrl: process.env.BASE_FILE_URL || 'https://files.electrotallinn.ee',
     siteUrl: process.env.SITE_URL || 'https://electrotallinn.ee',
     apiUrl: process.env.API_URL || 'https://electrotallinn.ee/api',
+    mcMapIp: process.env.MC_MAP_IP || 'http://188.95.212.227:8123', // local network in env http://192.168.31.98:8123
     googleKey: process.env.GOOGLE_KEY,
     flickrKey: process.env.FLICKR_KEY,
     weatherKey: process.env.WEATHER_KEY,
