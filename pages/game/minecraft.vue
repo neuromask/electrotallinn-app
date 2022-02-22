@@ -47,11 +47,12 @@
         </b-card>
       </b-col>
     </b-row>
-    <div class="d-flex justify-content-between align-items-start">
+    <!--<div class="d-flex justify-content-between align-items-start">
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
       <h3 class="m-0 text-nowrap text-warning"><b-badge variant="warning" class="shadow-sm text-white">21.02.2022</b-badge></h3>
     </div>
-    <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" :src="$config.mcMapIp" title="World Map"></iframe>
+    <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" src="/mcmap.html" title="World Map"></iframe>-->
+    <b-button href="/mcmap.html" class="mb-3 w-100" target="_blank">{{ $t('minecraft.map') }}</b-button>
     <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
     <GalleryMinecraft />
   </section>
