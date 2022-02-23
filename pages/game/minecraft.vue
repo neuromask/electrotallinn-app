@@ -29,40 +29,68 @@
                 <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
               </div>
             </b-list-group-item>
-            <b-list-group-item variant="light" class="flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.rules') }}</strong></h5>
-                <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
-              </div>
-              <div class="mb-0">
-                <p class="mb-0 text-dark small" v-html="$t('minecraft.rulesTest')"></p>
-              </div>
-            </b-list-group-item>
+
           </b-list-group>
         </b-card>
       </b-col>
       <b-col cols="12" lg="6" class="mb-3">
         <h3 class="font-weight-bold underline">{{ $t('minecraft.how') }}</h3>
-        <b-list-group class="shadow-sm mb-3">
-          <b-list-group-item class="text-dark" variant="light">
-            <h5 class="font-weight-bold"><b-badge><strong>1</strong></b-badge> {{ $t('minecraft.step1') }}</h5>
-            <i18n path="minecraft.step11" tag="p" class="mb-0">
-              <a href="https://tlauncher.org/" target="_blank"><span class="font-weight-bold">TLauncher</span></a>
-            </i18n>
-          </b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light">
-            <h5 class="font-weight-bold"><b-badge><strong>2</strong></b-badge> {{ $t('minecraft.step2') }}</h5>
-            <p class="mb-0" v-html="$t('minecraft.step22')"></p>
-          </b-list-group-item>
-          <b-list-group-item class="text-dark" variant="light">
-            <h5 class="font-weight-bold"><b-badge><strong>3</strong></b-badge> {{ $t('minecraft.step3') }}</h5>
-            <p class="mb-0" v-html="$t('minecraft.step33')"></p>
-          </b-list-group-item>
-        </b-list-group>
-        <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
         <b-card class="shadow-sm">
           <b-img class="mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
-          <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
+          <b-list-group class="shadow-sm">
+            <b-list-group-item variant="light" class="text-secondary">
+              <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
+                <b-media-aside vertical-align="center" style="width:64px">
+                  <div class="bg-dark w-100 text-white rounded text-center pb-1">
+                    <h2 class="display-4 font-weight-bold mb-0">1</h2>
+                  </div>
+                </b-media-aside>
+                <b-media-body vertical-align="center">
+                  <h5 class="font-weight-bold">{{ $t('minecraft.step1') }}</h5>
+                  <i18n path="minecraft.step11" tag="p" class="mb-0">
+                  <a href="https://tlauncher.org/" target="_blank"><span class="font-weight-bold">TLauncher</span></a>
+                </i18n>
+              </b-media-body>
+              </b-media>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="text-secondary">
+              <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
+                <b-media-aside vertical-align="center" style="width:64px">
+                  <div class="bg-dark w-100 text-white rounded text-center pb-1">
+                    <h2 class="display-4 font-weight-bold mb-0">2</h2>
+                  </div>
+                </b-media-aside>
+                <b-media-body vertical-align="center">
+                  <h5 class="font-weight-bold">{{ $t('minecraft.step2') }}</h5>
+                  <p class="mb-0" v-html="$t('minecraft.step22')"></p>
+                </b-media-body>
+              </b-media>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="text-secondary">
+              <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
+                <b-media-aside vertical-align="center" style="width:64px">
+                  <div class="bg-dark w-100 text-white rounded text-center pb-1">
+                    <h2 class="display-4 font-weight-bold mb-0">3</h2>
+                  </div>
+                </b-media-aside>
+                <b-media-body vertical-align="center">
+                  <h5 class="font-weight-bold">{{ $t('minecraft.step3') }}</h5>
+                  <p class="mb-0" v-html="$t('minecraft.step33')"></p>
+              </b-media-body>
+              </b-media>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="text-secondary">
+              <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
+                <b-media-aside vertical-align="center" style="width:64px">
+                  <b-img fluid-grow src="@/assets/img/home/home-map-dark.svg" />
+                </b-media-aside>
+                <b-media-body vertical-align="center">
+                  <h5 class="font-weight-bold">{{ $t('minecraft.map') }}</h5>
+                  <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
+              </b-media-body>
+              </b-media>
+            </b-list-group-item>
+          </b-list-group>
         </b-card>
       </b-col>
     </b-row>
@@ -73,6 +101,15 @@
     <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" src="/mcmap.html" title="World Map"></iframe>-->
     <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
     <GalleryMinecraft />
+    <b-card>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.rules') }}</strong></h5>
+        <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
+      </div>
+      <div class="mb-0">
+        <p class="mb-0 text-dark small" v-html="$t('minecraft.rulesTest')"></p>
+      </div>
+    </b-card>
   </section>
 </template>
 <script>
