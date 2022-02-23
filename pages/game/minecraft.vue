@@ -5,7 +5,7 @@
       <b-col cols="12" lg="6" class="mb-lg-0">
         <h3 class="font-weight-bold underline">{{ $t('minecraft.server') }}</h3>
         <b-card class="shadow-sm mb-3">
-          <b-img class="px-5 py-3" fluid-grow src="@/assets/img/minecraft/minecraft-et2.svg" />
+          <b-img class="px-5 py-3" fluid src="@/assets/img/minecraft/minecraft-et2.svg" />
           <b-list-group class="text-left shadow-sm">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
@@ -13,7 +13,7 @@
                 <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
               </div>
               <div class="mb-0">
-                <p class="mb-0 text-dark lead">{{ $t('minecraft.description') }}</p>
+                <p class="mb-0 text-dark">{{ $t('minecraft.description') }}</p>
               </div>
             </b-list-group-item>
             <b-list-group-item variant="light" class="flex-column align-items-start">
@@ -27,6 +27,15 @@
                 <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
+              </div>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.rules') }}</strong></h5>
+                <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
+              </div>
+              <div class="mb-0">
+                <p class="mb-0 text-dark small" v-html="$t('minecraft.rulesTest')"></p>
               </div>
             </b-list-group-item>
           </b-list-group>
@@ -51,13 +60,9 @@
           </b-list-group-item>
         </b-list-group>
         <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
-        <b-card class="shadow-sm mb-3">
-          <b-img class="rounded shadow-sm mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
-          <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
-        </b-card>
-        <h3 class="font-weight-bold underline">{{ $t('minecraft.rules') }}</h3>
         <b-card class="shadow-sm">
-          <p class="mb-1 text-dark" v-html="$t('minecraft.rulesTest')"></p>
+          <b-img class="mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
+          <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
         </b-card>
       </b-col>
     </b-row>
