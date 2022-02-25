@@ -59,6 +59,10 @@ minecraft:
   server: Server
   hardware: Hardware
   ip: IP
+  status: Status
+  online: online
+  offline: offline
+  players: Players
   worktime: Work time
   version: Version
   mode: Mode

@@ -60,6 +60,10 @@ minecraft:
   server: Server
   hardware: Riistvara
   ip: IP
+  status: Staatus
+  online: online
+  offline: offline
+  players: Mängijad
   worktime: Tööaeg
   version: Versioon
   mode: Režiim

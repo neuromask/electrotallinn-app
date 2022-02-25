@@ -60,6 +60,10 @@ minecraft:
   server: Сервер
   hardware: Железо
   ip: IP
+  status: Статус
+  online: онлайн
+  offline: оффлайн
+  players: Игроки
   worktime: Время работы
   version: Версия
   mode: Режим

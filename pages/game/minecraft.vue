@@ -9,6 +9,23 @@
           <b-list-group class="text-left shadow-sm">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.status') }}</strong></h5>
+                <div v-if="serverData">
+                  <h5 v-if="serverData.online"><b-badge>{{ $t('minecraft.online') }}</b-badge> 🟢</h5>
+                  <h5 v-else><b-badge>{{ $t('minecraft.offline') }}</b-badge> 🔴</h5>
+                </div>
+              </div>
+              <div class="mb-1">
+                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
+                <div v-if="serverData"><p class="mb-1 text-dark">{{ $t('minecraft.players') }}: <strong>{{serverData.players.online}} / {{serverData.players.max}}</strong></p></div>
+                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
+              </div>
+            </b-list-group-item>
+            <b-list-group-item variant="light" class="flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>{{ $t('main.description') }}</strong></h5>
                 <h5><b-icon variant="primary" icon="chat-square-text-fill" /></h5>
               </div>
@@ -16,20 +33,6 @@
                 <p class="mb-0 text-dark">{{ $t('minecraft.description') }}</p>
               </div>
             </b-list-group-item>
-            <b-list-group-item variant="light" class="flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 text-dark"><strong>{{ $t('main.info') }}</strong></h5>
-                <h5><b-icon variant="primary" icon="info-circle-fill" /></h5>
-              </div>
-              <div class="mb-1">
-                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
-                <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
-              </div>
-            </b-list-group-item>
-
           </b-list-group>
         </b-card>
       </b-col>
@@ -115,6 +118,23 @@
 <script>
 export default {
   head() { return { title: this.$t("nav.minecraft") } },
+  data() {
+    return {
+      serverData: null,
+    };
+  },
+  mounted() {
+    this.getStatus();
+  },
+  methods: {
+  getStatus() {
+    this.$axios
+      .$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
+        this.serverData = response;
+        //console.log(this.serverData)
+      });
+    }
+  }
 }
 </script>
 <style>
