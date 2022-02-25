@@ -12,12 +12,12 @@
                 <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.status') }}</strong></h5>
                 <div v-if="serverData">
                   <h5 v-if="serverData.online"><b-badge>{{ $t('minecraft.online') }}</b-badge> 🟢</h5>
-                  <h5 v-else><b-badge>{{ $t('minecraft.offline') }}</b-badge> 🔴</h5>
+                  <h5 v-if="!serverData.online"><b-badge>{{ $t('minecraft.offline') }}</b-badge> 🔴</h5>
                 </div>
               </div>
               <div class="mb-1">
                 <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
-                <div v-if="serverData"><p class="mb-1 text-dark">{{ $t('minecraft.players') }}: <strong>{{serverData.players.online}} / {{serverData.players.max}}</strong></p></div>
+                <div v-if="serverData && serverData.online"><p class="mb-1 text-dark">{{ $t('minecraft.players') }}: <strong>{{serverData.players.online}} / {{serverData.players.max}}</strong></p></div>
                 <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
@@ -137,7 +137,7 @@ export default {
     getStatus() {
       this.$axios.$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
         this.serverData = response;
-        //console.log(this.serverData)
+        console.log(this.serverData)
       });
     }
   }
