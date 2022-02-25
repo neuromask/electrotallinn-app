@@ -121,15 +121,21 @@ export default {
   data() {
     return {
       serverData: null,
+      timer: null
     };
   },
   mounted() {
     this.getStatus();
+    this.timer = setInterval(() => {
+      this.getStatus();
+    }, 30000)
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   },
   methods: {
-  getStatus() {
-    this.$axios
-      .$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
+    getStatus() {
+      this.$axios.$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
         this.serverData = response;
         //console.log(this.serverData)
       });
