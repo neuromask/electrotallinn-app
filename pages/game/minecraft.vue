@@ -89,7 +89,7 @@
                 </b-media-aside>
                 <b-media-body vertical-align="center">
                   <h5 class="font-weight-bold">{{ $t('minecraft.map') }}</h5>
-                  <b-button variant="primary" href="http://mcmap.electrotallinn.ee/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
+                  <b-button variant="primary" href="http://play.electrotallinn.ee:8123/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
               </b-media-body>
               </b-media>
             </b-list-group-item>
@@ -137,7 +137,7 @@ export default {
     getStatus() {
       this.$axios.$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
         this.serverData = response;
-        console.log(this.serverData)
+        //console.log(this.serverData)
       });
     }
   }
