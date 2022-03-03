@@ -11,8 +11,8 @@
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.status') }}</strong></h5>
                 <div v-if="serverData">
-                  <h5 v-if="serverData.online"><b-badge>{{ $t('minecraft.online') }}</b-badge> 🟢</h5>
-                  <h5 v-if="!serverData.online"><b-badge>{{ $t('minecraft.offline') }}</b-badge> 🔴</h5>
+                  <h5 v-if="serverData.online"><b-badge>{{ $t('minecraft.online') }}</b-badge><div class="status bg-green ml-2"></div></h5>
+                  <h5 v-if="!serverData.online"><b-badge>{{ $t('minecraft.offline') }}</b-badge><div class="status bg-red ml-2"></div></h5>
                 </div>
               </div>
               <div class="mb-1">
@@ -22,6 +22,7 @@
                 <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
+                <p class="mb-1 text-dark">{{ $t('profile.telegram') }}: <a href="https://t.me/electrotallinn_minecraft" target="_blank"><strong>ElectroTallinn Group</strong></a></p>
               </div>
             </b-list-group-item>
             <b-list-group-item variant="light" class="flex-column align-items-start">
@@ -40,7 +41,7 @@
         <h3 class="font-weight-bold underline">{{ $t('minecraft.how') }}</h3>
         <b-card class="shadow-sm">
           <b-img class="mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
-          <b-list-group class="shadow-sm">
+          <b-list-group class="shadow-sm mb-3">
             <b-list-group-item variant="light" class="text-secondary">
               <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
                 <b-media-aside vertical-align="center" style="width:64px">
@@ -80,6 +81,17 @@
                   <h5 class="font-weight-bold">{{ $t('minecraft.step3') }}</h5>
                   <p class="mb-0" v-html="$t('minecraft.step33')"></p>
               </b-media-body>
+              </b-media>
+            </b-list-group-item>
+          </b-list-group>
+          <b-list-group>
+            <b-list-group-item variant="light" href="https://t.me/electrotallinn_minecraft" target="_blank" class="text-secondary">
+              <b-media tag="div">
+                <template #aside>
+                  <div style="width:64px; height:64px" class="mt-2 text-primary" v-html="require('~/assets/icons/bootstrap/telegram.svg?raw')" />
+                </template>
+                <h5 class="font-weight-bold">{{ $tc('home.linkBox2', 1) }}</h5>
+                <p class="mb-0 opacity-75">{{ $tc('home.linkBox2', 2) }}</p>
               </b-media>
             </b-list-group-item>
             <b-list-group-item variant="light" class="text-secondary">
@@ -144,7 +156,16 @@ export default {
 }
 </script>
 <style>
-.worldMap {
-  height: 640px;
+.status {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.bg-red {
+  background: red;
+}
+.bg-green {
+  background: rgb(0, 189, 0);
 }
 </style>
