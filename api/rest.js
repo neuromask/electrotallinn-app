@@ -9,6 +9,7 @@ const locationsController = require('./controller/LocationsController');
 const imagesController = require('./controller/ImagesController');
 const marketProductsController = require('./controller/MarketProductsController');
 const adminController = require('./controller/AdminController');
+const minecraftController = require('./controller/MinecraftController');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use('/locations', locationsController);
 app.use('/marketProducts', marketProductsController);
 app.use('/images', imagesController);
 app.use('/admin', adminController);
+app.use('/minecraft', minecraftController);
 
 module.exports = app;
