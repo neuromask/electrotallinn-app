@@ -70,6 +70,13 @@ minecraft:
   survival: Survival
   how: How to start
   screenshots: Screenshots
+  stats: Stats
+  time: Time
+  kills: Kills
+  deaths: Deaths
+  distance: Dist
+  placed: Placed
+  mined: Mined
   step1: Download launcher
   step11: Follow link and download {0}
   step2: Start the game

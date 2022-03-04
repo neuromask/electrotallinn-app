@@ -71,6 +71,18 @@ minecraft:
   survival: Выживание
   how: Как начать играть
   screenshots: Скриншоты
+  stats: Статистика
+  time: Время
+  kills: Убил
+  deaths: Умер
+  distance: Прошел
+  placed: Поставил
+  mined: Добыл
+  km: км
+  blocks: блоков
+  times: раз
+  mobs: мобов
+  hours: часов
   step1: Скачай Лаунчер
   step11: Перейди по ссылке и скачай {0}
   step2: Запусти игру
