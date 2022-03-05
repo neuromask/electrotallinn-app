@@ -60,9 +60,9 @@
           </b-list-group>
         </b-card>
       </b-col>
-      <b-col cols="12" lg="6" class="mb-3">
+      <b-col cols="12" lg="6">
         <h3 class="font-weight-bold underline">{{ $t('minecraft.how') }}</h3>
-        <b-card class="shadow-sm">
+        <b-card class="shadow-sm mb-3">
           <b-img class="mb-3" fluid-grow src="@/assets/img/minecraft/mcmap.png" />
           <b-list-group class="shadow-sm">
             <b-list-group-item variant="light" class="text-secondary">
@@ -108,6 +108,11 @@
             </b-list-group-item>
           </b-list-group>
         </b-card>
+        <figure class="figure mb-0">
+          <Tinybox no-thumbs loop v-model="index" :images="images" />
+          <b-img role="button" alt="ElectroTallinn Minecraft Server" class="transportImage shadow-sm" center fluid rounded @click="index = 0" src="@/assets/img/minecraft/et-mc.jpg" />
+          <figcaption class="figure-caption text-center mb-0">ElectroTallinn Minecraft Server</figcaption>
+        </figure>
       </b-col>
     </b-row>
 
@@ -191,7 +196,9 @@ export default {
       sortUserBy: 'played',
       sortUserDesc: true,
       tabIndex: 0,
-      playersOnline: []
+      playersOnline: [],
+      images: [ {src: require("@/assets/img/minecraft/et-mc.jpg"), caption: "ElectroTallinn Minecraft Server"}],
+      index: null
     };
   },
   created () {
@@ -250,7 +257,7 @@ export default {
     this.getStatus();
     this.timer = setInterval(() => {
       this.getStatus();
-    }, 30000)
+    }, 60000)
   },
   beforeDestroy() {
     clearInterval(this.timer)
@@ -259,17 +266,20 @@ export default {
     async getStatus() {
       await this.$axios.$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
         this.serverData = response;
-        this.playersOnline = this.serverData.players.list
+        console.log(this.serverData.players.list)
+        if (this.serverData.players.list) this.playersOnline = this.serverData.players.list
       });
     },
-    async getStats() {
-      await this.$axios.$get(`${this.$config.apiUrl}/minecraft/statistics`).then((response) => {
+    getStats() {
+      this.$axios.$get(`${this.$config.apiUrl}/minecraft/statistics`).then((response) => {
         this.statsData = response;
         //console.log(this.statsData)
       });
     },
     isOnline(player) {
-      return this.playersOnline.includes(player)
+      if (this.serverData && this.serverData.players.list) {
+        return this.playersOnline.includes(player)
+      }
     }
   }
 }
