@@ -72,11 +72,19 @@ minecraft:
   screenshots: Screenshots
   stats: Stats
   time: Time
+  played: Played
   kills: Kills
   deaths: Deaths
   distance: Dist
-  placed: Placed
+  placed: Used
   mined: Mined
+  player: Player
+  km: km
+  blocks: blocks
+  items: items
+  times: times
+  mobs: mobs
+  hours: hours
   step1: Download launcher
   step11: Follow link and download {0}
   step2: Start the game

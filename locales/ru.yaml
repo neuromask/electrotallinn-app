@@ -73,13 +73,16 @@ minecraft:
   screenshots: Скриншоты
   stats: Статистика
   time: Время
+  played: Играл
   kills: Убил
   deaths: Умер
   distance: Прошел
-  placed: Поставил
+  placed: Исп-л
   mined: Добыл
+  player: Игрок
   km: км
   blocks: блоков
+  items: предметов
   times: раз
   mobs: мобов
   hours: часов

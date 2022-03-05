@@ -1,6 +1,7 @@
 <template>
   <section>
     <b-img class="mb-5" fluid-grow src="@/assets/img/minecraft/minecraft-et.svg" />
+     
      <b-row class="mb-5">
       <b-col cols="12" lg="6" class="mb-lg-0 mb-5">
         <h3 class="font-weight-bold underline">{{ $t('minecraft.server') }}</h3>
@@ -109,6 +110,7 @@
         </b-card>
       </b-col>
     </b-row>
+
     <!--<div class="d-flex justify-content-between align-items-start">
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
       <h3 class="m-0 text-nowrap text-warning"><b-badge variant="warning" class="shadow-sm text-white">21.02.2022</b-badge></h3>
@@ -120,6 +122,9 @@
         </b-tab>
       </b-tabs>
     </b-card>-->
+    <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
+    <GalleryMinecraft class="mb-5" />
+    
     <h3 class="font-weight-bold underline">{{ $t('minecraft.stats') }}</h3>
     <b-table
       class="rounded overflow-auto shadow-sm mb-5"
@@ -159,11 +164,10 @@
       </template>
       <template #cell(placed)="data">
         <h4>{{ data.item.placed }}</h4>
-        <p class="small opacity-50">{{ $t('minecraft.blocks') }}</p>
+        <p class="small opacity-50">{{ $t('minecraft.items') }}</p>
       </template>
     </b-table>
-    <h3 class="font-weight-bold underline">{{ $t('minecraft.screenshots') }}</h3>
-    <GalleryMinecraft class="mb-5" />
+
     <b-card>
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.rules') }}</strong></h5>
@@ -173,6 +177,7 @@
         <p class="mb-0 text-dark small" v-html="$t('minecraft.rulesTest')"></p>
       </div>
     </b-card>
+
   </section>
 </template>
 <script>
@@ -198,14 +203,14 @@ export default {
         {
           key: 'name',
           sortable: true,
-          label: this.$t('profile.name'),
+          label: this.$t('minecraft.player'),
           thClass: 'text-white bg-secondary',
           tdClass: 'text-white bg-secondary'
         },
         {
           key: 'played',
           sortable: true,
-          label: this.$t('minecraft.time')
+          label: this.$t('minecraft.played')
         },
         {
           key: 'kills',
@@ -260,7 +265,7 @@ export default {
     async getStats() {
       await this.$axios.$get(`${this.$config.apiUrl}/minecraft/statistics`).then((response) => {
         this.statsData = response;
-        console.log(this.statsData)
+        //console.log(this.statsData)
       });
     },
     isOnline(player) {

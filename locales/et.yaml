@@ -71,6 +71,21 @@ minecraft:
   survival: Ellujäämine
   how: Kuidas alustada
   screenshots: Ekraanipildid
+  stats: Statistika
+  time: Aeg
+  played: Mänginud
+  kills: Tapetud
+  deaths: Suri
+  distance: Läbitud
+  placed: Kasu-d
+  mined: Kaev-d
+  player: Mängija
+  km: km
+  blocks: plokid
+  items: esemed
+  times: korda
+  mobs: mobs
+  hours: tundi
   step1: Laadige alla käivitusprogramm
   step11: Järgige linki ja laadige alla {0}
   step2: Alustage mängu
