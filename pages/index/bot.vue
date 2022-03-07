@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  head() { return { title: this.$t("nav.home"), } }
+  head() { return { title: this.$t("nav.bot"), } }
 }
 </script>
 

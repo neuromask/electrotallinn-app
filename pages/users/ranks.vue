@@ -86,6 +86,7 @@
 <script>
 
 export default {
+  head() { return { title: this.$t("nav.ranks"), } },
   props: {},
   data: () => ({
     ranks: [

@@ -10,6 +10,6 @@
 
 <script>
 export default {
-    head() { return { title: this.$t("nav.market"), }; }
+    head() { return { title: this.$t("nav.gallery"), }; }
 }
 </script>
