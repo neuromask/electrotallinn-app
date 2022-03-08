@@ -113,9 +113,7 @@ export default {
   },
   methods: {
     getProduct() {
-      this.$axios
-        .$get(`/api/marketProducts/${this.id}`)
-        .then(response => {
+      this.$axios.$get(`${this.$config.apiUrl}/marketProducts/${this.id}`).then(response => {
           this.productEdit = response;
         });
     },
@@ -138,9 +136,7 @@ export default {
       });
 
       if (this.id) {
-        this.$axios
-          .$put(`/api/marketProducts/${this.id}`, data)
-          .then(() => {
+        this.$axios.$put(`${this.$config.apiUrl}/marketProducts/${this.id}`, data).then(() => {
             this.$toast.success("Success");
             this.$nextTick(() => {
               this.$emit("save");
@@ -148,9 +144,7 @@ export default {
             });
           });
       } else {
-        this.$axios
-          .$post(`/api/marketProducts`, data)
-          .then(() => {
+        this.$axios.$post(`${this.$config.apiUrl}/marketProducts`, data).then(() => {
             this.$toast.success("Success");
             this.$nextTick(() => {
               this.$emit("save");

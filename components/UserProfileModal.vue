@@ -124,7 +124,7 @@ export default {
   methods: {
     getUser() {
       //console.log(this.$nuxt.$route.path)
-      this.$axios.$get(`/api/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
         this.items = [{
@@ -157,7 +157,7 @@ export default {
       const data = JSON.parse(JSON.stringify(this.userEdit));
       if (this.imageSrc) data.transportPhoto = this.imageSrc.split(',')[1]
       data.languages = data.languages.join()
-      this.$axios.$put(`/api/users/${this.$route.params.id}`, data).then(() => {
+      this.$axios.$put(`${this.$config.apiUrl}/users/${this.$route.params.id}`, data).then(() => {
         this.getUser()
         this.$nextTick(() => {
           this.$emit('save');

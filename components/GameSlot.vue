@@ -166,7 +166,7 @@ export default {
   },
   methods: {
     updateBalance() {
-      this.$axios.$put(`/api/users/${this.$user.uin}/balance`, {balance: this.balance}).then((response) => {
+      this.$axios.$put(`${this.$config.apiUrl}/users/${this.$user.uin}/balance`, {balance: this.balance}).then((response) => {
         this.$user.balance = this.balance;
       });
     },
