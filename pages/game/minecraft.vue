@@ -35,27 +35,14 @@
                 <p class="mb-0 text-dark">{{ $t('minecraft.description') }}</p>
               </div>
             </b-list-group-item>
-          </b-list-group>
-          <b-list-group>
-            <b-list-group-item variant="light" href="https://t.me/electrotallinn_minecraft" target="_blank" class="text-secondary">
-              <b-media tag="div">
-                <template #aside>
-                  <div style="width:64px; height:64px" class="mt-2 text-primary" v-html="require('~/assets/icons/bootstrap/telegram.svg?raw')" />
-                </template>
-                <h5 class="font-weight-bold">{{ $tc('home.linkBox2', 1) }}</h5>
-                <p class="mb-0 opacity-75">{{ $tc('home.linkBox2', 2) }}</p>
-              </b-media>
-            </b-list-group-item>
-            <b-list-group-item variant="light" class="text-secondary">
-              <b-media tag="div" class="d-flex justify-content-center align-items-center" no-body>
-                <b-media-aside vertical-align="center" style="width:64px">
-                  <b-img fluid-grow src="@/assets/img/home/home-map-dark.svg" />
-                </b-media-aside>
-                <b-media-body vertical-align="center">
-                  <h5 class="font-weight-bold">{{ $t('minecraft.map') }}</h5>
-                  <b-button variant="primary" href="http://play.electrotallinn.ee:8123/" class="w-100" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button>
-              </b-media-body>
-              </b-media>
+            <b-list-group-item variant="light" href="https://t.me/electrotallinn_minecraft"  class="flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-dark"><strong>{{ $tc('home.linkBox2', 1) }}</strong></h5>
+                <div style="width:24px; height:24px" class="text-primary" v-html="require('~/assets/icons/bootstrap/telegram.svg?raw')" />
+              </div>
+              <div class="mb-0">
+                <p class="mb-0 text-dark w-100">{{ $tc('home.linkBox2', 2) }}</p>
+              </div>
             </b-list-group-item>
           </b-list-group>
         </b-card>
@@ -116,12 +103,12 @@
       </b-col>
     </b-row>
 
-    <!--<div class="d-flex justify-content-between align-items-start">
+    <div class="d-flex justify-content-between align-items-start">
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
-      <h3 class="m-0 text-nowrap text-warning"><b-badge variant="warning" class="shadow-sm text-white">21.02.2022</b-badge></h3>
+      <h3 class="m-0 text-nowrap text-warning"><b-button variant="primary" href="https://play.electrotallinn.ee/" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button></h3>
     </div>
-    <iframe class="mb-3 w-100 border-0 rounded shadow-sm worldMap" src="/mcmap.html" title="World Map"></iframe>
-    <b-card no-body class="mb-3">
+    <iframe class="mb-5 w-100 border-0 rounded shadow-sm worldMap" src="https://play.electrotallinn.ee/" title="World Map"></iframe>
+    <!--<b-card no-body class="mb-3">
       <b-tabs v-model="tabIndex" card justified>
         <b-tab title="General">
         </b-tab>
@@ -302,5 +289,8 @@ export default {
 }
 .bg-green {
   background: rgb(0, 189, 0);
+}
+.worldMap {
+  min-height: 640px;
 }
 </style>
