@@ -33,11 +33,11 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "App",
   data() {
     return {
-      url_base: "https://api.openweathermap.org/data/2.5/",
       weather: {},
     };
   },
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     fetchWeather() {
-      this.$axios.$get(`${this.url_base}weather`, {
+      this.$axios.$get('/weatherApi/data/2.5/weather', {
         params: {
           q: "tallinn",
           appid: this.$config.weatherKey,

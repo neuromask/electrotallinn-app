@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     getLocList() {
-      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}/locations`).then((response) => {
+      this.$axios.$get(`/api/users/${this.$route.params.id}/locations`).then((response) => {
         this.listFull = response;
       });
     }

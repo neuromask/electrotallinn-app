@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     getUsers() {
-      this.$axios.$get(`${this.$config.apiUrl}/users`).then((response) => {
+      this.$axios.$get(`/api/users`).then((response) => {
         this.userTable = response;
       });
     },

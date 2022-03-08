@@ -251,14 +251,14 @@ export default {
   },
   methods: {
     async getStatus() {
-      await this.$axios.$get("https://api.mcsrvstat.us/2/play.electrotallinn.ee").then((response) => {
+      await this.$axios.$get("/minecraftApi/2/play.electrotallinn.ee").then((response) => {
         this.serverData = response;
         console.log(this.serverData.players.list)
         if (this.serverData.players.list) this.playersOnline = this.serverData.players.list
       });
     },
     getStats() {
-      this.$axios.$get(`${this.$config.apiUrl}/minecraft/statistics`).then((response) => {
+      this.$axios.$get(`/api/minecraft/statistics`).then((response) => {
         this.statsData = response;
         //console.log(this.statsData)
       });

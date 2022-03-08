@@ -72,13 +72,13 @@ export default {
   },
   methods: {
     findMarketProducts() {
-        this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}/marketProducts`).then((response) => {
+        this.$axios.$get(`/api/users/${this.$route.params.id}/marketProducts`).then((response) => {
             this.marketProducts = response;
         });
     },
     deleteProduct(productId) {
       this.$axios
-        .$delete(`${this.$config.apiUrl}/users/${this.$route.params.id}/marketProducts/${productId}`)
+        .$delete(`/api/users/${this.$route.params.id}/marketProducts/${productId}`)
         .then(() => {
             this.$toast.success('Success');
             this.findMarketProducts();
@@ -86,7 +86,7 @@ export default {
     },
     statusProduct(productId) {
       this.$axios
-        .$put(`${this.$config.apiUrl}/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`)
+        .$put(`/api/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`)
         .then(() => {
             this.$toast.success('Success');
             this.findMarketProducts();

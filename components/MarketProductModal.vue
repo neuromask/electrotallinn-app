@@ -114,7 +114,7 @@ export default {
   methods: {
     getProduct() {
       this.$axios
-        .$get(`${this.$config.apiUrl}/marketProducts/${this.id}`)
+        .$get(`/api/marketProducts/${this.id}`)
         .then(response => {
           this.productEdit = response;
         });
@@ -139,7 +139,7 @@ export default {
 
       if (this.id) {
         this.$axios
-          .$put(`${this.$config.apiUrl}/marketProducts/${this.id}`, data)
+          .$put(`/api/marketProducts/${this.id}`, data)
           .then(() => {
             this.$toast.success("Success");
             this.$nextTick(() => {
@@ -149,7 +149,7 @@ export default {
           });
       } else {
         this.$axios
-          .$post(`${this.$config.apiUrl}/marketProducts`, data)
+          .$post(`/api/marketProducts`, data)
           .then(() => {
             this.$toast.success("Success");
             this.$nextTick(() => {

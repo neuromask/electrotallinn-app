@@ -52,7 +52,7 @@ export default {
       this.$refs.count3.start();
     },
     getStatistics() {
-      this.$axios.$get(`${this.$config.apiUrl}/home/statistics`).then((response) => {
+      this.$axios.$get(`/api/home/statistics`).then((response) => {
         this.locationsCount = response.locationsCount;
         this.profilesCount = response.profilesCount;
         this.productsCount = response.productsCount;

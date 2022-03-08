@@ -70,7 +70,7 @@ export default {
   methods: {
     findMarketProducts() {
       this.$axios
-        .$get(`${this.$config.apiUrl}/admin/marketProducts`)
+        .$get(`/api/admin/marketProducts`)
         .then(response => {
           this.marketProducts = response;
         });
@@ -78,7 +78,7 @@ export default {
     statusProduct(productId) {
       this.$axios
         .$put(
-          `${this.$config.apiUrl}/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`
+          `/api/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`
         )
         .then(() => {
           this.$toast.success("Success");
@@ -87,7 +87,7 @@ export default {
     },
     deleteProduct(productId) {
       this.$axios
-        .$delete(`${this.$config.apiUrl}/admin/marketProducts/${productId}`)
+        .$delete(`/api/admin/marketProducts/${productId}`)
         .then(() => {
           this.$toast.success("Success");
           this.findMarketProducts();

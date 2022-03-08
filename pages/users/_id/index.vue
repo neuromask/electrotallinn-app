@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     getUser() {
-      this.$axios.$get(`${this.$config.apiUrl}/users/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response;
         this.user.languages = (this.user.languages || '').split(',').filter(i => !!i);
         this.images = [{

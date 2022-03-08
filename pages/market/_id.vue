@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     getProduct () {
-      this.$axios.$get(`${this.$config.apiUrl}/marketProducts/${this.$route.params.id}`).then((response) => {
+      this.$axios.$get(`/api/marketProducts/${this.$route.params.id}`).then((response) => {
         this.product = response;
         this.images = this.product.images.map(img => ({
           caption: this.product.name,

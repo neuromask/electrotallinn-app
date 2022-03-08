@@ -77,7 +77,8 @@ export default {
     '@nuxtjs/gtm',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    '@nuxtjs/proxy',
   ],
 
   gtm: {
@@ -288,7 +289,27 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxyHeaders: false,
-    credentials: false
+    credentials: false,
+    proxy: true // Can be also an object with default options
+  },
+
+  proxy: {
+    '/minecraftApi/': {
+      target: 'https://api.mcsrvstat.us',
+      pathRewrite: { '^/minecraftApi/': '' }
+    },
+    '/weatherApi/': {
+      target: 'https://api.openweathermap.org',
+      pathRewrite: { '^/weatherApi/': '' }
+    },
+    '/flickrApi/': {
+      target: 'https://api.flickr.com',
+      pathRewrite: { '^/flickrApi/': '' }
+    },
+    '/api/': {
+      target: process.env.API_URL || 'https://electrotallinn.ee/api',
+      pathRewrite: { '^/api/': '' }
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

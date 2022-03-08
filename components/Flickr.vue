@@ -43,7 +43,7 @@ export default {
         this.$nuxt.$loading.start()
       })
       this.loading = true;
-      this.$axios.$get('https://api.flickr.com/services/rest',{
+      this.$axios.$get('/flickrApi/services/rest',{
         params: {
           method: 'flickr.people.getPhotos',
           api_key: this.$config.flickrKey,
