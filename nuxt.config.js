@@ -15,7 +15,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png?v2' },
-      { rel: 'mask-icon', href: '/favicon.svg', color: '#1a2740' }
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#1a2740' }
     ]
   },
 
