@@ -7,7 +7,7 @@
         <h3 class="font-weight-bold underline">{{ $t('minecraft.server') }}</h3>
         <b-card class="shadow-sm mb-3">
           <b-img class="px-5 py-3" fluid src="@/assets/img/minecraft/minecraft-et2.svg" />
-          <b-list-group class="text-left shadow-sm mb-3">
+          <b-list-group class="text-left shadow-sm">
             <b-list-group-item variant="light" class="flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-dark"><strong>{{ $t('minecraft.status') }}</strong></h5>

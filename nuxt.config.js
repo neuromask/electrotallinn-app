@@ -1,4 +1,4 @@
-import getRoutes from "./utils/getRoutes";
+import getRoutes from './utils/getRoutes';
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,14 +7,15 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     htmlAttrs: {
-      lang: "en",
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png?v2' },
+      { rel: 'mask-icon', href: '/favicon.svg', color: '#1a2740' }
     ]
   },
 
