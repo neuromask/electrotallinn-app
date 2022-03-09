@@ -74,7 +74,7 @@ export default {
         });
     },
     statusProduct(productId) {
-      this.$axios.$put(`/api/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`).then(() => {
+      this.$axios.$put(`${this.$config.apiUrl}/users/${this.$user.uin}/marketProducts/${productId}/status/toggle`).then(() => {
           this.$toast.success("Success");
           this.findMarketProducts();
         });
