@@ -64,7 +64,7 @@
                 <b-badge>{{ user.locationsCount }}</b-badge>
               </div>
               <div class="mb-1 d-flex justify-content-between align-items-center">
-                <nuxt-link class="m-0 font-weight-bold" :to="localePath(`/game/score`)">{{ $t('game.balance') }}</nuxt-link>
+                <nuxt-link class="m-0 font-weight-bold" :to="localePath(`/game/slot`)">{{ $t('game.balance') }}</nuxt-link>
                 <b-badge>{{ user.balance }}</b-badge>
               </div>
             </b-list-group-item>
