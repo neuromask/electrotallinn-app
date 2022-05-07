@@ -115,7 +115,7 @@ game:
 error:
   error: Error
   try: Please try something other
-  notFound: Now Found
+  notFound: Page not found
   fileSendFailed: Failed to send file {0}
   unexpected: Unexpected error {0}
   fileDeleteFailed: Failed to delete file {0}
