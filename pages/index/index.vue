@@ -138,7 +138,7 @@
             <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="M0ezw-mZuDQ" />
           </b-col>
           <b-col cols="12" lg="6">
-            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="ovVijvjmlt4" />
+            <vue-tube class="rounded shadow-sm" imageLoading="lazy" videoId="xBGrpeQ_TUc" />
           </b-col>
         </b-row>
       </div>

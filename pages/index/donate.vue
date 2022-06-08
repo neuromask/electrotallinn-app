@@ -70,6 +70,7 @@ export default {
         { "name": "Tim Bud", "amount": 15 },
         { "name": "Evgeny", "amount": 10 },
         { "name": "Pavlo", "amount": 5 },
+        { "name": "Marek", "amount": 25 },
       ]
     };
   }
