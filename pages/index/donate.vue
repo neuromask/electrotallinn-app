@@ -71,6 +71,7 @@ export default {
         { "name": "Evgeny", "amount": 10 },
         { "name": "Pavlo", "amount": 5 },
         { "name": "Marek", "amount": 25 },
+        { "name": "Oksana", "amount": 111 },
       ]
     };
   }
