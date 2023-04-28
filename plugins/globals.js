@@ -26,7 +26,7 @@ export default ({ app }, inject) => {
         REPAIR: require('@/assets/icons/locations/icon-repair.svg'),
         AIR: require('@/assets/icons/locations/icon-air.svg'),
         WATER: require('@/assets/icons/locations/icon-water.svg'),
-        WATER: require('@/assets/icons/locations/icon-pingpong.svg')
+        PINGPONG: require('@/assets/icons/locations/icon-pingpong.svg')
     }))
     inject('productCategories', Vue.observable(['EQUIPMENT','TRANSPORT','SPARE_PARTS','ACCESSORIES','OTHER']))
 }
