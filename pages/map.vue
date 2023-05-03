@@ -1,5 +1,12 @@
 <template>
   <section class="locations">
+    <b-form-group  id="filtermap" v-slot="{ ariaDescribedby }">
+      <b-form-radio-group v-model="selected" button-variant="primary" size="sm" :options="$locationTypesIcons" :aria-describedby="ariaDescribedby" @change="filterMarkers($event);" name="radio-btn-stacked" buttons stacked>
+        <template #first>
+          <b-form-radio value="all">All</b-form-radio>
+        </template>
+      </b-form-radio-group>
+    </b-form-group>
     <div id="map" ref="googleMap" />
     <div id="badgePos">
       <a @click="getUserPos"><b-icon-record-circle /></a>
@@ -30,6 +37,8 @@ export default {
   data () {
     return {
       map: null,
+      selected: 'all',
+      markersAll: [],
       mapCenter: { lat: 0, lng: 0 },
       mapConfig: {
         zoom: 12,
@@ -64,6 +73,23 @@ export default {
         await this.$axios.post(this.$config.apiUrl + '/locations/report', this.report)
         this.$refs['modal-report'].hide()
     },
+    filterMarkers (category) {
+      for (var i = 0; i < this.markersAll.length; i++) {
+        var marker = this.markersAll[i];
+        // If is same category or category not picked
+        if (marker.category == category) {
+          marker.setVisible(true);
+        }
+        // Categories all
+        else if (category == "all") {
+          marker.setVisible(true);
+        }
+        // Categories don't match 
+        else {
+          marker.setVisible(false);
+        }
+      }
+    },
     initMap () {
       
       this.mapConfig.mapTypeControlOptions = {
@@ -85,14 +111,17 @@ export default {
         .then((response) => {
           for (const location of response.data) {
             const markerIcon = this.$locationIcons[location.type]
+            const category = location.type
             const marker = new window.google.maps.Marker({
               position: new window.google.maps.LatLng(location.lat, location.lng),
               map: this.map,
               icon: { url: markerIcon, scaledSize: new window.google.maps.Size(32, 32) },
               title: location.title,
-              id: location.id
+              id: location.id,
+              category: category
             })
 
+            this.markersAll.push(marker);
             window.google.maps.event.addListener(marker, 'click', (function (marker) {
               return function () {
                 let dateCreated = new Date(location.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' });
@@ -221,4 +250,10 @@ export default {
 .locations div[role=dialog] {
   max-width: 90vw!important;
 }
+#filtermap {
+  position: absolute;
+  top: 56px;
+  right: 10px;
+  z-index: 11;
+}    
 </style>

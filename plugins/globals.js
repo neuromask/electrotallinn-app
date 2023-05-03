@@ -21,6 +21,13 @@ export default ({ app }, inject) => {
         {value: 'WATER', text: 'Water'},
         {value: 'PINGPONG', text: 'PingPong'}
     ]))
+    inject('locationTypesIcons', Vue.observable([
+        {value: 'CHARGE', text: '⚡'},
+        {value: 'REPAIR', text: '🛠️'},
+        {value: 'AIR', text: '💨'},
+        {value: 'WATER', text: '💦'},
+        {value: 'PINGPONG', text: '🏓'}
+    ]))
     inject('locationIcons', Vue.observable({
         CHARGE: require("@/assets/icons/locations/icon-charge.svg"),
         REPAIR: require('@/assets/icons/locations/icon-repair.svg'),
