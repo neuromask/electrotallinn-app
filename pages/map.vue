@@ -7,10 +7,8 @@
         </template>
       </b-form-radio-group>
     </b-form-group>
+    <b-button variant="primary" id="badgePos" @click="getUserPos" size="sm"><b-icon-record-circle /></b-button>
     <div id="map" ref="googleMap" />
-    <div id="badgePos">
-      <a @click="getUserPos"><b-icon-record-circle /></a>
-    </div>
     <b-modal ref="modal-report" :title="$t('main.reportTitle')" ok-only centered ok-variant="secondary" :ok-title="$t('action.send')" @ok="handleReportSubmit" >
       <b-form @submit.stop.prevent="handleSubmit">
         <b-form-textarea id="textarea" v-model="report.message" :placeholder="$t('main.reportArea')" rows="3" max-rows="9" ></b-form-textarea>
@@ -171,9 +169,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #map, section {height: 100%; width: 100%;}
-  #badgePos {position: fixed; bottom: 28px; left: 0;height: 48px; z-index: 10; background-color: #1a2740; border-right: 4px solid #ec970f; cursor: pointer;}
-  #badgePos:hover {border-color: #f8da19;transition: border-color 0.4s ease-out;}
-  #badgePos a { height: 48px;  line-height: 48px; padding: 8px 12px; font-weight: bold; font-size: 36px; color: white;}
+  #badgePos {position: fixed; bottom: 208px; right: 10px; padding: 6px; width: 40px; z-index: 10; cursor: pointer;}
+  #filtermap {
+  position: absolute;
+  bottom: 256px;
+  right: 10px;
+  z-index: 11;
+}
+#filtermap .btn {
+  min-width: 40px;
+  padding: 6px;
+}
 </style>
 <style>
 .infocontent {
@@ -250,10 +256,4 @@ export default {
 .locations div[role=dialog] {
   max-width: 90vw!important;
 }
-#filtermap {
-  position: absolute;
-  top: 56px;
-  right: 10px;
-  z-index: 11;
-}    
 </style>
