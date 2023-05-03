@@ -1,13 +1,13 @@
 <template>
   <section class="locations">
     <b-form-group  id="filtermap" v-slot="{ ariaDescribedby }">
-      <b-form-radio-group v-model="selected" button-variant="primary" size="sm" :options="$locationTypesIcons" :aria-describedby="ariaDescribedby" @change="filterMarkers($event);" name="radio-btn-stacked" buttons stacked>
+      <b-form-radio-group v-model="selected" button-variant="primary" :options="$locationTypesIcons" :aria-describedby="ariaDescribedby" @change="filterMarkers($event);" name="radio-btn-stacked" buttons stacked>
         <template #first>
-          <b-form-radio value="all">All</b-form-radio>
+          <b-form-radio value="all">📌</b-form-radio>
         </template>
       </b-form-radio-group>
     </b-form-group>
-    <b-button variant="primary" id="badgePos" @click="getUserPos" size="sm"><b-icon-record-circle /></b-button>
+    <b-button variant="primary" id="badgePos" @click="getUserPos"><b-icon-geo-alt-fill /></b-button>
     <div id="map" ref="googleMap" />
     <b-modal ref="modal-report" :title="$t('main.reportTitle')" ok-only centered ok-variant="secondary" :ok-title="$t('action.send')" @ok="handleReportSubmit" >
       <b-form @submit.stop.prevent="handleSubmit">
@@ -170,18 +170,18 @@ export default {
 <style scoped>
   #map, section {height: 100%; width: 100%;}
   #badgePos {position: fixed; bottom: 208px; right: 10px; padding: 6px; width: 40px; z-index: 10; cursor: pointer;}
-  #filtermap {
+</style>
+<style>
+#filtermap {
   position: absolute;
   bottom: 256px;
   right: 10px;
   z-index: 11;
 }
-#filtermap .btn {
-  min-width: 40px;
+#filtermap label.btn {
+  width: 40px;
   padding: 6px;
 }
-</style>
-<style>
 .infocontent {
   text-align: center;
   position: relative;
