@@ -1,13 +1,13 @@
 <template>
   <section class="locations">
-    <b-form-group  id="filtermap" v-slot="{ ariaDescribedby }">
+    <b-form-group  id="map-filter" v-slot="{ ariaDescribedby }">
       <b-form-radio-group v-model="selected" button-variant="primary" :options="$locationTypesIcons" :aria-describedby="ariaDescribedby" @change="filterMarkers($event);" name="radio-btn-stacked" buttons stacked>
         <template #first>
           <b-form-radio value="all">📌</b-form-radio>
         </template>
       </b-form-radio-group>
     </b-form-group>
-    <b-button variant="primary" id="badgePos" @click="getUserPos"><b-icon-geo-alt-fill /></b-button>
+    <b-button variant="primary" id="cur-position" @click="getUserPos"><b-icon-geo-alt-fill /></b-button>
     <client-only>
       <l-map id="map" ref="etMap" @ready="initLeaflet()" :zoom="zoom" :options="mapOptions" :center="center">
         <l-control-attribution :position="attributionPosition" :prefix="attributionPrefix"/>
@@ -161,7 +161,7 @@ export default {
               content: 
               "<div class='loc-popup'>"
                 + (location.imageName ? "<img class='loc-img-blur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
-                + (location.imageName ? "<img class='locImage' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
+                + (location.imageName ? "<img class='loc-img' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
                   + "<div class='footer'>"
                     +"<h4>" + location.title + "</h4>"
                     +"<p>" + (location.description || '') + "</p>"
@@ -194,20 +194,19 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #map, section {height: 100%; width: 100%;}
-  #badgePos {position: fixed; bottom: 208px; right: 10px; padding: 6px; width: 40px; z-index: 500; cursor: pointer;}
-  #filtermap {
+  #cur-position {position: fixed; bottom: 264px; right: 10px; padding: 6px; width: 40px; z-index: 500; cursor: pointer;}
+</style>
+<style>
+#map-filter {
   position: fixed;
-  bottom: 256px;
+  bottom: 12px;
   right: 10px;
   z-index: 500;
 }
-#filtermap label.btn {
+#map-filter label.btn {
   width: 40px;
   padding: 6px;
 }
-
-</style>
-<style>
 .leaflet-popup-content {
   width: 480px!important;
   height: 480px;
@@ -221,7 +220,6 @@ export default {
 .leaflet-control-layers label {
   margin: 0.1rem 0;
 }
-
 .loc-popup {
   text-align: center;
   position: relative;
@@ -229,8 +227,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-
-.loc-popup .locImage {
+.loc-popup .loc-img {
   position: absolute;
   top:0; left:0;
   width:100%;
@@ -253,6 +250,7 @@ export default {
   bottom:0;
   background-color: rgba(255,255,255,0.7);
   padding:0.3rem 0.5rem 1rem;
+  z-index:100!important;
 }
 .loc-popup .socket {
   overflow: hidden;
