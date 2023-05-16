@@ -158,8 +158,9 @@ export default {
               category: location.type,
               riseOnHover: true,
               position: [location.lat, location.lng],
-              content: "<div class='infocontent'>"
-                + (location.imageName ? "<img class='locImageBlur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
+              content: 
+              "<div class='loc-popup'>"
+                + (location.imageName ? "<img class='loc-img-blur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
                 + (location.imageName ? "<img class='locImage' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
                   + "<div class='footer'>"
                     +"<h4>" + location.title + "</h4>"
@@ -221,20 +222,22 @@ export default {
   margin: 0.1rem 0;
 }
 
-.infocontent {
+.loc-popup {
   text-align: center;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
-.infocontent .locImage {
+.loc-popup .locImage {
   position: absolute;
   top:0; left:0;
   width:100%;
   height:100%;
   object-fit: contain;
 }
-.infocontent .locImageBlur {
+.loc-popup .loc-img-blur {
   position: absolute;
   top:0; left:0;
   width:100%;
@@ -244,44 +247,44 @@ export default {
   -webkit-filter: blur(8px);
   z-index:0!important;
 }
-.infocontent .footer {
+.loc-popup .footer {
   position: fixed;
   width: calc(100% - 44px);
   bottom:0;
   background-color: rgba(255,255,255,0.7);
   padding:0.3rem 0.5rem 1rem;
 }
-.infocontent .socket {
+.loc-popup .socket {
   overflow: hidden;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.infocontent button.close {
+.loc-popup button.close {
   background: transparent;
   border: 0;
 }
-.infocontent p {
+.loc-popup p {
   font-size: 14px;
   margin: 0;
   padding-bottom:0;
 }
-.infocontent h4 {
+.loc-popup h4 {
   font-size:16px;
   margin: 0;
   padding-top:0;
 }
-.infocontent small {
+.loc-popup small {
   font-size: 10px;
   float: left;
 }
-.infocontent .report {
+.loc-popup .report {
   border:1px solid #1a2740;
   background: white;
   border-radius: 4px;
 }
-.infocontent p {
+.loc-popup p {
     margin:0;
 }
 .locations div[role=dialog] {
