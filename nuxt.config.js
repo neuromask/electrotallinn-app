@@ -80,6 +80,7 @@ export default {
     '@nuxtjs/robots',
     'vue-social-sharing/nuxt',
     '@nuxtjs/proxy',
+    'nuxt-leaflet',
   ],
 
   gtm: {

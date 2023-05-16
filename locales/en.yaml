@@ -210,6 +210,9 @@ main:
   cookieBtn: Got it!
   editProfile: Edit your profile
   sellerNoUsername: 'Join {0} Telegram channel and find user by name: {1}'
+  pointAdded: Added by
+  pointDate: Date
+  pointReport: Report
 weather:
   feels: Feels like
   max: Max.

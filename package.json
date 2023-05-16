@@ -30,6 +30,7 @@
     "mysql": "^2.18.1",
     "nuxt": "^2.15.7",
     "nuxt-jsonld": "^1.5.3",
+    "nuxt-leaflet": "^0.0.27",
     "sharp": "^0.29.1",
     "vue-cookie-law": "^1.13.3",
     "vue-count-to": "^1.0.13",

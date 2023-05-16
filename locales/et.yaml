@@ -211,6 +211,9 @@ main:
   cookieBtn: Sain aru!
   editProfile: Redigeeri profiili
   sellerNoUsername: 'Liituge {0} Telegrami kanaliga ja leidke kasutaja nime järgi: {1}'
+  pointAdded: Lisatud
+  pointDate: Kuupäev
+  pointReport: Kaebus
 weather:
   feels: Tundub
   max: Maks.

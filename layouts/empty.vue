@@ -16,11 +16,12 @@ main {
   height: 48px;
   width: 100%;
   z-index: 1;
+  border-radius: 0!important;
 }
 .fullScreen {
-  height:calc(100% - 44px);
+  height:calc(100% - 48px);
   position: fixed;
-  top:44px; left:0;
+  top:48px; left:0;
   width:100%;
 }
 </style>

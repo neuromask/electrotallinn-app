@@ -211,6 +211,9 @@ main:
   cookieBtn: Понятно!
   editProfile: Редактировать профиль
   sellerNoUsername: 'Зайдите на канал {0} в Telegram и найдите пользователя: {1}'
+  pointAdded: Добавил(а)
+  pointDate: Дата
+  pointReport: Жалоба
 weather:
   feels: Чувствуется
   max: Макс.
