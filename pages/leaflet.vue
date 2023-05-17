@@ -32,7 +32,7 @@
           :icon="marker.options.icon"
         >
           <l-popup :content="marker.options.content" />
-          <l-tooltip :content="marker.options.title" />
+          <!--<l-tooltip :content="marker.options.category" />-->
         </l-marker>
         <l-marker :lat-lng="[59.44381, 24.79355]">
           <l-icon
@@ -228,32 +228,47 @@ export default {
   width: 40px;
   padding: 6px;
 }
-.locations div[role=dialog] {
-  max-width: 90vw!important;
-}
-
 .leaflet-popup-content {
-  text-align: center;
-  position: relative;
   width: 480px!important;
   height: 480px;
-  border-radius: 8px;
+  margin: 14px 18px;
+}
+.leaflet-control-layers label {
+  margin: 0.1rem 0;
+}
+.loc-popup {
+  display: flex;
+  justify-content: center;
+  position: relative;
   overflow: hidden;
+  max-width: 480px;
+  max-height: 480px;
+  width:80vw;
+  height:100%;
+  border-radius: 8px;
 }
 @media (max-width: 768px) {
   .leaflet-popup-content {
-    width: 80vw;
-    height: 80vw;
+    max-width: 80vw!important;
+    max-height: 380px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .loc-popup {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
   }
 }
-.leaflet-popup-content .loc-img {
+.loc-popup .loc-img {
   position: absolute;
   top:0; left:0;
   width:100%;
   height:100%;
   object-fit: contain;
 }
-.leaflet-popup-content .loc-img-blur {
+.loc-popup .loc-img-blur {
   position: absolute;
   top:0; left:0;
   width:100%;
@@ -261,46 +276,48 @@ export default {
   object-fit: cover;
   filter: blur(8px);
   -webkit-filter: blur(8px);
-  z-index: 0;
+  z-index:0!important;
 }
-.leaflet-popup-content .footer {
-  position: fixed;
-  width: calc(100% - 44px);
+.loc-popup .footer {
+  position: absolute;
+  width:100%;
   bottom:0;
   background-color: rgba(255,255,255,0.7);
-  padding:0.3rem 0.5rem 1rem;
+  padding:0.3rem 0.5rem;
+  z-index:100!important;
 }
-.leaflet-popup-content .socket {
+.loc-popup .socket {
   overflow: hidden;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.leaflet-popup-content button.close {
-  background: transparent;
-  border: 0;
-}
-.leaflet-popup-content p {
+
+.loc-popup p {
   font-size: 14px;
   margin: 0;
   padding-bottom:0;
 }
-.leaflet-popup-content h4 {
+.loc-popup h4 {
   font-size:16px;
+  font-weight: bold;
   margin: 0;
   padding-top:0;
 }
-.leaflet-popup-content small {
+.loc-popup small {
   font-size: 10px;
   float: left;
 }
-.leaflet-popup-content .report {
+.loc-popup .report {
   border:1px solid #1a2740;
   background: white;
   border-radius: 4px;
 }
-.leaflet-popup-content p {
+.loc-popup p {
     margin:0;
+}
+.locations div[role=dialog] {
+  max-width: 90vw!important;
 }
 </style>
