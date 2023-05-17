@@ -26,6 +26,7 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "leaflet.gridlayer.googlemutant": "^0.14.0",
     "lodash.startcase": "^4.4.0",
     "mysql": "^2.18.1",
     "nuxt": "^2.15.7",

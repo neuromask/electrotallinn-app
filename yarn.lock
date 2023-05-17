@@ -6547,6 +6547,11 @@ launch-editor@^2.6.0:
     picocolors "^1.0.0"
     shell-quote "^1.7.3"
 
+leaflet.gridlayer.googlemutant@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/leaflet.gridlayer.googlemutant/-/leaflet.gridlayer.googlemutant-0.14.0.tgz#9f086ffbb6bb4d1e8f008336c997701d04da9628"
+  integrity sha512-DJ4hchHcqSf+znygd7r20pKijwHwGFrtf60FJeIafTbO6qsYC+65beGz+v42sYxUEKnQL2HmdPB8znWgsY8gBg==
+
 leaflet@^1.7.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.3.tgz#52ec436954964e2d3d39e0d433da4b2500d74414"
@@ -11456,6 +11461,11 @@ vue-toasted@^1.1.28:
   version "1.1.28"
   resolved "https://registry.yarnpkg.com/vue-toasted/-/vue-toasted-1.1.28.tgz#dbabb83acc89f7a9e8765815e491d79f0dc65c26"
   integrity sha512-UUzr5LX51UbbiROSGZ49GOgSzFxaMHK6L00JV8fir/CYNJCpIIvNZ5YmS4Qc8Y2+Z/4VVYRpeQL2UO0G800Raw==
+
+vue2-leaflet-googlemutant@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue2-leaflet-googlemutant/-/vue2-leaflet-googlemutant-2.0.0.tgz#d5a12dc181d3ed075e0bf68a29a53e02f4c11e71"
+  integrity sha512-kFUBMJGPoFDs+ECWlayPiQOM+Yhvu8ew38quhd7Kz/RaT5KmbaR4uO21/81yfDwYe2HtIeagidj/kQWGtcfTzw==
 
 vue2-leaflet@^2.7.1:
   version "2.7.1"

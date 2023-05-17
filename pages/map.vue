@@ -1,14 +1,38 @@
 <template>
   <section class="locations">
-    <b-form-group  id="filtermap" v-slot="{ ariaDescribedby }">
+    <b-form-group  id="map-filter" v-slot="{ ariaDescribedby }">
       <b-form-radio-group v-model="selected" button-variant="primary" :options="$locationTypesIcons" :aria-describedby="ariaDescribedby" @change="filterMarkers($event);" name="radio-btn-stacked" buttons stacked>
         <template #first>
           <b-form-radio value="all">📌</b-form-radio>
         </template>
       </b-form-radio-group>
     </b-form-group>
-    <b-button variant="primary" id="badgePos" @click="getUserPos"><b-icon-geo-alt-fill /></b-button>
-    <div id="map" ref="googleMap" />
+    <b-button variant="primary" id="cur-position" @click="getUserPos"><b-icon-geo-alt-fill /></b-button>
+    <client-only>
+      <!--<l-map id="map" ref="etMap" @ready="initLeaflet()" :zoom="zoom" :options="mapOptions" :center="center">-->
+      <l-map id="map" ref="etMap" :zoom="zoom" :options="mapOptions" :center="center">
+        <l-control-attribution :position="attributionPosition" :prefix="attributionPrefix"/>
+        <l-control-zoom :position="zoomPosition" />
+        <l-control-scale :imperial="imperial" :position="scalePosition" />
+        <l-marker v-for="marker in markersAll"
+          :key="marker.id"
+          :visible="marker.options.visible"
+          :draggable="marker.draggable"
+          :lat-lng.sync="marker._latlng"
+          :icon="marker.options.icon"
+        >
+          <l-popup :content="marker.options.content" />
+          <!--<l-tooltip :content="marker.options.category" />-->
+        </l-marker>
+        <l-marker :lat-lng="[59.44381, 24.79355]">
+          <l-icon
+            :icon-size=bigIcon
+            :icon-url="require(`~/assets/img/logo/circle-anim.svg`)"
+          />
+          <l-popup :content="`<div class='text-center'><img src=`+require(`~/assets/img/logo/circle-anim.svg`)+` width='90%' /><h5>ElectroTallinn Base</h5></div>`" />
+        </l-marker>
+      </l-map>
+    </client-only>
     <b-modal ref="modal-report" :title="$t('main.reportTitle')" ok-only centered ok-variant="secondary" :ok-title="$t('action.send')" @ok="handleReportSubmit" >
       <b-form @submit.stop.prevent="handleSubmit">
         <b-form-textarea id="textarea" v-model="report.message" :placeholder="$t('main.reportArea')" rows="3" max-rows="9" ></b-form-textarea>
@@ -34,30 +58,48 @@ export default {
   props: {},
   data () {
     return {
+      url: '',
+      asd: require('~/assets/img/logo/circle-anim.svg'),
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 13,
+      center: [59.434685, 24.80748],
       map: null,
       selected: 'all',
       markersAll: [],
-      mapCenter: { lat: 0, lng: 0 },
-      mapConfig: {
-        zoom: 12,
-        center: { lat: 59.434685, lng: 24.80748 },
-        fullscreenControl: true,
-        styles: mapStyle
+      bigIcon: [64, 64],
+      mapOptions: {
+        zoomSnap: 0.5,
+        zoomControl: false,
+        attributionControl: false
       },
+      imperial: false,
+      scalePosition: 'bottomleft',
+      zoomPosition: 'bottomright',
+      attributionPosition: 'bottomright',
+      layersPosition: 'topright',
+      attributionPrefix: 'ElectroTallinn Map',
       report: {},
     }
   },
-  mounted () {
-    window.handleReport = this.handleReport;
-  },
   created() {
-    this.$loadScript(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.$config.googleKey}`)
+    this.$loadScript(`https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js`)
       .then(() => {
-        this.initMap()
+        console.log('loaded')
       })
       .catch(() => {
         // Failed to fetch script
       })
+    this.$loadScript(`https://maps.googleapis.com/maps/api/js?key=${this.$config.googleKey}`)
+      .then(() => {
+        this.initLeaflet()
+      })
+      .catch(() => {
+        // Failed to fetch script
+      })
+  },
+  mounted () {
+    window.handleReport = this.handleReport;
   },
   methods: {
     handleReport (locationId) {
@@ -74,93 +116,85 @@ export default {
     filterMarkers (category) {
       for (var i = 0; i < this.markersAll.length; i++) {
         var marker = this.markersAll[i];
-        // If is same category or category not picked
-        if (marker.category == category) {
-          marker.setVisible(true);
-        }
-        // Categories all
-        else if (category == "all") {
-          marker.setVisible(true);
-        }
-        // Categories don't match 
-        else {
-          marker.setVisible(false);
-        }
+        if (marker.options.category == category) marker.options.visible = true;
+        else if (category == "all") marker.options.visible = true;
+        else marker.options.visible = false;
       }
     },
-    initMap () {
-      
-      this.mapConfig.mapTypeControlOptions = {
-        style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: window.google.maps.ControlPosition.TOP_LEFT
-      }
-
-      const mapContainer = this.$refs.googleMap
-      this.map = new window.google.maps.Map(mapContainer, this.mapConfig)
-      const infowindow = new window.google.maps.InfoWindow({})
+    initLeaflet () {
+      this.map = this.$refs.etMap.mapObject
       const apiUrl = this.$config.apiUrl
-
-      window.google.maps.event.addListener(this.map, 'click', function (event) {
-        infowindow.close()
-      })
 
       this.$axios
         .get(apiUrl + '/locations')
         .then((response) => {
-          for (const location of response.data) {
-            const markerIcon = this.$locationIcons[location.type]
-            const category = location.type
-            const marker = new window.google.maps.Marker({
-              position: new window.google.maps.LatLng(location.lat, location.lng),
-              map: this.map,
-              icon: { url: markerIcon, scaledSize: new window.google.maps.Size(32, 32) },
-              title: location.title,
-              id: location.id,
-              category: category
-            })
 
-            this.markersAll.push(marker);
-            window.google.maps.event.addListener(marker, 'click', (function (marker) {
-              return function () {
-                let dateCreated = new Date(location.dateCreated).toLocaleDateString('en-us', { year:"numeric", month:"short", day: 'numeric' });
-                infowindow.setContent(
-                  "<div class='infocontent'>"
-                  + (location.imageName ? "<img class='locImageBlur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
-                  + (location.imageName ? "<img class='locImage' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
-                    + "<div class='footer'>"
-                      +"<h4>" + location.title + "</h4>"
-                      +"<p>" + (location.description || '') + "</p>"
-                      +"<div class='socket'>"
-                        +"<small>Added by: " + (location.userFirstName || '') +" | Date: "+ (dateCreated || '') + "</small>"
-                        +"<button class='report' onclick='handleReport("+location.id+")'>Report</button>"
-                      +"</div>"
+          // for ggl maps valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+          const gglEt = new L.gridLayer.googleMutant({ type: "roadmap", styles: mapStyle })
+          const gglRoad = new L.gridLayer.googleMutant({ type: "roadmap",  })
+          const gglHybrid = new L.gridLayer.googleMutant({ type: "hybrid" })
+          const OpenStreetMap = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors' });
+          const CyclOSM = new L.TileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', { attribution: 'Data: &copy; <a href="http://www.openstreetmap.org/copyright">OSM</a> | Style: &copy; <a href="https://www.cyclosm.org/">CyclOSM</a>' });
+          const OpenCycleMap = new L.TileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=ab33ec8d18874ee9b2f66b18513a1cc3', { attribution: 'Data: &copy; <a href="http://www.openstreetmap.org/copyright">OSM</a> | Style: &copy; <a href="https://www.opencyclemap.org/">OCM</a>' });
+
+          let baseLayers = {
+            "ET⚡️Map": gglEt,
+            "Google Road": gglRoad,
+            "Google Hybrid": gglHybrid,
+            "OpenStreetMap": OpenStreetMap,
+            "CyclOSM": CyclOSM,
+            "OpenCycleMap": OpenCycleMap,
+          };
+
+          let layersControl = L.control.layers(baseLayers, null, { collapsed:true });
+          layersControl.addTo(this.map);
+
+          this.map.addLayer(gglEt);
+
+          for (const location of response.data) {
+            let iconOptions = {
+              iconUrl: this.$locationIcons[location.type],
+              iconSize: [32, 32]
+            }
+            const markerIcon = L.icon(iconOptions);
+            let dateCreated = new Date(location.dateCreated).toLocaleDateString(this.$i18n.locale, { year:"numeric", month:"short", day: 'numeric' });
+            let markerOptions = {
+              title: location.title,
+              clickable: true,
+              draggable: false,
+              visible: true,
+              icon: markerIcon,
+              category: location.type,
+              riseOnHover: true,
+              position: [location.lat, location.lng],
+              content: 
+              "<div class='loc-popup'>"
+                + (location.imageName ? "<img class='loc-img-blur' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
+                + (location.imageName ? "<img class='loc-img' src='" + apiUrl + '/locations/image/' + location.imageName + "' />" : '')
+                  + "<div class='footer'>"
+                    +"<h4>" + location.title + "</h4>"
+                    +"<p>" + (location.description || '') + "</p>"
+                    +"<div class='socket'>"
+                      +"<small>" + this.$t('main.pointAdded') + ": " + (location.userFirstName || '') +" | " + this.$t('main.pointDate') + ": " + (dateCreated || '') + "</small>"
+                      +"<button class='report' onclick='handleReport("+location.id+")'>" + this.$t('main.pointReport') + "</button>"
                     +"</div>"
-                  +"</div>")
-                infowindow.open(this.map, marker)
-              }
-            })(marker))
+                  +"</div>"
+                +"</div>"
+            }
+            const marker = L.marker([location.lat, location.lng], markerOptions);
+            this.markersAll.push(marker);
           }
         })
     },
     getUserPos () {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-          const map = this.map
-          // set current locations
-          map.setCenter(pos)
-          map.setZoom(15)
-          const marker = new window.google.maps.Marker({
-            position: pos,
-            map,
-            title: 'Your location!'
-          })
-          marker.setMap(map)
-        })
-      }
+      const map = this.map
+      map.locate({
+        setView: true,
+        enableHighAccuracy: true
+      }).on('locationfound', function(e) {
+        var marker = new L.marker(e.latlng);
+        marker.addTo(map);
+      });
     }
   }
 }
@@ -169,41 +203,61 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #map, section {height: 100%; width: 100%;}
-  #badgePos {position: fixed; bottom: 208px; right: 10px; padding: 6px; width: 40px; z-index: 10; cursor: pointer;}
+  #cur-position {position: fixed; bottom: 374px; right: 10px; padding: 6px; width: 40px; z-index: 500; cursor: pointer;}
 </style>
 <style>
-#filtermap {
-  position: absolute;
-  bottom: 256px;
+#map-filter {
+  position: fixed;
+  bottom: 112px;
   right: 10px;
-  z-index: 11;
+  z-index: 500;
 }
-#filtermap label.btn {
+#map-filter label.btn {
   width: 40px;
   padding: 6px;
 }
-.infocontent {
-  text-align: center;
-  position: relative;
-  width: 480px;
+.leaflet-popup-content {
+  width: 480px!important;
   height: 480px;
-  border-radius: 8px;
+  margin: 14px 18px;
+}
+.leaflet-control-layers label {
+  margin: 0.1rem 0;
+}
+.loc-popup {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
   overflow: hidden;
+  max-width: 480px;
+  max-height: 480px;
+  width:80vw;
+  height:100%;
+  border-radius: 8px;
 }
 @media (max-width: 768px) {
-  .infocontent {
-    width: 80vw;
-    height: 80vw;
+  .leaflet-popup-content {
+    max-width: 80vw!important;
+    max-height: 380px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .loc-popup {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
   }
 }
-.infocontent .locImage {
+.loc-popup .loc-img {
   position: absolute;
   top:0; left:0;
   width:100%;
   height:100%;
   object-fit: contain;
 }
-.infocontent .locImageBlur {
+.loc-popup .loc-img-blur {
   position: absolute;
   top:0; left:0;
   width:100%;
@@ -211,46 +265,45 @@ export default {
   object-fit: cover;
   filter: blur(8px);
   -webkit-filter: blur(8px);
-  z-index: -1;
+  z-index:0!important;
 }
-.infocontent .footer {
-  position: fixed;
-  width: calc(100% - 28px);
+.loc-popup .footer {
+  position: absolute;
+  width:100%;
   bottom:0;
   background-color: rgba(255,255,255,0.7);
-  padding:0.3rem 0.5rem 1rem;
+  padding:0.3rem 0.5rem;
+  z-index:100!important;
 }
-.infocontent .socket {
+.loc-popup .socket {
   overflow: hidden;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.infocontent button.close {
-  background: transparent;
-  border: 0;
-}
-.infocontent p {
+
+.loc-popup p {
   font-size: 14px;
   margin: 0;
   padding-bottom:0;
 }
-.infocontent h4 {
+.loc-popup h4 {
   font-size:16px;
+  font-weight: bold;
   margin: 0;
   padding-top:0;
 }
-.infocontent small {
+.loc-popup small {
   font-size: 10px;
   float: left;
 }
-.infocontent .report {
+.loc-popup .report {
   border:1px solid #1a2740;
   background: white;
   border-radius: 4px;
 }
-.infocontent p {
+.loc-popup p {
     margin:0;
 }
 .locations div[role=dialog] {
