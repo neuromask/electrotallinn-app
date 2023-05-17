@@ -18,6 +18,7 @@
           :name="tileProvider.name"
           :visible="tileProvider.visible"
           :url="tileProvider.url"
+          :options="tileProvider.options"
           :attribution="tileProvider.attribution"
           layer-type="base"
         />
@@ -54,6 +55,13 @@
 
 const tileProviders = [
   {
+    name: 'Google Satellite',
+    visible: false,
+    url: 'http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',
+    options: {maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']},
+    attribution: 'Data: &copy; <a href="https://www.google.com/maps">Google Maps</a>',
+  },
+  {
     name: 'OpenStreetMap',
     visible: false,
     attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -62,16 +70,23 @@ const tileProviders = [
   {
     name: 'OpenCycleMap',
     visible: false,
-    attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    attribution: 'Data: &copy; <a href="http://www.openstreetmap.org/copyright">OSM</a> | Style: &copy; <a href="https://www.opencyclemap.org/">OCM</a>',
     url: 'https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=ab33ec8d18874ee9b2f66b18513a1cc3',
   },
   {
     name: 'CyclOSM',
     visible: true,
     url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
-    attribution:
-      'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | Map style: &copy; <a href="https://www.cyclosm.org/">CyclOSM</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+    attribution: 'Data: &copy; <a href="http://www.openstreetmap.org/copyright">OSM</a> | Style: &copy; <a href="https://www.cyclosm.org/">CyclOSM</a>',
   }
+  /*,
+  {
+    name: 'Google Streets',
+    visible: true,
+    url: 'http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',
+    options: {maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']},
+    attribution: 'Data: &copy; <a href="https://www.google.com/maps">Google Maps</a>',
+  }*/
 ];
 
 export default {
@@ -142,6 +157,12 @@ export default {
       this.$axios
         .get(apiUrl + '/locations')
         .then((response) => {
+          /*this.map = this.$refs.etMap.mapObject
+          let googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',{
+              maxZoom: 20,
+              subdomains:['mt0','mt1','mt2','mt3']
+          });
+          this.map.addLayer(googleSat);*/
           for (const location of response.data) {
             let iconOptions = {
               iconUrl: this.$locationIcons[location.type],
@@ -210,22 +231,35 @@ export default {
 .leaflet-popup-content {
   width: 480px!important;
   height: 480px;
-}
-@media (max-width: 768px) {
-  .leaflet-popup-content {
-    width: 80vw!important;
-    height: 80vw;
-  }
+  margin: 14px 18px;
 }
 .leaflet-control-layers label {
   margin: 0.1rem 0;
 }
 .loc-popup {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  max-width: 480px;
+  max-height: 480px;
+  width:80vw;
+  height:100%;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .leaflet-popup-content {
+    max-width: 80vw!important;
+    max-height: 380px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .loc-popup {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+  }
 }
 .loc-popup .loc-img {
   position: absolute;
@@ -246,7 +280,7 @@ export default {
 }
 .loc-popup .footer {
   position: fixed;
-  width: calc(100% - 44px);
+  width: calc(100% - 34px);
   bottom:0;
   background-color: rgba(255,255,255,0.7);
   padding:0.3rem 0.5rem 1rem;
@@ -259,10 +293,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.loc-popup button.close {
-  background: transparent;
-  border: 0;
-}
+
 .loc-popup p {
   font-size: 14px;
   margin: 0;
