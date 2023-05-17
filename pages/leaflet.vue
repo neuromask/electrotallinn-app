@@ -228,47 +228,32 @@ export default {
   width: 40px;
   padding: 6px;
 }
+.locations div[role=dialog] {
+  max-width: 90vw!important;
+}
+
 .leaflet-popup-content {
+  text-align: center;
+  position: relative;
   width: 480px!important;
   height: 480px;
-  margin: 14px 18px;
-}
-.leaflet-control-layers label {
-  margin: 0.1rem 0;
-}
-.loc-popup {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  max-width: 480px;
-  max-height: 480px;
-  width:80vw;
-  height:100%;
   border-radius: 8px;
+  overflow: hidden;
 }
 @media (max-width: 768px) {
   .leaflet-popup-content {
-    max-width: 80vw!important;
-    max-height: 380px;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  .loc-popup {
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
+    width: 80vw;
+    height: 80vw;
   }
 }
-.loc-popup .loc-img {
+.leaflet-popup-content .loc-img {
   position: absolute;
   top:0; left:0;
   width:100%;
   height:100%;
   object-fit: contain;
 }
-.loc-popup .loc-img-blur {
+.leaflet-popup-content .loc-img-blur {
   position: absolute;
   top:0; left:0;
   width:100%;
@@ -276,47 +261,46 @@ export default {
   object-fit: cover;
   filter: blur(8px);
   -webkit-filter: blur(8px);
-  z-index:0!important;
+  z-index: 0;
 }
-.loc-popup .footer {
+.leaflet-popup-content .footer {
   position: fixed;
-  width: calc(100% - 34px);
+  width: calc(100% - 44px);
   bottom:0;
   background-color: rgba(255,255,255,0.7);
   padding:0.3rem 0.5rem 1rem;
-  z-index:100!important;
 }
-.loc-popup .socket {
+.leaflet-popup-content .socket {
   overflow: hidden;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.loc-popup p {
+.leaflet-popup-content button.close {
+  background: transparent;
+  border: 0;
+}
+.leaflet-popup-content p {
   font-size: 14px;
   margin: 0;
   padding-bottom:0;
 }
-.loc-popup h4 {
+.leaflet-popup-content h4 {
   font-size:16px;
   margin: 0;
   padding-top:0;
 }
-.loc-popup small {
+.leaflet-popup-content small {
   font-size: 10px;
   float: left;
 }
-.loc-popup .report {
+.leaflet-popup-content .report {
   border:1px solid #1a2740;
   background: white;
   border-radius: 4px;
 }
-.loc-popup p {
+.leaflet-popup-content p {
     margin:0;
-}
-.locations div[role=dialog] {
-  max-width: 90vw!important;
 }
 </style>
