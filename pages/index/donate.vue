@@ -72,7 +72,8 @@ export default {
         { "name": "Pavlo", "amount": 5 },
         { "name": "Marek", "amount": 25 },
         { "name": "Oksana", "amount": 111 },
-        { "name": "Andrei Rotar ", "amount": 100 },
+        { "name": "Andrei Rotar", "amount": 100 },
+        { "name": "Anton", "amount": 20 },
       ]
     };
   }
