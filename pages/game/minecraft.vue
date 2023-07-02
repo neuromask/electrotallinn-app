@@ -17,7 +17,7 @@
                 </div>
               </div>
               <div class="mb-1">
-                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>play.electrotallinn.ee</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>electrotallinn.noip.me</strong></p>
                 <div v-if="serverData && serverData.online"><p class="mb-1 text-dark">{{ $t('minecraft.players') }}: <strong>{{serverData.players.online}} / {{serverData.players.max}}</strong></p></div>
                 <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
@@ -105,9 +105,9 @@
 
     <div class="d-flex justify-content-between align-items-start">
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
-      <h3 class="m-0 text-nowrap text-warning"><b-button variant="primary" href="https://play.electrotallinn.ee/" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button></h3>
+      <h3 class="m-0 text-nowrap text-warning"><b-button variant="primary" href="http://electrotallinn.noip.me" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button></h3>
     </div>
-    <iframe class="mb-5 w-100 border-0 rounded shadow-sm worldMap" src="https://play.electrotallinn.ee/" title="World Map"></iframe>
+    <iframe class="mb-5 w-100 border-0 rounded shadow-sm worldMap" src="http://electrotallinn.noip.me" title="World Map"></iframe>
     <!--<b-card no-body class="mb-3">
       <b-tabs v-model="tabIndex" card justified>
         <b-tab title="General">
@@ -251,7 +251,7 @@ export default {
   },
   methods: {
     async getStatus() {
-      await this.$axios.$get('/minecraftApi/2/play.electrotallinn.ee').then((response) => {
+      await this.$axios.$get('/minecraftApi/2/electrotallinn.noip.me').then((response) => {
         this.serverData = response;
         //console.log(this.serverData.players.list)
         if (this.serverData.players.list) this.playersOnline = this.serverData.players.list
