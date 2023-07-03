@@ -19,7 +19,7 @@
               <div class="mb-1">
                 <p class="mb-1 text-dark">{{ $t('minecraft.ip') }}: <strong>electrotallinn.noip.me</strong></p>
                 <div v-if="serverData && serverData.online"><p class="mb-1 text-dark">{{ $t('minecraft.players') }}: <strong>{{serverData.players.online}} / {{serverData.players.max}}</strong></p></div>
-                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.18.1</strong></p>
+                <p class="mb-1 text-dark">{{ $t('minecraft.version') }}: <strong>Minecraft 1.20</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.mode') }}: <strong>{{ $t('minecraft.survival') }}</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.hardware') }}: <strong>Apple M1 8 Cores</strong></p>
                 <p class="mb-1 text-dark">{{ $t('minecraft.worktime') }}: <strong>24 / 7</strong></p>
