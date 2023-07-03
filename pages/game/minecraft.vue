@@ -97,7 +97,7 @@
         </b-card>
         <figure class="figure mb-0">
           <Tinybox no-thumbs loop v-model="index" :images="images" />
-          <b-img role="button" alt="ElectroTallinn Minecraft Server" class="transportImage shadow-sm" center fluid rounded @click="index = 0" src="@/assets/img/minecraft/et-mc.jpg" />
+          <b-img role="button" alt="ElectroTallinn Minecraft Server" class="transportImage shadow-sm" center fluid rounded @click="index = 0" src="@/assets/img/minecraft/mc-et.jpg" />
           <figcaption class="figure-caption text-center mb-0">ElectroTallinn Minecraft Server</figcaption>
         </figure>
       </b-col>
@@ -187,8 +187,8 @@ export default {
       tabIndex: 0,
       playersOnline: [],
       images: [ 
-        {src: require("@/assets/img/minecraft/et-mc.jpg"), caption: "ElectroTallinn Minecraft Server"}, 
-        {src: require("@/assets/img/minecraft/et-mc-map.jpg"), caption: "ElectroTallinn Minecraft Map"}
+        {src: require("@/assets/img/minecraft/mc-et.jpg"), caption: "ElectroTallinn Minecraft Server"}, 
+        {src: require("@/assets/img/minecraft/et-mc-map.jpg"), caption: "ElectroTallinn Minecraft Server Map"}
       ],
       index: null
     };
