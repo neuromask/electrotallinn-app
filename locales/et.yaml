@@ -91,7 +91,7 @@ minecraft:
   step2: Alustage mängu
   step22: Valige käivitusprogrammis Minecrafti versioon <strong>OptiFine 1.20</strong> ja käivitage mäng
   step3: Mängige
-  step33: Lisage mängu meie serveri IP <strong>electrotallinn.noip.me</strong> ja mängige meiega!
+  step33: Lisage mängu meie serveri IP <strong>play.electrotallinn.ee</strong> ja mängige meiega!
   rules: Reeglid
   rulesTest: '- Server asub Eestis ja meie suhtes kehtivad Eesti seadused.<br>- Ebaausa mänguaja hankimise eest karistatakse minut minuti kaupa.<br>- Igast möödasõidust möödutakse varem või hiljem.<br> - Mängijatel on poolte vastastikusel nõusolekul õigus rikkuda mis tahes reegleid omavahelistes suhetes.<br>- Administratsioon jätab endale õiguse teha otsuseid rikkumiste mahasurumiseks, lähtudes nende endi moraalsetest põhimõtetest, kuid juhindudes tervest mõistusest.'
 game:
