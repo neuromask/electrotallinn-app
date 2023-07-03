@@ -105,11 +105,11 @@
 
     <div class="d-flex justify-content-between align-items-start">
       <h3 class="font-weight-bold underline">{{ $t('minecraft.map') }}</h3>
-      <h3 class="m-0 text-nowrap text-warning"><b-button variant="primary" href="http://play.electrotallinn.ee" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button></h3>
+      <h3 class="m-0 text-nowrap text-warning"><b-button variant="primary" href="https://play.electrotallinn.ee" target="_blank">Minecraft {{ $t('minecraft.map') }} <b-icon icon="geo-alt-fill" /></b-button></h3>
     </div>
-    <b-img role="button" alt="ElectroTallinn Minecraft Server Map" class="transportImage shadow-sm" center fluid rounded @click="index = 1" src="@/assets/img/minecraft/et-mc-map.jpg" />
+    <!--<b-img role="button" alt="ElectroTallinn Minecraft Server Map" class="transportImage shadow-sm" center fluid rounded @click="index = 1" src="@/assets/img/minecraft/et-mc-map.jpg" />-->
     <figcaption class="figure-caption text-center mb-5">ElectroTallinn Minecraft Server Map</figcaption>
-    <iframe class="mb-5 w-100 border-0 rounded shadow-sm worldMap" src="http://play.electrotallinn.ee" title="World Map"></iframe>
+    <iframe class="mb-5 w-100 border-0 rounded shadow-sm worldMap" src="https://play.electrotallinn.ee" title="World Map"></iframe>
     <!--<b-card no-body class="mb-3">
       <b-tabs v-model="tabIndex" card justified>
         <b-tab title="General">
@@ -187,7 +187,7 @@ export default {
       tabIndex: 0,
       playersOnline: [],
       images: [ 
-        {src: require("@/assets/img/minecraft/mc-et.jpg"), caption: "ElectroTallinn Minecraft Server"}, 
+        {src: require("@/assets/img/minecraft/et-mc.jpg"), caption: "ElectroTallinn Minecraft Server"}, 
         {src: require("@/assets/img/minecraft/et-mc-map.jpg"), caption: "ElectroTallinn Minecraft Server Map"}
       ],
       index: null
