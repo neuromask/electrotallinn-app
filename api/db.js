@@ -7,26 +7,41 @@ const connection = mysql.createPool({
     database: process.env.DB_NAME
 });
 
+// Idle connections in the pool can emit errors (server restart, timeout, ...).
+// Without a listener EventEmitter throws and pm2 restarts the whole process.
+connection.on('error', (error) => {
+    console.error('MySQL pool error:', error);
+});
+
 module.exports = {
     query: (sql, params) => {
         return new Promise((resolve, reject) => {
             connection.getConnection(function(cError, c) {
                 if (cError) {
-                    c.release();
-                    console.error("%s ", JSON.stringify(cError));
+                    // c is undefined when the connection could not be acquired
+                    if (c) {
+                        c.release();
+                    }
+                    console.error("MySQL connection error:", cError);
                     return reject(cError);
                 }
 
-                c.query(sql, params || [], (error, result) => {
-                    if (error) {
+                try {
+                    c.query(sql, params || [], (error, result) => {
                         c.release();
-                        console.error("%s ", JSON.stringify(error));
-                        return reject(error);
-                    }
 
+                        if (error) {
+                            console.error("MySQL query error:", error);
+                            return reject(error);
+                        }
+
+                        return resolve(result);
+                    });
+                } catch (e) {
                     c.release();
-                    return resolve(result);
-                });
+                    console.error("MySQL query error:", e);
+                    return reject(e);
+                }
             });
         });
     }

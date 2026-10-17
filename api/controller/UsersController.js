@@ -38,6 +38,9 @@ router.delete('/:uin(\\d+)/marketProducts/:marketProductId(\\d+)', utils.verifyJ
     }
 
     let marketProduct = await marketProductsService.findOne(request.params.marketProductId);
+    if (!marketProduct) {
+        return response.status(404).send('Product not found');
+    }
     if (marketProduct.userUin !== request.user.uin) {
         console.warn('Delete product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
         return response.status(403).send("Not allowed");
@@ -54,6 +57,9 @@ router.put('/:uin(\\d+)/marketProducts/:marketProductId(\\d+)/status/toggle', ut
     }
 
     let marketProduct = await marketProductsService.findOne(request.params.marketProductId);
+    if (!marketProduct) {
+        return response.status(404).send('Product not found');
+    }
     if (marketProduct.userUin !== request.user.uin) {
         console.warn('Status toggle for product %s not allowed for user with uin %s', request.params.marketProductId, request.user.uin);
         return response.status(403).send("Not allowed");
@@ -65,6 +71,11 @@ router.put('/:uin(\\d+)/marketProducts/:marketProductId(\\d+)/status/toggle', ut
 
 router.get('/image/:transportPhotoName', async function(request, response) {
     let image = await usersService.findTransportPhotoByName(request.params.transportPhotoName);
+
+    if (!image) {
+        return response.status(404).end();
+    }
+
     response.end(image, 'binary');
 });
 
@@ -75,8 +86,13 @@ router.put('/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, async func
         return response.status(403).send("Not allowed");
     }
 
-    let result = await usersService.update(request.params.uin, request.body);
-    response.send(result);
+    try {
+        let result = await usersService.update(request.params.uin, request.body);
+        response.send(result);
+    } catch (e) {
+        console.error(e);
+        response.status(500).send(e);
+    }
 });
 
 router.put('/:uin(\\d+)/balance', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {

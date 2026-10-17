@@ -1,4 +1,7 @@
-runtime: nodejs16
+# Runtime for Google App Engine. The production deployment of electrotallinn.ee
+# is done with PM2 (see deploy.sh / ecosystem.config.js and README.md).
+# Node version must match .nvmrc / package.json engines (Dart Sass + webpack 4).
+runtime: nodejs24
 service: nuxt
 
 instance_class: F1

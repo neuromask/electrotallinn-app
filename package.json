@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon --watch api --exec \"nuxt\"",
-    "build": "nuxt build --modern=server",
-    "start": "nuxt start",
-    "generate": "nuxt generate -m"
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider nodemon --watch api --exec \"nuxt\"",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider nuxt build --modern=server",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider nuxt start",
+    "generate": "cross-env NODE_OPTIONS=--openssl-legacy-provider nuxt generate -m",
+    "rebuild:sharp": "npm rebuild sharp"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "yarn": ">=1.22.0"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",
@@ -24,6 +29,7 @@
     "core-js": "2",
     "countup.js": "^2.0.8",
     "crypto": "^1.0.1",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "leaflet.gridlayer.googlemutant": "^0.14.0",
@@ -33,6 +39,7 @@
     "nuxt-jsonld": "^1.5.3",
     "nuxt-leaflet": "^0.0.27",
     "sharp": "^0.29.1",
+    "uuid": "^3.3.2",
     "vue-cookie-law": "^1.13.3",
     "vue-count-to": "^1.0.13",
     "vue-easy-lightbox": "^0.16.2",
@@ -50,9 +57,10 @@
     "@nuxtjs/svg": "^0.3.0",
     "@types/scriptjs": "0.0.2",
     "bootstrap": "4.6.1",
+    "cross-env": "^7.0.3",
     "js-yaml-loader": "^1.2.2",
-    "node-sass": "^6.0.1",
     "nodemon": "^2.0.15",
+    "sass": "~1.77.8",
     "sass-loader": "^10.2.0",
     "vue": "^2.6.12",
     "vue-svg-loader": "0.16.0",

@@ -10,7 +10,9 @@ module.exports = {
         for (const [key, value] of Object.entries(filter)) {
             if (key === 'category') {
                 let orList = [];
-                for (const v of value) {
+                // request.query gives a string for ?category=X and an array for ?category[]=X
+                let categories = Array.isArray(value) ? value : [value];
+                for (const v of categories) {
                     orList.push(`p.category = ?`);
                     filterParams.push(v);
                 }

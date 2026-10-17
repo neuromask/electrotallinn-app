@@ -3,6 +3,7 @@ const utils = require("../utils/Utils.js");
 const locationsService = require("../service/LocationsService.js");
 const usersService = require("../service/UsersService.js");
 const marketProductsService = require("../service/MarketProductsService.js");
+const reportsService = require("../service/ReportsService.js");
 
 const router = express.Router();
 
@@ -54,8 +55,18 @@ router.delete('/locations/:id(\\d+)/reports/:reportId(\\d+)', utils.verifyJWT, u
 });
 
 router.put('/locations/image/rotate/:imageName', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let image = await locationsService.rotateLocationImage(request.params.imageName, request.query.rotation ? parseInt(request.query.rotation) : 90);
-    response.end(image, 'binary');
+    try {
+        let image = await locationsService.rotateLocationImage(request.params.imageName, request.query.rotation ? parseInt(request.query.rotation) : 90);
+
+        if (!image) {
+            return response.status(404).send('Image not found');
+        }
+
+        response.end(image, 'binary');
+    } catch (e) {
+        console.error(e);
+        response.status(500).send('Image rotation failed');
+    }
 });
 
 router.get('/locations/unconfirmed', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
@@ -68,13 +79,13 @@ router.get('/locations/unconfirmed', utils.verifyJWT, utils.checkAuthentication,
 
 // CREATE user
 router.post('/users', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = usersService.create(request.body);
+    let result = await usersService.create(request.body);
     response.send(result);
 });
 
 // DELETE user
 router.delete('/users/:uin(\\d+)', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
-    let result = await usersService.update(request.params.uin, request.body);
+    let result = await usersService.delete(request.params.uin);
     response.send(result);
 });
 
@@ -91,8 +102,13 @@ router.delete('/marketProducts/:marketProductId(\\d+)', utils.verifyJWT, utils.c
     response.send(result);
 });
 
-router.put('/marketProducts/:marketProductId(\\d+)/status/toggle', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
+router.put('/marketProducts/:marketProductId(\\d+)/status/toggle', utils.verifyJWT, utils.checkAuthentication, utils.checkRole('ADMIN'), async function(request, response) {
     let result = await marketProductsService.toggleStatus(request.params.marketProductId)
+
+    if (result == null) {
+        return response.status(404).send('Product not found');
+    }
+
     response.send(result);
 });
 

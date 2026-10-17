@@ -67,7 +67,7 @@ module.exports = {
         let params = [name];
 
         let result = await db.query(sql, params);
-        return result[0].image;
+        return result[0] ? result[0].image : null;
     },
 
     updateImage: async (name, image) => {

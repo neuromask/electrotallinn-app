@@ -34,7 +34,7 @@ router.post('/', utils.verifyJWT, utils.checkAuthentication, async function(requ
 // UPDATE
 router.put('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
     try {
-        if (!marketProductsService.exists(request.params.id, request.user.uin) && request.user.role !== 'ADMIN') {
+        if (!await marketProductsService.exists(request.params.id, request.user.uin) && request.user.role !== 'ADMIN') {
             console.warn('Saving product %s not allowed for user with uin %s', request.params.id, request.user.uin);
             return response.status(403).send("Not allowed");
         }
@@ -48,13 +48,17 @@ router.put('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, async funct
 
 // DELETE
 router.delete('/:id(\\d+)', utils.verifyJWT, utils.checkAuthentication, async function(request, response) {
-    if (!marketProductsService.exists(request.params.id, request.user.uin) && request.user.role !== 'ADMIN') {
-        console.warn('Deleting product %s not allowed for user with uin %s', request.params.id, request.user.uin);
-        return response.status(403).send("Not allowed");
-    }
+    try {
+        if (!await marketProductsService.exists(request.params.id, request.user.uin) && request.user.role !== 'ADMIN') {
+            console.warn('Deleting product %s not allowed for user with uin %s', request.params.id, request.user.uin);
+            return response.status(403).send("Not allowed");
+        }
 
-    let result = await marketProductsService.delete(request.params.id);
-    response.send(result);
+        let result = await marketProductsService.delete(request.params.id, request.headers.authorization);
+        response.send(result);
+    } catch (e) {
+        response.status(400).send(e);
+    }
 });
 
 

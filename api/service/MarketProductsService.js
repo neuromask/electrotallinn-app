@@ -16,6 +16,11 @@ module.exports = {
 
     findOne: async (id) => {
         let product = await marketProductsRepository.findOne(id);
+
+        if (!product) {
+            return null;
+        }
+
         product.images = await marketProductImagesRepository.findByMarketProductId(id);
 
         return product;
@@ -62,21 +67,25 @@ module.exports = {
 
         // delete missing files
         let existingImages = await marketProductImagesRepository.findByMarketProductId(id);
-        existingImages.forEach(existingImage => {
+        for (const existingImage of existingImages) {
             if (!marketProduct.images.find(image => image.fileName === existingImage.fileName)) {
-                // delete file from file server
-                fileManagerHelper.delete('market', existingImage.fileName, authHeader);
+                try {
+                    // delete file from file server
+                    await fileManagerHelper.delete('market', existingImage.fileName, authHeader);
+                } catch (e) {
+                    console.error(e);
+                }
 
                 // delete file record
-                marketProductImagesRepository.delete(existingImage.id);
+                await marketProductImagesRepository.delete(existingImage.id);
             }
-        });
+        }
 
         // process new files
-        marketProduct.images.forEach(async item => {
+        for (const item of marketProduct.images) {
             try {
                 if (item.id) {
-                    return
+                    continue;
                 }
 
                 let fileName = utils.uuid() + '.jpg';
@@ -85,11 +94,11 @@ module.exports = {
                 await fileManagerHelper.create('market', item.fileB64, fileName, authHeader);
 
                 // create file record
-                marketProductImagesRepository.create({marketProductId: id, fileName: fileName});
+                await marketProductImagesRepository.create({marketProductId: id, fileName: fileName});
             } catch (e) {
                 console.error(e);
             }
-        });
+        }
 
         return result
     },
@@ -97,8 +106,12 @@ module.exports = {
     delete: async (id, authHeader) => {
         let images = await marketProductImagesRepository.findByMarketProductId(id);
         for (let image of images) {
-            // delete files on file server
-            let imageFileDeleteResult = await fileManagerHelper.delete('market', image.fileName, authHeader);
+            try {
+                // delete files on file server
+                await fileManagerHelper.delete('market', image.fileName, authHeader);
+            } catch (e) {
+                console.error(e);
+            }
         }
 
         return await marketProductsRepository.delete(id)
@@ -107,6 +120,10 @@ module.exports = {
     toggleStatus: async (id) => {
         let statuses = ['ACTIVE', 'INACTIVE'];
         let product = await marketProductsRepository.findOne(id);
+
+        if (!product) {
+            return null;
+        }
 
         return await marketProductsRepository.updateStatus(id, statuses[Math.abs(statuses.indexOf(product.status) - 1)]);
     },

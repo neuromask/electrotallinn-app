@@ -3,9 +3,22 @@ import { Buffer } from 'buffer';
 const https = require('https');
 const jwt = require('jsonwebtoken');
 const crypto = require("crypto");
-const sharp = require('sharp');
 const { v4: uuidv4 } = require('uuid');
 //const Buffer = require('buffer');
+
+// sharp is a native module (prebuilt binaries are platform specific).
+// Requiring it at the top of the file makes the whole /api middleware fail to
+// load when the binary is missing/built for another platform, so the whole site
+// stops working. Load it lazily: only image endpoints are affected.
+let sharp;
+
+const getSharp = () => {
+    if (!sharp) {
+        sharp = require('sharp');
+    }
+
+    return sharp;
+};
 
 const JWT_SECRET = "supersecretjwtada8sd8a7d9ad79a";
 
@@ -109,7 +122,7 @@ module.exports = {
      * @returns {Promise<Buffer>}
      */
     rotateImage: async (image, degree) => {
-        return await sharp(image)
+        return await getSharp()(image)
             .rotate(degree)
             .toBuffer();
     },
@@ -122,7 +135,7 @@ module.exports = {
      */
     resizeImage: async (image, options) => {
         const {width = 300, height = 300} = options || {};
-        return await sharp(image)
+        return await getSharp()(image)
             .resize({ width: width, height: height, fit: 'inside' })
             .toBuffer();
     },

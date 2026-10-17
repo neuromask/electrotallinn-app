@@ -35,12 +35,17 @@ router.post('/report', utils.verifyJWT, async function(request, response) {
 
 router.get('/image/:imageName', async function(request, response) {
     let image = await locationsService.findLocationImageByName(request.params.imageName);
+
+    if (!image) {
+        return response.status(404).end();
+    }
+
     response.end(image, 'binary');
 });
 
 router.get('/nearest', async function(request, response) {
     if (!request.query.lat || !request.query.lng) {
-        response.status(400).send('Coordinations missing');
+        return response.status(400).send('Coordinations missing');
     }
 
     let result = await locationsService.findNearestLocation(request.query.lat, request.query.lng)
